@@ -1,0 +1,8 @@
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\bin\Release\ffcatapult.exe
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\bin\Release\ffcatapult.pdb
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.FFmpegCatapultForm.resources
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.Properties.Resources.resources
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\ffcatapult.exe
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\ffcatapult.pdb
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.csprojResolveAssemblyReference.cache
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.csproj.GenerateResource.Cache
