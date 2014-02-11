@@ -31,7 +31,7 @@ namespace FFmpegCatapult
         private static String input = "";
         private static String output = "";
 
-        // File extentions table     
+        // File extensions table     
         private static String[,] formats = new String[,]
         {
             {"AVI", "avi"}, {"Matroska", "mkv"}, {"MP4", "mp4"},

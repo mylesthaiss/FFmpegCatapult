@@ -40,7 +40,7 @@ namespace FFmpegCatapult
             String output;
             String threads;
             String video;
-
+            
             // Input arguments
             if (File.Audio != "")
             {
@@ -252,6 +252,76 @@ namespace FFmpegCatapult
                 video = "-vn";
             }
 
+            // Tagging switches
+            if (File.Format != "raw")
+            {
+                ArrayList tagArgs = new ArrayList();
+
+                if (Metadata.Album != "")
+                {
+                    tagArgs.Add(String.Format("-metadata album=\"{0}\"", Metadata.Album));
+                }
+
+                if (Metadata.AlbumArtist != "")
+                {
+                    tagArgs.Add(String.Format("-metadata album_artist=\"{0}\"", Metadata.AlbumArtist));
+                }
+
+                if (Metadata.Artist != "")
+                {
+                    tagArgs.Add(String.Format("-metadata artist=\"{0}\"", Metadata.Artist));
+                }
+
+                if (Metadata.Comment != "")
+                {
+                    tagArgs.Add(String.Format("-metadata comment=\"{0}\"", Metadata.Comment));
+                }
+
+                if (Metadata.Disc != 0)
+                {
+                    if (Metadata.TotalDiscs != 0)
+                    {
+                        tagArgs.Add(String.Format("-metadata disc={0}/{1}", Metadata.Disc, Metadata.TotalDiscs));
+                    }
+                    else
+                    {
+                        tagArgs.Add(String.Format("-metadata disc={0}", Metadata.Disc));
+                    }
+                }
+
+                if (Metadata.Title != "")
+                {
+                    tagArgs.Add(String.Format("-metadata title=\"{0}\"", Metadata.Title));
+                }
+                
+                if (Metadata.Track != 0)
+                {
+                    if (Metadata.TotalTracks != 0)
+                    {
+                        tagArgs.Add(String.Format("-metadata track={0}/{1}", Metadata.Track, Metadata.TotalTracks));
+                    }
+                    else
+                    {
+                        tagArgs.Add(String.Format("-metadata track={0}", Metadata.Track));
+                    }                    
+                }
+
+                if (Metadata.Publisher != "")
+                {
+                    tagArgs.Add(String.Format("-metadata publisher=\"{0}\"", Metadata.Publisher));
+                }
+
+                if (Metadata.Year != 0)
+                {
+                    tagArgs.Add(String.Format("-metadata date={0}", Metadata.Year));
+                }
+
+                if (tagArgs.Count > 0)
+                {
+                    output = String.Join(" ", tagArgs.ToArray()) + " " + output;
+                }                
+            }
+            
             // Launch process
             Process Term = new Process();
             Term.StartInfo.FileName = termBin;

@@ -121,6 +121,8 @@ namespace FFmpegCatapult
             comboBoxBytes.Items.Add(new ListComboContent("MB", "M"));
             comboBoxBytes.Items.Add(new ListComboContent("GB", "G"));
 
+            buttonVideoCodecProperties.Click += new EventHandler(buttonVideoCodecProperties_Clicked);
+
             InitVideo();
 
             // Audio tab
@@ -154,6 +156,19 @@ namespace FFmpegCatapult
                 textBoxTermArgs.Text = Bin.TermArgs;
             }
             textBoxTermArgs.TextChanged += new EventHandler(textBoxTermArgs_TextChanged);
+
+            // Metadata
+            textBoxAlbum.TextChanged += new EventHandler(textBoxAlbum_TextChanged);
+            textBoxArtist.TextChanged += new EventHandler(textBoxArtist_TextChanged);
+            textBoxComment.TextChanged += new EventHandler(textBoxComment_TextChanged);
+            textBoxDisc.TextChanged += new EventHandler(textBoxDisc_TextChanged);
+            textBoxGenre.TextChanged += new EventHandler(textBoxGenre_TextChanged);
+            textBoxTitle.TextChanged += new EventHandler(textBoxTitle_TextChanged);
+            textBoxTotalDiscs.TextChanged += new EventHandler(textBoxTotalDiscs_TextChanged);
+            textBoxTotalTracks.TextChanged += new EventHandler(textBoxTotalTracks_TextChanged);
+            textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);
+            textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);            
+            textBoxYear.TextChanged += new EventHandler(textBoxYear_TextChanged);
         }
 
         // Methods
@@ -623,7 +638,7 @@ namespace FFmpegCatapult
             groupBoxAudioEncoder.Enabled = enable;
             groupBoxVolume.Enabled = enable;
             groupBoxAudioOutput.Enabled = enable;
-        }
+        } 
 
         // Main event handlers       
         private void textBoxInFile_TextChanged(object sender, EventArgs e)
@@ -955,6 +970,12 @@ namespace FFmpegCatapult
         }
 
         // Video event handlers
+        void buttonVideoCodecProperties_Clicked(object sender, EventArgs e)
+        {
+            VideoSettingsForm videoProperties = new VideoSettingsForm();
+            videoProperties.Show();
+        }
+
         void comboBoxVideoCodecs_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboContent codec = (ListComboContent)comboBoxVideoCodecs.SelectedItem;
@@ -1156,10 +1177,96 @@ namespace FFmpegCatapult
             File.Audio = textBoxAudioStream.Text;
         }
 
+        // Metadata event handlers
+        void textBoxAlbum_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.Album = textBoxAlbum.Text;
+        }
+
+        void textBoxArtist_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.Artist = textBoxArtist.Text;
+        }
+
+        void textBoxComment_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.Comment = textBoxComment.Text;
+        }
+
+        void textBoxDisc_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metadata.Disc = TextToInt(textBoxDisc.Text);
+            }
+            catch (Exception)
+            {
+                Metadata.Disc = 0;
+            }
+        }
+
+        void textBoxGenre_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.Genre = textBoxGenre.Text;
+        }
+
+        void textBoxTitle_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.Title = textBoxTitle.Text;
+        }
+
+        void textBoxTotalDiscs_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metadata.Disc = TextToInt(textBoxDisc.Text);
+            }
+            catch
+            {
+                Metadata.TotalDiscs = 0;
+            }
+        }
+
+        void textBoxTotalTracks_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metadata.TotalTracks = TextToInt(textBoxTotalTracks.Text);
+            }
+            catch (Exception)
+            {
+                Metadata.TotalTracks = 0;
+            }
+        }
+
+        void textBoxTrack_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metadata.Track = TextToInt(textBoxTrack.Text);
+            }
+            catch (Exception)
+            {
+                Metadata.Track = 0;
+            }
+        }
+
+        void textBoxYear_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metadata.Year = TextToInt(textBoxYear.Text);
+            }
+            catch (Exception)
+            {
+                Metadata.Year = 0;
+            }
+        }
+
         // Misc event handlers
         void textBoxFFmpegBin_TextChanged(object sender, EventArgs e)
         {
-            Bin.FFmpegBin = textBoxFFmpegBin.Text;
+            Bin.FFmpegBin = textBoxFFmpegBin.Text;            
         }
 
         void textBoxTermBin_TextChanged(object sender, EventArgs e)

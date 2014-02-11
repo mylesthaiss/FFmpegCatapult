@@ -122,6 +122,7 @@ namespace FFmpegCatapult
             this.labelMinBitrate = new System.Windows.Forms.Label();
             this.labelVideoBitrate = new System.Windows.Forms.Label();
             this.groupBoxVideoEncoder = new System.Windows.Forms.GroupBox();
+            this.buttonVideoCodecProperties = new System.Windows.Forms.Button();
             this.comboBoxVideoEncoders = new System.Windows.Forms.ComboBox();
             this.labelVideoEncoder = new System.Windows.Forms.Label();
             this.groupBoxVideoCodec = new System.Windows.Forms.GroupBox();
@@ -159,6 +160,34 @@ namespace FFmpegCatapult
             this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
             this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
             this.labelFFmpegBin = new System.Windows.Forms.Label();
+            this.tabTagging = new System.Windows.Forms.TabPage();
+            this.groupBoxMiscTags = new System.Windows.Forms.GroupBox();
+            this.textBoxPublisher = new System.Windows.Forms.TextBox();
+            this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
+            this.labelAlbumArtist = new System.Windows.Forms.Label();
+            this.groupBoxTrackTags = new System.Windows.Forms.GroupBox();
+            this.textBoxTotalDiscs = new System.Windows.Forms.TextBox();
+            this.labelOfDiscs = new System.Windows.Forms.Label();
+            this.textBoxDisc = new System.Windows.Forms.TextBox();
+            this.labelDisc = new System.Windows.Forms.Label();
+            this.textBoxTotalTracks = new System.Windows.Forms.TextBox();
+            this.labelOfTrack = new System.Windows.Forms.Label();
+            this.textBoxTrack = new System.Windows.Forms.TextBox();
+            this.labelTrack = new System.Windows.Forms.Label();
+            this.groupBoxGeneralTags = new System.Windows.Forms.GroupBox();
+            this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.labelGenre = new System.Windows.Forms.Label();
+            this.textBoxArtist = new System.Windows.Forms.TextBox();
+            this.labelArtist = new System.Windows.Forms.Label();
+            this.textBoxAlbum = new System.Windows.Forms.TextBox();
+            this.labelAlbum = new System.Windows.Forms.Label();
+            this.labelYear = new System.Windows.Forms.Label();
+            this.textBoxYear = new System.Windows.Forms.TextBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.groupBoxSession.SuspendLayout();
@@ -181,6 +210,10 @@ namespace FFmpegCatapult
             this.groupBoxAudioCodec.SuspendLayout();
             this.tabMisc.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
+            this.tabTagging.SuspendLayout();
+            this.groupBoxMiscTags.SuspendLayout();
+            this.groupBoxTrackTags.SuspendLayout();
+            this.groupBoxGeneralTags.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRun
@@ -208,6 +241,7 @@ namespace FFmpegCatapult
             this.tabControl.Controls.Add(this.tabPicture);
             this.tabControl.Controls.Add(this.tabVideo);
             this.tabControl.Controls.Add(this.tabAudio);
+            this.tabControl.Controls.Add(this.tabTagging);
             this.tabControl.Controls.Add(this.tabMisc);
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
@@ -939,6 +973,7 @@ namespace FFmpegCatapult
             // 
             // groupBoxVideoEncoder
             // 
+            this.groupBoxVideoEncoder.Controls.Add(this.buttonVideoCodecProperties);
             this.groupBoxVideoEncoder.Controls.Add(this.comboBoxVideoEncoders);
             this.groupBoxVideoEncoder.Controls.Add(this.labelVideoEncoder);
             this.groupBoxVideoEncoder.Location = new System.Drawing.Point(196, 6);
@@ -947,6 +982,15 @@ namespace FFmpegCatapult
             this.groupBoxVideoEncoder.TabIndex = 1;
             this.groupBoxVideoEncoder.TabStop = false;
             this.groupBoxVideoEncoder.Text = "Encoder";
+            // 
+            // buttonVideoCodecProperties
+            // 
+            this.buttonVideoCodecProperties.Location = new System.Drawing.Point(188, 46);
+            this.buttonVideoCodecProperties.Name = "buttonVideoCodecProperties";
+            this.buttonVideoCodecProperties.Size = new System.Drawing.Size(75, 23);
+            this.buttonVideoCodecProperties.TabIndex = 2;
+            this.buttonVideoCodecProperties.Text = "Properties";
+            this.buttonVideoCodecProperties.UseVisualStyleBackColor = true;
             // 
             // comboBoxVideoEncoders
             // 
@@ -1302,6 +1346,263 @@ namespace FFmpegCatapult
             this.labelFFmpegBin.TabIndex = 0;
             this.labelFFmpegBin.Text = "FFmpeg:";
             // 
+            // tabTagging
+            // 
+            this.tabTagging.Controls.Add(this.groupBoxMiscTags);
+            this.tabTagging.Controls.Add(this.groupBoxTrackTags);
+            this.tabTagging.Controls.Add(this.groupBoxGeneralTags);
+            this.tabTagging.Location = new System.Drawing.Point(4, 22);
+            this.tabTagging.Name = "tabTagging";
+            this.tabTagging.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTagging.Size = new System.Drawing.Size(471, 194);
+            this.tabTagging.TabIndex = 5;
+            this.tabTagging.Text = "Tagging";
+            this.tabTagging.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxMiscTags
+            // 
+            this.groupBoxMiscTags.Controls.Add(this.textBoxPublisher);
+            this.groupBoxMiscTags.Controls.Add(this.textBoxComment);
+            this.groupBoxMiscTags.Controls.Add(this.label2);
+            this.groupBoxMiscTags.Controls.Add(this.label1);
+            this.groupBoxMiscTags.Controls.Add(this.textBoxAlbumArtist);
+            this.groupBoxMiscTags.Controls.Add(this.labelAlbumArtist);
+            this.groupBoxMiscTags.Location = new System.Drawing.Point(148, 107);
+            this.groupBoxMiscTags.Name = "groupBoxMiscTags";
+            this.groupBoxMiscTags.Size = new System.Drawing.Size(317, 78);
+            this.groupBoxMiscTags.TabIndex = 2;
+            this.groupBoxMiscTags.TabStop = false;
+            this.groupBoxMiscTags.Text = "Misc";
+            // 
+            // textBoxPublisher
+            // 
+            this.textBoxPublisher.Location = new System.Drawing.Point(211, 19);
+            this.textBoxPublisher.Name = "textBoxPublisher";
+            this.textBoxPublisher.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPublisher.TabIndex = 5;
+            // 
+            // textBoxComment
+            // 
+            this.textBoxComment.Location = new System.Drawing.Point(66, 45);
+            this.textBoxComment.Name = "textBoxComment";
+            this.textBoxComment.Size = new System.Drawing.Size(245, 20);
+            this.textBoxComment.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Comment:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(153, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Publisher:";
+            // 
+            // textBoxAlbumArtist
+            // 
+            this.textBoxAlbumArtist.Location = new System.Drawing.Point(47, 19);
+            this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
+            this.textBoxAlbumArtist.Size = new System.Drawing.Size(100, 20);
+            this.textBoxAlbumArtist.TabIndex = 1;
+            // 
+            // labelAlbumArtist
+            // 
+            this.labelAlbumArtist.AutoSize = true;
+            this.labelAlbumArtist.Location = new System.Drawing.Point(6, 22);
+            this.labelAlbumArtist.Name = "labelAlbumArtist";
+            this.labelAlbumArtist.Size = new System.Drawing.Size(35, 13);
+            this.labelAlbumArtist.TabIndex = 0;
+            this.labelAlbumArtist.Text = "Band:";
+            // 
+            // groupBoxTrackTags
+            // 
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalDiscs);
+            this.groupBoxTrackTags.Controls.Add(this.labelOfDiscs);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxDisc);
+            this.groupBoxTrackTags.Controls.Add(this.labelDisc);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalTracks);
+            this.groupBoxTrackTags.Controls.Add(this.labelOfTrack);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTrack);
+            this.groupBoxTrackTags.Controls.Add(this.labelTrack);
+            this.groupBoxTrackTags.Location = new System.Drawing.Point(6, 107);
+            this.groupBoxTrackTags.Name = "groupBoxTrackTags";
+            this.groupBoxTrackTags.Size = new System.Drawing.Size(136, 78);
+            this.groupBoxTrackTags.TabIndex = 1;
+            this.groupBoxTrackTags.TabStop = false;
+            this.groupBoxTrackTags.Text = "Track";
+            // 
+            // textBoxTotalDiscs
+            // 
+            this.textBoxTotalDiscs.Location = new System.Drawing.Point(100, 45);
+            this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
+            this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalDiscs.TabIndex = 2;
+            // 
+            // labelOfDiscs
+            // 
+            this.labelOfDiscs.AutoSize = true;
+            this.labelOfDiscs.Location = new System.Drawing.Point(82, 48);
+            this.labelOfDiscs.Name = "labelOfDiscs";
+            this.labelOfDiscs.Size = new System.Drawing.Size(12, 13);
+            this.labelOfDiscs.TabIndex = 2;
+            this.labelOfDiscs.Text = "/";
+            // 
+            // textBoxDisc
+            // 
+            this.textBoxDisc.Location = new System.Drawing.Point(51, 45);
+            this.textBoxDisc.Name = "textBoxDisc";
+            this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
+            this.textBoxDisc.TabIndex = 2;
+            // 
+            // labelDisc
+            // 
+            this.labelDisc.AutoSize = true;
+            this.labelDisc.Location = new System.Drawing.Point(6, 47);
+            this.labelDisc.Name = "labelDisc";
+            this.labelDisc.Size = new System.Drawing.Size(31, 13);
+            this.labelDisc.TabIndex = 2;
+            this.labelDisc.Text = "Disc:";
+            // 
+            // textBoxTotalTracks
+            // 
+            this.textBoxTotalTracks.Location = new System.Drawing.Point(100, 19);
+            this.textBoxTotalTracks.Name = "textBoxTotalTracks";
+            this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalTracks.TabIndex = 2;
+            // 
+            // labelOfTrack
+            // 
+            this.labelOfTrack.AutoSize = true;
+            this.labelOfTrack.Location = new System.Drawing.Point(82, 22);
+            this.labelOfTrack.Name = "labelOfTrack";
+            this.labelOfTrack.Size = new System.Drawing.Size(12, 13);
+            this.labelOfTrack.TabIndex = 2;
+            this.labelOfTrack.Text = "/";
+            // 
+            // textBoxTrack
+            // 
+            this.textBoxTrack.Location = new System.Drawing.Point(51, 19);
+            this.textBoxTrack.Name = "textBoxTrack";
+            this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTrack.TabIndex = 2;
+            // 
+            // labelTrack
+            // 
+            this.labelTrack.AutoSize = true;
+            this.labelTrack.Location = new System.Drawing.Point(6, 22);
+            this.labelTrack.Name = "labelTrack";
+            this.labelTrack.Size = new System.Drawing.Size(38, 13);
+            this.labelTrack.TabIndex = 2;
+            this.labelTrack.Text = "Track:";
+            // 
+            // groupBoxGeneralTags
+            // 
+            this.groupBoxGeneralTags.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxGenre);
+            this.groupBoxGeneralTags.Controls.Add(this.labelGenre);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxArtist);
+            this.groupBoxGeneralTags.Controls.Add(this.labelArtist);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxAlbum);
+            this.groupBoxGeneralTags.Controls.Add(this.labelAlbum);
+            this.groupBoxGeneralTags.Controls.Add(this.labelYear);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxYear);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxTitle);
+            this.groupBoxGeneralTags.Controls.Add(this.labelTitle);
+            this.groupBoxGeneralTags.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxGeneralTags.Name = "groupBoxGeneralTags";
+            this.groupBoxGeneralTags.Size = new System.Drawing.Size(459, 95);
+            this.groupBoxGeneralTags.TabIndex = 0;
+            this.groupBoxGeneralTags.TabStop = false;
+            this.groupBoxGeneralTags.Text = "General";
+            // 
+            // textBoxGenre
+            // 
+            this.textBoxGenre.Location = new System.Drawing.Point(320, 66);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(133, 20);
+            this.textBoxGenre.TabIndex = 9;
+            // 
+            // labelGenre
+            // 
+            this.labelGenre.AutoSize = true;
+            this.labelGenre.Location = new System.Drawing.Point(275, 69);
+            this.labelGenre.Name = "labelGenre";
+            this.labelGenre.Size = new System.Drawing.Size(39, 13);
+            this.labelGenre.TabIndex = 8;
+            this.labelGenre.Text = "Genre:";
+            // 
+            // textBoxArtist
+            // 
+            this.textBoxArtist.Location = new System.Drawing.Point(51, 66);
+            this.textBoxArtist.Name = "textBoxArtist";
+            this.textBoxArtist.Size = new System.Drawing.Size(218, 20);
+            this.textBoxArtist.TabIndex = 7;
+            // 
+            // labelArtist
+            // 
+            this.labelArtist.AutoSize = true;
+            this.labelArtist.Location = new System.Drawing.Point(6, 69);
+            this.labelArtist.Name = "labelArtist";
+            this.labelArtist.Size = new System.Drawing.Size(30, 13);
+            this.labelArtist.TabIndex = 6;
+            this.labelArtist.Text = "Artist";
+            // 
+            // textBoxAlbum
+            // 
+            this.textBoxAlbum.Location = new System.Drawing.Point(51, 41);
+            this.textBoxAlbum.Name = "textBoxAlbum";
+            this.textBoxAlbum.Size = new System.Drawing.Size(302, 20);
+            this.textBoxAlbum.TabIndex = 5;
+            // 
+            // labelAlbum
+            // 
+            this.labelAlbum.AutoSize = true;
+            this.labelAlbum.Location = new System.Drawing.Point(6, 44);
+            this.labelAlbum.Name = "labelAlbum";
+            this.labelAlbum.Size = new System.Drawing.Size(39, 13);
+            this.labelAlbum.TabIndex = 4;
+            this.labelAlbum.Text = "Album:";
+            // 
+            // labelYear
+            // 
+            this.labelYear.AutoSize = true;
+            this.labelYear.Location = new System.Drawing.Point(359, 44);
+            this.labelYear.Name = "labelYear";
+            this.labelYear.Size = new System.Drawing.Size(32, 13);
+            this.labelYear.TabIndex = 3;
+            this.labelYear.Text = "Year:";
+            // 
+            // textBoxYear
+            // 
+            this.textBoxYear.Location = new System.Drawing.Point(397, 41);
+            this.textBoxYear.Name = "textBoxYear";
+            this.textBoxYear.Size = new System.Drawing.Size(56, 20);
+            this.textBoxYear.TabIndex = 2;
+            // 
+            // textBoxTitle
+            // 
+            this.textBoxTitle.Location = new System.Drawing.Point(51, 16);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(402, 20);
+            this.textBoxTitle.TabIndex = 1;
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(6, 19);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(30, 13);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "Title:";
+            // 
             // FFmpegCatapultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1353,6 +1654,13 @@ namespace FFmpegCatapult
             this.tabMisc.ResumeLayout(false);
             this.groupBoxBinaries.ResumeLayout(false);
             this.groupBoxBinaries.PerformLayout();
+            this.tabTagging.ResumeLayout(false);
+            this.groupBoxMiscTags.ResumeLayout(false);
+            this.groupBoxMiscTags.PerformLayout();
+            this.groupBoxTrackTags.ResumeLayout(false);
+            this.groupBoxTrackTags.PerformLayout();
+            this.groupBoxGeneralTags.ResumeLayout(false);
+            this.groupBoxGeneralTags.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1473,6 +1781,35 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelQmax;
         private System.Windows.Forms.TextBox textBoxQmin;
         private System.Windows.Forms.Label labelQmin;
+        private System.Windows.Forms.TabPage tabTagging;
+        private System.Windows.Forms.GroupBox groupBoxGeneralTags;
+        private System.Windows.Forms.TextBox textBoxYear;
+        private System.Windows.Forms.TextBox textBoxTitle;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelArtist;
+        private System.Windows.Forms.TextBox textBoxAlbum;
+        private System.Windows.Forms.Label labelAlbum;
+        private System.Windows.Forms.Label labelYear;
+        private System.Windows.Forms.TextBox textBoxArtist;
+        private System.Windows.Forms.TextBox textBoxGenre;
+        private System.Windows.Forms.Label labelGenre;
+        private System.Windows.Forms.GroupBox groupBoxTrackTags;
+        private System.Windows.Forms.TextBox textBoxTrack;
+        private System.Windows.Forms.Label labelTrack;
+        private System.Windows.Forms.Label labelOfTrack;
+        private System.Windows.Forms.GroupBox groupBoxMiscTags;
+        private System.Windows.Forms.TextBox textBoxTotalDiscs;
+        private System.Windows.Forms.Label labelOfDiscs;
+        private System.Windows.Forms.TextBox textBoxDisc;
+        private System.Windows.Forms.Label labelDisc;
+        private System.Windows.Forms.TextBox textBoxTotalTracks;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxAlbumArtist;
+        private System.Windows.Forms.Label labelAlbumArtist;
+        private System.Windows.Forms.TextBox textBoxPublisher;
+        private System.Windows.Forms.TextBox textBoxComment;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonVideoCodecProperties;
     }
 }
 

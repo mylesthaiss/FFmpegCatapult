@@ -31,8 +31,8 @@ namespace FFmpegCatapult
         static void Main(String[] args)
         {
             // Determine running operating system
-            int i = Convert.ToInt16(Environment.OSVersion.Platform);
-            if (i == 4 || i == 6 || i == 128)
+            int x = Convert.ToInt16(Environment.OSVersion.Platform);
+            if (x == 4 || x == 6 || x == 128)
             {
                 // Unix default settings
                 Bin.FFmpegBin = "ffmpeg";
@@ -50,33 +50,33 @@ namespace FFmpegCatapult
             }
 
             // Command line interface
-            for (int x = 0; x < args.Length; x++)
+            for (int i = 0; i < args.Length; i++)
             {
-                switch (args[x])
+                switch (args[i])
                 {
                     case "-preset":
-                        x++;
-                        Session.DefaultPreset = args[x];
+                        i++;
+                        Session.DefaultPreset = args[i];
                         break;
                     case "-out":
-                        x++;
+                        i++;
                         File.Format = "custom";
-                        File.Output = args[x];
+                        File.Output = args[i];
                         break;
                     case "-bin":
-                        x++;
-                        Bin.FFmpegBin = args[x];
+                        i++;
+                        Bin.FFmpegBin = args[i];
                         break;
                     case "-term":
-                        x++;
-                        Bin.TermBin = args[x];
+                        i++;
+                        Bin.TermBin = args[i];
                         break;
                     case "-termargs":
-                        x++;
-                        Bin.TermArgs = args[x];
+                        i++;
+                        Bin.TermArgs = args[i];
                         break;
                     default:
-                        File.Input = args[x];
+                        File.Input = args[i];
                         break;
                 }
             }

@@ -6,3 +6,4 @@ C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\R
 C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\ffcatapult.pdb
 C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.csprojResolveAssemblyReference.cache
 C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.csproj.GenerateResource.Cache
+C:\Users\Myles\Documents\Projects\FFmpegCatapult\Source\FFmpegCatapult\obj\x86\Release\FFmpegCatapult.VideoSettingsForm.resources
