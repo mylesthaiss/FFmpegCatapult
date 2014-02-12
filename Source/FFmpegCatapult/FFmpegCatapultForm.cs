@@ -157,7 +157,7 @@ namespace FFmpegCatapult
             }
             textBoxTermArgs.TextChanged += new EventHandler(textBoxTermArgs_TextChanged);
 
-            // Metadata
+            // Metadata tab
             textBoxAlbum.TextChanged += new EventHandler(textBoxAlbum_TextChanged);
             textBoxArtist.TextChanged += new EventHandler(textBoxArtist_TextChanged);
             textBoxComment.TextChanged += new EventHandler(textBoxComment_TextChanged);
@@ -169,6 +169,8 @@ namespace FFmpegCatapult
             textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);
             textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);            
             textBoxYear.TextChanged += new EventHandler(textBoxYear_TextChanged);
+
+            InitMetadata();
         }
 
         // Methods
@@ -536,6 +538,71 @@ namespace FFmpegCatapult
             comboBoxAudioBitrates.SelectedIndexChanged += new EventHandler(comboBoxAudioBitrates_SelectedIndexChanged);
         }
 
+        private void InitMetadata()
+        {
+            if (File.Format == "raw" | File.Format == "mpg")
+            {
+                EnableTaggingControls(false);
+            }
+            else
+            {
+                EnableTaggingControls(true);
+
+                switch (File.Format)
+                {
+                    case "avi":
+                        EnableAlbumTagging(true);
+                        EnableAlbumArtistTagging(false);
+                        EnableArtistTagging(true);
+                        EnableCommentTagging(true);
+                        EnableDiscTagging(false);
+                        EnableGenreTaggin(true);
+                        EnablePublisherTagging(false);
+                        EnableTitleTagging(true);
+                        EnableTrackTagging(true);
+                        EnableYearTagging(false);
+                        break;
+                    case "mkv":
+                    case "ts":
+                        EnableAlbumTagging(false);
+                        EnableAlbumArtistTagging(false);
+                        EnableArtistTagging(false);
+                        EnableCommentTagging(false);
+                        EnableDiscTagging(false);
+                        EnableGenreTaggin(false);
+                        EnablePublisherTagging(false);
+                        EnableTitleTagging(true);
+                        EnableTrackTagging(false);
+                        EnableYearTagging(false);
+                        break;
+                    case "wmv":
+                        EnableAlbumTagging(false);
+                        EnableAlbumArtistTagging(false);
+                        EnableArtistTagging(false);
+                        EnableCommentTagging(true);
+                        EnableDiscTagging(false);
+                        EnableGenreTaggin(false);
+                        EnablePublisherTagging(false);
+                        EnableTitleTagging(true);
+                        EnableTrackTagging(false);
+                        EnableYearTagging(false);
+                        break;
+                    default:
+                        EnableAlbumTagging(true);
+                        EnableAlbumArtistTagging(true);
+                        EnableArtistTagging(true);
+                        EnableCommentTagging(true);
+                        EnableDiscTagging(true);
+                        EnableGenreTaggin(true);
+                        EnablePublisherTagging(true);
+                        EnableTitleTagging(true);
+                        EnableTrackTagging(true);
+                        EnableYearTagging(true);
+                        break;
+                }
+            }
+        }
+
         // Misc methods
         private String IntToText(int x)
         {
@@ -638,7 +705,151 @@ namespace FFmpegCatapult
             groupBoxAudioEncoder.Enabled = enable;
             groupBoxVolume.Enabled = enable;
             groupBoxAudioOutput.Enabled = enable;
-        } 
+        }
+
+        private void EnableTaggingControls(bool enable)
+        {
+            groupBoxGeneralTags.Enabled = enable;
+            groupBoxTrackTags.Enabled = enable;
+            groupBoxMiscTags.Enabled = enable;
+
+            if (enable == false)
+            {
+                ClearMetadataFields();
+            }
+        }
+
+        private void EnableAlbumTagging(bool enable)
+        {
+            labelAlbum.Enabled = enable;
+            textBoxAlbum.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxAlbum.Text = "";
+            }
+        }
+
+        private void EnableAlbumArtistTagging(bool enable)
+        {
+            labelAlbumArtist.Enabled = enable;
+            textBoxAlbumArtist.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxAlbumArtist.Text = "";
+            }
+        }
+
+        private void EnableArtistTagging(bool enable)
+        {
+            labelArtist.Enabled = enable;
+            textBoxArtist.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxArtist.Text = "";
+            }
+        }
+
+        private void EnableCommentTagging(bool enable)
+        {
+            labelComment.Enabled = enable;
+            textBoxComment.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxComment.Text = "";
+            }
+        }
+
+        private void EnableDiscTagging(bool enable)
+        {
+            labelDisc.Enabled = enable;
+            labelOfDiscs.Enabled = enable;
+            textBoxDisc.Enabled = enable;
+            textBoxTotalDiscs.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxDisc.Text = "";
+                textBoxTotalDiscs.Text = "";
+            }
+        }
+
+        private void EnableGenreTaggin(bool enable)
+        {
+            labelGenre.Enabled = enable;
+            textBoxGenre.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxGenre.Text = "";
+            }
+        }
+
+        private void EnablePublisherTagging(bool enable)
+        {
+            labelPublisher.Enabled = enable;
+            textBoxPublisher.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxPublisher.Text = "";
+            }
+        }
+
+        private void EnableTitleTagging(bool enable)
+        {
+            labelTitle.Enabled = enable;
+            textBoxTitle.Enabled = enable;
+            
+            if (enable == false)
+            {
+                textBoxTitle.Text = "";
+            }
+        }
+
+        private void EnableTrackTagging(bool enable)
+        {
+            labelTrack.Enabled = enable;
+            labelOfTrack.Enabled = enable;
+            textBoxTrack.Enabled = enable;
+            textBoxTotalTracks.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxTrack.Text = "";
+                textBoxTotalTracks.Text = "";
+            }
+        }
+
+        private void EnableYearTagging(bool enable)
+        {
+            labelYear.Enabled = enable;
+            textBoxYear.Enabled = enable;
+
+            if (enable == false)
+            {
+                textBoxYear.Text = "";
+            }
+        }
+
+        private void ClearMetadataFields()
+        {
+            textBoxAlbum.Text = "";
+            textBoxAlbumArtist.Text = "";
+            textBoxArtist.Text = "";
+            textBoxComment.Text = "";
+            textBoxDisc.Text = "";
+            textBoxGenre.Text = "";
+            textBoxPublisher.Text = "";
+            textBoxTitle.Text = "";
+            textBoxTotalDiscs.Text = "";
+            textBoxTotalTracks.Text = "";
+            textBoxTrack.Text = "";
+            textBoxYear.Text = "";
+        }
 
         // Main event handlers       
         private void textBoxInFile_TextChanged(object sender, EventArgs e)
@@ -754,6 +965,8 @@ namespace FFmpegCatapult
                     textBoxOutFile.TextChanged += new EventHandler(textBoxOutFile_TextChanged);
                 }
             }
+
+            InitMetadata();
         }
 
         void comboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
@@ -764,6 +977,7 @@ namespace FFmpegCatapult
             InitPicture();
             InitVideo();
             InitAudio();
+            InitMetadata();
         }
 
         void comboBoxThreads_SelectedIndexChanged(object sender, EventArgs e)
@@ -801,6 +1015,7 @@ namespace FFmpegCatapult
             {
                 textBoxInFile.Text = "";
                 textBoxOutFile.Text = "";
+                ClearMetadataFields();
             }
         }
 

@@ -150,22 +150,12 @@ namespace FFmpegCatapult
             this.groupBoxAudioCodec = new System.Windows.Forms.GroupBox();
             this.comboBoxAudioCodecs = new System.Windows.Forms.ComboBox();
             this.labelAudioCodec = new System.Windows.Forms.Label();
-            this.tabMisc = new System.Windows.Forms.TabPage();
-            this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
-            this.textBoxTermArgs = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxTermBin = new System.Windows.Forms.TextBox();
-            this.labelTermBin = new System.Windows.Forms.Label();
-            this.buttonBrowseTermBin = new System.Windows.Forms.Button();
-            this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
-            this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
-            this.labelFFmpegBin = new System.Windows.Forms.Label();
             this.tabTagging = new System.Windows.Forms.TabPage();
             this.groupBoxMiscTags = new System.Windows.Forms.GroupBox();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
             this.textBoxComment = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelComment = new System.Windows.Forms.Label();
+            this.labelPublisher = new System.Windows.Forms.Label();
             this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
             this.labelAlbumArtist = new System.Windows.Forms.Label();
             this.groupBoxTrackTags = new System.Windows.Forms.GroupBox();
@@ -188,6 +178,16 @@ namespace FFmpegCatapult
             this.textBoxYear = new System.Windows.Forms.TextBox();
             this.textBoxTitle = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.tabMisc = new System.Windows.Forms.TabPage();
+            this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
+            this.textBoxTermArgs = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxTermBin = new System.Windows.Forms.TextBox();
+            this.labelTermBin = new System.Windows.Forms.Label();
+            this.buttonBrowseTermBin = new System.Windows.Forms.Button();
+            this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
+            this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
+            this.labelFFmpegBin = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.groupBoxSession.SuspendLayout();
@@ -208,12 +208,12 @@ namespace FFmpegCatapult
             this.groupBoxAudioBitrate.SuspendLayout();
             this.groupBoxAudioEncoder.SuspendLayout();
             this.groupBoxAudioCodec.SuspendLayout();
-            this.tabMisc.SuspendLayout();
-            this.groupBoxBinaries.SuspendLayout();
             this.tabTagging.SuspendLayout();
             this.groupBoxMiscTags.SuspendLayout();
             this.groupBoxTrackTags.SuspendLayout();
             this.groupBoxGeneralTags.SuspendLayout();
+            this.tabMisc.SuspendLayout();
+            this.groupBoxBinaries.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRun
@@ -1252,100 +1252,6 @@ namespace FFmpegCatapult
             this.labelAudioCodec.TabIndex = 0;
             this.labelAudioCodec.Text = "Codec:";
             // 
-            // tabMisc
-            // 
-            this.tabMisc.Controls.Add(this.groupBoxBinaries);
-            this.tabMisc.Location = new System.Drawing.Point(4, 22);
-            this.tabMisc.Name = "tabMisc";
-            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMisc.Size = new System.Drawing.Size(471, 194);
-            this.tabMisc.TabIndex = 4;
-            this.tabMisc.Text = "Misc";
-            this.tabMisc.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxBinaries
-            // 
-            this.groupBoxBinaries.Controls.Add(this.textBoxTermArgs);
-            this.groupBoxBinaries.Controls.Add(this.label3);
-            this.groupBoxBinaries.Controls.Add(this.textBoxTermBin);
-            this.groupBoxBinaries.Controls.Add(this.labelTermBin);
-            this.groupBoxBinaries.Controls.Add(this.buttonBrowseTermBin);
-            this.groupBoxBinaries.Controls.Add(this.buttonBrowseFFmpegBin);
-            this.groupBoxBinaries.Controls.Add(this.textBoxFFmpegBin);
-            this.groupBoxBinaries.Controls.Add(this.labelFFmpegBin);
-            this.groupBoxBinaries.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxBinaries.Name = "groupBoxBinaries";
-            this.groupBoxBinaries.Size = new System.Drawing.Size(459, 97);
-            this.groupBoxBinaries.TabIndex = 0;
-            this.groupBoxBinaries.TabStop = false;
-            this.groupBoxBinaries.Text = "Binaries";
-            // 
-            // textBoxTermArgs
-            // 
-            this.textBoxTermArgs.Location = new System.Drawing.Point(98, 66);
-            this.textBoxTermArgs.Name = "textBoxTermArgs";
-            this.textBoxTermArgs.Size = new System.Drawing.Size(355, 20);
-            this.textBoxTermArgs.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Term arguments:";
-            // 
-            // textBoxTermBin
-            // 
-            this.textBoxTermBin.Location = new System.Drawing.Point(62, 41);
-            this.textBoxTermBin.Name = "textBoxTermBin";
-            this.textBoxTermBin.Size = new System.Drawing.Size(310, 20);
-            this.textBoxTermBin.TabIndex = 5;
-            // 
-            // labelTermBin
-            // 
-            this.labelTermBin.AutoSize = true;
-            this.labelTermBin.Location = new System.Drawing.Point(6, 44);
-            this.labelTermBin.Name = "labelTermBin";
-            this.labelTermBin.Size = new System.Drawing.Size(50, 13);
-            this.labelTermBin.TabIndex = 4;
-            this.labelTermBin.Text = "Terminal:";
-            // 
-            // buttonBrowseTermBin
-            // 
-            this.buttonBrowseTermBin.Location = new System.Drawing.Point(378, 39);
-            this.buttonBrowseTermBin.Name = "buttonBrowseTermBin";
-            this.buttonBrowseTermBin.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseTermBin.TabIndex = 3;
-            this.buttonBrowseTermBin.Text = "Browse";
-            this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
-            // 
-            // buttonBrowseFFmpegBin
-            // 
-            this.buttonBrowseFFmpegBin.Location = new System.Drawing.Point(378, 13);
-            this.buttonBrowseFFmpegBin.Name = "buttonBrowseFFmpegBin";
-            this.buttonBrowseFFmpegBin.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseFFmpegBin.TabIndex = 2;
-            this.buttonBrowseFFmpegBin.Text = "Browse";
-            this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
-            // 
-            // textBoxFFmpegBin
-            // 
-            this.textBoxFFmpegBin.Location = new System.Drawing.Point(62, 16);
-            this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
-            this.textBoxFFmpegBin.Size = new System.Drawing.Size(310, 20);
-            this.textBoxFFmpegBin.TabIndex = 1;
-            // 
-            // labelFFmpegBin
-            // 
-            this.labelFFmpegBin.AutoSize = true;
-            this.labelFFmpegBin.Location = new System.Drawing.Point(6, 19);
-            this.labelFFmpegBin.Name = "labelFFmpegBin";
-            this.labelFFmpegBin.Size = new System.Drawing.Size(48, 13);
-            this.labelFFmpegBin.TabIndex = 0;
-            this.labelFFmpegBin.Text = "FFmpeg:";
-            // 
             // tabTagging
             // 
             this.tabTagging.Controls.Add(this.groupBoxMiscTags);
@@ -1363,8 +1269,8 @@ namespace FFmpegCatapult
             // 
             this.groupBoxMiscTags.Controls.Add(this.textBoxPublisher);
             this.groupBoxMiscTags.Controls.Add(this.textBoxComment);
-            this.groupBoxMiscTags.Controls.Add(this.label2);
-            this.groupBoxMiscTags.Controls.Add(this.label1);
+            this.groupBoxMiscTags.Controls.Add(this.labelComment);
+            this.groupBoxMiscTags.Controls.Add(this.labelPublisher);
             this.groupBoxMiscTags.Controls.Add(this.textBoxAlbumArtist);
             this.groupBoxMiscTags.Controls.Add(this.labelAlbumArtist);
             this.groupBoxMiscTags.Location = new System.Drawing.Point(148, 107);
@@ -1388,23 +1294,23 @@ namespace FFmpegCatapult
             this.textBoxComment.Size = new System.Drawing.Size(245, 20);
             this.textBoxComment.TabIndex = 4;
             // 
-            // label2
+            // labelComment
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Comment:";
+            this.labelComment.AutoSize = true;
+            this.labelComment.Location = new System.Drawing.Point(6, 48);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(54, 13);
+            this.labelComment.TabIndex = 3;
+            this.labelComment.Text = "Comment:";
             // 
-            // label1
+            // labelPublisher
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(153, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Publisher:";
+            this.labelPublisher.AutoSize = true;
+            this.labelPublisher.Location = new System.Drawing.Point(153, 22);
+            this.labelPublisher.Name = "labelPublisher";
+            this.labelPublisher.Size = new System.Drawing.Size(53, 13);
+            this.labelPublisher.TabIndex = 2;
+            this.labelPublisher.Text = "Publisher:";
             // 
             // textBoxAlbumArtist
             // 
@@ -1603,6 +1509,100 @@ namespace FFmpegCatapult
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Title:";
             // 
+            // tabMisc
+            // 
+            this.tabMisc.Controls.Add(this.groupBoxBinaries);
+            this.tabMisc.Location = new System.Drawing.Point(4, 22);
+            this.tabMisc.Name = "tabMisc";
+            this.tabMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMisc.Size = new System.Drawing.Size(471, 194);
+            this.tabMisc.TabIndex = 4;
+            this.tabMisc.Text = "Misc";
+            this.tabMisc.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxBinaries
+            // 
+            this.groupBoxBinaries.Controls.Add(this.textBoxTermArgs);
+            this.groupBoxBinaries.Controls.Add(this.label3);
+            this.groupBoxBinaries.Controls.Add(this.textBoxTermBin);
+            this.groupBoxBinaries.Controls.Add(this.labelTermBin);
+            this.groupBoxBinaries.Controls.Add(this.buttonBrowseTermBin);
+            this.groupBoxBinaries.Controls.Add(this.buttonBrowseFFmpegBin);
+            this.groupBoxBinaries.Controls.Add(this.textBoxFFmpegBin);
+            this.groupBoxBinaries.Controls.Add(this.labelFFmpegBin);
+            this.groupBoxBinaries.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxBinaries.Name = "groupBoxBinaries";
+            this.groupBoxBinaries.Size = new System.Drawing.Size(459, 97);
+            this.groupBoxBinaries.TabIndex = 0;
+            this.groupBoxBinaries.TabStop = false;
+            this.groupBoxBinaries.Text = "Binaries";
+            // 
+            // textBoxTermArgs
+            // 
+            this.textBoxTermArgs.Location = new System.Drawing.Point(98, 66);
+            this.textBoxTermArgs.Name = "textBoxTermArgs";
+            this.textBoxTermArgs.Size = new System.Drawing.Size(355, 20);
+            this.textBoxTermArgs.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Term arguments:";
+            // 
+            // textBoxTermBin
+            // 
+            this.textBoxTermBin.Location = new System.Drawing.Point(62, 41);
+            this.textBoxTermBin.Name = "textBoxTermBin";
+            this.textBoxTermBin.Size = new System.Drawing.Size(310, 20);
+            this.textBoxTermBin.TabIndex = 5;
+            // 
+            // labelTermBin
+            // 
+            this.labelTermBin.AutoSize = true;
+            this.labelTermBin.Location = new System.Drawing.Point(6, 44);
+            this.labelTermBin.Name = "labelTermBin";
+            this.labelTermBin.Size = new System.Drawing.Size(50, 13);
+            this.labelTermBin.TabIndex = 4;
+            this.labelTermBin.Text = "Terminal:";
+            // 
+            // buttonBrowseTermBin
+            // 
+            this.buttonBrowseTermBin.Location = new System.Drawing.Point(378, 39);
+            this.buttonBrowseTermBin.Name = "buttonBrowseTermBin";
+            this.buttonBrowseTermBin.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseTermBin.TabIndex = 3;
+            this.buttonBrowseTermBin.Text = "Browse";
+            this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
+            // 
+            // buttonBrowseFFmpegBin
+            // 
+            this.buttonBrowseFFmpegBin.Location = new System.Drawing.Point(378, 13);
+            this.buttonBrowseFFmpegBin.Name = "buttonBrowseFFmpegBin";
+            this.buttonBrowseFFmpegBin.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseFFmpegBin.TabIndex = 2;
+            this.buttonBrowseFFmpegBin.Text = "Browse";
+            this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
+            // 
+            // textBoxFFmpegBin
+            // 
+            this.textBoxFFmpegBin.Location = new System.Drawing.Point(62, 16);
+            this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
+            this.textBoxFFmpegBin.Size = new System.Drawing.Size(310, 20);
+            this.textBoxFFmpegBin.TabIndex = 1;
+            // 
+            // labelFFmpegBin
+            // 
+            this.labelFFmpegBin.AutoSize = true;
+            this.labelFFmpegBin.Location = new System.Drawing.Point(6, 19);
+            this.labelFFmpegBin.Name = "labelFFmpegBin";
+            this.labelFFmpegBin.Size = new System.Drawing.Size(48, 13);
+            this.labelFFmpegBin.TabIndex = 0;
+            this.labelFFmpegBin.Text = "FFmpeg:";
+            // 
             // FFmpegCatapultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1651,9 +1651,6 @@ namespace FFmpegCatapult
             this.groupBoxAudioEncoder.PerformLayout();
             this.groupBoxAudioCodec.ResumeLayout(false);
             this.groupBoxAudioCodec.PerformLayout();
-            this.tabMisc.ResumeLayout(false);
-            this.groupBoxBinaries.ResumeLayout(false);
-            this.groupBoxBinaries.PerformLayout();
             this.tabTagging.ResumeLayout(false);
             this.groupBoxMiscTags.ResumeLayout(false);
             this.groupBoxMiscTags.PerformLayout();
@@ -1661,6 +1658,9 @@ namespace FFmpegCatapult
             this.groupBoxTrackTags.PerformLayout();
             this.groupBoxGeneralTags.ResumeLayout(false);
             this.groupBoxGeneralTags.PerformLayout();
+            this.tabMisc.ResumeLayout(false);
+            this.groupBoxBinaries.ResumeLayout(false);
+            this.groupBoxBinaries.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1803,12 +1803,12 @@ namespace FFmpegCatapult
         private System.Windows.Forms.TextBox textBoxDisc;
         private System.Windows.Forms.Label labelDisc;
         private System.Windows.Forms.TextBox textBoxTotalTracks;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPublisher;
         private System.Windows.Forms.TextBox textBoxAlbumArtist;
         private System.Windows.Forms.Label labelAlbumArtist;
         private System.Windows.Forms.TextBox textBoxPublisher;
         private System.Windows.Forms.TextBox textBoxComment;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.Button buttonVideoCodecProperties;
     }
 }
