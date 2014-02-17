@@ -179,9 +179,34 @@ namespace FFmpegCatapult
                         videoArgs.Add(String.Format("-b_strategy {0}", Video.BFStrategy));
                     }
 
+                    if (Video.MEMethod != "default")
+                    {
+                        videoArgs.Add(String.Format("-me_methods {0}", Video.MEMethod));
+                    }
+
+                    if (Video.DiaSize != 0)
+                    {
+                        videoArgs.Add(String.Format("-dia_size {0}", Video.DiaSize));
+                    }
+
+                    if (Video.CMP != 15)
+                    {
+                        videoArgs.Add(String.Format("-cmp {0}", Video.CMP));
+                    }
+
+                    if (Video.SubCMP != 15)
+                    {
+                        videoArgs.Add(String.Format("-subcmp {0}", Video.SubCMP));
+                    }
+
                     if (Video.Trellis != 3)
                     {
                         videoArgs.Add(String.Format("-trellis {0}", Video.Trellis));
+                    }
+
+                    if (Video.PictureFormat != "default")
+                    {
+                        videoArgs.Add(String.Format("-pix_fmt {0}", Video.PictureFormat));
                     }
 
                     if (Screen.FPS != 0)

@@ -57,29 +57,29 @@ namespace FFmpegCatapult
             textBoxOutFile.TextChanged += new EventHandler(textBoxOutFile_TextChanged);
             buttonBrowseOutput.Click += new EventHandler(buttonBrowseOutput_Click);
 
-            for (int x = 0; x < File.Formats.GetLength(0); x++)
+            for (int i = 0; i < File.Formats.GetLength(0); i++)
             {
-                comboBoxContainers.Items.Add(new ListComboContent(File.Formats[x, 0], File.Formats[x, 1]));
+                comboBoxContainers.Items.Add(new ListComboContent(File.Formats[i, 0], File.Formats[i, 1]));
             }
 
-            for (int x = 0; x < Preset.GetPresets().GetLength(0); x++)
+            for (int i = 0; i < Preset.GetPresets().GetLength(0); i++)
             {
-                comboBoxPresets.Items.Add(new ListComboContent(Preset.GetPresets()[x, 0], Preset.GetPresets()[x, 1]));
+                comboBoxPresets.Items.Add(new ListComboContent(Preset.GetPresets()[i, 0], Preset.GetPresets()[i, 1]));
             }
-            for (int x = 0; x < Preset.GetPresets().GetLength(0); x++)
+            for (int i = 0; i < Preset.GetPresets().GetLength(0); i++)
             {
-                if (Session.DefaultPreset == Preset.GetPresets()[x, 1])
+                if (Session.DefaultPreset == Preset.GetPresets()[i, 1])
                 {
-                    comboBoxPresets.SelectedIndex = x;
+                    comboBoxPresets.SelectedIndex = i;
                     break;
                 }
             }
             comboBoxPresets.SelectedIndexChanged += new EventHandler(comboBoxPresets_SelectedIndexChanged);
 
             comboBoxThreads.Items.Add(new ListComboIntContent("Auto", 0));
-            for (int x = 1; x <= Session.MaxThreads; x++)
+            for (int i = 1; i <= Session.MaxThreads; i++)
             {
-                comboBoxThreads.Items.Add(new ListComboIntContent(Convert.ToString(x), x));
+                comboBoxThreads.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
             }
 
             if (Session.KeepValues == true)
@@ -102,17 +102,17 @@ namespace FFmpegCatapult
             buttonRun.Click += new EventHandler(buttonRun_Click);
 
             // Picture tab
-            for (int x = 0; x < Screen.ScalingMethods.GetLength(0); x++)
+            for (int i = 0; i < Screen.ScalingMethods.GetLength(0); i++)
             {
-                comboBoxScalingMethods.Items.Add(new ListComboContent(Screen.ScalingMethods[x, 0], Screen.ScalingMethods[x, 1]));
+                comboBoxScalingMethods.Items.Add(new ListComboContent(Screen.ScalingMethods[i, 0], Screen.ScalingMethods[i, 1]));
             }
 
             InitPicture();
 
             // Video tab
-            for (int x = 0; x < Video.Codecs.GetLength(0); x++)
+            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
             {
-                comboBoxVideoCodecs.Items.Add(new ListComboContent(Video.Codecs[x, 0], Video.Codecs[x, 1]));
+                comboBoxVideoCodecs.Items.Add(new ListComboContent(Video.Codecs[i, 0], Video.Codecs[i, 1]));
             }
 
             comboBoxBits.Items.Add(new ListComboContent("Kbps", "k"));
@@ -126,9 +126,9 @@ namespace FFmpegCatapult
             InitVideo();
 
             // Audio tab
-            for (int x = 0; x < Audio.Codecs.GetLength(0); x++)
+            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
             {
-                comboBoxAudioCodecs.Items.Add(new ListComboContent(Audio.Codecs[x, 0], Audio.Codecs[x, 1]));
+                comboBoxAudioCodecs.Items.Add(new ListComboContent(Audio.Codecs[i, 0], Audio.Codecs[i, 1]));
             }
 
             textBoxAudioStream.TextChanged += new EventHandler(textBoxAudioStream_TextChanged);
@@ -167,7 +167,7 @@ namespace FFmpegCatapult
             textBoxTotalDiscs.TextChanged += new EventHandler(textBoxTotalDiscs_TextChanged);
             textBoxTotalTracks.TextChanged += new EventHandler(textBoxTotalTracks_TextChanged);
             textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);
-            textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);            
+            textBoxTrack.TextChanged += new EventHandler(textBoxTrack_TextChanged);
             textBoxYear.TextChanged += new EventHandler(textBoxYear_TextChanged);
 
             InitMetadata();
@@ -178,13 +178,13 @@ namespace FFmpegCatapult
         {
             // Combo boxes
             comboBoxContainers.SelectedIndexChanged -= new EventHandler(comboBoxContainers_SelectedIndexChanged);
-            for (int x = 0; x < File.Formats.GetLength(0); x++)
+            for (int i = 0; i < File.Formats.GetLength(0); i++)
             {
-                if (File.Formats[x, 1] == File.Format)
+                if (File.Formats[i, 1] == File.Format)
                 {
-                    comboBoxContainers.SelectedIndex = x;
-                    fileContainer = File.Formats[x, 0];
-                    fileExtension = File.Formats[x, 1];
+                    comboBoxContainers.SelectedIndex = i;
+                    fileContainer = File.Formats[i, 0];
+                    fileExtension = File.Formats[i, 1];
                     break;
                 }
             }
@@ -251,48 +251,48 @@ namespace FFmpegCatapult
 
             // Text boxes
             textBoxWidth.TextChanged -= new EventHandler(textBoxWidth_TextChanged);
-            textBoxWidth.Text = IntToText(Screen.Width);
+            textBoxWidth.Text = Methods.IntToText(Screen.Width);
             textBoxWidth.TextChanged += new EventHandler(textBoxWidth_TextChanged);
 
             textBoxHeight.TextChanged -= new EventHandler(textBoxHeight_TextChanged);
-            textBoxHeight.Text = IntToText(Screen.Height);
+            textBoxHeight.Text = Methods.IntToText(Screen.Height);
             textBoxHeight.TextChanged += new EventHandler(textBoxHeight_TextChanged);
 
             textBoxRatioA.TextChanged -= new EventHandler(textBoxRatioA_TextChanged);
-            textBoxRatioA.Text = IntToText(Screen.RatioA);
+            textBoxRatioA.Text = Methods.IntToText(Screen.RatioA);
             textBoxRatioA.TextChanged += new EventHandler(textBoxRatioA_TextChanged);
 
             textBoxRatioB.TextChanged -= new EventHandler(textBoxRatioB_TextChanged);
-            textBoxRatioB.Text = IntToText(Screen.RatioB);
+            textBoxRatioB.Text = Methods.IntToText(Screen.RatioB);
             textBoxRatioB.TextChanged += new EventHandler(textBoxRatioB_TextChanged);
 
             textBoxFPS.TextChanged -= new EventHandler(textBoxFPS_TextChanged);
-            textBoxFPS.Text = IntToText(Screen.FPS);
+            textBoxFPS.Text = Methods.IntToText(Screen.FPS);
             textBoxFPS.TextChanged += new EventHandler(textBoxFPS_TextChanged);
 
             textBoxLayoutWidth.TextChanged -= new EventHandler(textBoxLayoutWidth_TextChanged);
-            textBoxLayoutWidth.Text = IntToText(Screen.WinWidth);
+            textBoxLayoutWidth.Text = Methods.IntToText(Screen.WinWidth);
             textBoxLayoutWidth.TextChanged += new EventHandler(textBoxLayoutWidth_TextChanged);
 
             textBoxLayoutHeight.TextChanged -= new EventHandler(textBoxLayoutHeight_TextChanged);
-            textBoxLayoutHeight.Text = IntToText(Screen.WinHeight);
+            textBoxLayoutHeight.Text = Methods.IntToText(Screen.WinHeight);
             textBoxLayoutHeight.TextChanged += new EventHandler(textBoxLayoutHeight_TextChanged);
 
             textBoxLayoutVert.TextChanged -= new EventHandler(textBoxLayoutVert_TextChanged);
-            textBoxLayoutVert.Text = IntToText(Screen.X);
+            textBoxLayoutVert.Text = Methods.IntToText(Screen.X);
             textBoxLayoutVert.TextChanged += new EventHandler(textBoxLayoutVert_TextChanged);
 
             textBoxLayoutHoriz.TextChanged -= new EventHandler(textBoxLayoutHoriz_TextChanged);
-            textBoxLayoutHoriz.Text = IntToText(Screen.Y);
+            textBoxLayoutHoriz.Text = Methods.IntToText(Screen.Y);
             textBoxLayoutHoriz.TextChanged += new EventHandler(textBoxLayoutHoriz_TextChanged);
 
             // Set selected scaling method
             comboBoxScalingMethods.SelectedIndexChanged -= new EventHandler(comboBoxScalingMethods_SelectedIndexChanged);
-            for (int x = 0; x < Screen.ScalingMethods.GetLength(0); x++)
+            for (int i = 0; i < Screen.ScalingMethods.GetLength(0); i++)
             {
-                if (Screen.ScalingMethod == Screen.ScalingMethods[x, 1])
+                if (Screen.ScalingMethod == Screen.ScalingMethods[i, 1])
                 {
-                    comboBoxScalingMethods.SelectedIndex = x;
+                    comboBoxScalingMethods.SelectedIndex = i;
                     break;
                 }
             }
@@ -312,11 +312,11 @@ namespace FFmpegCatapult
 
             // Combo boxes
             comboBoxVideoCodecs.SelectedIndexChanged -= new EventHandler(comboBoxVideoCodecs_SelectedIndexChanged);
-            for (int x = 0; x < Video.Codecs.GetLength(0); x++)
+            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
             {
-                if (Video.Codec == Video.Codecs[x, 1])
+                if (Video.Codec == Video.Codecs[i, 1])
                 {
-                    comboBoxVideoCodecs.SelectedIndex = x;
+                    comboBoxVideoCodecs.SelectedIndex = i;
                     break;
                 }
             }
@@ -324,13 +324,13 @@ namespace FFmpegCatapult
 
             comboBoxVideoEncoders.SelectedIndexChanged -= new EventHandler(comboBoxVideoEncoders_SelectedIndexChanged);
             comboBoxVideoEncoders.Items.Clear();
-            for (int x = 0; x < Video.Encoders.GetLength(0); x++)
+            for (int i = 0; i < Video.Encoders.GetLength(0); i++)
             {
-                comboBoxVideoEncoders.Items.Add(new ListComboContent(Video.Encoders[x, 0], Video.Encoders[x, 1]));
+                comboBoxVideoEncoders.Items.Add(new ListComboContent(Video.Encoders[i, 0], Video.Encoders[i, 1]));
 
-                if (Video.Encoder == Video.Encoders[x, 1])
+                if (Video.Encoder == Video.Encoders[i, 1])
                 {
-                    comboBoxVideoEncoders.SelectedIndex = x;
+                    comboBoxVideoEncoders.SelectedIndex = i;
                 }
             }
             comboBoxVideoEncoders.SelectedIndexChanged += new EventHandler(comboBoxVideoEncoders_SelectedIndexChanged);
@@ -375,31 +375,31 @@ namespace FFmpegCatapult
 
             // Text boxes
             textBoxVideoBitrate.TextChanged -= new EventHandler(textBoxVideoBitrate_TextChanged);
-            textBoxVideoBitrate.Text = IntToText(Video.Bitrate);
+            textBoxVideoBitrate.Text = Methods.IntToText(Video.Bitrate);
             textBoxVideoBitrate.TextChanged += new EventHandler(textBoxVideoBitrate_TextChanged);
 
             textBoxMinBitrate.TextChanged -= new EventHandler(textBoxMinBitrate_TextChanged);
-            textBoxMinBitrate.Text = IntToText(Video.MinBitrate);
+            textBoxMinBitrate.Text = Methods.IntToText(Video.MinBitrate);
             textBoxMinBitrate.TextChanged += new EventHandler(textBoxMinBitrate_TextChanged);
 
             textBoxMaxBitrate.TextChanged -= new EventHandler(textBoxMaxBitrate_TextChanged);
-            textBoxMinBitrate.Text = IntToText(Video.MaxBitrate);
+            textBoxMinBitrate.Text = Methods.IntToText(Video.MaxBitrate);
             textBoxMaxBitrate.TextChanged += new EventHandler(textBoxMaxBitrate_TextChanged);
 
             textBoxBufferSize.TextChanged -= new EventHandler(textBoxBufferSize_TextChanged);
-            textBoxBufferSize.Text = IntToText(Video.BufferSize);
+            textBoxBufferSize.Text = Methods.IntToText(Video.BufferSize);
             textBoxBufferSize.TextChanged += new EventHandler(textBoxBufferSize_TextChanged);
 
             textBoxCRF.TextChanged -= new EventHandler(textBoxCRF_TextChanged);
-            textBoxCRF.Text = IntToText(Video.CRF);
+            textBoxCRF.Text = Methods.IntToText(Video.CRF);
             textBoxCRF.TextChanged += new EventHandler(textBoxCRF_TextChanged);
 
             textBoxQmax.TextChanged -= new EventHandler(textBoxQmax_TextChanged);
-            textBoxQmax.Text = IntToText(Video.Qmax);
+            textBoxQmax.Text = Methods.IntToText(Video.Qmax);
             textBoxQmax.TextChanged += new EventHandler(textBoxQmax_TextChanged);
 
             textBoxQmin.TextChanged -= new EventHandler(textBoxQmin_TextChanged);
-            textBoxQmin.Text = IntToText(Video.Qmin);
+            textBoxQmin.Text = Methods.IntToText(Video.Qmin);
             textBoxQmin.TextChanged += new EventHandler(textBoxQmin_TextChanged);
         }
 
@@ -426,24 +426,24 @@ namespace FFmpegCatapult
 
             // Combo boxes
             comboBoxAudioCodecs.SelectedIndexChanged -= new EventHandler(comboBoxAudioCodecs_SelectedIndexChanged);
-            for (int x = 0; x < Audio.Codecs.GetLength(0); x++)
+            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
             {
-                if (Audio.Codec == Audio.Codecs[x, 1])
+                if (Audio.Codec == Audio.Codecs[i, 1])
                 {
-                    comboBoxAudioCodecs.SelectedIndex = x;
+                    comboBoxAudioCodecs.SelectedIndex = i;
                 }
             }
             comboBoxAudioCodecs.SelectedIndexChanged += new EventHandler(comboBoxAudioCodecs_SelectedIndexChanged);
 
             comboBoxAudioEncoders.SelectedIndexChanged -= new EventHandler(comboBoxAudioEncoders_SelectedIndexChanged);
             comboBoxAudioEncoders.Items.Clear();
-            for (int x = 0; x < Audio.Encoders.GetLength(0); x++)
+            for (int i = 0; i < Audio.Encoders.GetLength(0); i++)
             {
-                comboBoxAudioEncoders.Items.Add(new ListComboContent(Audio.Encoders[x, 0], Audio.Encoders[x, 1]));
+                comboBoxAudioEncoders.Items.Add(new ListComboContent(Audio.Encoders[i, 0], Audio.Encoders[i, 1]));
 
-                if (Audio.Encoder == Audio.Encoders[x, 1])
+                if (Audio.Encoder == Audio.Encoders[i, 1])
                 {
-                    comboBoxAudioEncoders.SelectedIndex = x;
+                    comboBoxAudioEncoders.SelectedIndex = i;
                 }
             }
             comboBoxAudioEncoders.SelectedIndexChanged += new EventHandler(comboBoxAudioEncoders_SelectedIndexChanged);
@@ -451,15 +451,15 @@ namespace FFmpegCatapult
             comboBoxSampleRates.SelectedIndexChanged -= new EventHandler(comboBoxSampleRates_SelectedIndexChanged);
             comboBoxSampleRates.Items.Clear();
             comboBoxSampleRates.Items.Add(new ListComboIntContent("Default", 0));
-            for (int x = 1; x < Audio.SampleRates.GetLength(0); x++)
+            for (int i = 1; i < Audio.SampleRates.GetLength(0); i++)
             {
-                comboBoxSampleRates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.SampleRates[x]) + " Hz", Audio.SampleRates[x]));
+                comboBoxSampleRates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
             }
-            for (int x = 0; x < Audio.SampleRates.GetLength(0); x++)
+            for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
             {
-                if (Audio.SampleRate == Audio.SampleRates[x])
+                if (Audio.SampleRate == Audio.SampleRates[i])
                 {
-                    comboBoxSampleRates.SelectedIndex = x;
+                    comboBoxSampleRates.SelectedIndex = i;
                     break;
                 }
             }
@@ -468,15 +468,15 @@ namespace FFmpegCatapult
             comboBoxChannels.SelectedIndexChanged -= new EventHandler(comboBoxChannels_SelectedIndexChanged);
             comboBoxChannels.Items.Clear();
             comboBoxChannels.Items.Add(new ListComboIntContent("Default", 0));
-            for (int x = 1; x <= Audio.MaxChannels; x++)
+            for (int i = 1; i <= Audio.MaxChannels; i++)
             {
-                comboBoxChannels.Items.Add(new ListComboIntContent(Convert.ToString(x), x));
+                comboBoxChannels.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
             }
-            for (int x = 0; x <= Audio.MaxChannels; x++)
+            for (int i = 0; i <= Audio.MaxChannels; i++)
             {
-                if (Audio.Channels == x)
+                if (Audio.Channels == i)
                 {
-                    comboBoxChannels.SelectedIndex = x;
+                    comboBoxChannels.SelectedIndex = i;
                     break;
                 }
             }
@@ -503,15 +503,15 @@ namespace FFmpegCatapult
                 // VBR modes
                 labelAudioBitrate.Text = "Quality:";
 
-                for (int x = 0; x < Audio.VBRModes.GetLength(0); x++)
+                for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
                 {
-                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.VBRModes[x]), Audio.VBRModes[x]));
+                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.VBRModes[i]), Audio.VBRModes[i]));
                 }
-                for (int x = 0; x < Audio.VBRModes.GetLength(0); x++)
+                for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
                 {
-                    if (Audio.Quality == Audio.VBRModes[x])
+                    if (Audio.Quality == Audio.VBRModes[i])
                     {
-                        comboBoxAudioBitrates.SelectedIndex = x;
+                        comboBoxAudioBitrates.SelectedIndex = i;
                         break;
                     }
                 }
@@ -521,15 +521,15 @@ namespace FFmpegCatapult
                 // ABR and CBR bitrates
                 labelAudioBitrate.Text = "Bitrate:";
 
-                for (int x = 0; x < Audio.Bitrates.GetLength(0); x++)
+                for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
                 {
-                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.Bitrates[x]) + " Kbps", Audio.Bitrates[x]));
+                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.Bitrates[i]) + " Kbps", Audio.Bitrates[i]));
                 }
-                for (int x = 0; x < Audio.Bitrates.GetLength(0); x++)
+                for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
                 {
-                    if (Audio.Bitrate == Audio.Bitrates[x])
+                    if (Audio.Bitrate == Audio.Bitrates[i])
                     {
-                        comboBoxAudioBitrates.SelectedIndex = x;
+                        comboBoxAudioBitrates.SelectedIndex = i;
                         break;
                     }
                 }
@@ -603,35 +603,7 @@ namespace FFmpegCatapult
             }
         }
 
-        // Misc methods
-        private String IntToText(int x)
-        {
-            String value;
-            if (x > 0)
-            {
-                value = Convert.ToString(x);
-            }
-            else
-            {
-                value = "";
-            }
-            return value;
-        }
-
-        private int TextToInt(String value)
-        {
-            int x;
-            if (value != "")
-            {
-                x = Convert.ToInt16(value);
-            }
-            else
-            {
-                x = 0;
-            }
-            return x;
-        }
-
+        // Misc methods      
         private void EnableRatioControls(bool enable)
         {
             labelRatio.Enabled = enable;
@@ -803,7 +775,7 @@ namespace FFmpegCatapult
         {
             labelTitle.Enabled = enable;
             textBoxTitle.Enabled = enable;
-            
+
             if (enable == false)
             {
                 textBoxTitle.Text = "";
@@ -1072,110 +1044,47 @@ namespace FFmpegCatapult
 
         void textBoxWidth_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.Width = TextToInt(textBoxWidth.Text);
-            }
-            catch
-            {
-                textBoxWidth.Text = IntToText(Screen.Width);
-            }
+            Screen.Width = Methods.TextToInt(textBoxWidth.Text);
         }
 
         void textBoxHeight_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.Height = TextToInt(textBoxHeight.Text);
-            }
-            catch
-            {
-                textBoxHeight.Text = IntToText(Screen.Height);
-            }
+            Screen.Height = Methods.TextToInt(textBoxHeight.Text);
         }
 
         void textBoxRatioA_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.RatioA = TextToInt(textBoxRatioA.Text);
-            }
-            catch
-            {
-                textBoxRatioA.Text = IntToText(Screen.RatioA);
-            }
+            Screen.RatioA = Methods.TextToInt(textBoxRatioA.Text);
         }
 
         void textBoxRatioB_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.RatioB = TextToInt(textBoxRatioB.Text);
-            }
-            catch
-            {
-                textBoxRatioB.Text = IntToText(Screen.RatioB);
-            }
+            Screen.RatioB = Methods.TextToInt(textBoxRatioB.Text);
         }
 
         void textBoxFPS_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.FPS = TextToInt(textBoxFPS.Text);
-            }
-            catch
-            {
-                textBoxFPS.Text = IntToText(Screen.FPS);
-            }
+            Screen.FPS = Methods.TextToInt(textBoxFPS.Text);
         }
 
         void textBoxLayoutWidth_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.WinWidth = TextToInt(textBoxLayoutWidth.Text);
-            }
-            catch
-            {
-                textBoxLayoutWidth.Text = IntToText(Screen.WinWidth);
-            }
+            Screen.WinWidth = Methods.TextToInt(textBoxLayoutWidth.Text);
         }
 
         void textBoxLayoutHeight_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.WinHeight = TextToInt(textBoxLayoutHeight.Text);
-            }
-            catch
-            {
-                textBoxLayoutHeight.Text = IntToText(Screen.WinHeight);
-            }
+            Screen.WinHeight = Methods.TextToInt(textBoxLayoutHeight.Text);
         }
 
         void textBoxLayoutVert_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.X = TextToInt(textBoxLayoutVert.Text);
-            }
-            catch
-            {
-                textBoxLayoutVert.Text = IntToText(Screen.X);
-            }
+            Screen.X = Methods.TextToInt(textBoxLayoutVert.Text);
         }
 
         void textBoxLayoutHoriz_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Screen.Y = TextToInt(textBoxLayoutHoriz.Text);
-            }
-            catch
-            {
-                textBoxLayoutHoriz.Text = IntToText(Screen.Y);
-            }
+            Screen.Y = Methods.TextToInt(textBoxLayoutHoriz.Text);
         }
 
         void comboBoxScalingMethods_SelectedIndexChanged(object sender, EventArgs e)
@@ -1234,86 +1143,37 @@ namespace FFmpegCatapult
 
         void textBoxVideoBitrate_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.Bitrate = TextToInt(textBoxVideoBitrate.Text);
-            }
-            catch
-            {
-                textBoxVideoBitrate.Text = IntToText(Video.Bitrate);
-            }
+            Video.Bitrate = Methods.TextToInt(textBoxVideoBitrate.Text);
         }
 
         void textBoxMinBitrate_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.MinBitrate = TextToInt(textBoxMinBitrate.Text);
-            }
-            catch
-            {
-                textBoxMinBitrate.Text = IntToText(Video.MinBitrate);
-            }
+            Video.MinBitrate = Methods.TextToInt(textBoxMinBitrate.Text);
         }
 
         void textBoxMaxBitrate_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.MaxBitrate = TextToInt(textBoxMaxBitrate.Text);
-            }
-            catch
-            {
-                textBoxMaxBitrate.Text = IntToText(Video.MaxBitrate);
-            }
+            Video.MaxBitrate = Methods.TextToInt(textBoxMaxBitrate.Text);
         }
 
         void textBoxBufferSize_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.BufferSize = TextToInt(textBoxBufferSize.Text);
-            }
-            catch
-            {
-                textBoxBufferSize.Text = IntToText(Video.BufferSize);
-            }
+            Video.BufferSize = Methods.TextToInt(textBoxBufferSize.Text);
         }
 
         void textBoxCRF_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.CRF = TextToInt(textBoxCRF.Text);
-            }
-            catch
-            {
-                textBoxCRF.Text = IntToText(Video.CRF);
-            }
+            Video.CRF = Methods.TextToInt(textBoxCRF.Text);
         }
 
         void textBoxQmax_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.Qmax = TextToInt(textBoxQmax.Text);
-            }
-            catch
-            {
-                textBoxCRF.Text = IntToText(Video.Qmax);
-            }
+            Video.Qmax = Methods.TextToInt(textBoxQmax.Text);
         }
 
         void textBoxQmin_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Video.Qmin = TextToInt(textBoxQmin.Text);
-            }
-            catch
-            {
-                textBoxQmin.Text = IntToText(Video.Qmin);
-            }
+            Video.Qmin = Methods.TextToInt(textBoxQmin.Text);
         }
 
         // Audio event handlers
@@ -1410,14 +1270,7 @@ namespace FFmpegCatapult
 
         void textBoxDisc_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Metadata.Disc = TextToInt(textBoxDisc.Text);
-            }
-            catch (Exception)
-            {
-                Metadata.Disc = 0;
-            }
+            Metadata.Disc = Methods.TextToInt(textBoxDisc.Text);
         }
 
         void textBoxGenre_TextChanged(object sender, EventArgs e)
@@ -1432,56 +1285,28 @@ namespace FFmpegCatapult
 
         void textBoxTotalDiscs_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Metadata.Disc = TextToInt(textBoxDisc.Text);
-            }
-            catch
-            {
-                Metadata.TotalDiscs = 0;
-            }
+            Metadata.Disc = Methods.TextToInt(textBoxDisc.Text);
         }
 
         void textBoxTotalTracks_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Metadata.TotalTracks = TextToInt(textBoxTotalTracks.Text);
-            }
-            catch (Exception)
-            {
-                Metadata.TotalTracks = 0;
-            }
+            Metadata.TotalTracks = Methods.TextToInt(textBoxTotalTracks.Text);
         }
 
         void textBoxTrack_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Metadata.Track = TextToInt(textBoxTrack.Text);
-            }
-            catch (Exception)
-            {
-                Metadata.Track = 0;
-            }
+            Metadata.Track = Methods.TextToInt(textBoxTrack.Text);
         }
 
         void textBoxYear_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Metadata.Year = TextToInt(textBoxYear.Text);
-            }
-            catch (Exception)
-            {
-                Metadata.Year = 0;
-            }
+            Metadata.Year = Methods.TextToInt(textBoxYear.Text);
         }
 
         // Misc event handlers
         void textBoxFFmpegBin_TextChanged(object sender, EventArgs e)
         {
-            Bin.FFmpegBin = textBoxFFmpegBin.Text;            
+            Bin.FFmpegBin = textBoxFFmpegBin.Text;
         }
 
         void textBoxTermBin_TextChanged(object sender, EventArgs e)
@@ -1515,6 +1340,15 @@ namespace FFmpegCatapult
             if (termBinFile.FileName != "")
             {
                 textBoxTermBin.Text = termBinFile.FileName;
+            }
+        }
+
+        // Key press event handler for numbered values
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+            {
+                e.Handled = e.KeyChar != (char)Keys.Back;
             }
         }
 

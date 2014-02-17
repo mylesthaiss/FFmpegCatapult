@@ -30,13 +30,16 @@ namespace FFmpegCatapult
         private static int bFStrat;
         private static int bitrate;
         private static int bufferSize;
+        private static int cmp;
         private static int codecLevel;
         private static int crf;
+        private static int diaSize;
         private static int gopSize;
         private static int maxBitrate;
         private static int minBitrate;
         private static int qmax;
         private static int qmin;
+        private static int subcmp;
         private static int trellis;
         private static String bits;
         private static String bytes;
@@ -47,13 +50,34 @@ namespace FFmpegCatapult
             {"WMV", "wmv"}, {"Copy", "copy"}, {"None", "none"}
         };
         private static String codecProfile;
-        private static String[,] codecProfiles;
+        private static String[,] codecProfiles = new String[,] {
+            {"Baseline", "baseline"}, {"Main", "main"}, 
+            {"High", "high"}, {"Default", "default"}
+        };
         private static String encoder;
         private static String[,] encoders;
         private static String encoderPreset;
-        private static String[,] encoderPresets;
+        private static String[,] encoderPresets = new String[,] {
+            {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
+            {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
+            {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
+            {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
+        };
+        private static String[] cmpFuncs = new String[] {
+            "sad", "sse", "satd", "dct", "psnr", "bit", "rd", "zero", "vsad",
+            "vsse", "nsse", "w53", "w97", "dctmax", "chroma", "Default"
+        };
         private static String meMethod;
-        private static String[,] meMethods;
+        private static String[,] meMethods = new String[,] {
+            {"Zero", "zero"}, {"Full", "full"}, {"EPZS", "epzs"}, {"Esa", "esa"},
+            {"Tesa", "tesa"}, {"Dia", "dia"}, {"Log", "log"}, {"Phods", "phods"},
+            {"X1", "x1"}, {"Hex", "hex"}, {"Umh", "umh"}, {"Iter", "iter"},
+            {"Default", "default"}
+        };
+        private static String pictureFormat = "default";
+        private static String[,] pictureFormats = new String[,] {
+            {"Default", "default"}
+        };
 
         // Property methods
         public static int Bitrate
@@ -92,6 +116,17 @@ namespace FFmpegCatapult
             set { bytes = value; }
         }
 
+        public static int CMP
+        {
+            get { return cmp; }
+            set { cmp = value; }
+        }
+
+        public static String[] CMPFuncs
+        {
+            get { return cmpFuncs; }
+        }
+
         public static String Codec
         {
             get { return codec; }
@@ -103,12 +138,17 @@ namespace FFmpegCatapult
                 UseCRF = false;
                 bits = "k";
                 bytes = "M";
-                bFStrat = 0;
+                bFStrat = 3;
                 bufferSize = 0;
+                cmp = 15;
+                diaSize = 0;
+                gopSize = 0;
                 maxBitrate = 0;
+                meMethod = "default";
                 minBitrate = 0;
                 qmax = 0;
                 qmin = 0;
+                subcmp = 15;
                 trellis = 3;
 
                 // Init codec values
@@ -129,13 +169,10 @@ namespace FFmpegCatapult
                         encoders = new String[,] {
                             {"x264", "libx264"}
                         };
+                        encoderPreset = "medium";
                         break;
                     case "mpeg2":
-                        bitrate = 4000;
-                        codecProfile = "none";
-                        codecProfiles = new String[,] {
-                            {"None", "none"}
-                        };
+                        bitrate = 4000;                        
                         encoder = "mpeg2video";
                         encoders = new String[,] {
                             {"MPEG-2 Video", "mpeg2video"}
@@ -143,10 +180,7 @@ namespace FFmpegCatapult
                         break;
                     case "mpeg4":
                         bitrate = 1500;
-                        codecProfile = "none";
-                        codecProfiles = new String[,] {
-                            {"None", "none"}
-                        };
+                        codecProfile = "none";                        
                         encoder = "libxvid";
                         encoders = new String[,] {
                             {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
@@ -212,6 +246,12 @@ namespace FFmpegCatapult
             set { crf = value; }
         }
 
+        public static int DiaSize
+        {
+            get { return diaSize; }
+            set { diaSize = value; }
+        }
+
         public static String Encoder
         {
             get { return encoder; }
@@ -263,6 +303,17 @@ namespace FFmpegCatapult
             set { minBitrate = value; }
         }
 
+        public static String PictureFormat
+        {
+            get { return pictureFormat; }
+            set { pictureFormat = value; }
+        }
+
+        public static String[,] PictureFormats
+        {
+            get { return pictureFormats; }
+        }
+
         public static int Qmax
         {
             get { return qmax; }
@@ -273,6 +324,12 @@ namespace FFmpegCatapult
         {
             get { return qmin; }
             set { qmin = value; }
+        }
+
+        public static int SubCMP
+        {
+            get { return subcmp; }
+            set { subcmp = value; }
         }
 
         public static int Trellis

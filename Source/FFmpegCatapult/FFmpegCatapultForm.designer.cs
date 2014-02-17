@@ -508,6 +508,7 @@ namespace FFmpegCatapult
             this.textBoxLayoutHoriz.Name = "textBoxLayoutHoriz";
             this.textBoxLayoutHoriz.Size = new System.Drawing.Size(50, 20);
             this.textBoxLayoutHoriz.TabIndex = 15;
+            this.textBoxLayoutHoriz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxLayoutVert
             // 
@@ -516,6 +517,7 @@ namespace FFmpegCatapult
             this.textBoxLayoutVert.Name = "textBoxLayoutVert";
             this.textBoxLayoutVert.Size = new System.Drawing.Size(50, 20);
             this.textBoxLayoutVert.TabIndex = 14;
+            this.textBoxLayoutVert.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxLayoutHeight
             // 
@@ -524,6 +526,7 @@ namespace FFmpegCatapult
             this.textBoxLayoutHeight.Name = "textBoxLayoutHeight";
             this.textBoxLayoutHeight.Size = new System.Drawing.Size(50, 20);
             this.textBoxLayoutHeight.TabIndex = 13;
+            this.textBoxLayoutHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxLayoutWidth
             // 
@@ -532,6 +535,7 @@ namespace FFmpegCatapult
             this.textBoxLayoutWidth.Name = "textBoxLayoutWidth";
             this.textBoxLayoutWidth.Size = new System.Drawing.Size(50, 20);
             this.textBoxLayoutWidth.TabIndex = 12;
+            this.textBoxLayoutWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxLayoutColour
             // 
@@ -634,6 +638,7 @@ namespace FFmpegCatapult
             this.textBoxFPS.Name = "textBoxFPS";
             this.textBoxFPS.Size = new System.Drawing.Size(25, 20);
             this.textBoxFPS.TabIndex = 10;
+            this.textBoxFPS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxRatioB
             // 
@@ -642,6 +647,7 @@ namespace FFmpegCatapult
             this.textBoxRatioB.Name = "textBoxRatioB";
             this.textBoxRatioB.Size = new System.Drawing.Size(25, 20);
             this.textBoxRatioB.TabIndex = 9;
+            this.textBoxRatioB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxRatioA
             // 
@@ -650,6 +656,7 @@ namespace FFmpegCatapult
             this.textBoxRatioA.Name = "textBoxRatioA";
             this.textBoxRatioA.Size = new System.Drawing.Size(25, 20);
             this.textBoxRatioA.TabIndex = 8;
+            this.textBoxRatioA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelFPS
             // 
@@ -722,6 +729,7 @@ namespace FFmpegCatapult
             this.textBoxHeight.Name = "textBoxHeight";
             this.textBoxHeight.Size = new System.Drawing.Size(55, 20);
             this.textBoxHeight.TabIndex = 7;
+            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxWidth
             // 
@@ -730,6 +738,7 @@ namespace FFmpegCatapult
             this.textBoxWidth.Name = "textBoxWidth";
             this.textBoxWidth.Size = new System.Drawing.Size(55, 20);
             this.textBoxWidth.TabIndex = 6;
+            this.textBoxWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelHeight
             // 
@@ -820,6 +829,7 @@ namespace FFmpegCatapult
             this.textBoxQmax.Name = "textBoxQmax";
             this.textBoxQmax.Size = new System.Drawing.Size(35, 20);
             this.textBoxQmax.TabIndex = 24;
+            this.textBoxQmax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelQmax
             // 
@@ -836,6 +846,7 @@ namespace FFmpegCatapult
             this.textBoxQmin.Name = "textBoxQmin";
             this.textBoxQmin.Size = new System.Drawing.Size(35, 20);
             this.textBoxQmin.TabIndex = 22;
+            this.textBoxQmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelQmin
             // 
@@ -852,6 +863,7 @@ namespace FFmpegCatapult
             this.textBoxBufferSize.Name = "textBoxBufferSize";
             this.textBoxBufferSize.Size = new System.Drawing.Size(80, 20);
             this.textBoxBufferSize.TabIndex = 20;
+            this.textBoxBufferSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxMaxBitrate
             // 
@@ -859,6 +871,7 @@ namespace FFmpegCatapult
             this.textBoxMaxBitrate.Name = "textBoxMaxBitrate";
             this.textBoxMaxBitrate.Size = new System.Drawing.Size(80, 20);
             this.textBoxMaxBitrate.TabIndex = 19;
+            this.textBoxMaxBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxMinBitrate
             // 
@@ -866,6 +879,7 @@ namespace FFmpegCatapult
             this.textBoxMinBitrate.Name = "textBoxMinBitrate";
             this.textBoxMinBitrate.Size = new System.Drawing.Size(80, 20);
             this.textBoxMinBitrate.TabIndex = 18;
+            this.textBoxMinBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxVideoBitrate
             // 
@@ -873,6 +887,7 @@ namespace FFmpegCatapult
             this.textBoxVideoBitrate.Name = "textBoxVideoBitrate";
             this.textBoxVideoBitrate.Size = new System.Drawing.Size(80, 20);
             this.textBoxVideoBitrate.TabIndex = 17;
+            this.textBoxVideoBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // comboBoxBytes
             // 
@@ -907,6 +922,7 @@ namespace FFmpegCatapult
             this.textBoxCRF.Name = "textBoxCRF";
             this.textBoxCRF.Size = new System.Drawing.Size(35, 20);
             this.textBoxCRF.TabIndex = 13;
+            this.textBoxCRF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelCRF
             // 
@@ -1351,6 +1367,7 @@ namespace FFmpegCatapult
             this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
             this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
             this.textBoxTotalDiscs.TabIndex = 2;
+            this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelOfDiscs
             // 
@@ -1367,6 +1384,7 @@ namespace FFmpegCatapult
             this.textBoxDisc.Name = "textBoxDisc";
             this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
             this.textBoxDisc.TabIndex = 2;
+            this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelDisc
             // 
@@ -1383,6 +1401,7 @@ namespace FFmpegCatapult
             this.textBoxTotalTracks.Name = "textBoxTotalTracks";
             this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
             this.textBoxTotalTracks.TabIndex = 2;
+            this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelOfTrack
             // 
@@ -1399,6 +1418,7 @@ namespace FFmpegCatapult
             this.textBoxTrack.Name = "textBoxTrack";
             this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
             this.textBoxTrack.TabIndex = 2;
+            this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelTrack
             // 
@@ -1492,6 +1512,7 @@ namespace FFmpegCatapult
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(56, 20);
             this.textBoxYear.TabIndex = 2;
+            this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBoxTitle
             // 
