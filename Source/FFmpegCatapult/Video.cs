@@ -51,8 +51,7 @@ namespace FFmpegCatapult
         };
         private static String codecProfile;
         private static String[,] codecProfiles = new String[,] {
-            {"Baseline", "baseline"}, {"Main", "main"}, 
-            {"High", "high"}, {"Default", "default"}
+            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
         };
         private static String encoder;
         private static String[,] encoders;
@@ -76,6 +75,9 @@ namespace FFmpegCatapult
         };
         private static String pictureFormat = "default";
         private static String[,] pictureFormats = new String[,] {
+            {"YUV 4:2:0", "yuv420p"}, {"YUYV 4:2:2", "yuyv422"}, {"RGB 24", "rgb24"},
+            {"BGR 24","bgr24"}, {"YUV 4:2:2", "yuv422p"}, {"YUV 4:4:4", "yuv44p"},
+            {"YUV 4:1:0", "yuv410p"}, {"YUV 4:1:1", "yuv411p"}, {"Gray", "gray"},
             {"Default", "default"}
         };
 
@@ -138,6 +140,7 @@ namespace FFmpegCatapult
                 UseCRF = false;
                 bits = "k";
                 bytes = "M";
+                bFrames = 0;
                 bFStrat = 3;
                 bufferSize = 0;
                 cmp = 15;
@@ -163,8 +166,8 @@ namespace FFmpegCatapult
                         break;
                     case "h264":
                         bitrate = 1000;
-                        codecLevel = 0;
-                        codecProfile = "default";
+                        codecLevel = 31;
+                        codecProfile = "main";
                         encoder = "libx264";
                         encoders = new String[,] {
                             {"x264", "libx264"}
