@@ -87,6 +87,7 @@
             // 
             // comboBoxTrellis
             // 
+            this.comboBoxTrellis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTrellis.FormattingEnabled = true;
             this.comboBoxTrellis.Location = new System.Drawing.Point(206, 17);
             this.comboBoxTrellis.Name = "comboBoxTrellis";
@@ -121,6 +122,7 @@
             // 
             // comboBoxMEMethods
             // 
+            this.comboBoxMEMethods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMEMethods.FormattingEnabled = true;
             this.comboBoxMEMethods.Location = new System.Drawing.Point(76, 41);
             this.comboBoxMEMethods.Name = "comboBoxMEMethods";
@@ -138,6 +140,7 @@
             // 
             // comboBoxEncoderPresets
             // 
+            this.comboBoxEncoderPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEncoderPresets.Enabled = false;
             this.comboBoxEncoderPresets.FormattingEnabled = true;
             this.comboBoxEncoderPresets.Location = new System.Drawing.Point(51, 17);
@@ -197,6 +200,7 @@
             // 
             // comboBoxCodecProfiles
             // 
+            this.comboBoxCodecProfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCodecProfiles.FormattingEnabled = true;
             this.comboBoxCodecProfiles.Location = new System.Drawing.Point(51, 14);
             this.comboBoxCodecProfiles.Name = "comboBoxCodecProfiles";
@@ -238,6 +242,7 @@
             // 
             // comboBoxBFStrats
             // 
+            this.comboBoxBFStrats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBFStrats.FormattingEnabled = true;
             this.comboBoxBFStrats.Location = new System.Drawing.Point(163, 16);
             this.comboBoxBFStrats.Name = "comboBoxBFStrats";
@@ -284,6 +289,7 @@
             // comboBoxPictureFormats
             // 
             this.comboBoxPictureFormats.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.comboBoxPictureFormats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPictureFormats.FormattingEnabled = true;
             this.comboBoxPictureFormats.Location = new System.Drawing.Point(54, 14);
             this.comboBoxPictureFormats.Name = "comboBoxPictureFormats";
@@ -351,6 +357,7 @@
             // 
             // comboBoxSubCMPFuncs
             // 
+            this.comboBoxSubCMPFuncs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSubCMPFuncs.FormattingEnabled = true;
             this.comboBoxSubCMPFuncs.Location = new System.Drawing.Point(198, 16);
             this.comboBoxSubCMPFuncs.Name = "comboBoxSubCMPFuncs";
@@ -359,6 +366,7 @@
             // 
             // comboBoxCMPFuncs
             // 
+            this.comboBoxCMPFuncs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCMPFuncs.FormattingEnabled = true;
             this.comboBoxCMPFuncs.Location = new System.Drawing.Point(38, 16);
             this.comboBoxCMPFuncs.Name = "comboBoxCMPFuncs";

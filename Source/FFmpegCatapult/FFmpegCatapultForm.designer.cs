@@ -312,6 +312,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxThreads
             // 
+            this.comboBoxThreads.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxThreads.FormattingEnabled = true;
             this.comboBoxThreads.Location = new System.Drawing.Point(313, 45);
             this.comboBoxThreads.Name = "comboBoxThreads";
@@ -329,6 +330,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxContainers
             // 
+            this.comboBoxContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxContainers.FormattingEnabled = true;
             this.comboBoxContainers.Location = new System.Drawing.Point(67, 45);
             this.comboBoxContainers.Name = "comboBoxContainers";
@@ -346,6 +348,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxPresets
             // 
+            this.comboBoxPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPresets.FormattingEnabled = true;
             this.comboBoxPresets.Location = new System.Drawing.Point(67, 18);
             this.comboBoxPresets.Name = "comboBoxPresets";
@@ -465,6 +468,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxScalingMethods
             // 
+            this.comboBoxScalingMethods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxScalingMethods.FormattingEnabled = true;
             this.comboBoxScalingMethods.Location = new System.Drawing.Point(58, 19);
             this.comboBoxScalingMethods.Name = "comboBoxScalingMethods";
@@ -891,12 +895,12 @@ namespace FFmpegCatapult
             // 
             // comboBoxBytes
             // 
+            this.comboBoxBytes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBytes.FormattingEnabled = true;
             this.comboBoxBytes.Location = new System.Drawing.Point(412, 66);
             this.comboBoxBytes.Name = "comboBoxBytes";
             this.comboBoxBytes.Size = new System.Drawing.Size(41, 21);
             this.comboBoxBytes.TabIndex = 16;
-            this.comboBoxBytes.Text = "MB";
             // 
             // labelMinBits
             // 
@@ -1010,6 +1014,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxVideoEncoders
             // 
+            this.comboBoxVideoEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVideoEncoders.FormattingEnabled = true;
             this.comboBoxVideoEncoders.Location = new System.Drawing.Point(62, 19);
             this.comboBoxVideoEncoders.Name = "comboBoxVideoEncoders";
@@ -1049,6 +1054,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxVideoCodecs
             // 
+            this.comboBoxVideoCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVideoCodecs.FormattingEnabled = true;
             this.comboBoxVideoCodecs.Location = new System.Drawing.Point(53, 19);
             this.comboBoxVideoCodecs.Name = "comboBoxVideoCodecs";
@@ -1141,6 +1147,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxChannels
             // 
+            this.comboBoxChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxChannels.FormattingEnabled = true;
             this.comboBoxChannels.Location = new System.Drawing.Point(70, 40);
             this.comboBoxChannels.Name = "comboBoxChannels";
@@ -1149,6 +1156,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxSampleRates
             // 
+            this.comboBoxSampleRates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSampleRates.FormattingEnabled = true;
             this.comboBoxSampleRates.Location = new System.Drawing.Point(70, 16);
             this.comboBoxSampleRates.Name = "comboBoxSampleRates";
@@ -1197,6 +1205,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxAudioBitrates
             // 
+            this.comboBoxAudioBitrates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAudioBitrates.FormattingEnabled = true;
             this.comboBoxAudioBitrates.Location = new System.Drawing.Point(53, 16);
             this.comboBoxAudioBitrates.Name = "comboBoxAudioBitrates";
@@ -1225,6 +1234,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxAudioEncoders
             // 
+            this.comboBoxAudioEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAudioEncoders.FormattingEnabled = true;
             this.comboBoxAudioEncoders.Location = new System.Drawing.Point(62, 19);
             this.comboBoxAudioEncoders.Name = "comboBoxAudioEncoders";
@@ -1253,6 +1263,7 @@ namespace FFmpegCatapult
             // 
             // comboBoxAudioCodecs
             // 
+            this.comboBoxAudioCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAudioCodecs.FormattingEnabled = true;
             this.comboBoxAudioCodecs.Location = new System.Drawing.Point(53, 19);
             this.comboBoxAudioCodecs.Name = "comboBoxAudioCodecs";
