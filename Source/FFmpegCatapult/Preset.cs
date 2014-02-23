@@ -273,6 +273,14 @@ namespace FFmpegCatapult
                     Screen.RatioB = 9;
                     Audio.Codec = "vorbis";
                     break;
+                case "tomp3":
+                    File.Format = "mp3";
+                    Video.Codec = "none";
+                    Audio.Codec = "mp3";
+                    Audio.Bitrate = 192;
+                    Audio.Channels = 2;
+                    Audio.SampleRate = 44100;                    
+                    break;
                 case "copyavi":
                     File.Format = "avi";
                     Video.Codec = "copy";

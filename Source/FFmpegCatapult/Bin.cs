@@ -42,9 +42,9 @@ namespace FFmpegCatapult
             String video;
             
             // Input arguments
-            if (File.Audio != "")
+            if (File.AudioStream != "")
             {
-                input = String.Format("-i \"{0}\" -i \"{1}\"", File.Input, File.Audio);
+                input = String.Format("-i \"{0}\" -i \"{1}\"", File.Input, File.AudioStream);
             }
             else
             {

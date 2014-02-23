@@ -44,11 +44,7 @@ namespace FFmpegCatapult
         private static String bits;
         private static String bytes;
         private static String codec;
-        private static String[,] codecs = new String[,] {
-            {"Dirac", "dirac"}, {"H.264", "h264"}, {"MPEG-2", "mpeg2"},
-            {"MPEG-4", "mpeg4"}, {"Theora", "theora"}, {"VP8", "vp8"},
-            {"WMV", "wmv"}, {"Copy", "copy"}, {"None", "none"}
-        };
+        private static String[,] codecs;
         private static String codecProfile;
         private static String[,] codecProfiles = new String[,] {
             {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
@@ -175,7 +171,7 @@ namespace FFmpegCatapult
                         encoderPreset = "medium";
                         break;
                     case "mpeg2":
-                        bitrate = 4000;                        
+                        bitrate = 4000;
                         encoder = "mpeg2video";
                         encoders = new String[,] {
                             {"MPEG-2 Video", "mpeg2video"}
@@ -183,7 +179,7 @@ namespace FFmpegCatapult
                         break;
                     case "mpeg4":
                         bitrate = 1500;
-                        codecProfile = "none";                        
+                        codecProfile = "none";
                         encoder = "libxvid";
                         encoders = new String[,] {
                             {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
@@ -223,7 +219,8 @@ namespace FFmpegCatapult
 
         public static String[,] Codecs
         {
-            get { return codecs; }
+            get { return codecs; }            
+            set { codecs = value; }
         }
 
         public static int CodecLevel

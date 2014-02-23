@@ -36,12 +36,7 @@ namespace FFmpegCatapult
         private static int[] sampleRates;
         private static int[] vbrModes;
         private static String codec;
-        private static String[,] codecs = new String[,]
-        {
-            {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"MP2", "mp2"},
-            {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"}, {"Vorbis", "vorbis"},
-            {"WMA", "wma"}, {"Copy", "copy"}, {"None", "none"}
-        };
+        private static String[,] codecs;
         private static String encoder;
         private static String[,] encoders;
 
@@ -203,7 +198,8 @@ namespace FFmpegCatapult
 
         public static String[,] Codecs
         {
-            get { return codecs; }
+            get { return codecs; }            
+            set { codecs = value; }
         }
 
         public static int Bitrate

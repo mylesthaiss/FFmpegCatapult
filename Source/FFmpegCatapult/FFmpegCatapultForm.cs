@@ -110,11 +110,6 @@ namespace FFmpegCatapult
             InitPicture();
 
             // Video tab
-            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
-            {
-                comboBoxVideoCodecs.Items.Add(new ListComboContent(Video.Codecs[i, 0], Video.Codecs[i, 1]));
-            }
-
             comboBoxBits.Items.Add(new ListComboContent("Kbps", "k"));
             comboBoxBits.Items.Add(new ListComboContent("Mbps", "M"));
             comboBoxBytes.Items.Add(new ListComboContent("KB", "k"));
@@ -125,12 +120,7 @@ namespace FFmpegCatapult
 
             InitVideo();
 
-            // Audio tab
-            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
-            {
-                comboBoxAudioCodecs.Items.Add(new ListComboContent(Audio.Codecs[i, 0], Audio.Codecs[i, 1]));
-            }
-
+            // Audio tab           
             textBoxAudioStream.TextChanged += new EventHandler(textBoxAudioStream_TextChanged);
             buttonBrowseAudioStream.Click += new EventHandler(buttonBrowseAudioStream_Click);
 
@@ -301,6 +291,12 @@ namespace FFmpegCatapult
 
         private void InitVideo()
         {
+            comboBoxVideoCodecs.Items.Clear();
+            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
+            {
+                comboBoxVideoCodecs.Items.Add(new ListComboContent(Video.Codecs[i, 0], Video.Codecs[i, 1]));
+            }
+
             if (Video.Codec == "copy" | Video.Codec == "none")
             {
                 EnableVideoControls(false);
@@ -405,6 +401,12 @@ namespace FFmpegCatapult
 
         private void InitAudio()
         {
+            comboBoxAudioCodecs.Items.Clear();
+            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
+            {
+                comboBoxAudioCodecs.Items.Add(new ListComboContent(Audio.Codecs[i, 0], Audio.Codecs[i, 1]));
+            }
+
             if (Audio.Codec == "copy" || Audio.Codec == "none")
             {
                 EnableAudioControls(false);
@@ -938,6 +940,8 @@ namespace FFmpegCatapult
                 }
             }
 
+            InitAudio();
+            InitVideo();
             InitMetadata();
         }
 
@@ -1249,7 +1253,7 @@ namespace FFmpegCatapult
 
         void textBoxAudioStream_TextChanged(object sender, EventArgs e)
         {
-            File.Audio = textBoxAudioStream.Text;
+            File.AudioStream = textBoxAudioStream.Text;
         }
 
         // Metadata event handlers
