@@ -36,6 +36,8 @@ namespace FFmpegCatapult
         private static int[] sampleRates;
         private static int[] vbrModes;
         private static String codec;
+        private static String codecProfile;
+        private static String codecProfiles;
         private static String[,] codecs;
         private static String encoder;
         private static String[,] encoders;
@@ -94,6 +96,20 @@ namespace FFmpegCatapult
                         };
                         Encoder = "flac";
                         break;
+                    case "heaac":
+                        bitrate = 64;
+                        channels = 0;
+                        maxChannels = 8;
+                        encoders = new String[,] {
+                            {"AAC Plus (libaacplus)", "libaacplus"}, {"Fraunhofer FDK", "libfdk_aac"}
+                        };
+                        sampleRate = 0;
+                        sampleRates = new int[] {
+                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            48000, 96000, 192000
+                        };
+                        Encoder = "libfdk_aac";
+                        break;
                     case "mp2":
                         bitrate = 192;
                         channels = 0;
@@ -150,6 +166,19 @@ namespace FFmpegCatapult
                         };
                         Encoder = "pcm_s16le";
                         break;
+                    case "speex":
+                        bitrate = 16;
+                        channels = 0;
+                        maxChannels = 8;
+                        encoders = new String[,] {
+                            {"Speex", "libspeex"}
+                        };
+                        sampleRate = 0;
+                        sampleRates = new int[] {
+                            0, 8000, 16000, 22050, 32000, 44100, 48000
+                        };
+                        Encoder = codec;
+                        break;
                     case "vorbis":
                         bitrate = 128;
                         channels = 0;
@@ -196,6 +225,17 @@ namespace FFmpegCatapult
             }
         }
 
+        public static String CodecProfile
+        {
+            get { return codecProfile; }
+            set { codecProfile = value; }
+        }
+
+        public static String CodecProfiles
+        {
+            get { return codecProfiles; }
+        }
+
         public static String[,] Codecs
         {
             get { return codecs; }            
@@ -222,6 +262,7 @@ namespace FFmpegCatapult
                         };
                         break;
                     case "aac":
+                    case "heaac":
                         // Advance Audio Coding bitrates
                         bitrates = new int[] {
                             8, 16, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 
@@ -273,8 +314,13 @@ namespace FFmpegCatapult
                         break;
                     case "vorbis":
                         bitrates = new int[] {
-                            32, 64, 80, 96, 112, 160, 192, 224, 256,
-                            320, 500
+                            32, 64, 80, 96, 112, 128, 160, 192, 224, 
+                            256, 320, 500
+                        };
+                        break;
+                    case "speex":
+                        bitrates = new int[] {
+                            2, 4, 8, 16, 24, 32, 40, 44
                         };
                         break;
                     case "wma":

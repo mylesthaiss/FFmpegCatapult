@@ -34,9 +34,10 @@ namespace FFmpegCatapult
         // Codecs and file extensions
         private static String[,] audioCodecs = new String[,]
         {
-            {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"MP2", "mp2"},
-            {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"}, {"Vorbis", "vorbis"},
-            {"WMA", "wma"}, {"Copy", "copy"}, {"None", "none"}
+            {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"HE-AAC", "heaac"},
+            {"MP2", "mp2"}, {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"}, 
+            {"Speex", "speex"}, {"Vorbis", "vorbis"}, {"WMA", "wma"}, 
+            {"Copy", "copy"}, {"None", "none"}
         };        
         private static String[,] videoCodecs = new String[,]
         {
@@ -46,8 +47,8 @@ namespace FFmpegCatapult
         };
         private static String[,] formats = new String[,]
         {
-            {"AVI", "avi"}, {"Matroska", "mkv"}, {"MP3", "mp3"}, {"MP4", "mp4"},
-            {"MPEG Program Stream", "mpg"}, {"MPEG Transport Stream", "ts"},
+            {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "mkv"}, {"MP3", "mp3"}, 
+            {"MP4", "mp4"}, {"MPEG Program Stream", "mpg"}, {"MPEG Transport Stream", "ts"},
             {"Ogg", "ogg"}, {"WebM", "webm"}, {"Windows Media Audio", "wma"},
             {"Windows Media Video", "wmv"}, {"Custom", "custom"}
         };
@@ -75,6 +76,16 @@ namespace FFmpegCatapult
                         Video.Codec = "mpeg4";
                         Video.Codecs = videoCodecs;
                         break;
+                    case "m4a":
+                        Audio.Codec = "aac";
+                        Audio.Codecs = new String[,] {
+                            {"AAC", "aac"}, {"HE-AAC", "heaac"}, {"Copy", "copy"}
+                        };
+                        Video.Codec = "none";
+                        Video.Codecs = new String[,] {
+                            {"None", "none"}
+                        };
+                        break;
                     case "mkv":
                         Audio.Codec = "aac";
                         Audio.Codecs = audioCodecs;
@@ -97,8 +108,8 @@ namespace FFmpegCatapult
                         Audio.Codec = "aac";
                         Audio.Codecs = new String[,]
                         {
-                            {"AC-3", "ac3"}, {"AAC", "aac"}, {"MP3", "mp3"},
-                            {"Copy", "copy"}, {"None", "none"}
+                            {"AC-3", "ac3"}, {"AAC", "aac"}, {"HE-AAC", "heaac"},
+                            {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         Video.Codec = "mpeg4";
                         Video.Codecs = new String[,]
@@ -134,8 +145,8 @@ namespace FFmpegCatapult
                     case "ogg":
                         Audio.Codec = "vorbis";
                         Audio.Codecs = new String[,] {
-                            {"FLAC", "flac"}, {"Opus", "opus"}, {"Vorbis", "vorbis"},
-                            {"Copy", "copy"}, {"None", "none"}
+                            {"FLAC", "flac"}, {"Opus", "opus"}, {"Speex", "speex"},
+                            {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         Video.Codec = "theora";
                         Video.Codecs = new String[,] {
