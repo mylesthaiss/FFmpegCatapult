@@ -31,10 +31,10 @@ namespace FFmpegCatapult
         public static bool Overwrite = false;
         private static int maxThreads = Environment.ProcessorCount;
         private static int threads = Environment.ProcessorCount;
-        private static String defaultPreset = "xvid";
+        private static string defaultPreset = "default";
 
         // Property methods
-        public static String DefaultPreset
+        public static string DefaultPreset
         {
             get { return defaultPreset; }
             set { defaultPreset = value; }

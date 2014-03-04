@@ -26,20 +26,20 @@ namespace FFmpegCatapult
     class Bin
     {
         // Variables
-        private static String ffmpegBin;
-        private static String termBin;
-        private static String termArgs;
-        private static String nullPath;
+        private static string ffmpegBin;
+        private static string termBin;
+        private static string termArgs;
+        private static string nullPath;
 
         // Run method
         public static void Run()
         {
             // Variables
-            String audio;
-            String input;
-            String output;
-            String threads;
-            String video;
+            string audio;
+            string input;
+            string output;
+            string threads;
+            string video;
             
             // Input arguments
             if (File.AudioStream != "")
@@ -181,7 +181,7 @@ namespace FFmpegCatapult
 
                     if (Video.MEMethod != "default")
                     {
-                        videoArgs.Add(String.Format("-me_methods {0}", Video.MEMethod));
+                        videoArgs.Add(String.Format("-me_method {0}", Video.MEMethod));
                     }
 
                     if (Video.DiaSize != 0)
@@ -302,6 +302,11 @@ namespace FFmpegCatapult
                     tagArgs.Add(String.Format("-metadata comment=\"{0}\"", Metadata.Comment));
                 }
 
+                if (Metadata.Comment != "")
+                {
+                    tagArgs.Add(String.Format("-metadata genre=\"{0}\"", Metadata.Genre));
+                }
+
                 if (Metadata.Disc != 0)
                 {
                     if (Metadata.TotalDiscs != 0)
@@ -343,6 +348,12 @@ namespace FFmpegCatapult
 
                 if (tagArgs.Count > 0)
                 {
+                    if (File.Format == "mp3")
+                    {
+                        tagArgs.Add("-id3v2_version 3");
+                        tagArgs.Add("-write_id3v1 1");
+                    }
+
                     output = String.Join(" ", tagArgs.ToArray()) + " " + output;
                 }                
             }
@@ -353,7 +364,7 @@ namespace FFmpegCatapult
 
             if (Session.TwoPassEncoding == true)
             {
-                String waitArgs;
+                string waitArgs;
                 if (termBin == "cmd.exe")
                 {
                     waitArgs = "/c start /wait";
@@ -381,25 +392,25 @@ namespace FFmpegCatapult
         }
 
         // Property methods
-        public static String FFmpegBin
+        public static string FFmpegBin
         {
             get { return ffmpegBin; }
             set { ffmpegBin = value; }
         }
 
-        public static String TermArgs
+        public static string TermArgs
         {
             get { return termArgs; }
             set { termArgs = value; }
         }
 
-        public static String TermBin
+        public static string TermBin
         {
             get { return termBin; }
             set { termBin = value; }
         }
 
-        public static String NullPath
+        public static string NullPath
         {
             get { return nullPath; }
             set { nullPath = value; }

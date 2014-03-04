@@ -25,9 +25,9 @@ namespace FFmpegCatapult
     class Methods
     {
         // Misc methods
-        public static String IntToText(int x)
+        public static string IntToText(int x)
         {
-            String value;
+            string value;
             if (x > 0)
             {
                 value = Convert.ToString(x);
@@ -39,7 +39,7 @@ namespace FFmpegCatapult
             return value;
         }
 
-        public static int TextToInt(String value)
+        public static int TextToInt(string value)
         {
             int x;
 

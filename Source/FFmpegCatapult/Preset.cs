@@ -25,17 +25,17 @@ namespace FFmpegCatapult
     class Preset
     {
         // Variables        
-        private static String[,] presets = new String[,] {
-            {"Xvid", "xvid"}, {"MPEG-2, Standard Definition", "mp2sd"},
-            {"MPEG-2, High Definintion", "mp2hd"}, {"MPEG-4, Standard Definintion", "mp4sd"},
+        private static string[,] presets = new string[,] {
+            {"Default", "default"}, {"Xvid", "xvid"}, {"MPEG-2, Standard Definition", "mp2sd"}, 
+            {"MPEG-2, High Definintion", "mp2hd"}, {"MPEG-4, Standard Definintion", "mp4sd"}, 
             {"MPEG-4, High Definintion", "mp4hd"}, {"H.264, Standard Definintion", "h264sd"},
             {"H.264, High Definintion", "h264hd"}, {"VP8, Standard Definintion", "vp8sd"},
             {"VP8, High Definintion", "vp8hd"}, {"iPod (5th Gen), 240p MPEG-4","ipod240mp4"},
             {"iPod (5th Gen), 240p H.264", "ipod240h264"}, {"iPod (5th Gen), 480p MPEG-4", "ipod480mp4"},
-            {"iPod (5th Gen), 480p H.264", "ipod480h264"}, {"iPhone 4", "iphone4"},
-            {"Sony PSP", "psp"}, {"Sony PSP, TV Out", "psptv"},            
-            {"Extract audio stream to MP3", "tomp3"}, {"Copy audio and video to AVI","copyavi"},
-            {"Copy audio and video to MKV", "copymkv"}, {"Copy audio and video to MP4", "copymp4"}
+            {"iPod (5th Gen), 480p H.264", "ipod480h264"}, {"iPhone 4", "iphone4"}, {"Sony PSP", "psp"},
+            {"Sony PSP, TV Out", "psptv"}, {"Extract audio stream to MP3", "tomp3"},
+            {"Copy audio and video to AVI","copyavi"}, {"Copy audio and video to MKV", "copymkv"},
+            {"Copy audio and video to MP4", "copymp4"}
         };
 
         // Init preset method
@@ -43,6 +43,10 @@ namespace FFmpegCatapult
         {
             switch (preset)
             {
+                case "default":
+                    File.Format = "avi";
+                    Screen.ScaleOption = 0;
+                    break;
                 case "xvid":
                     File.Format = "avi";
                     Video.Codec = "mpeg4";
@@ -279,7 +283,7 @@ namespace FFmpegCatapult
                     Audio.Codec = "mp3";
                     Audio.Bitrate = 192;
                     Audio.Channels = 2;
-                    Audio.SampleRate = 44100;                    
+                    Audio.SampleRate = 44100;
                     break;
                 case "copyavi":
                     File.Format = "avi";
@@ -309,7 +313,7 @@ namespace FFmpegCatapult
             }
         }
 
-        public static String[,] GetPresets()
+        public static string[,] GetPresets()
         {
             return presets;
         }

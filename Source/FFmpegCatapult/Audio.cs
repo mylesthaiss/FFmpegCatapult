@@ -1,4 +1,4 @@
-﻿// Audio properties interface for FFmpeg Catapult.
+﻿﻿// Audio properties interface for FFmpeg Catapult.
 // Copyright (C) 2013 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
@@ -35,15 +35,15 @@ namespace FFmpegCatapult
         private static int sampleRate;
         private static int[] sampleRates;
         private static int[] vbrModes;
-        private static String codec;
-        private static String codecProfile;
-        private static String codecProfiles;
-        private static String[,] codecs;
-        private static String encoder;
-        private static String[,] encoders;
+        private static string codec;
+        private static string codecProfile;
+        private static string codecProfiles;
+        private static string[,] codecs;
+        private static string encoder;
+        private static string[,] encoders;
 
         // Property methods
-        public static String Codec
+        public static string Codec
         {
             get { return codec; }
             set
@@ -57,7 +57,7 @@ namespace FFmpegCatapult
                         bitrate = 384;
                         channels = 0;
                         maxChannels = 6;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"AC3", "ac3"}, {"AC3 Fixed", "ac3_fixed"}
                         };
                         sampleRate = 48000;
@@ -71,7 +71,7 @@ namespace FFmpegCatapult
                         bitrate = 128;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"AAC (FFmpeg)", "aac"}, {"FAAC", "libfaac"}, 
                             {"Fraunhofer FDK", "libfdk_aac"}, {"Visual On", "libvo_aacenc"}
                         };
@@ -86,7 +86,7 @@ namespace FFmpegCatapult
                         bitrate = 0;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"FLAC", "flac"}
                         };
                         sampleRate = 44100;
@@ -100,7 +100,7 @@ namespace FFmpegCatapult
                         bitrate = 64;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"AAC Plus (libaacplus)", "libaacplus"}, {"Fraunhofer FDK", "libfdk_aac"}
                         };
                         sampleRate = 0;
@@ -114,7 +114,7 @@ namespace FFmpegCatapult
                         bitrate = 192;
                         channels = 0;
                         maxChannels = 2;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"MP2 (FFmpeg)", "mp2"}, {"TwoLAME", "libtwolame"}
                         };
                         sampleRate = 0;
@@ -127,7 +127,7 @@ namespace FFmpegCatapult
                         bitrate = 128;
                         channels = 0;
                         maxChannels = 2;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"LAME", "libmp3lame"}
                         };
                         sampleRate = 0;
@@ -141,7 +141,7 @@ namespace FFmpegCatapult
                         bitrate = 96;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"Opus", "libopus"}
                         };
                         sampleRate = 0;
@@ -154,7 +154,7 @@ namespace FFmpegCatapult
                     case "pcm":
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"8-bit (Unsigned)", "u8"}, {"16-bit (Signed)", "s16le"}, 
                             {"24-bit (Signed)", "s24le"}, {"32-bit (Signed)", "s32le"},
                             {"A-law", "alaw"}, {"mu-law", "mulaw"}                            
@@ -170,7 +170,7 @@ namespace FFmpegCatapult
                         bitrate = 16;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"Speex", "libspeex"}
                         };
                         sampleRate = 0;
@@ -183,7 +183,7 @@ namespace FFmpegCatapult
                         bitrate = 128;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"Vorbis (FFmpeg)", "vorbis"}, {"Vorbis", "libvorbis"}
                         };
                         sampleRate = 0;
@@ -197,7 +197,7 @@ namespace FFmpegCatapult
                         bitrate = 128;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {"WMA Version 1", "wmav1"}, {"WMA Version 2", "wmav2"}
                         };
                         sampleRate = 0;
@@ -211,7 +211,7 @@ namespace FFmpegCatapult
                         bitrate = 128;
                         channels = 0;
                         maxChannels = 8;
-                        encoders = new String[,] {
+                        encoders = new string[,] {
                             {codec, codec}
                         };
                         sampleRate = 0;
@@ -225,20 +225,20 @@ namespace FFmpegCatapult
             }
         }
 
-        public static String CodecProfile
+        public static string CodecProfile
         {
             get { return codecProfile; }
             set { codecProfile = value; }
         }
 
-        public static String CodecProfiles
+        public static string CodecProfiles
         {
             get { return codecProfiles; }
         }
 
-        public static String[,] Codecs
+        public static string[,] Codecs
         {
-            get { return codecs; }            
+            get { return codecs; }
             set { codecs = value; }
         }
 
@@ -346,7 +346,7 @@ namespace FFmpegCatapult
             set { channels = value; }
         }
 
-        public static String Encoder
+        public static string Encoder
         {
             get { return encoder; }
             set
@@ -391,7 +391,7 @@ namespace FFmpegCatapult
             }
         }
 
-        public static String[,] Encoders
+        public static string[,] Encoders
         {
             get { return encoders; }
         }

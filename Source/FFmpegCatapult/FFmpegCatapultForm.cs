@@ -39,6 +39,8 @@ namespace FFmpegCatapult
 
         private void FFmpegCatapultForm_Load(object sender, EventArgs e)
         {
+            InitTabs();
+
             // Main tab
             if (File.Input != null)
             {
@@ -149,6 +151,7 @@ namespace FFmpegCatapult
 
             // Metadata tab
             textBoxAlbum.TextChanged += new EventHandler(textBoxAlbum_TextChanged);
+            textBoxAlbumArtist.TextChanged += new EventHandler(textBoxAlbumArtist_TextChanged);
             textBoxArtist.TextChanged += new EventHandler(textBoxArtist_TextChanged);
             textBoxComment.TextChanged += new EventHandler(textBoxComment_TextChanged);
             textBoxDisc.TextChanged += new EventHandler(textBoxDisc_TextChanged);
@@ -164,6 +167,20 @@ namespace FFmpegCatapult
         }
 
         // Methods
+        private void InitTabs()
+        {
+            if (File.Format == "mp3" || File.Format == "wma" || File.Format == "m4a")
+            {
+                tabPicture.Enabled = false;
+                tabVideo.Enabled = false;
+            }
+            else
+            {
+                tabPicture.Enabled = true;
+                tabVideo.Enabled = true;
+            }
+        }
+
         private void InitMain()
         {
             // Combo boxes
@@ -195,7 +212,7 @@ namespace FFmpegCatapult
         }
 
         private void InitPicture()
-        {
+        {         
             // Resolution radio buttons
             radioButtonKeepRes.CheckedChanged -= new EventHandler(radioButtonKeepRes_CheckedChanged);
             radioButtonHalfRes.CheckedChanged -= new EventHandler(radioButtonHalfRes_CheckedChanged);
@@ -605,7 +622,7 @@ namespace FFmpegCatapult
             }
         }
 
-        // Misc methods      
+        // Misc methods
         private void EnableRatioControls(bool enable)
         {
             labelRatio.Enabled = enable;
@@ -940,6 +957,7 @@ namespace FFmpegCatapult
                 }
             }
 
+            InitTabs();
             InitAudio();
             InitVideo();
             InitMetadata();
@@ -949,6 +967,7 @@ namespace FFmpegCatapult
         {
             ListComboContent preset = (ListComboContent)comboBoxPresets.SelectedItem;
             Preset.SetPreset(preset.Value);
+            InitTabs();
             InitMain();
             InitPicture();
             InitVideo();
@@ -1262,6 +1281,11 @@ namespace FFmpegCatapult
             Metadata.Album = textBoxAlbum.Text;
         }
 
+        void textBoxAlbumArtist_TextChanged(object sender, EventArgs e)
+        {
+            Metadata.AlbumArtist = textBoxAlbumArtist.Text;
+        }
+
         void textBoxArtist_TextChanged(object sender, EventArgs e)
         {
             Metadata.Artist = textBoxArtist.Text;
@@ -1359,10 +1383,10 @@ namespace FFmpegCatapult
         // Combobox list helpers
         private class ListComboContent
         {
-            public String Name;
-            public String Value;
+            public string Name;
+            public string Value;
 
-            public ListComboContent(String name, String value)
+            public ListComboContent(string name, string value)
             {
                 this.Name = name;
                 this.Value = value;
@@ -1376,10 +1400,10 @@ namespace FFmpegCatapult
 
         private class ListComboIntContent
         {
-            public String Name;
+            public string Name;
             public int Value;
 
-            public ListComboIntContent(String name, int x)
+            public ListComboIntContent(string name, int x)
             {
                 this.Name = name;
                 this.Value = x;
