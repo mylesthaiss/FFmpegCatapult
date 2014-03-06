@@ -130,17 +130,11 @@ namespace FFmpegCatapult
             this.comboBoxVideoCodecs = new System.Windows.Forms.ComboBox();
             this.labelVideoCodec = new System.Windows.Forms.Label();
             this.tabAudio = new System.Windows.Forms.TabPage();
-            this.groupBoxAudioStream = new System.Windows.Forms.GroupBox();
-            this.buttonBrowseAudioStream = new System.Windows.Forms.Button();
-            this.labelAudioStream = new System.Windows.Forms.Label();
-            this.textBoxAudioStream = new System.Windows.Forms.TextBox();
-            this.groupBoxVolume = new System.Windows.Forms.GroupBox();
-            this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
             this.comboBoxChannels = new System.Windows.Forms.ComboBox();
             this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
             this.labelChannels = new System.Windows.Forms.Label();
             this.labelSampleRate = new System.Windows.Forms.Label();
-            this.groupBoxAudioBitrate = new System.Windows.Forms.GroupBox();
+            this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
             this.checkBoxUseAudioVBR = new System.Windows.Forms.CheckBox();
             this.comboBoxAudioBitrates = new System.Windows.Forms.ComboBox();
             this.labelAudioBitrate = new System.Windows.Forms.Label();
@@ -188,6 +182,12 @@ namespace FFmpegCatapult
             this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
             this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
             this.labelFFmpegBin = new System.Windows.Forms.Label();
+            this.tabStreams = new System.Windows.Forms.TabPage();
+            this.groupBoxAudioStream = new System.Windows.Forms.GroupBox();
+            this.buttonBrowseAudioStream = new System.Windows.Forms.Button();
+            this.textBoxAudioStream = new System.Windows.Forms.TextBox();
+            this.labelAudioStream = new System.Windows.Forms.Label();
+            this.buttonAudioCodecProperties = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.groupBoxSession.SuspendLayout();
@@ -203,9 +203,7 @@ namespace FFmpegCatapult
             this.groupBoxVideoEncoder.SuspendLayout();
             this.groupBoxVideoCodec.SuspendLayout();
             this.tabAudio.SuspendLayout();
-            this.groupBoxAudioStream.SuspendLayout();
             this.groupBoxAudioOutput.SuspendLayout();
-            this.groupBoxAudioBitrate.SuspendLayout();
             this.groupBoxAudioEncoder.SuspendLayout();
             this.groupBoxAudioCodec.SuspendLayout();
             this.tabTagging.SuspendLayout();
@@ -214,6 +212,8 @@ namespace FFmpegCatapult
             this.groupBoxGeneralTags.SuspendLayout();
             this.tabMisc.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
+            this.tabStreams.SuspendLayout();
+            this.groupBoxAudioStream.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRun
@@ -238,6 +238,7 @@ namespace FFmpegCatapult
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabMain);
+            this.tabControl.Controls.Add(this.tabStreams);
             this.tabControl.Controls.Add(this.tabPicture);
             this.tabControl.Controls.Add(this.tabVideo);
             this.tabControl.Controls.Add(this.tabAudio);
@@ -1072,10 +1073,7 @@ namespace FFmpegCatapult
             // 
             // tabAudio
             // 
-            this.tabAudio.Controls.Add(this.groupBoxAudioStream);
-            this.tabAudio.Controls.Add(this.groupBoxVolume);
             this.tabAudio.Controls.Add(this.groupBoxAudioOutput);
-            this.tabAudio.Controls.Add(this.groupBoxAudioBitrate);
             this.tabAudio.Controls.Add(this.groupBoxAudioEncoder);
             this.tabAudio.Controls.Add(this.groupBoxAudioCodec);
             this.tabAudio.Location = new System.Drawing.Point(4, 22);
@@ -1086,87 +1084,28 @@ namespace FFmpegCatapult
             this.tabAudio.Text = "Audio";
             this.tabAudio.UseVisualStyleBackColor = true;
             // 
-            // groupBoxAudioStream
-            // 
-            this.groupBoxAudioStream.Controls.Add(this.buttonBrowseAudioStream);
-            this.groupBoxAudioStream.Controls.Add(this.labelAudioStream);
-            this.groupBoxAudioStream.Controls.Add(this.textBoxAudioStream);
-            this.groupBoxAudioStream.Location = new System.Drawing.Point(6, 142);
-            this.groupBoxAudioStream.Name = "groupBoxAudioStream";
-            this.groupBoxAudioStream.Size = new System.Drawing.Size(459, 43);
-            this.groupBoxAudioStream.TabIndex = 5;
-            this.groupBoxAudioStream.TabStop = false;
-            this.groupBoxAudioStream.Text = "Stream";
-            // 
-            // buttonBrowseAudioStream
-            // 
-            this.buttonBrowseAudioStream.Location = new System.Drawing.Point(378, 13);
-            this.buttonBrowseAudioStream.Name = "buttonBrowseAudioStream";
-            this.buttonBrowseAudioStream.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseAudioStream.TabIndex = 2;
-            this.buttonBrowseAudioStream.Text = "Browse";
-            this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
-            // 
-            // labelAudioStream
-            // 
-            this.labelAudioStream.AutoSize = true;
-            this.labelAudioStream.Location = new System.Drawing.Point(6, 18);
-            this.labelAudioStream.Name = "labelAudioStream";
-            this.labelAudioStream.Size = new System.Drawing.Size(37, 13);
-            this.labelAudioStream.TabIndex = 1;
-            this.labelAudioStream.Text = "Audio:";
-            // 
-            // textBoxAudioStream
-            // 
-            this.textBoxAudioStream.Location = new System.Drawing.Point(49, 15);
-            this.textBoxAudioStream.Name = "textBoxAudioStream";
-            this.textBoxAudioStream.Size = new System.Drawing.Size(323, 20);
-            this.textBoxAudioStream.TabIndex = 0;
-            // 
-            // groupBoxVolume
-            // 
-            this.groupBoxVolume.Location = new System.Drawing.Point(332, 66);
-            this.groupBoxVolume.Name = "groupBoxVolume";
-            this.groupBoxVolume.Size = new System.Drawing.Size(133, 70);
-            this.groupBoxVolume.TabIndex = 4;
-            this.groupBoxVolume.TabStop = false;
-            this.groupBoxVolume.Text = "Volume";
-            // 
-            // groupBoxAudioOutput
-            // 
-            this.groupBoxAudioOutput.Controls.Add(this.comboBoxChannels);
-            this.groupBoxAudioOutput.Controls.Add(this.comboBoxSampleRates);
-            this.groupBoxAudioOutput.Controls.Add(this.labelChannels);
-            this.groupBoxAudioOutput.Controls.Add(this.labelSampleRate);
-            this.groupBoxAudioOutput.Location = new System.Drawing.Point(161, 66);
-            this.groupBoxAudioOutput.Name = "groupBoxAudioOutput";
-            this.groupBoxAudioOutput.Size = new System.Drawing.Size(165, 70);
-            this.groupBoxAudioOutput.TabIndex = 3;
-            this.groupBoxAudioOutput.TabStop = false;
-            this.groupBoxAudioOutput.Text = "Output";
-            // 
             // comboBoxChannels
             // 
             this.comboBoxChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxChannels.FormattingEnabled = true;
-            this.comboBoxChannels.Location = new System.Drawing.Point(70, 40);
+            this.comboBoxChannels.Location = new System.Drawing.Point(236, 17);
             this.comboBoxChannels.Name = "comboBoxChannels";
-            this.comboBoxChannels.Size = new System.Drawing.Size(89, 21);
+            this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
             this.comboBoxChannels.TabIndex = 3;
             // 
             // comboBoxSampleRates
             // 
             this.comboBoxSampleRates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSampleRates.FormattingEnabled = true;
-            this.comboBoxSampleRates.Location = new System.Drawing.Point(70, 16);
+            this.comboBoxSampleRates.Location = new System.Drawing.Point(353, 17);
             this.comboBoxSampleRates.Name = "comboBoxSampleRates";
-            this.comboBoxSampleRates.Size = new System.Drawing.Size(89, 21);
+            this.comboBoxSampleRates.Size = new System.Drawing.Size(100, 21);
             this.comboBoxSampleRates.TabIndex = 2;
             // 
             // labelChannels
             // 
             this.labelChannels.AutoSize = true;
-            this.labelChannels.Location = new System.Drawing.Point(6, 43);
+            this.labelChannels.Location = new System.Drawing.Point(176, 20);
             this.labelChannels.Name = "labelChannels";
             this.labelChannels.Size = new System.Drawing.Size(54, 13);
             this.labelChannels.TabIndex = 1;
@@ -1175,28 +1114,32 @@ namespace FFmpegCatapult
             // labelSampleRate
             // 
             this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(6, 19);
+            this.labelSampleRate.Location = new System.Drawing.Point(281, 21);
             this.labelSampleRate.Name = "labelSampleRate";
-            this.labelSampleRate.Size = new System.Drawing.Size(31, 13);
+            this.labelSampleRate.Size = new System.Drawing.Size(66, 13);
             this.labelSampleRate.TabIndex = 0;
-            this.labelSampleRate.Text = "Freq:";
+            this.labelSampleRate.Text = "Sample rate:";
             // 
-            // groupBoxAudioBitrate
+            // groupBoxAudioOutput
             // 
-            this.groupBoxAudioBitrate.Controls.Add(this.checkBoxUseAudioVBR);
-            this.groupBoxAudioBitrate.Controls.Add(this.comboBoxAudioBitrates);
-            this.groupBoxAudioBitrate.Controls.Add(this.labelAudioBitrate);
-            this.groupBoxAudioBitrate.Location = new System.Drawing.Point(6, 66);
-            this.groupBoxAudioBitrate.Name = "groupBoxAudioBitrate";
-            this.groupBoxAudioBitrate.Size = new System.Drawing.Size(149, 70);
-            this.groupBoxAudioBitrate.TabIndex = 2;
-            this.groupBoxAudioBitrate.TabStop = false;
-            this.groupBoxAudioBitrate.Text = "Bitrate";
+            this.groupBoxAudioOutput.Controls.Add(this.comboBoxChannels);
+            this.groupBoxAudioOutput.Controls.Add(this.checkBoxUseAudioVBR);
+            this.groupBoxAudioOutput.Controls.Add(this.labelChannels);
+            this.groupBoxAudioOutput.Controls.Add(this.comboBoxSampleRates);
+            this.groupBoxAudioOutput.Controls.Add(this.comboBoxAudioBitrates);
+            this.groupBoxAudioOutput.Controls.Add(this.labelAudioBitrate);
+            this.groupBoxAudioOutput.Controls.Add(this.labelSampleRate);
+            this.groupBoxAudioOutput.Location = new System.Drawing.Point(6, 90);
+            this.groupBoxAudioOutput.Name = "groupBoxAudioOutput";
+            this.groupBoxAudioOutput.Size = new System.Drawing.Size(459, 95);
+            this.groupBoxAudioOutput.TabIndex = 2;
+            this.groupBoxAudioOutput.TabStop = false;
+            this.groupBoxAudioOutput.Text = "Bitrate";
             // 
             // checkBoxUseAudioVBR
             // 
             this.checkBoxUseAudioVBR.AutoSize = true;
-            this.checkBoxUseAudioVBR.Location = new System.Drawing.Point(10, 43);
+            this.checkBoxUseAudioVBR.Location = new System.Drawing.Point(9, 65);
             this.checkBoxUseAudioVBR.Name = "checkBoxUseAudioVBR";
             this.checkBoxUseAudioVBR.Size = new System.Drawing.Size(70, 17);
             this.checkBoxUseAudioVBR.TabIndex = 2;
@@ -1207,15 +1150,15 @@ namespace FFmpegCatapult
             // 
             this.comboBoxAudioBitrates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAudioBitrates.FormattingEnabled = true;
-            this.comboBoxAudioBitrates.Location = new System.Drawing.Point(53, 16);
+            this.comboBoxAudioBitrates.Location = new System.Drawing.Point(52, 17);
             this.comboBoxAudioBitrates.Name = "comboBoxAudioBitrates";
-            this.comboBoxAudioBitrates.Size = new System.Drawing.Size(90, 21);
+            this.comboBoxAudioBitrates.Size = new System.Drawing.Size(118, 21);
             this.comboBoxAudioBitrates.TabIndex = 1;
             // 
             // labelAudioBitrate
             // 
             this.labelAudioBitrate.AutoSize = true;
-            this.labelAudioBitrate.Location = new System.Drawing.Point(7, 19);
+            this.labelAudioBitrate.Location = new System.Drawing.Point(6, 21);
             this.labelAudioBitrate.Name = "labelAudioBitrate";
             this.labelAudioBitrate.Size = new System.Drawing.Size(40, 13);
             this.labelAudioBitrate.TabIndex = 0;
@@ -1223,11 +1166,12 @@ namespace FFmpegCatapult
             // 
             // groupBoxAudioEncoder
             // 
+            this.groupBoxAudioEncoder.Controls.Add(this.buttonAudioCodecProperties);
             this.groupBoxAudioEncoder.Controls.Add(this.comboBoxAudioEncoders);
             this.groupBoxAudioEncoder.Controls.Add(this.labelAudioEncoder);
             this.groupBoxAudioEncoder.Location = new System.Drawing.Point(196, 6);
             this.groupBoxAudioEncoder.Name = "groupBoxAudioEncoder";
-            this.groupBoxAudioEncoder.Size = new System.Drawing.Size(269, 54);
+            this.groupBoxAudioEncoder.Size = new System.Drawing.Size(269, 78);
             this.groupBoxAudioEncoder.TabIndex = 1;
             this.groupBoxAudioEncoder.TabStop = false;
             this.groupBoxAudioEncoder.Text = "Encoder";
@@ -1256,7 +1200,7 @@ namespace FFmpegCatapult
             this.groupBoxAudioCodec.Controls.Add(this.labelAudioCodec);
             this.groupBoxAudioCodec.Location = new System.Drawing.Point(6, 6);
             this.groupBoxAudioCodec.Name = "groupBoxAudioCodec";
-            this.groupBoxAudioCodec.Size = new System.Drawing.Size(184, 54);
+            this.groupBoxAudioCodec.Size = new System.Drawing.Size(184, 78);
             this.groupBoxAudioCodec.TabIndex = 0;
             this.groupBoxAudioCodec.TabStop = false;
             this.groupBoxAudioCodec.Text = "Codec";
@@ -1635,6 +1579,63 @@ namespace FFmpegCatapult
             this.labelFFmpegBin.TabIndex = 0;
             this.labelFFmpegBin.Text = "FFmpeg:";
             // 
+            // tabStreams
+            // 
+            this.tabStreams.Controls.Add(this.groupBoxAudioStream);
+            this.tabStreams.Location = new System.Drawing.Point(4, 22);
+            this.tabStreams.Name = "tabStreams";
+            this.tabStreams.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStreams.Size = new System.Drawing.Size(471, 194);
+            this.tabStreams.TabIndex = 6;
+            this.tabStreams.Text = "Streams";
+            this.tabStreams.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxAudioStream
+            // 
+            this.groupBoxAudioStream.Controls.Add(this.buttonBrowseAudioStream);
+            this.groupBoxAudioStream.Controls.Add(this.labelAudioStream);
+            this.groupBoxAudioStream.Controls.Add(this.textBoxAudioStream);
+            this.groupBoxAudioStream.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxAudioStream.Name = "groupBoxAudioStream";
+            this.groupBoxAudioStream.Size = new System.Drawing.Size(459, 43);
+            this.groupBoxAudioStream.TabIndex = 6;
+            this.groupBoxAudioStream.TabStop = false;
+            this.groupBoxAudioStream.Text = "Stream";
+            // 
+            // buttonBrowseAudioStream
+            // 
+            this.buttonBrowseAudioStream.Location = new System.Drawing.Point(378, 13);
+            this.buttonBrowseAudioStream.Name = "buttonBrowseAudioStream";
+            this.buttonBrowseAudioStream.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseAudioStream.TabIndex = 2;
+            this.buttonBrowseAudioStream.Text = "Browse";
+            this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
+            // 
+            // textBoxAudioStream
+            // 
+            this.textBoxAudioStream.Location = new System.Drawing.Point(38, 15);
+            this.textBoxAudioStream.Name = "textBoxAudioStream";
+            this.textBoxAudioStream.Size = new System.Drawing.Size(334, 20);
+            this.textBoxAudioStream.TabIndex = 0;
+            // 
+            // labelAudioStream
+            // 
+            this.labelAudioStream.AutoSize = true;
+            this.labelAudioStream.Location = new System.Drawing.Point(6, 18);
+            this.labelAudioStream.Name = "labelAudioStream";
+            this.labelAudioStream.Size = new System.Drawing.Size(26, 13);
+            this.labelAudioStream.TabIndex = 1;
+            this.labelAudioStream.Text = "File:";
+            // 
+            // buttonAudioCodecProperties
+            // 
+            this.buttonAudioCodecProperties.Location = new System.Drawing.Point(188, 46);
+            this.buttonAudioCodecProperties.Name = "buttonAudioCodecProperties";
+            this.buttonAudioCodecProperties.Size = new System.Drawing.Size(75, 23);
+            this.buttonAudioCodecProperties.TabIndex = 2;
+            this.buttonAudioCodecProperties.Text = "Properties";
+            this.buttonAudioCodecProperties.UseVisualStyleBackColor = true;
+            // 
             // FFmpegCatapultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1673,12 +1674,8 @@ namespace FFmpegCatapult
             this.groupBoxVideoCodec.ResumeLayout(false);
             this.groupBoxVideoCodec.PerformLayout();
             this.tabAudio.ResumeLayout(false);
-            this.groupBoxAudioStream.ResumeLayout(false);
-            this.groupBoxAudioStream.PerformLayout();
             this.groupBoxAudioOutput.ResumeLayout(false);
             this.groupBoxAudioOutput.PerformLayout();
-            this.groupBoxAudioBitrate.ResumeLayout(false);
-            this.groupBoxAudioBitrate.PerformLayout();
             this.groupBoxAudioEncoder.ResumeLayout(false);
             this.groupBoxAudioEncoder.PerformLayout();
             this.groupBoxAudioCodec.ResumeLayout(false);
@@ -1693,6 +1690,9 @@ namespace FFmpegCatapult
             this.tabMisc.ResumeLayout(false);
             this.groupBoxBinaries.ResumeLayout(false);
             this.groupBoxBinaries.PerformLayout();
+            this.tabStreams.ResumeLayout(false);
+            this.groupBoxAudioStream.ResumeLayout(false);
+            this.groupBoxAudioStream.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1773,20 +1773,14 @@ namespace FFmpegCatapult
         private System.Windows.Forms.GroupBox groupBoxAudioCodec;
         private System.Windows.Forms.ComboBox comboBoxAudioCodecs;
         private System.Windows.Forms.Label labelAudioCodec;
-        private System.Windows.Forms.GroupBox groupBoxAudioOutput;
         private System.Windows.Forms.ComboBox comboBoxChannels;
         private System.Windows.Forms.ComboBox comboBoxSampleRates;
         private System.Windows.Forms.Label labelChannels;
         private System.Windows.Forms.Label labelSampleRate;
-        private System.Windows.Forms.GroupBox groupBoxAudioBitrate;
+        private System.Windows.Forms.GroupBox groupBoxAudioOutput;
         private System.Windows.Forms.CheckBox checkBoxUseAudioVBR;
         private System.Windows.Forms.ComboBox comboBoxAudioBitrates;
         private System.Windows.Forms.Label labelAudioBitrate;
-        private System.Windows.Forms.GroupBox groupBoxAudioStream;
-        private System.Windows.Forms.TextBox textBoxAudioStream;
-        private System.Windows.Forms.GroupBox groupBoxVolume;
-        private System.Windows.Forms.Button buttonBrowseAudioStream;
-        private System.Windows.Forms.Label labelAudioStream;
         private System.Windows.Forms.GroupBox groupBoxBinaries;
         private System.Windows.Forms.TextBox textBoxTermArgs;
         private System.Windows.Forms.Label label3;
@@ -1842,6 +1836,12 @@ namespace FFmpegCatapult
         private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.Button buttonVideoCodecProperties;
+        private System.Windows.Forms.TabPage tabStreams;
+        private System.Windows.Forms.GroupBox groupBoxAudioStream;
+        private System.Windows.Forms.Button buttonBrowseAudioStream;
+        private System.Windows.Forms.Label labelAudioStream;
+        private System.Windows.Forms.TextBox textBoxAudioStream;
+        private System.Windows.Forms.Button buttonAudioCodecProperties;
     }
 }
 

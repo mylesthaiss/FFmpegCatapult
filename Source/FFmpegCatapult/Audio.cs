@@ -37,7 +37,7 @@ namespace FFmpegCatapult
         private static int[] vbrModes;
         private static string codec;
         private static string codecProfile;
-        private static string codecProfiles;
+        private static string[,] codecProfiles;
         private static string[,] codecs;
         private static string encoder;
         private static string[,] encoders;
@@ -98,7 +98,7 @@ namespace FFmpegCatapult
                         break;
                     case "heaac":
                         bitrate = 64;
-                        channels = 0;
+                        channels = 0;                        
                         maxChannels = 8;
                         encoders = new string[,] {
                             {"AAC Plus (libaacplus)", "libaacplus"}, {"Fraunhofer FDK", "libfdk_aac"}
@@ -231,7 +231,7 @@ namespace FFmpegCatapult
             set { codecProfile = value; }
         }
 
-        public static string CodecProfiles
+        public static string[,] CodecProfiles
         {
             get { return codecProfiles; }
         }
@@ -368,6 +368,22 @@ namespace FFmpegCatapult
                         vbrModes = new int[] {
                             1, 2, 3, 4
                         };
+
+                        codecProfiles = new string[,] {
+                            {"Default", "default"}, {"Low Complexity", "aac_low"},
+                            {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"},
+                            {"Low Delay", "aac_ld"}, {"Enhanced Low Delay", "aac_eld"}
+                        };
+
+                        if (codec == "heaac")
+                        {
+                            codecProfile = "aac_he";
+                        }
+                        else
+                        {
+                            codecProfile = "default";
+                        }
+
                         break;
                     case "libmp3lame":
                         VBRSupported = true;

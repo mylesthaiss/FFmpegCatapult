@@ -62,6 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio.cs" />
+    <Compile Include="AudioSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AudioSettingsForm.Designer.cs">
+      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bin.cs" />
     <Compile Include="FFmpegCatapult.cs" />
     <Compile Include="FFmpegCatapultForm.cs">
@@ -84,6 +90,9 @@
     <Compile Include="VideoSettingsForm.Designer.cs">
       <DependentUpon>VideoSettingsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AudioSettingsForm.resx">
+      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FFmpegCatapultForm.resx">
       <DependentUpon>FFmpegCatapultForm.cs</DependentUpon>
     </EmbeddedResource>

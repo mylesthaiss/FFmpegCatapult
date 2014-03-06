@@ -103,6 +103,10 @@ namespace FFmpegCatapult
             buttonExit.Click += new EventHandler(buttonExit_Click);
             buttonRun.Click += new EventHandler(buttonRun_Click);
 
+            // Streams
+            textBoxAudioStream.TextChanged += new EventHandler(textBoxAudioStream_TextChanged);
+            buttonBrowseAudioStream.Click += new EventHandler(buttonBrowseAudioStream_Click);
+
             // Picture tab
             for (int i = 0; i < Screen.ScalingMethods.GetLength(0); i++)
             {
@@ -122,9 +126,8 @@ namespace FFmpegCatapult
 
             InitVideo();
 
-            // Audio tab           
-            textBoxAudioStream.TextChanged += new EventHandler(textBoxAudioStream_TextChanged);
-            buttonBrowseAudioStream.Click += new EventHandler(buttonBrowseAudioStream_Click);
+            // Audio tab
+            buttonAudioCodecProperties.Click += new EventHandler(buttonAudioCodecProperties_Clicked);           
 
             InitAudio();
 
@@ -469,7 +472,7 @@ namespace FFmpegCatapult
 
             comboBoxSampleRates.SelectedIndexChanged -= new EventHandler(comboBoxSampleRates_SelectedIndexChanged);
             comboBoxSampleRates.Items.Clear();
-            comboBoxSampleRates.Items.Add(new ListComboIntContent("Default", 0));
+            comboBoxSampleRates.Items.Add(new ListComboIntContent(" ", 0));
             for (int i = 1; i < Audio.SampleRates.GetLength(0); i++)
             {
                 comboBoxSampleRates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
@@ -486,7 +489,7 @@ namespace FFmpegCatapult
 
             comboBoxChannels.SelectedIndexChanged -= new EventHandler(comboBoxChannels_SelectedIndexChanged);
             comboBoxChannels.Items.Clear();
-            comboBoxChannels.Items.Add(new ListComboIntContent("Default", 0));
+            comboBoxChannels.Items.Add(new ListComboIntContent(" ", 0));
             for (int i = 1; i <= Audio.MaxChannels; i++)
             {
                 comboBoxChannels.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
@@ -502,7 +505,20 @@ namespace FFmpegCatapult
             comboBoxChannels.SelectedIndexChanged += new EventHandler(comboBoxChannels_SelectedIndexChanged);
 
             // Other items
+            InitAudioEncPropertiesButton();
             InitAudioBitrates();
+        }
+
+        private void InitAudioEncPropertiesButton()
+        {
+            if (Audio.Encoder == "libfdk_aac")
+            {
+                buttonAudioCodecProperties.Enabled = true;
+            }
+            else
+            {
+                buttonAudioCodecProperties.Enabled = false;
+            }
         }
 
         private void InitAudioBitrates()
@@ -691,10 +707,8 @@ namespace FFmpegCatapult
         }
 
         private void EnableAudioControls(bool enable)
-        {
-            groupBoxAudioBitrate.Enabled = enable;
-            groupBoxAudioEncoder.Enabled = enable;
-            groupBoxVolume.Enabled = enable;
+        {            
+            groupBoxAudioEncoder.Enabled = enable;            
             groupBoxAudioOutput.Enabled = enable;
         }
 
@@ -1200,6 +1214,12 @@ namespace FFmpegCatapult
         }
 
         // Audio event handlers
+        void buttonAudioCodecProperties_Clicked(object sender, EventArgs e)
+        {
+            AudioSettingsForm audioProperties = new AudioSettingsForm();
+            audioProperties.Show();
+        }
+
         void comboBoxAudioCodecs_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboContent codec = (ListComboContent)comboBoxAudioCodecs.SelectedItem;
@@ -1216,6 +1236,7 @@ namespace FFmpegCatapult
             if (encoder.Value != Audio.Encoder)
             {
                 Audio.Encoder = encoder.Value;
+                InitAudioEncPropertiesButton();
                 InitAudioBitrates();
             }
         }

@@ -115,10 +115,10 @@ namespace FFmpegCatapult
         // Combobox list helpers
         private class ListComboContent
         {
-            public String Name;
-            public String Value;
+            public string Name;
+            public string Value;
 
-            public ListComboContent(String name, String value)
+            public ListComboContent(string name, string value)
             {
                 this.Name = name;
                 this.Value = value;
@@ -132,10 +132,10 @@ namespace FFmpegCatapult
 
         private class ListComboIntContent
         {
-            public String Name;
+            public string Name;
             public int Value;
 
-            public ListComboIntContent(String name, int x)
+            public ListComboIntContent(string name, int x)
             {
                 this.Name = name;
                 this.Value = x;

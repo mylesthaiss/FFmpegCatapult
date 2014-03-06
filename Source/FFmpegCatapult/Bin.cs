@@ -72,6 +72,11 @@ namespace FFmpegCatapult
 
                 if (Audio.Codec != "copy")
                 {
+                    if (Audio.CodecProfile != "default")
+                    {
+                        audioArgs.Add(String.Format("-profile:a {0}", Audio.CodecProfile));
+                    }
+
                     // Audio bitrates and quality
                     if (Audio.UseVBR == true)
                     {
