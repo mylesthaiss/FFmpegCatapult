@@ -40,51 +40,51 @@ namespace FFmpegCatapult
             string output;
             string threads;
             string video;
-            
+
             // Input arguments
-            if (File.AudioStream != "")
+            if (!string.IsNullOrEmpty(File.AudioStream))
             {
-                input = String.Format("-i \"{0}\" -i \"{1}\"", File.Input, File.AudioStream);
+                input = string.Format("-i \"{0}\" -i \"{1}\"", File.Input, File.AudioStream);
             }
             else
             {
-                input = String.Format("-i \"{0}\"", File.Input);
+                input = string.Format("-i \"{0}\"", File.Input);
             }
 
             // Output arguments
             if (Session.Overwrite == true)
             {
-                output = String.Format("-y \"{0}\"", File.Output);
+                output = string.Format("-y \"{0}\"", File.Output);
             }
             else
             {
-                output = String.Format("-n \"{0}\"", File.Output);
+                output = string.Format("-n \"{0}\"", File.Output);
             }
 
             // Threads arguments
-            threads = String.Format("-threads {0}", Session.Threads);
+            threads = string.Format("-threads {0}", Session.Threads);
 
             // Audio arguments
             if (Audio.Codec != "none")
             {
                 ArrayList audioArgs = new ArrayList();
-                audioArgs.Add(String.Format("-codec:a {0}", Audio.Encoder));
+                audioArgs.Add(string.Format("-codec:a {0}", Audio.Encoder));
 
                 if (Audio.Codec != "copy")
                 {
-                    if (Audio.CodecProfile != "default")
+                    if (!string.IsNullOrEmpty(Audio.CodecProfile))
                     {
-                        audioArgs.Add(String.Format("-profile:a {0}", Audio.CodecProfile));
+                        audioArgs.Add(string.Format("-profile:a {0}", Audio.CodecProfile));
                     }
 
                     // Audio bitrates and quality
                     if (Audio.UseVBR == true)
                     {
-                        audioArgs.Add(String.Format("-q:a {0}", Audio.Quality));
+                        audioArgs.Add(string.Format("-q:a {0}", Audio.Quality));
                     }
                     else
                     {
-                        audioArgs.Add(String.Format("-b:a {0}k", Audio.Bitrate));
+                        audioArgs.Add(string.Format("-b:a {0}k", Audio.Bitrate));
                     }
 
                     // Audio encoder switches
@@ -96,16 +96,16 @@ namespace FFmpegCatapult
                     // Audio output
                     if (Audio.Channels > 0)
                     {
-                        audioArgs.Add(String.Format("-ac {0}", Audio.Channels));
+                        audioArgs.Add(string.Format("-ac {0}", Audio.Channels));
                     }
 
                     if (Audio.SampleRate > 0)
                     {
-                        audioArgs.Add(String.Format("-ar {0}", Audio.SampleRate));
+                        audioArgs.Add(string.Format("-ar {0}", Audio.SampleRate));
                     }
                 }
 
-                audio = String.Join(" ", audioArgs.ToArray());
+                audio = string.Join(" ", audioArgs.ToArray());
             }
             else
             {
@@ -116,107 +116,103 @@ namespace FFmpegCatapult
             if (Video.Codec != "none")
             {
                 ArrayList videoArgs = new ArrayList();
-                videoArgs.Add(String.Format("-codec:v {0}", Video.Encoder));
+                videoArgs.Add(string.Format("-codec:v {0}", Video.Encoder));
 
                 if (Video.Codec != "copy")
                 {
-                    // x264 settings
-                    if (Video.Encoder == "libx264")
+                    if (Video.CodecProfile != "")
                     {
-                        if (Video.CodecProfile != "default")
-                        {
-                            videoArgs.Add(String.Format("-profile:v {0}", Video.CodecProfile));
-                        }
+                        videoArgs.Add(string.Format("-profile:v {0}", Video.CodecProfile));
+                    }
 
-                        if (Video.CodecLevel > 0)
-                        {
-                            videoArgs.Add(String.Format("-level {0}", Video.CodecLevel));
-                        }
+                    if (Video.CodecLevel > 0 && Video.Encoder == "libx264")
+                    {
+                        videoArgs.Add(string.Format("-level {0}", Video.CodecLevel));
                     }
 
                     // Video bitrates and quality settings
                     if (Video.UseCRF == true)
                     {
-                        videoArgs.Add(String.Format("-crf {0}", Video.CRF));
+                        videoArgs.Add(string.Format("-crf {0}", Video.CRF));
                     }
                     else
                     {
-                        videoArgs.Add(String.Format("-b:v {0}{1}", Video.Bitrate, Video.Bits));
+                        videoArgs.Add(string.Format("-b:v {0}{1}", Video.Bitrate, Video.Bits));
 
                         if (Video.MinBitrate != 0)
                         {
-                            videoArgs.Add(String.Format("-minrate {0}{1}", Video.MinBitrate, Video.Bits));
+                            videoArgs.Add(string.Format("-minrate {0}{1}", Video.MinBitrate, Video.Bits));
                         }
 
                         if (Video.MaxBitrate != 0)
                         {
-                            videoArgs.Add(String.Format("-maxrate {0}{1}", Video.MaxBitrate, Video.Bits));
+                            videoArgs.Add(string.Format("-maxrate {0}{1}", Video.MaxBitrate, Video.Bits));
                         }
                     }
 
                     if (Video.Qmin != Video.Qmax)
                     {
-                        videoArgs.Add(String.Format("-qmin {0}", Video.Qmin));
+                        videoArgs.Add(string.Format("-qmin {0}", Video.Qmin));
                     }
 
                     if (Video.Qmax != 0)
                     {
-                        videoArgs.Add(String.Format("-qmax {0}", Video.Qmax));
+                        videoArgs.Add(string.Format("-qmax {0}", Video.Qmax));
                     }
 
                     if (Video.BufferSize != 0)
                     {
-                        videoArgs.Add(String.Format("-bufsize {0}{1}", Video.BufferSize, Video.Bytes));
+                        videoArgs.Add(string.Format("-bufsize {0}{1}", Video.BufferSize, Video.Bytes));
                     }
 
                     if (Video.GOPSize != 0)
                     {
-                        videoArgs.Add(String.Format("-g {0}", Video.GOPSize));
+                        videoArgs.Add(string.Format("-g {0}", Video.GOPSize));
                     }
 
                     if (Video.BFrames != 0)
                     {
-                        videoArgs.Add(String.Format("-bf {0}", Video.BFrames));
+                        videoArgs.Add(string.Format("-bf {0}", Video.BFrames));
                     }
 
-                    if (Video.BFStrategy != 0)
+                    if (Video.BFStrategy < 3)
                     {
-                        videoArgs.Add(String.Format("-b_strategy {0}", Video.BFStrategy));
+                        videoArgs.Add(string.Format("-b_strategy {0}", Video.BFStrategy));
                     }
 
-                    if (Video.MEMethod != "default")
+                    if (Video.MEMethod != "")
                     {
-                        videoArgs.Add(String.Format("-me_method {0}", Video.MEMethod));
+                        videoArgs.Add(string.Format("-me_method {0}", Video.MEMethod));
                     }
 
                     if (Video.DiaSize != 0)
                     {
-                        videoArgs.Add(String.Format("-dia_size {0}", Video.DiaSize));
+                        videoArgs.Add(string.Format("-dia_size {0}", Video.DiaSize));
                     }
 
                     if (Video.CMP != 15)
                     {
-                        videoArgs.Add(String.Format("-cmp {0}", Video.CMP));
+                        videoArgs.Add(string.Format("-cmp {0}", Video.CMP));
                     }
 
                     if (Video.SubCMP != 15)
                     {
-                        videoArgs.Add(String.Format("-subcmp {0}", Video.SubCMP));
+                        videoArgs.Add(string.Format("-subcmp {0}", Video.SubCMP));
                     }
 
                     if (Video.Trellis != 3)
                     {
-                        videoArgs.Add(String.Format("-trellis {0}", Video.Trellis));
+                        videoArgs.Add(string.Format("-trellis {0}", Video.Trellis));
                     }
 
-                    if (Video.PictureFormat != "default")
+                    if (Video.PictureFormat != "")
                     {
-                        videoArgs.Add(String.Format("-pix_fmt {0}", Video.PictureFormat));
+                        videoArgs.Add(string.Format("-pix_fmt {0}", Video.PictureFormat));
                     }
 
                     if (Screen.FPS != 0)
                     {
-                        videoArgs.Add(String.Format("-r {0}", Screen.FPS));
+                        videoArgs.Add(string.Format("-r {0}", Screen.FPS));
                     }
 
                     // Video filtering arguments
@@ -229,22 +225,22 @@ namespace FFmpegCatapult
 
                     if (Screen.AspectRatio == true)
                     {
-                        filtering.Add(String.Format("setdar={0}:{1}", Screen.RatioA, Screen.RatioB));
+                        filtering.Add(string.Format("setdar={0}:{1}", Screen.RatioA, Screen.RatioB));
                     }
 
                     if (Screen.ScaleOption == 1)
                     {
                         if (Screen.Width > 0 && Screen.Height > 0)
                         {
-                            filtering.Add(String.Format("scale={0}:{1}", Screen.Width, Screen.Height));
+                            filtering.Add(string.Format("scale={0}:{1}", Screen.Width, Screen.Height));
                         }
                         else if (Screen.Width > 0 && Screen.Height == 0)
                         {
-                            filtering.Add(String.Format("scale=\"min({0}\\,iw):trunc(ow/a/2)*2\"", Screen.Width));
+                            filtering.Add(string.Format("scale=\"min({0}\\,iw):trunc(ow/a/2)*2\"", Screen.Width));
                         }
                         else
                         {
-                            filtering.Add(String.Format("scale=\"trunc(oh*a/2)*2:min({0}\\,ih)\"", Screen.Height));
+                            filtering.Add(string.Format("scale=\"trunc(oh*a/2)*2:min({0}\\,ih)\"", Screen.Height));
                         }
                     }
                     else if (Screen.ScaleOption == 2)
@@ -254,28 +250,28 @@ namespace FFmpegCatapult
 
                     if (Screen.PadVideo == true && Screen.CropVideo == false)
                     {
-                        filtering.Add(String.Format("pad={0}:{1}:{2}:{3}:{4}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y, Screen.VFColour));
+                        filtering.Add(string.Format("pad={0}:{1}:{2}:{3}:{4}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y, Screen.VFColour));
                     }
 
                     if (Screen.CropVideo == true && Screen.CropVideo == false)
                     {
-                        filtering.Add(String.Format("crop={0}:{1}:{2}:{3}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y));
+                        filtering.Add(string.Format("crop={0}:{1}:{2}:{3}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y));
                     }
 
-                    String filters = String.Join(",", filtering.ToArray());
+                    string filters = string.Join(",", filtering.ToArray());
 
                     if (filters.Length > 0)
                     {
-                        videoArgs.Add(String.Format("-vf {0}", filters));
+                        videoArgs.Add(string.Format("-vf {0}", filters));
 
                         if (Screen.ScaleOption > 0)
                         {
-                            videoArgs.Add(String.Format("-sws_flags {0}", Screen.ScalingMethod));
+                            videoArgs.Add(string.Format("-sws_flags {0}", Screen.ScalingMethod));
                         }
                     }
                 }
 
-                video = String.Join(" ", videoArgs.ToArray());
+                video = string.Join(" ", videoArgs.ToArray());
             }
             else
             {
@@ -287,68 +283,68 @@ namespace FFmpegCatapult
             {
                 ArrayList tagArgs = new ArrayList();
 
-                if (Metadata.Album != "")
+                if (!string.IsNullOrEmpty(Metadata.Album))
                 {
-                    tagArgs.Add(String.Format("-metadata album=\"{0}\"", Metadata.Album));
+                    tagArgs.Add(string.Format("-metadata album=\"{0}\"", Metadata.Album));
                 }
 
-                if (Metadata.AlbumArtist != "")
+                if (!string.IsNullOrEmpty(Metadata.AlbumArtist))
                 {
-                    tagArgs.Add(String.Format("-metadata album_artist=\"{0}\"", Metadata.AlbumArtist));
+                    tagArgs.Add(string.Format("-metadata album_artist=\"{0}\"", Metadata.AlbumArtist));
                 }
 
-                if (Metadata.Artist != "")
+                if (!string.IsNullOrEmpty(Metadata.Artist))
                 {
-                    tagArgs.Add(String.Format("-metadata artist=\"{0}\"", Metadata.Artist));
+                    tagArgs.Add(string.Format("-metadata artist=\"{0}\"", Metadata.Artist));
                 }
 
-                if (Metadata.Comment != "")
+                if (!string.IsNullOrEmpty(Metadata.Comment))
                 {
-                    tagArgs.Add(String.Format("-metadata comment=\"{0}\"", Metadata.Comment));
+                    tagArgs.Add(string.Format("-metadata comment=\"{0}\"", Metadata.Comment));
                 }
 
-                if (Metadata.Comment != "")
+                if (!string.IsNullOrEmpty(Metadata.Comment))
                 {
-                    tagArgs.Add(String.Format("-metadata genre=\"{0}\"", Metadata.Genre));
+                    tagArgs.Add(string.Format("-metadata genre=\"{0}\"", Metadata.Genre));
                 }
 
                 if (Metadata.Disc != 0)
                 {
                     if (Metadata.TotalDiscs != 0)
                     {
-                        tagArgs.Add(String.Format("-metadata disc={0}/{1}", Metadata.Disc, Metadata.TotalDiscs));
+                        tagArgs.Add(string.Format("-metadata disc={0}/{1}", Metadata.Disc, Metadata.TotalDiscs));
                     }
                     else
                     {
-                        tagArgs.Add(String.Format("-metadata disc={0}", Metadata.Disc));
+                        tagArgs.Add(string.Format("-metadata disc={0}", Metadata.Disc));
                     }
                 }
 
-                if (Metadata.Title != "")
+                if (!string.IsNullOrEmpty(Metadata.Title))
                 {
-                    tagArgs.Add(String.Format("-metadata title=\"{0}\"", Metadata.Title));
+                    tagArgs.Add(string.Format("-metadata title=\"{0}\"", Metadata.Title));
                 }
-                
+
                 if (Metadata.Track != 0)
                 {
                     if (Metadata.TotalTracks != 0)
                     {
-                        tagArgs.Add(String.Format("-metadata track={0}/{1}", Metadata.Track, Metadata.TotalTracks));
+                        tagArgs.Add(string.Format("-metadata track={0}/{1}", Metadata.Track, Metadata.TotalTracks));
                     }
                     else
                     {
-                        tagArgs.Add(String.Format("-metadata track={0}", Metadata.Track));
-                    }                    
+                        tagArgs.Add(string.Format("-metadata track={0}", Metadata.Track));
+                    }
                 }
 
-                if (Metadata.Publisher != "")
+                if (!string.IsNullOrEmpty(Metadata.Publisher))
                 {
-                    tagArgs.Add(String.Format("-metadata publisher=\"{0}\"", Metadata.Publisher));
+                    tagArgs.Add(string.Format("-metadata publisher=\"{0}\"", Metadata.Publisher));
                 }
 
                 if (Metadata.Year != 0)
                 {
-                    tagArgs.Add(String.Format("-metadata date={0}", Metadata.Year));
+                    tagArgs.Add(string.Format("-metadata date={0}", Metadata.Year));
                 }
 
                 if (tagArgs.Count > 0)
@@ -359,10 +355,10 @@ namespace FFmpegCatapult
                         tagArgs.Add("-write_id3v1 1");
                     }
 
-                    output = String.Join(" ", tagArgs.ToArray()) + " " + output;
-                }                
+                    output = string.Join(" ", tagArgs.ToArray()) + " " + output;
+                }
             }
-            
+
             // Launch process
             Process Term = new Process();
             Term.StartInfo.FileName = termBin;
@@ -380,18 +376,18 @@ namespace FFmpegCatapult
                 }
 
                 // First pass
-                Term.StartInfo.Arguments = String.Format("{0} {1} {2} {3} -pass 1 {4} -an -y -f rawvideo {5}", waitArgs, ffmpegBin, input, threads, video, nullPath);
+                Term.StartInfo.Arguments = string.Format("{0} {1} -i \"{2}\" {3} -pass 1 {4} -an -y -f rawvideo {5}", waitArgs, ffmpegBin, File.Input, threads, video, nullPath);
                 Term.Start();
                 Term.WaitForExit();
 
                 // Second pass                
-                Term.StartInfo.Arguments = String.Format("{0} {1} {2} {3} -pass 2 {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
+                Term.StartInfo.Arguments = string.Format("{0} {1} {2} {3} -pass 2 {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
                 Term.Start();
             }
             else
             {
                 // Single pass
-                Term.StartInfo.Arguments = String.Format("{0} {1} {2} {3} {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
+                Term.StartInfo.Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
                 Term.Start();
             }
         }

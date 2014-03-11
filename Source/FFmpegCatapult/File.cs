@@ -41,9 +41,9 @@ namespace FFmpegCatapult
         };        
         private static string[,] videoCodecs = new string[,]
         {
-            {"Dirac", "dirac"}, {"H.264", "h264"}, {"MPEG-2", "mpeg2"},
-            {"MPEG-4", "mpeg4"}, {"Theora", "theora"}, {"VP8", "vp8"},
-            {"WMV", "wmv"}, {"Copy", "copy"}, {"None", "none"}
+            {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
+            {"Theora", "theora"}, {"VP8", "vp8"}, {"WMV", "wmv"},
+            {"Copy", "copy"}, {"None", "none"}
         };
         private static string[,] formats = new string[,]
         {
@@ -150,8 +150,7 @@ namespace FFmpegCatapult
                         };
                         Video.Codec = "theora";
                         Video.Codecs = new string[,] {
-                            {"Dirac", "dirac"}, {"Theora", "theora"}, {"Copy", "copy"},
-                            {"None", "none"}
+                            {"Theora", "theora"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
                     case "webm":

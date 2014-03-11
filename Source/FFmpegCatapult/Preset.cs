@@ -59,7 +59,7 @@ namespace FFmpegCatapult
                     Video.Trellis = 2;
                     Audio.Codec = "mp3";
                     Audio.Channels = 2;
-                    Audio.SampleRate = 48000;
+                    Audio.SampleRate = 32000;
                     Screen.Width = 512;
                     Screen.Height = 0;
                     Screen.ScaleOption = 1;

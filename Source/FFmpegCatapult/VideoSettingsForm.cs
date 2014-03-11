@@ -69,13 +69,13 @@ namespace FFmpegCatapult
             comboBoxTrellis.Items.Add(new ListComboIntContent("None", 0));
             comboBoxTrellis.Items.Add(new ListComboIntContent("Final", 1));
             comboBoxTrellis.Items.Add(new ListComboIntContent("All RD", 2));
-            comboBoxTrellis.Items.Add(new ListComboIntContent("Default", 3));
+            comboBoxTrellis.Items.Add(new ListComboIntContent("", 3));
             comboBoxTrellis.SelectedIndex = Video.Trellis;
 
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Always", 0));
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Avoid high motion", 1));
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Less or more", 2));
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("Default", 3));
+            comboBoxBFStrats.Items.Add(new ListComboIntContent("", 3));
             comboBoxBFStrats.SelectedIndex = Video.BFStrategy;
 
             for (int i = 0; i < Video.CMPFuncs.GetLength(0); i++)

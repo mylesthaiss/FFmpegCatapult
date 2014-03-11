@@ -46,35 +46,28 @@ namespace FFmpegCatapult
         private static string codec;
         private static string[,] codecs;
         private static string codecProfile;
-        private static string[,] codecProfiles = new string[,] {
-            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
-        };
+        private static string[,] codecProfiles;
         private static string encoder;
         private static string[,] encoders;
         private static string encoderPreset;
-        private static string[,] encoderPresets = new string[,] {
-            {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
-            {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
-            {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
-            {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
-        };
+        private static string[,] encoderPresets;
         private static string[] cmpFuncs = new string[] {
             "sad", "sse", "satd", "dct", "psnr", "bit", "rd", "zero", "vsad",
-            "vsse", "nsse", "w53", "w97", "dctmax", "chroma", "Default"
+            "vsse", "nsse", "w53", "w97", "dctmax", "chroma", ""
         };
         private static string meMethod;
         private static string[,] meMethods = new string[,] {
             {"Zero", "zero"}, {"Full", "full"}, {"EPZS", "epzs"}, {"Esa", "esa"},
             {"Tesa", "tesa"}, {"Dia", "dia"}, {"Log", "log"}, {"Phods", "phods"},
             {"X1", "x1"}, {"Hex", "hex"}, {"Umh", "umh"}, {"Iter", "iter"},
-            {"Default", "default"}
+            {"", ""}
         };
-        private static string pictureFormat = "default";
+        private static string pictureFormat = "";
         private static string[,] pictureFormats = new string[,] {
             {"YUV 4:2:0", "yuv420p"}, {"YUYV 4:2:2", "yuyv422"}, {"RGB 24", "rgb24"},
             {"BGR 24","bgr24"}, {"YUV 4:2:2", "yuv422p"}, {"YUV 4:4:4", "yuv44p"},
             {"YUV 4:1:0", "yuv410p"}, {"YUV 4:1:1", "yuv411p"}, {"Gray", "gray"},
-            {"Default", "default"}
+            {"", ""}
         };
 
         // Property methods
@@ -143,7 +136,7 @@ namespace FFmpegCatapult
                 diaSize = 0;
                 gopSize = 0;
                 maxBitrate = 0;
-                meMethod = "default";
+                meMethod = "";
                 minBitrate = 0;
                 qmax = 0;
                 qmin = 0;
@@ -153,65 +146,56 @@ namespace FFmpegCatapult
                 // Init codec values
                 switch (codec)
                 {
-                    case "dirac":
-                        bitrate = 1500;
-                        encoder = "libschroedinger";
-                        encoders = new string[,] {
-                            {"Dirac", "libschroedinger"}
-                        };
-                        break;
                     case "h264":
                         bitrate = 1000;
                         codecLevel = 31;
                         codecProfile = "main";
-                        encoder = "libx264";
                         encoders = new string[,] {
                             {"x264", "libx264"}
                         };
-                        encoderPreset = "medium";
+                        Encoder = "libx264";
                         break;
                     case "mpeg2":
                         bitrate = 4000;
-                        encoder = "mpeg2video";
                         encoders = new string[,] {
                             {"MPEG-2 Video", "mpeg2video"}
                         };
+                        Encoder = "mpeg2video";
                         break;
                     case "mpeg4":
                         bitrate = 1500;
-                        codecProfile = "none";
-                        encoder = "libxvid";
                         encoders = new string[,] {
                             {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
                         };
+                        Encoder = "libxvid";
                         break;
                     case "theora":
                         bitrate = 1800;
-                        encoder = "libtheora";
                         encoders = new string[,] {
                             {"Theora", "libtheora"}
                         };
+                        Encoder = "libtheora";
                         break;
                     case "vp8":
                         bitrate = 1500;
-                        encoder = "libvpx";
                         encoders = new string[,] {
                             {"VPX", "libvpx"}
                         };
+                        Encoder = "libvpx";
                         break;
                     case "wmv":
                         bitrate = 1500;
-                        encoder = "wmv2";
                         encoders = new string[,] {
                             {"WMV 7 (wmv1)", "wmv1"}, {"WMV 8 (wmv2)", "wmv2"}
                         };
+                        Encoder = "wmv2";
                         break;
                     default:
-                        bitrate = 1500;
-                        encoder = codec;
+                        bitrate = 1500;                        
                         encoders = new string[,] {
                             {codec, codec}
                         };
+                        Encoder = codec;
                         break;
                 }
             }
@@ -255,7 +239,30 @@ namespace FFmpegCatapult
         public static string Encoder
         {
             get { return encoder; }
-            set { encoder = value; }
+            set
+            {
+                encoder = value;
+
+                switch (encoder)
+                {
+                    case "libx264":
+                        codecProfiles = new string[,] {
+                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                        };
+                        encoderPreset = "medium";
+                        encoderPresets = new string[,] {
+                            {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
+                            {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
+                            {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
+                            {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
+                        };
+                        break;
+                    default:
+                        codecProfile = "";
+                        encoderPreset = "";
+                        break;
+                }
+            }
         }
 
         public static string[,] Encoders

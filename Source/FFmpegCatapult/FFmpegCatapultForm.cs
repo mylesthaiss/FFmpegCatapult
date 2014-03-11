@@ -127,7 +127,7 @@ namespace FFmpegCatapult
             InitVideo();
 
             // Audio tab
-            buttonAudioCodecProperties.Click += new EventHandler(buttonAudioCodecProperties_Clicked);           
+            buttonAudioCodecProperties.Click += new EventHandler(buttonAudioCodecProperties_Clicked);
 
             InitAudio();
 
@@ -215,7 +215,7 @@ namespace FFmpegCatapult
         }
 
         private void InitPicture()
-        {         
+        {
             // Resolution radio buttons
             radioButtonKeepRes.CheckedChanged -= new EventHandler(radioButtonKeepRes_CheckedChanged);
             radioButtonHalfRes.CheckedChanged -= new EventHandler(radioButtonHalfRes_CheckedChanged);
@@ -472,35 +472,39 @@ namespace FFmpegCatapult
 
             comboBoxSampleRates.SelectedIndexChanged -= new EventHandler(comboBoxSampleRates_SelectedIndexChanged);
             comboBoxSampleRates.Items.Clear();
-            comboBoxSampleRates.Items.Add(new ListComboIntContent(" ", 0));
-            for (int i = 1; i < Audio.SampleRates.GetLength(0); i++)
+
+            for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
             {
                 comboBoxSampleRates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
             }
-            for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
+            comboBoxSampleRates.Items.Add(new ListComboIntContent("", 0));
+
+            if (Audio.SampleRate != 0)
             {
-                if (Audio.SampleRate == Audio.SampleRates[i])
+                for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
                 {
-                    comboBoxSampleRates.SelectedIndex = i;
-                    break;
+                    if (Audio.SampleRate == Audio.SampleRates[i])
+                    {
+                        comboBoxSampleRates.SelectedIndex = i;
+                        break;
+                    }
                 }
             }
+
             comboBoxSampleRates.SelectedIndexChanged += new EventHandler(comboBoxSampleRates_SelectedIndexChanged);
 
             comboBoxChannels.SelectedIndexChanged -= new EventHandler(comboBoxChannels_SelectedIndexChanged);
             comboBoxChannels.Items.Clear();
-            comboBoxChannels.Items.Add(new ListComboIntContent(" ", 0));
+
             for (int i = 1; i <= Audio.MaxChannels; i++)
             {
                 comboBoxChannels.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
             }
-            for (int i = 0; i <= Audio.MaxChannels; i++)
+            comboBoxChannels.Items.Add(new ListComboIntContent("", 0));
+
+            if (Audio.Channels != 0)
             {
-                if (Audio.Channels == i)
-                {
-                    comboBoxChannels.SelectedIndex = i;
-                    break;
-                }
+                comboBoxChannels.SelectedIndex = Audio.Channels - 1;
             }
             comboBoxChannels.SelectedIndexChanged += new EventHandler(comboBoxChannels_SelectedIndexChanged);
 
@@ -707,8 +711,17 @@ namespace FFmpegCatapult
         }
 
         private void EnableAudioControls(bool enable)
-        {            
-            groupBoxAudioEncoder.Enabled = enable;            
+        {
+            if (enable == true && Audio.Codec == "copy" || Audio.Codec == "pcm")
+            {
+                groupBoxAudioBitrate.Enabled = false;
+            }
+            else
+            {
+                groupBoxAudioBitrate.Enabled = enable;
+            }
+
+            groupBoxAudioEncoder.Enabled = enable;
             groupBoxAudioOutput.Enabled = enable;
         }
 

@@ -62,7 +62,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 48000;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000
                         };
                         Encoder = "ac3";
@@ -77,7 +77,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "libvo_aacenc";
@@ -91,21 +91,21 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 44100;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "flac";
                         break;
                     case "heaac":
                         bitrate = 64;
-                        channels = 0;                        
+                        channels = 0;
                         maxChannels = 8;
                         encoders = new string[,] {
                             {"AAC Plus (libaacplus)", "libaacplus"}, {"Fraunhofer FDK", "libfdk_aac"}
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "libfdk_aac";
@@ -119,7 +119,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 16000, 22050, 24000, 32000, 44100, 48000
+                            16000, 22050, 24000, 32000, 44100, 48000
                         };
                         Encoder = "libtwolame";
                         break;
@@ -132,7 +132,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 12000, 16000, 22050, 24000, 
+                            8000, 11025, 12000, 16000, 22050, 24000, 
                             32000, 44100, 48000
                         };
                         Encoder = "libmp3lame";
@@ -146,7 +146,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "libopus";
@@ -161,7 +161,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "pcm_s16le";
@@ -175,7 +175,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 16000, 22050, 32000, 44100, 48000
+                            8000, 16000, 22050, 32000, 44100, 48000
                         };
                         Encoder = codec;
                         break;
@@ -188,7 +188,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "libvorbis";
@@ -202,7 +202,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = "wmav2";
@@ -216,7 +216,7 @@ namespace FFmpegCatapult
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {
-                            0, 8000, 11025, 16000, 22050, 32000, 44100, 
+                            8000, 11025, 16000, 22050, 32000, 44100, 
                             48000, 96000, 192000
                         };
                         Encoder = codec;
@@ -367,21 +367,23 @@ namespace FFmpegCatapult
                         quality = 3;
                         vbrModes = new int[] {
                             1, 2, 3, 4
-                        };
-
-                        codecProfiles = new string[,] {
-                            {"Default", "default"}, {"Low Complexity", "aac_low"},
-                            {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"},
-                            {"Low Delay", "aac_ld"}, {"Enhanced Low Delay", "aac_eld"}
-                        };
+                        };                        
 
                         if (codec == "heaac")
                         {
                             codecProfile = "aac_he";
+                            codecProfiles = new string[,] {
+                                {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"}
+                            };
                         }
                         else
                         {
                             codecProfile = "default";
+                            codecProfiles = new string[,] {
+                                {"Default", "default"}, {"Low Complexity", "aac_low"},
+                                {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"},
+                                {"Low Delay", "aac_ld"}, {"Enhanced Low Delay", "aac_eld"}
+                            };
                         }
 
                         break;
