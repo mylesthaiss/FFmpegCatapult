@@ -205,7 +205,7 @@ namespace FFmpegCatapult
                         videoArgs.Add(string.Format("-trellis {0}", Video.Trellis));
                     }
 
-                    if (Video.PictureFormat != "")
+                    if (!string.IsNullOrEmpty(Video.PictureFormat))
                     {
                         videoArgs.Add(string.Format("-pix_fmt {0}", Video.PictureFormat));
                     }

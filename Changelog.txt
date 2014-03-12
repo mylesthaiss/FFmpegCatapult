@@ -1,0 +1,21 @@
+--- 0.2
+- NEW Metadata tagging tab.
+- NEW Video properties window.
+- NEW Audio properties window.
+- NEW Default preset.
+- Fixed min bitrate text box field.
+- Fixed missing MPEG4 presets.
+- Added HE-AAC support.
+- Added MP3 extraction preset.
+- Rearranged Audio tab layout.
+- Audio codec profile can be now be selected through Audio properties.
+- Motion estimation methods can now be chosen though Video properties.
+- Compare search methods can now be chosen through Video properties.
+- Pixel format output can be now be chosen through Video properties.
+- Each container format now has their own set of supported codecs.
+- Replaced "Default" value to blank text.
+- Removed Dirac support.
+- Removed volume group box from Audio tab.
+
+--- 0.1
+- First release.

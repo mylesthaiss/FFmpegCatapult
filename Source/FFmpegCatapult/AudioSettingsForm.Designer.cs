@@ -1,4 +1,21 @@
-﻿namespace FFmpegCatapult
+﻿// WinForms code and events for FFmpeg Catapult.
+// Copyright (C) 2013 Myles Thaiss
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+namespace FFmpegCatapult
 {
     partial class AudioSettingsForm
     {
@@ -29,8 +46,8 @@
         private void InitializeComponent()
         {
             this.groupBoxCodec = new System.Windows.Forms.GroupBox();
-            this.labelProfile = new System.Windows.Forms.Label();
             this.comboBoxCodecProfiles = new System.Windows.Forms.ComboBox();
+            this.labelProfile = new System.Windows.Forms.Label();
             this.buttonApply = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxCodec.SuspendLayout();
@@ -47,15 +64,6 @@
             this.groupBoxCodec.TabStop = false;
             this.groupBoxCodec.Text = "Codec";
             // 
-            // labelProfile
-            // 
-            this.labelProfile.AutoSize = true;
-            this.labelProfile.Location = new System.Drawing.Point(6, 17);
-            this.labelProfile.Name = "labelProfile";
-            this.labelProfile.Size = new System.Drawing.Size(39, 13);
-            this.labelProfile.TabIndex = 0;
-            this.labelProfile.Text = "Profile:";
-            // 
             // comboBoxCodecProfiles
             // 
             this.comboBoxCodecProfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -64,6 +72,15 @@
             this.comboBoxCodecProfiles.Name = "comboBoxCodecProfiles";
             this.comboBoxCodecProfiles.Size = new System.Drawing.Size(143, 21);
             this.comboBoxCodecProfiles.TabIndex = 1;
+            // 
+            // labelProfile
+            // 
+            this.labelProfile.AutoSize = true;
+            this.labelProfile.Location = new System.Drawing.Point(6, 17);
+            this.labelProfile.Name = "labelProfile";
+            this.labelProfile.Size = new System.Drawing.Size(39, 13);
+            this.labelProfile.TabIndex = 0;
+            this.labelProfile.Text = "Profile:";
             // 
             // buttonApply
             // 

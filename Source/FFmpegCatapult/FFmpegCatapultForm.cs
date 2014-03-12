@@ -399,7 +399,7 @@ namespace FFmpegCatapult
             textBoxMinBitrate.TextChanged += new EventHandler(textBoxMinBitrate_TextChanged);
 
             textBoxMaxBitrate.TextChanged -= new EventHandler(textBoxMaxBitrate_TextChanged);
-            textBoxMinBitrate.Text = Methods.IntToText(Video.MaxBitrate);
+            textBoxMaxBitrate.Text = Methods.IntToText(Video.MaxBitrate);
             textBoxMaxBitrate.TextChanged += new EventHandler(textBoxMaxBitrate_TextChanged);
 
             textBoxBufferSize.TextChanged -= new EventHandler(textBoxBufferSize_TextChanged);
@@ -1147,7 +1147,8 @@ namespace FFmpegCatapult
         void buttonVideoCodecProperties_Clicked(object sender, EventArgs e)
         {
             VideoSettingsForm videoProperties = new VideoSettingsForm();
-            videoProperties.Show();
+            videoProperties.StartPosition = FormStartPosition.CenterParent;
+            videoProperties.ShowDialog(this);
         }
 
         void comboBoxVideoCodecs_SelectedIndexChanged(object sender, EventArgs e)
@@ -1230,7 +1231,8 @@ namespace FFmpegCatapult
         void buttonAudioCodecProperties_Clicked(object sender, EventArgs e)
         {
             AudioSettingsForm audioProperties = new AudioSettingsForm();
-            audioProperties.Show();
+            audioProperties.StartPosition = FormStartPosition.CenterParent;
+            audioProperties.ShowDialog(this);
         }
 
         void comboBoxAudioCodecs_SelectedIndexChanged(object sender, EventArgs e)

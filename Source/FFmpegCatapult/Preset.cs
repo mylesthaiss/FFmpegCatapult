@@ -59,7 +59,7 @@ namespace FFmpegCatapult
                     Video.Trellis = 2;
                     Audio.Codec = "mp3";
                     Audio.Channels = 2;
-                    Audio.SampleRate = 32000;
+                    Audio.SampleRate = 44100;
                     Screen.Width = 512;
                     Screen.Height = 0;
                     Screen.ScaleOption = 1;
@@ -86,7 +86,7 @@ namespace FFmpegCatapult
                     Video.CodecLevel = 41;
                     Video.UseCRF = true;
                     Video.CRF = 18;
-                    Screen.ScaleOption = 1;
+                    Screen.ScaleOption = 0;
                     Screen.Width = 0;
                     Screen.Height = 720;
                     Screen.AspectRatio = false;
@@ -205,11 +205,31 @@ namespace FFmpegCatapult
                     Video.BFrames = 2;
                     Video.GOPSize = 15;
                     Video.MEMethod = "epzs";
-                    Screen.ScaleOption = 1;
+                    Screen.ScaleOption = 0;
                     Screen.Width = 0;
                     Screen.Height = 720;
                     Audio.Codec = "mp2";
                     Audio.Bitrate = 256;
+                    break;
+                case "mp4sd":
+                    File.Format = "mp4";
+                    Video.Codec = "mpeg4";
+                    Video.Bitrate = 2500;
+                    Video.MaxBitrate = 4000;
+                    Screen.ScaleOption = 1;
+                    Screen.Width = 0;
+                    Screen.Height = 480;
+                    Audio.Codec = "aac";                    
+                    break;
+                case "mp4hd":
+                    File.Format = "mp4";
+                    Video.Codec = "mpeg4";
+                    Video.Bitrate = 15000;
+                    Video.MaxBitrate = 20000;
+                    Screen.ScaleOption = 0;
+                    Screen.Width = 0;
+                    Screen.Height = 720;
+                    Audio.Codec = "aac";
                     break;
                 case "psp":
                     File.Format = "mp4";
@@ -256,7 +276,7 @@ namespace FFmpegCatapult
                     Video.MaxBitrate = 1500;
                     Video.Qmin = 0;
                     Video.Qmax = 63;
-                    Screen.ScaleOption = 0;
+                    Screen.ScaleOption = 1;
                     Screen.Width = 0;
                     Screen.Height = 480;
                     Screen.RatioA = 16;

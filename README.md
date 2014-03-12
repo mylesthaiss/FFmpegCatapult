@@ -1,7 +1,7 @@
 FFmpeg Catapult
 ===============
 
-A clean and simple graphical launcher for FFmpeg.
+A clean and simple graphical launcher for FFmpeg:
 
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Main.png)
 
@@ -12,11 +12,14 @@ A clean and simple graphical launcher for FFmpeg.
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Video.png)
 
 
+![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/VideoSettings.png)
+
+
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Main.png)
 
 Requirements
 ============
-- Microsoft .NET Framework runtime or Mono with WinForms support.
+- Microsoft .NET Framework 4 runtime or Mono with WinForms support.
 - A FFmpeg binary with libx264, libxvid, libmp3lame and libvoaacenc support.
 - Terminal emulator such as Command Prompt (Windows) or Xterm (Unix).
 
