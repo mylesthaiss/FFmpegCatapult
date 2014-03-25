@@ -26,17 +26,17 @@ namespace FFmpegCatapult
     {
         // Variables
         public static bool UseCRF = false;
+        private static double bitrate;
+        private static double bufferSize;
+        private static double codecLevel;
+        private static double maxBitrate;
+        private static double minBitrate;
         private static int bFrames;
-        private static int bFStrat;
-        private static int bitrate;
-        private static int bufferSize;
-        private static int cmp;
-        private static int codecLevel;
+        private static int bFStrat;       
+        private static int cmp;        
         private static int crf;
         private static int diaSize;
-        private static int gopSize;
-        private static int maxBitrate;
-        private static int minBitrate;
+        private static int gopSize;        
         private static int qmax;
         private static int qmin;
         private static int subcmp;
@@ -71,7 +71,7 @@ namespace FFmpegCatapult
         };
 
         // Property methods
-        public static int Bitrate
+        public static double Bitrate
         {
             get { return bitrate; }
             set { bitrate = value; }
@@ -95,7 +95,7 @@ namespace FFmpegCatapult
             set { bits = value; }
         }
 
-        public static int BufferSize
+        public static double BufferSize
         {
             get { return bufferSize; }
             set { bufferSize = value; }
@@ -148,7 +148,7 @@ namespace FFmpegCatapult
                 {
                     case "h264":
                         bitrate = 1000;
-                        codecLevel = 31;
+                        codecLevel = 3.1;
                         codecProfile = "main";
                         encoders = new string[,] {
                             {"x264", "libx264"}
@@ -207,7 +207,7 @@ namespace FFmpegCatapult
             set { codecs = value; }
         }
 
-        public static int CodecLevel
+        public static double CodecLevel
         {
             get { return codecLevel; }
             set { codecLevel = value; }
@@ -287,7 +287,7 @@ namespace FFmpegCatapult
             set { gopSize = value; }
         }
 
-        public static int MaxBitrate
+        public static double MaxBitrate
         {
             get { return maxBitrate; }
             set { maxBitrate = value; }
@@ -304,7 +304,7 @@ namespace FFmpegCatapult
             get { return meMethods; }
         }
 
-        public static int MinBitrate
+        public static double MinBitrate
         {
             get { return minBitrate; }
             set { minBitrate = value; }

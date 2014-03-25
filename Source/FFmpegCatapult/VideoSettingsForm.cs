@@ -62,7 +62,7 @@ namespace FFmpegCatapult
                     }
                 }
 
-                textBoxCodecLevel.Text = Methods.IntToText(Video.CodecLevel);
+                textBoxCodecLevel.Text = Methods.NumToText(Video.CodecLevel);
             }
 
             // Comboboxes
@@ -107,9 +107,9 @@ namespace FFmpegCatapult
             }
 
             // Text boxes
-            textBoxBFrames.Text = Methods.IntToText(Video.BFrames);
-            textBoxDiaSize.Text = Methods.IntToText(Video.DiaSize);
-            textBoxGOPSize.Text = Methods.IntToText(Video.GOPSize);
+            textBoxBFrames.Text = Methods.NumToText(Video.BFrames);
+            textBoxDiaSize.Text = Methods.NumToText(Video.DiaSize);
+            textBoxGOPSize.Text = Methods.NumToText(Video.GOPSize);
         }
 
         // Combobox list helpers
@@ -154,7 +154,18 @@ namespace FFmpegCatapult
             {
                 e.Handled = e.KeyChar != (char)Keys.Back;
             }
-        }  
+        }
+
+        private void textBox_KeyPressDecimal(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+            {
+                if (e.KeyChar != '.')
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }                
+            }
+        } 
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -183,7 +194,7 @@ namespace FFmpegCatapult
             if (groupBoxCodec.Enabled == true)
             {
                 ListComboContent codecProfile = (ListComboContent)comboBoxCodecProfiles.SelectedItem;
-                Video.CodecLevel = Methods.TextToInt(textBoxCodecLevel.Text);
+                Video.CodecLevel = Methods.TextToDouble(textBoxCodecLevel.Text);
                 Video.CodecProfile = codecProfile.Value;
             }
 

@@ -195,7 +195,7 @@ namespace FFmpegCatapult
             this.textBoxCodecLevel.Name = "textBoxCodecLevel";
             this.textBoxCodecLevel.Size = new System.Drawing.Size(35, 20);
             this.textBoxCodecLevel.TabIndex = 2;
-            this.textBoxCodecLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxCodecLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPressDecimal);
             // 
             // labelEncodingLevel
             // 

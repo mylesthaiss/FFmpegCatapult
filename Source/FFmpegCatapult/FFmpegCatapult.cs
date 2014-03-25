@@ -30,25 +30,49 @@ namespace FFmpegCatapult
         [STAThread]
         static void Main(String[] args)
         {
-            // Determine running operating system
-            int x = Convert.ToInt16(Environment.OSVersion.Platform);
-            if (x == 4 || x == 6 || x == 128)
+            if (Properties.Settings.Default.TermBin == "")
             {
-                // Unix default settings
-                Bin.FFmpegBin = "ffmpeg";
-                Bin.TermBin = "xterm";
-                Bin.TermArgs = "-e";
-                Bin.NullPath = "/dev/null";
+                // Determine running operating system
+                int x = Convert.ToInt16(Environment.OSVersion.Platform);
+                if (x == 4 || x == 6 || x == 128)
+                {
+                    // Unix default settings
+                    Bin.FFmpegBin = "ffmpeg";
+                    Bin.TermBin = "xterm";
+                    Bin.TermArgs = "-e";
+                    Bin.NullPath = "/dev/null";
+                }
+                else
+                {
+                    // Windows default settings
+                    Bin.FFmpegBin = "ffmpeg.exe";
+                    Bin.TermBin = "cmd.exe";
+                    Bin.TermArgs = "/c start";
+                    Bin.NullPath = "NULL";
+                }
             }
             else
             {
-                // Windows default settings
-                Bin.FFmpegBin = "ffmpeg.exe";
-                Bin.TermBin = "cmd.exe";
-                Bin.TermArgs = "/c start";
-                Bin.NullPath = "NULL";
+                Bin.FFmpegBin = Properties.Settings.Default.FFmpegBin;
+                Bin.TermBin = Properties.Settings.Default.TermBin;
+                Bin.TermArgs = Properties.Settings.Default.TermArgs;
+                Bin.NullPath = Properties.Settings.Default.NullPath;
             }
 
+            if (Properties.Settings.Default.Threads == -1 | Properties.Settings.Default.Threads > Session.MaxThreads)
+            {
+                Session.Threads = Session.MaxThreads;
+            }
+            else
+            {
+                Session.Threads = Properties.Settings.Default.Threads;
+            }
+
+            Session.Preset = Properties.Settings.Default.Preset;
+            Session.KeepValues = Properties.Settings.Default.KeepValues;
+            Session.Overwrite = Properties.Settings.Default.OverwriteFiles;
+            Session.TwoPassEncoding = Properties.Settings.Default.TwoPassEncoding;
+            
             // Command line interface
             for (int i = 0; i < args.Length; i++)
             {
@@ -56,7 +80,7 @@ namespace FFmpegCatapult
                 {
                     case "-preset":
                         i++;
-                        Session.DefaultPreset = args[i];
+                        Session.Preset = args[i];
                         break;
                     case "-out":
                         i++;
@@ -81,8 +105,15 @@ namespace FFmpegCatapult
                 }
             }
 
-            // Init preset
-            Preset.SetPreset(Session.DefaultPreset);
+            // Init settings
+            if (Properties.Settings.Default.InitPreset == true)
+            {
+                Preset.InitPreset();
+            }
+            else
+            {
+                Session.LoadSettings();
+            }
 
             // Load main form
             Application.EnableVisualStyles();

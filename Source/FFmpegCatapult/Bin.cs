@@ -113,14 +113,14 @@ namespace FFmpegCatapult
             }
 
             // Video arguments
-            if (Video.Codec != "none")
+            if (Video.Codec != "none" && !Methods.IsAudioFile())
             {
                 ArrayList videoArgs = new ArrayList();
                 videoArgs.Add(string.Format("-codec:v {0}", Video.Encoder));
 
                 if (Video.Codec != "copy")
                 {
-                    if (Video.CodecProfile != "")
+                    if (!string.IsNullOrEmpty(Video.CodecProfile))
                     {
                         videoArgs.Add(string.Format("-profile:v {0}", Video.CodecProfile));
                     }
@@ -216,57 +216,60 @@ namespace FFmpegCatapult
                     }
 
                     // Video filtering arguments
-                    ArrayList filtering = new ArrayList();
-
-                    if (Screen.Deinterlace == true)
+                    if (Methods.IsPictureScalable())
                     {
-                        filtering.Add("yadif=0:-1:0");
-                    }
+                        ArrayList filtering = new ArrayList();
 
-                    if (Screen.AspectRatio == true)
-                    {
-                        filtering.Add(string.Format("setdar={0}:{1}", Screen.RatioA, Screen.RatioB));
-                    }
-
-                    if (Screen.ScaleOption == 1)
-                    {
-                        if (Screen.Width > 0 && Screen.Height > 0)
+                        if (Screen.Deinterlace == true)
                         {
-                            filtering.Add(string.Format("scale={0}:{1}", Screen.Width, Screen.Height));
+                            filtering.Add("yadif=0:-1:0");
                         }
-                        else if (Screen.Width > 0 && Screen.Height == 0)
+
+                        if (Screen.AspectRatio == true)
                         {
-                            filtering.Add(string.Format("scale=\"min({0}\\,iw):trunc(ow/a/2)*2\"", Screen.Width));
+                            filtering.Add(string.Format("setdar={0}:{1}", Screen.RatioA, Screen.RatioB));
                         }
-                        else
+
+                        if (Screen.ScaleOption == 1)
                         {
-                            filtering.Add(string.Format("scale=\"trunc(oh*a/2)*2:min({0}\\,ih)\"", Screen.Height));
+                            if (Screen.Width > 0 && Screen.Height > 0)
+                            {
+                                filtering.Add(string.Format("scale={0}:{1}", Screen.Width, Screen.Height));
+                            }
+                            else if (Screen.Width > 0 && Screen.Height == 0)
+                            {
+                                filtering.Add(string.Format("scale=\"min({0}\\,iw):trunc(ow/a/2)*2\"", Screen.Width));
+                            }
+                            else
+                            {
+                                filtering.Add(string.Format("scale=\"trunc(oh*a/2)*2:min({0}\\,ih)\"", Screen.Height));
+                            }
                         }
-                    }
-                    else if (Screen.ScaleOption == 2)
-                    {
-                        filtering.Add("scale=iw/2:-1");
-                    }
-
-                    if (Screen.PadVideo == true && Screen.CropVideo == false)
-                    {
-                        filtering.Add(string.Format("pad={0}:{1}:{2}:{3}:{4}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y, Screen.VFColour));
-                    }
-
-                    if (Screen.CropVideo == true && Screen.CropVideo == false)
-                    {
-                        filtering.Add(string.Format("crop={0}:{1}:{2}:{3}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y));
-                    }
-
-                    string filters = string.Join(",", filtering.ToArray());
-
-                    if (filters.Length > 0)
-                    {
-                        videoArgs.Add(string.Format("-vf {0}", filters));
-
-                        if (Screen.ScaleOption > 0)
+                        else if (Screen.ScaleOption == 2)
                         {
-                            videoArgs.Add(string.Format("-sws_flags {0}", Screen.ScalingMethod));
+                            filtering.Add("scale=iw/2:-1");
+                        }
+
+                        if (Screen.PadVideo == true && Screen.CropVideo == false)
+                        {
+                            filtering.Add(string.Format("pad={0}:{1}:{2}:{3}:{4}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y, Screen.VFColour));
+                        }
+
+                        if (Screen.CropVideo == true && Screen.CropVideo == false)
+                        {
+                            filtering.Add(string.Format("crop={0}:{1}:{2}:{3}", Screen.WinWidth, Screen.WinHeight, Screen.X, Screen.Y));
+                        }
+
+                        string filters = string.Join(",", filtering.ToArray());
+
+                        if (filters.Length > 0)
+                        {
+                            videoArgs.Add(string.Format("-vf {0}", filters));
+
+                            if (Screen.ScaleOption > 0)
+                            {
+                                videoArgs.Add(string.Format("-sws_flags {0}", Screen.ScalingMethod));
+                            }
                         }
                     }
                 }

@@ -25,7 +25,7 @@ namespace FFmpegCatapult
     class Methods
     {
         // Misc methods
-        public static string IntToText(int x)
+        public static string NumToText(double x)
         {
             string value;
             if (x > 0)
@@ -34,9 +34,46 @@ namespace FFmpegCatapult
             }
             else
             {
-                value = "";
+                value = null;
             }
             return value;
+        }
+
+        public static string NumToText(int x)
+        {
+            string value;
+            if (x > 0)
+            {
+                value = Convert.ToString(x);
+            }
+            else
+            {
+                value = null;
+            }
+            return value;
+        }
+
+        public static double TextToDouble(string value)
+        {
+            double x;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    x = Convert.ToDouble(value);
+                }
+                else
+                {
+                    x = 0;
+                }
+            }
+            catch (Exception)
+            {
+                x = 0;
+            }
+
+            return x;
         }
 
         public static int TextToInt(string value)
@@ -45,7 +82,7 @@ namespace FFmpegCatapult
 
             try
             {
-                if (value != "")
+                if (!string.IsNullOrEmpty(value))
                 {
                     x = Convert.ToInt16(value);
                 }
@@ -61,5 +98,29 @@ namespace FFmpegCatapult
 
             return x;
         }
+
+        public static bool IsAudioFile()
+        {
+            if (File.Format == "m4a" | File.Format == "mp3" | File.Format == "wma")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool IsPictureScalable()
+        {
+            if (IsAudioFile() | Video.Codec == "copy" | Video.Codec == "none")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }        
     }
 }

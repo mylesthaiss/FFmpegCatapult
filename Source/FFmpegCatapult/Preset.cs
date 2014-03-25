@@ -39,9 +39,9 @@ namespace FFmpegCatapult
         };
 
         // Init preset method
-        public static void SetPreset(string preset)
+        public static void InitPreset()
         {
-            switch (preset)
+            switch (Session.Preset)
             {
                 case "default":
                     File.Format = "avi";
@@ -68,7 +68,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "main";
-                    Video.CodecLevel = 40;
+                    Video.CodecLevel = 4.0;
                     Video.UseCRF = true;
                     Video.CRF = 24;
                     Screen.ScaleOption = 1;
@@ -83,7 +83,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "high";
-                    Video.CodecLevel = 41;
+                    Video.CodecLevel = 4.1;
                     Video.UseCRF = true;
                     Video.CRF = 18;
                     Screen.ScaleOption = 0;
@@ -99,7 +99,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 13;
+                    Video.CodecLevel = 1.3;
                     Video.Bitrate = 500;
                     Video.MaxBitrate = 768;
                     Video.BufferSize = 3;
@@ -135,7 +135,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 30;
+                    Video.CodecLevel = 3.0;
                     Video.Bitrate = 768;
                     Video.MaxBitrate = 1000;
                     Video.BufferSize = 1;
@@ -171,7 +171,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "main";
-                    Video.CodecLevel = 31;
+                    Video.CodecLevel = 3.1;
                     Video.Bitrate = 2000;
                     Video.MaxBitrate = 2500;
                     Video.BufferSize = 1;
@@ -235,7 +235,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 21;
+                    Video.CodecLevel = 2.1;
                     Video.Bitrate = 500;
                     Video.MaxBitrate = 768;
                     Video.BufferSize = 2;
@@ -254,7 +254,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 30;
+                    Video.CodecLevel = 3.0;
                     Video.Bitrate = 1500;
                     Video.MaxBitrate = 2000;
                     Video.BufferSize = 2;

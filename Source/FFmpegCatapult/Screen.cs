@@ -39,16 +39,16 @@ namespace FFmpegCatapult
         private static int scaleOption = 0;
         private static int winHeight;
         private static int winWidth;
-        private static String vfColour;
-        private static String scalingMethod = "lanczos";
-        private static String[,] scalingMethods = new String[,] {
+        private static string vfColour;
+        private static string scalingMethod;
+        private static string[,] scalingMethods = new string[,] {
             {"Bicubic", "bicubic"} , {"Bilinear", "bilinear"},
             {"Gaussian", "gauss"}, {"Lanczos", "lanczos"},
             {"Sinc", "sinc"}, {"Spline", "spline"}
         };
 
         // Property methods
-        public static String VFColour
+        public static string VFColour
         {
             get { return vfColour; }
             set { vfColour = value; }
@@ -102,13 +102,13 @@ namespace FFmpegCatapult
             set { ratioB = value; }
         }
 
-        public static String ScalingMethod
+        public static string ScalingMethod
         {
             get { return scalingMethod; }
             set { scalingMethod = value; }
         }
 
-        public static String[,] ScalingMethods
+        public static string[,] ScalingMethods
         {
             get { return scalingMethods; }
         }

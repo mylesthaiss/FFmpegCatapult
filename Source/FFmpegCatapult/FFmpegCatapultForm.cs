@@ -70,7 +70,7 @@ namespace FFmpegCatapult
             }
             for (int i = 0; i < Preset.GetPresets().GetLength(0); i++)
             {
-                if (Session.DefaultPreset == Preset.GetPresets()[i, 1])
+                if (Session.Preset == Preset.GetPresets()[i, 1])
                 {
                     comboBoxPresets.SelectedIndex = i;
                     break;
@@ -171,15 +171,24 @@ namespace FFmpegCatapult
 
         // Methods
         private void InitTabs()
-        {
-            if (File.Format == "mp3" || File.Format == "wma" || File.Format == "m4a")
+        {   
+            // Picture tab
+            if (Methods.IsPictureScalable())
+            {
+                tabPicture.Enabled = true;
+            }
+            else
             {
                 tabPicture.Enabled = false;
+            }
+
+            // Video tab
+            if (Methods.IsAudioFile())
+            {
                 tabVideo.Enabled = false;
             }
             else
             {
-                tabPicture.Enabled = true;
                 tabVideo.Enabled = true;
             }
         }
@@ -261,39 +270,39 @@ namespace FFmpegCatapult
 
             // Text boxes
             textBoxWidth.TextChanged -= new EventHandler(textBoxWidth_TextChanged);
-            textBoxWidth.Text = Methods.IntToText(Screen.Width);
+            textBoxWidth.Text = Methods.NumToText(Screen.Width);
             textBoxWidth.TextChanged += new EventHandler(textBoxWidth_TextChanged);
 
             textBoxHeight.TextChanged -= new EventHandler(textBoxHeight_TextChanged);
-            textBoxHeight.Text = Methods.IntToText(Screen.Height);
+            textBoxHeight.Text = Methods.NumToText(Screen.Height);
             textBoxHeight.TextChanged += new EventHandler(textBoxHeight_TextChanged);
 
             textBoxRatioA.TextChanged -= new EventHandler(textBoxRatioA_TextChanged);
-            textBoxRatioA.Text = Methods.IntToText(Screen.RatioA);
+            textBoxRatioA.Text = Methods.NumToText(Screen.RatioA);
             textBoxRatioA.TextChanged += new EventHandler(textBoxRatioA_TextChanged);
 
             textBoxRatioB.TextChanged -= new EventHandler(textBoxRatioB_TextChanged);
-            textBoxRatioB.Text = Methods.IntToText(Screen.RatioB);
+            textBoxRatioB.Text = Methods.NumToText(Screen.RatioB);
             textBoxRatioB.TextChanged += new EventHandler(textBoxRatioB_TextChanged);
 
             textBoxFPS.TextChanged -= new EventHandler(textBoxFPS_TextChanged);
-            textBoxFPS.Text = Methods.IntToText(Screen.FPS);
+            textBoxFPS.Text = Methods.NumToText(Screen.FPS);
             textBoxFPS.TextChanged += new EventHandler(textBoxFPS_TextChanged);
 
             textBoxLayoutWidth.TextChanged -= new EventHandler(textBoxLayoutWidth_TextChanged);
-            textBoxLayoutWidth.Text = Methods.IntToText(Screen.WinWidth);
+            textBoxLayoutWidth.Text = Methods.NumToText(Screen.WinWidth);
             textBoxLayoutWidth.TextChanged += new EventHandler(textBoxLayoutWidth_TextChanged);
 
             textBoxLayoutHeight.TextChanged -= new EventHandler(textBoxLayoutHeight_TextChanged);
-            textBoxLayoutHeight.Text = Methods.IntToText(Screen.WinHeight);
+            textBoxLayoutHeight.Text = Methods.NumToText(Screen.WinHeight);
             textBoxLayoutHeight.TextChanged += new EventHandler(textBoxLayoutHeight_TextChanged);
 
             textBoxLayoutVert.TextChanged -= new EventHandler(textBoxLayoutVert_TextChanged);
-            textBoxLayoutVert.Text = Methods.IntToText(Screen.X);
+            textBoxLayoutVert.Text = Methods.NumToText(Screen.X);
             textBoxLayoutVert.TextChanged += new EventHandler(textBoxLayoutVert_TextChanged);
 
             textBoxLayoutHoriz.TextChanged -= new EventHandler(textBoxLayoutHoriz_TextChanged);
-            textBoxLayoutHoriz.Text = Methods.IntToText(Screen.Y);
+            textBoxLayoutHoriz.Text = Methods.NumToText(Screen.Y);
             textBoxLayoutHoriz.TextChanged += new EventHandler(textBoxLayoutHoriz_TextChanged);
 
             // Set selected scaling method
@@ -391,31 +400,31 @@ namespace FFmpegCatapult
 
             // Text boxes
             textBoxVideoBitrate.TextChanged -= new EventHandler(textBoxVideoBitrate_TextChanged);
-            textBoxVideoBitrate.Text = Methods.IntToText(Video.Bitrate);
+            textBoxVideoBitrate.Text = Methods.NumToText(Video.Bitrate);
             textBoxVideoBitrate.TextChanged += new EventHandler(textBoxVideoBitrate_TextChanged);
 
             textBoxMinBitrate.TextChanged -= new EventHandler(textBoxMinBitrate_TextChanged);
-            textBoxMinBitrate.Text = Methods.IntToText(Video.MinBitrate);
+            textBoxMinBitrate.Text = Methods.NumToText(Video.MinBitrate);
             textBoxMinBitrate.TextChanged += new EventHandler(textBoxMinBitrate_TextChanged);
 
             textBoxMaxBitrate.TextChanged -= new EventHandler(textBoxMaxBitrate_TextChanged);
-            textBoxMaxBitrate.Text = Methods.IntToText(Video.MaxBitrate);
+            textBoxMaxBitrate.Text = Methods.NumToText(Video.MaxBitrate);
             textBoxMaxBitrate.TextChanged += new EventHandler(textBoxMaxBitrate_TextChanged);
 
             textBoxBufferSize.TextChanged -= new EventHandler(textBoxBufferSize_TextChanged);
-            textBoxBufferSize.Text = Methods.IntToText(Video.BufferSize);
+            textBoxBufferSize.Text = Methods.NumToText(Video.BufferSize);
             textBoxBufferSize.TextChanged += new EventHandler(textBoxBufferSize_TextChanged);
 
             textBoxCRF.TextChanged -= new EventHandler(textBoxCRF_TextChanged);
-            textBoxCRF.Text = Methods.IntToText(Video.CRF);
+            textBoxCRF.Text = Methods.NumToText(Video.CRF);
             textBoxCRF.TextChanged += new EventHandler(textBoxCRF_TextChanged);
 
             textBoxQmax.TextChanged -= new EventHandler(textBoxQmax_TextChanged);
-            textBoxQmax.Text = Methods.IntToText(Video.Qmax);
+            textBoxQmax.Text = Methods.NumToText(Video.Qmax);
             textBoxQmax.TextChanged += new EventHandler(textBoxQmax_TextChanged);
 
             textBoxQmin.TextChanged -= new EventHandler(textBoxQmin_TextChanged);
-            textBoxQmin.Text = Methods.IntToText(Video.Qmin);
+            textBoxQmin.Text = Methods.NumToText(Video.Qmin);
             textBoxQmin.TextChanged += new EventHandler(textBoxQmin_TextChanged);
         }
 
@@ -427,7 +436,7 @@ namespace FFmpegCatapult
                 comboBoxAudioCodecs.Items.Add(new ListComboContent(Audio.Codecs[i, 0], Audio.Codecs[i, 1]));
             }
 
-            if (Audio.Codec == "copy" || Audio.Codec == "none")
+            if (Audio.Codec == "copy" | Audio.Codec == "none")
             {
                 EnableAudioControls(false);
 
@@ -993,7 +1002,8 @@ namespace FFmpegCatapult
         void comboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboContent preset = (ListComboContent)comboBoxPresets.SelectedItem;
-            Preset.SetPreset(preset.Value);
+            Session.Preset = preset.Value;
+            Preset.InitPreset();
             InitTabs();
             InitMain();
             InitPicture();
@@ -1026,6 +1036,7 @@ namespace FFmpegCatapult
 
         void buttonExit_Click(object sender, EventArgs e)
         {
+            Session.SaveSettings();
             System.Environment.Exit(0);
         }
 
@@ -1157,6 +1168,7 @@ namespace FFmpegCatapult
             if (codec.Value != Video.Codec)
             {
                 Video.Codec = codec.Value;
+                InitTabs();
                 InitVideo();
             }
         }
@@ -1194,22 +1206,22 @@ namespace FFmpegCatapult
 
         void textBoxVideoBitrate_TextChanged(object sender, EventArgs e)
         {
-            Video.Bitrate = Methods.TextToInt(textBoxVideoBitrate.Text);
+            Video.Bitrate = Methods.TextToDouble(textBoxVideoBitrate.Text);
         }
 
         void textBoxMinBitrate_TextChanged(object sender, EventArgs e)
         {
-            Video.MinBitrate = Methods.TextToInt(textBoxMinBitrate.Text);
+            Video.MinBitrate = Methods.TextToDouble(textBoxMinBitrate.Text);
         }
 
         void textBoxMaxBitrate_TextChanged(object sender, EventArgs e)
         {
-            Video.MaxBitrate = Methods.TextToInt(textBoxMaxBitrate.Text);
+            Video.MaxBitrate = Methods.TextToDouble(textBoxMaxBitrate.Text);
         }
 
         void textBoxBufferSize_TextChanged(object sender, EventArgs e)
         {
-            Video.BufferSize = Methods.TextToInt(textBoxBufferSize.Text);
+            Video.BufferSize = Methods.TextToDouble(textBoxBufferSize.Text);
         }
 
         void textBoxCRF_TextChanged(object sender, EventArgs e)
@@ -1413,6 +1425,28 @@ namespace FFmpegCatapult
             if (!char.IsNumber(e.KeyChar))
             {
                 e.Handled = e.KeyChar != (char)Keys.Back;
+            }
+        }
+
+        private void textBoxBitrate_KeyPressDecimal(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+            {
+                if (e.KeyChar != '.' | Video.Bits == "k")
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;                    
+                }
+            }            
+        }
+
+        private void textBoxBufferSize_KeyPressDecimal(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+            {
+                if (e.KeyChar != '.' | Video.Bytes == "k")
+                {
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                }
             }
         }
 

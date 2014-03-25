@@ -49,170 +49,170 @@ namespace FFmpegCatapult
             this.buttonExit = new System.Windows.Forms.Button();
             this.tabMisc = new System.Windows.Forms.TabPage();
             this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
-            this.labelFFmpegBin = new System.Windows.Forms.Label();
-            this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
-            this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
-            this.buttonBrowseTermBin = new System.Windows.Forms.Button();
-            this.labelTermBin = new System.Windows.Forms.Label();
-            this.textBoxTermBin = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBoxTermArgs = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxTermBin = new System.Windows.Forms.TextBox();
+            this.labelTermBin = new System.Windows.Forms.Label();
+            this.buttonBrowseTermBin = new System.Windows.Forms.Button();
+            this.buttonBrowseFFmpegBin = new System.Windows.Forms.Button();
+            this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
+            this.labelFFmpegBin = new System.Windows.Forms.Label();
             this.tabTagging = new System.Windows.Forms.TabPage();
-            this.groupBoxGeneralTags = new System.Windows.Forms.GroupBox();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.textBoxTitle = new System.Windows.Forms.TextBox();
-            this.textBoxYear = new System.Windows.Forms.TextBox();
-            this.labelYear = new System.Windows.Forms.Label();
-            this.labelAlbum = new System.Windows.Forms.Label();
-            this.textBoxAlbum = new System.Windows.Forms.TextBox();
-            this.labelArtist = new System.Windows.Forms.Label();
-            this.textBoxArtist = new System.Windows.Forms.TextBox();
-            this.labelGenre = new System.Windows.Forms.Label();
-            this.textBoxGenre = new System.Windows.Forms.TextBox();
-            this.groupBoxTrackTags = new System.Windows.Forms.GroupBox();
-            this.labelTrack = new System.Windows.Forms.Label();
-            this.textBoxTrack = new System.Windows.Forms.TextBox();
-            this.labelOfTrack = new System.Windows.Forms.Label();
-            this.textBoxTotalTracks = new System.Windows.Forms.TextBox();
-            this.labelDisc = new System.Windows.Forms.Label();
-            this.textBoxDisc = new System.Windows.Forms.TextBox();
-            this.labelOfDiscs = new System.Windows.Forms.Label();
-            this.textBoxTotalDiscs = new System.Windows.Forms.TextBox();
             this.groupBoxMiscTags = new System.Windows.Forms.GroupBox();
-            this.labelAlbumArtist = new System.Windows.Forms.Label();
-            this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
-            this.labelPublisher = new System.Windows.Forms.Label();
-            this.labelComment = new System.Windows.Forms.Label();
-            this.textBoxComment = new System.Windows.Forms.TextBox();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
+            this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.labelComment = new System.Windows.Forms.Label();
+            this.labelPublisher = new System.Windows.Forms.Label();
+            this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
+            this.labelAlbumArtist = new System.Windows.Forms.Label();
+            this.groupBoxTrackTags = new System.Windows.Forms.GroupBox();
+            this.textBoxTotalDiscs = new System.Windows.Forms.TextBox();
+            this.labelOfDiscs = new System.Windows.Forms.Label();
+            this.textBoxDisc = new System.Windows.Forms.TextBox();
+            this.labelDisc = new System.Windows.Forms.Label();
+            this.textBoxTotalTracks = new System.Windows.Forms.TextBox();
+            this.labelOfTrack = new System.Windows.Forms.Label();
+            this.textBoxTrack = new System.Windows.Forms.TextBox();
+            this.labelTrack = new System.Windows.Forms.Label();
+            this.groupBoxGeneralTags = new System.Windows.Forms.GroupBox();
+            this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.labelGenre = new System.Windows.Forms.Label();
+            this.textBoxArtist = new System.Windows.Forms.TextBox();
+            this.labelArtist = new System.Windows.Forms.Label();
+            this.textBoxAlbum = new System.Windows.Forms.TextBox();
+            this.labelAlbum = new System.Windows.Forms.Label();
+            this.labelYear = new System.Windows.Forms.Label();
+            this.textBoxYear = new System.Windows.Forms.TextBox();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.tabAudio = new System.Windows.Forms.TabPage();
-            this.groupBoxAudioCodec = new System.Windows.Forms.GroupBox();
-            this.labelAudioCodec = new System.Windows.Forms.Label();
-            this.comboBoxAudioCodecs = new System.Windows.Forms.ComboBox();
-            this.groupBoxAudioEncoder = new System.Windows.Forms.GroupBox();
-            this.labelAudioEncoder = new System.Windows.Forms.Label();
-            this.comboBoxAudioEncoders = new System.Windows.Forms.ComboBox();
-            this.buttonAudioCodecProperties = new System.Windows.Forms.Button();
-            this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
-            this.labelSampleRate = new System.Windows.Forms.Label();
-            this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
-            this.labelChannels = new System.Windows.Forms.Label();
-            this.comboBoxChannels = new System.Windows.Forms.ComboBox();
-            this.groupBoxAudioBitrate = new System.Windows.Forms.GroupBox();
-            this.comboBoxAudioBitrates = new System.Windows.Forms.ComboBox();
-            this.checkBoxUseAudioVBR = new System.Windows.Forms.CheckBox();
-            this.labelAudioBitrate = new System.Windows.Forms.Label();
             this.groupBoxAudioStream = new System.Windows.Forms.GroupBox();
-            this.textBoxAudioStream = new System.Windows.Forms.TextBox();
-            this.labelAudioStream = new System.Windows.Forms.Label();
             this.buttonBrowseAudioStream = new System.Windows.Forms.Button();
+            this.labelAudioStream = new System.Windows.Forms.Label();
+            this.textBoxAudioStream = new System.Windows.Forms.TextBox();
+            this.groupBoxAudioBitrate = new System.Windows.Forms.GroupBox();
+            this.labelAudioBitrate = new System.Windows.Forms.Label();
+            this.checkBoxUseAudioVBR = new System.Windows.Forms.CheckBox();
+            this.comboBoxAudioBitrates = new System.Windows.Forms.ComboBox();
+            this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
+            this.comboBoxChannels = new System.Windows.Forms.ComboBox();
+            this.labelChannels = new System.Windows.Forms.Label();
+            this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
+            this.labelSampleRate = new System.Windows.Forms.Label();
+            this.groupBoxAudioEncoder = new System.Windows.Forms.GroupBox();
+            this.buttonAudioCodecProperties = new System.Windows.Forms.Button();
+            this.comboBoxAudioEncoders = new System.Windows.Forms.ComboBox();
+            this.labelAudioEncoder = new System.Windows.Forms.Label();
+            this.groupBoxAudioCodec = new System.Windows.Forms.GroupBox();
+            this.comboBoxAudioCodecs = new System.Windows.Forms.ComboBox();
+            this.labelAudioCodec = new System.Windows.Forms.Label();
             this.tabVideo = new System.Windows.Forms.TabPage();
-            this.groupBoxVideoCodec = new System.Windows.Forms.GroupBox();
-            this.labelVideoCodec = new System.Windows.Forms.Label();
-            this.comboBoxVideoCodecs = new System.Windows.Forms.ComboBox();
-            this.checkBoxTwoPassEncoding = new System.Windows.Forms.CheckBox();
-            this.groupBoxVideoEncoder = new System.Windows.Forms.GroupBox();
-            this.labelVideoEncoder = new System.Windows.Forms.Label();
-            this.comboBoxVideoEncoders = new System.Windows.Forms.ComboBox();
-            this.buttonVideoCodecProperties = new System.Windows.Forms.Button();
             this.groupBoxVideoBitrate = new System.Windows.Forms.GroupBox();
-            this.labelVideoBitrate = new System.Windows.Forms.Label();
-            this.labelMinBitrate = new System.Windows.Forms.Label();
-            this.comboBoxBits = new System.Windows.Forms.ComboBox();
-            this.labelMaxBitrate = new System.Windows.Forms.Label();
-            this.labelBuffer = new System.Windows.Forms.Label();
-            this.checkBoxUseCRF = new System.Windows.Forms.CheckBox();
-            this.labelCRF = new System.Windows.Forms.Label();
-            this.textBoxCRF = new System.Windows.Forms.TextBox();
-            this.labelMaxBits = new System.Windows.Forms.Label();
-            this.labelMinBits = new System.Windows.Forms.Label();
-            this.comboBoxBytes = new System.Windows.Forms.ComboBox();
-            this.textBoxVideoBitrate = new System.Windows.Forms.TextBox();
-            this.textBoxMinBitrate = new System.Windows.Forms.TextBox();
-            this.textBoxMaxBitrate = new System.Windows.Forms.TextBox();
-            this.textBoxBufferSize = new System.Windows.Forms.TextBox();
-            this.labelQmin = new System.Windows.Forms.Label();
-            this.textBoxQmin = new System.Windows.Forms.TextBox();
-            this.labelQmax = new System.Windows.Forms.Label();
             this.textBoxQmax = new System.Windows.Forms.TextBox();
+            this.labelQmax = new System.Windows.Forms.Label();
+            this.textBoxQmin = new System.Windows.Forms.TextBox();
+            this.labelQmin = new System.Windows.Forms.Label();
+            this.textBoxBufferSize = new System.Windows.Forms.TextBox();
+            this.textBoxMaxBitrate = new System.Windows.Forms.TextBox();
+            this.textBoxMinBitrate = new System.Windows.Forms.TextBox();
+            this.textBoxVideoBitrate = new System.Windows.Forms.TextBox();
+            this.comboBoxBytes = new System.Windows.Forms.ComboBox();
+            this.labelMinBits = new System.Windows.Forms.Label();
+            this.labelMaxBits = new System.Windows.Forms.Label();
+            this.textBoxCRF = new System.Windows.Forms.TextBox();
+            this.labelCRF = new System.Windows.Forms.Label();
+            this.checkBoxUseCRF = new System.Windows.Forms.CheckBox();
+            this.labelBuffer = new System.Windows.Forms.Label();
+            this.labelMaxBitrate = new System.Windows.Forms.Label();
+            this.comboBoxBits = new System.Windows.Forms.ComboBox();
+            this.labelMinBitrate = new System.Windows.Forms.Label();
+            this.labelVideoBitrate = new System.Windows.Forms.Label();
+            this.groupBoxVideoEncoder = new System.Windows.Forms.GroupBox();
+            this.buttonVideoCodecProperties = new System.Windows.Forms.Button();
+            this.comboBoxVideoEncoders = new System.Windows.Forms.ComboBox();
+            this.labelVideoEncoder = new System.Windows.Forms.Label();
+            this.groupBoxVideoCodec = new System.Windows.Forms.GroupBox();
+            this.checkBoxTwoPassEncoding = new System.Windows.Forms.CheckBox();
+            this.comboBoxVideoCodecs = new System.Windows.Forms.ComboBox();
+            this.labelVideoCodec = new System.Windows.Forms.Label();
             this.tabPicture = new System.Windows.Forms.TabPage();
-            this.groupBoxResolution = new System.Windows.Forms.GroupBox();
-            this.radioButtonKeepRes = new System.Windows.Forms.RadioButton();
-            this.radioButtonHalfRes = new System.Windows.Forms.RadioButton();
-            this.radioButtonCustomRes = new System.Windows.Forms.RadioButton();
-            this.labelHeight = new System.Windows.Forms.Label();
-            this.textBoxWidth = new System.Windows.Forms.TextBox();
-            this.textBoxHeight = new System.Windows.Forms.TextBox();
-            this.groupBoxScreen = new System.Windows.Forms.GroupBox();
-            this.checkBoxAspectRatio = new System.Windows.Forms.CheckBox();
-            this.checkBoxDeinterlace = new System.Windows.Forms.CheckBox();
-            this.labelRatio = new System.Windows.Forms.Label();
-            this.labelRatioDash = new System.Windows.Forms.Label();
-            this.labelFPS = new System.Windows.Forms.Label();
-            this.textBoxRatioA = new System.Windows.Forms.TextBox();
-            this.textBoxRatioB = new System.Windows.Forms.TextBox();
-            this.textBoxFPS = new System.Windows.Forms.TextBox();
-            this.groupBoxLayout = new System.Windows.Forms.GroupBox();
-            this.checkBoxCrop = new System.Windows.Forms.CheckBox();
-            this.checkBoxPad = new System.Windows.Forms.CheckBox();
-            this.labelLayoutWidth = new System.Windows.Forms.Label();
-            this.labelLayoutHeight = new System.Windows.Forms.Label();
-            this.labelVert = new System.Windows.Forms.Label();
-            this.labelHoriz = new System.Windows.Forms.Label();
-            this.labelLayoutColour = new System.Windows.Forms.Label();
-            this.textBoxLayoutColour = new System.Windows.Forms.TextBox();
-            this.textBoxLayoutWidth = new System.Windows.Forms.TextBox();
-            this.textBoxLayoutHeight = new System.Windows.Forms.TextBox();
-            this.textBoxLayoutVert = new System.Windows.Forms.TextBox();
-            this.textBoxLayoutHoriz = new System.Windows.Forms.TextBox();
             this.groupBoxScalingMethods = new System.Windows.Forms.GroupBox();
-            this.labelMethod = new System.Windows.Forms.Label();
             this.comboBoxScalingMethods = new System.Windows.Forms.ComboBox();
+            this.labelMethod = new System.Windows.Forms.Label();
+            this.groupBoxLayout = new System.Windows.Forms.GroupBox();
+            this.textBoxLayoutHoriz = new System.Windows.Forms.TextBox();
+            this.textBoxLayoutVert = new System.Windows.Forms.TextBox();
+            this.textBoxLayoutHeight = new System.Windows.Forms.TextBox();
+            this.textBoxLayoutWidth = new System.Windows.Forms.TextBox();
+            this.textBoxLayoutColour = new System.Windows.Forms.TextBox();
+            this.labelLayoutColour = new System.Windows.Forms.Label();
+            this.labelHoriz = new System.Windows.Forms.Label();
+            this.labelVert = new System.Windows.Forms.Label();
+            this.labelLayoutHeight = new System.Windows.Forms.Label();
+            this.labelLayoutWidth = new System.Windows.Forms.Label();
+            this.checkBoxPad = new System.Windows.Forms.CheckBox();
+            this.checkBoxCrop = new System.Windows.Forms.CheckBox();
+            this.groupBoxScreen = new System.Windows.Forms.GroupBox();
+            this.textBoxFPS = new System.Windows.Forms.TextBox();
+            this.textBoxRatioB = new System.Windows.Forms.TextBox();
+            this.textBoxRatioA = new System.Windows.Forms.TextBox();
+            this.labelFPS = new System.Windows.Forms.Label();
+            this.labelRatioDash = new System.Windows.Forms.Label();
+            this.labelRatio = new System.Windows.Forms.Label();
+            this.checkBoxDeinterlace = new System.Windows.Forms.CheckBox();
+            this.checkBoxAspectRatio = new System.Windows.Forms.CheckBox();
+            this.groupBoxResolution = new System.Windows.Forms.GroupBox();
+            this.textBoxHeight = new System.Windows.Forms.TextBox();
+            this.textBoxWidth = new System.Windows.Forms.TextBox();
+            this.labelHeight = new System.Windows.Forms.Label();
+            this.radioButtonCustomRes = new System.Windows.Forms.RadioButton();
+            this.radioButtonHalfRes = new System.Windows.Forms.RadioButton();
+            this.radioButtonKeepRes = new System.Windows.Forms.RadioButton();
             this.tabMain = new System.Windows.Forms.TabPage();
-            this.groupBoxFiles = new System.Windows.Forms.GroupBox();
-            this.labelInput = new System.Windows.Forms.Label();
-            this.labelOutput = new System.Windows.Forms.Label();
-            this.textBoxInFile = new System.Windows.Forms.TextBox();
-            this.textBoxOutFile = new System.Windows.Forms.TextBox();
-            this.buttonBrowseInput = new System.Windows.Forms.Button();
-            this.buttonBrowseOutput = new System.Windows.Forms.Button();
-            this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
-            this.groupBoxEncoding = new System.Windows.Forms.GroupBox();
-            this.labelPreset = new System.Windows.Forms.Label();
-            this.comboBoxPresets = new System.Windows.Forms.ComboBox();
-            this.labelFormat = new System.Windows.Forms.Label();
-            this.comboBoxContainers = new System.Windows.Forms.ComboBox();
-            this.labelThreads = new System.Windows.Forms.Label();
-            this.comboBoxThreads = new System.Windows.Forms.ComboBox();
             this.groupBoxSession = new System.Windows.Forms.GroupBox();
-            this.radioButtonKeep = new System.Windows.Forms.RadioButton();
             this.radioButtonRefresh = new System.Windows.Forms.RadioButton();
+            this.radioButtonKeep = new System.Windows.Forms.RadioButton();
+            this.groupBoxEncoding = new System.Windows.Forms.GroupBox();
+            this.comboBoxThreads = new System.Windows.Forms.ComboBox();
+            this.labelThreads = new System.Windows.Forms.Label();
+            this.comboBoxContainers = new System.Windows.Forms.ComboBox();
+            this.labelFormat = new System.Windows.Forms.Label();
+            this.comboBoxPresets = new System.Windows.Forms.ComboBox();
+            this.labelPreset = new System.Windows.Forms.Label();
+            this.groupBoxFiles = new System.Windows.Forms.GroupBox();
+            this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
+            this.buttonBrowseOutput = new System.Windows.Forms.Button();
+            this.buttonBrowseInput = new System.Windows.Forms.Button();
+            this.textBoxOutFile = new System.Windows.Forms.TextBox();
+            this.textBoxInFile = new System.Windows.Forms.TextBox();
+            this.labelOutput = new System.Windows.Forms.Label();
+            this.labelInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabMisc.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
             this.tabTagging.SuspendLayout();
-            this.groupBoxGeneralTags.SuspendLayout();
-            this.groupBoxTrackTags.SuspendLayout();
             this.groupBoxMiscTags.SuspendLayout();
+            this.groupBoxTrackTags.SuspendLayout();
+            this.groupBoxGeneralTags.SuspendLayout();
             this.tabAudio.SuspendLayout();
-            this.groupBoxAudioCodec.SuspendLayout();
-            this.groupBoxAudioEncoder.SuspendLayout();
-            this.groupBoxAudioOutput.SuspendLayout();
-            this.groupBoxAudioBitrate.SuspendLayout();
             this.groupBoxAudioStream.SuspendLayout();
+            this.groupBoxAudioBitrate.SuspendLayout();
+            this.groupBoxAudioOutput.SuspendLayout();
+            this.groupBoxAudioEncoder.SuspendLayout();
+            this.groupBoxAudioCodec.SuspendLayout();
             this.tabVideo.SuspendLayout();
-            this.groupBoxVideoCodec.SuspendLayout();
-            this.groupBoxVideoEncoder.SuspendLayout();
             this.groupBoxVideoBitrate.SuspendLayout();
+            this.groupBoxVideoEncoder.SuspendLayout();
+            this.groupBoxVideoCodec.SuspendLayout();
             this.tabPicture.SuspendLayout();
-            this.groupBoxResolution.SuspendLayout();
-            this.groupBoxScreen.SuspendLayout();
-            this.groupBoxLayout.SuspendLayout();
             this.groupBoxScalingMethods.SuspendLayout();
+            this.groupBoxLayout.SuspendLayout();
+            this.groupBoxScreen.SuspendLayout();
+            this.groupBoxResolution.SuspendLayout();
             this.tabMain.SuspendLayout();
-            this.groupBoxFiles.SuspendLayout();
-            this.groupBoxEncoding.SuspendLayout();
             this.groupBoxSession.SuspendLayout();
+            this.groupBoxEncoding.SuspendLayout();
+            this.groupBoxFiles.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -263,55 +263,12 @@ namespace FFmpegCatapult
             this.groupBoxBinaries.TabStop = false;
             this.groupBoxBinaries.Text = "Binaries";
             // 
-            // labelFFmpegBin
+            // textBoxTermArgs
             // 
-            this.labelFFmpegBin.AutoSize = true;
-            this.labelFFmpegBin.Location = new System.Drawing.Point(6, 19);
-            this.labelFFmpegBin.Name = "labelFFmpegBin";
-            this.labelFFmpegBin.Size = new System.Drawing.Size(48, 13);
-            this.labelFFmpegBin.TabIndex = 0;
-            this.labelFFmpegBin.Text = "FFmpeg:";
-            // 
-            // textBoxFFmpegBin
-            // 
-            this.textBoxFFmpegBin.Location = new System.Drawing.Point(62, 16);
-            this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
-            this.textBoxFFmpegBin.Size = new System.Drawing.Size(310, 20);
-            this.textBoxFFmpegBin.TabIndex = 1;
-            // 
-            // buttonBrowseFFmpegBin
-            // 
-            this.buttonBrowseFFmpegBin.Location = new System.Drawing.Point(378, 13);
-            this.buttonBrowseFFmpegBin.Name = "buttonBrowseFFmpegBin";
-            this.buttonBrowseFFmpegBin.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseFFmpegBin.TabIndex = 2;
-            this.buttonBrowseFFmpegBin.Text = "Browse";
-            this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
-            // 
-            // buttonBrowseTermBin
-            // 
-            this.buttonBrowseTermBin.Location = new System.Drawing.Point(378, 39);
-            this.buttonBrowseTermBin.Name = "buttonBrowseTermBin";
-            this.buttonBrowseTermBin.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseTermBin.TabIndex = 3;
-            this.buttonBrowseTermBin.Text = "Browse";
-            this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
-            // 
-            // labelTermBin
-            // 
-            this.labelTermBin.AutoSize = true;
-            this.labelTermBin.Location = new System.Drawing.Point(6, 44);
-            this.labelTermBin.Name = "labelTermBin";
-            this.labelTermBin.Size = new System.Drawing.Size(50, 13);
-            this.labelTermBin.TabIndex = 4;
-            this.labelTermBin.Text = "Terminal:";
-            // 
-            // textBoxTermBin
-            // 
-            this.textBoxTermBin.Location = new System.Drawing.Point(62, 41);
-            this.textBoxTermBin.Name = "textBoxTermBin";
-            this.textBoxTermBin.Size = new System.Drawing.Size(310, 20);
-            this.textBoxTermBin.TabIndex = 5;
+            this.textBoxTermArgs.Location = new System.Drawing.Point(98, 66);
+            this.textBoxTermArgs.Name = "textBoxTermArgs";
+            this.textBoxTermArgs.Size = new System.Drawing.Size(355, 20);
+            this.textBoxTermArgs.TabIndex = 7;
             // 
             // label3
             // 
@@ -322,12 +279,55 @@ namespace FFmpegCatapult
             this.label3.TabIndex = 6;
             this.label3.Text = "Term arguments:";
             // 
-            // textBoxTermArgs
+            // textBoxTermBin
             // 
-            this.textBoxTermArgs.Location = new System.Drawing.Point(98, 66);
-            this.textBoxTermArgs.Name = "textBoxTermArgs";
-            this.textBoxTermArgs.Size = new System.Drawing.Size(355, 20);
-            this.textBoxTermArgs.TabIndex = 7;
+            this.textBoxTermBin.Location = new System.Drawing.Point(62, 41);
+            this.textBoxTermBin.Name = "textBoxTermBin";
+            this.textBoxTermBin.Size = new System.Drawing.Size(310, 20);
+            this.textBoxTermBin.TabIndex = 5;
+            // 
+            // labelTermBin
+            // 
+            this.labelTermBin.AutoSize = true;
+            this.labelTermBin.Location = new System.Drawing.Point(6, 44);
+            this.labelTermBin.Name = "labelTermBin";
+            this.labelTermBin.Size = new System.Drawing.Size(50, 13);
+            this.labelTermBin.TabIndex = 4;
+            this.labelTermBin.Text = "Terminal:";
+            // 
+            // buttonBrowseTermBin
+            // 
+            this.buttonBrowseTermBin.Location = new System.Drawing.Point(378, 39);
+            this.buttonBrowseTermBin.Name = "buttonBrowseTermBin";
+            this.buttonBrowseTermBin.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseTermBin.TabIndex = 3;
+            this.buttonBrowseTermBin.Text = "Browse";
+            this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
+            // 
+            // buttonBrowseFFmpegBin
+            // 
+            this.buttonBrowseFFmpegBin.Location = new System.Drawing.Point(378, 13);
+            this.buttonBrowseFFmpegBin.Name = "buttonBrowseFFmpegBin";
+            this.buttonBrowseFFmpegBin.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseFFmpegBin.TabIndex = 2;
+            this.buttonBrowseFFmpegBin.Text = "Browse";
+            this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
+            // 
+            // textBoxFFmpegBin
+            // 
+            this.textBoxFFmpegBin.Location = new System.Drawing.Point(62, 16);
+            this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
+            this.textBoxFFmpegBin.Size = new System.Drawing.Size(310, 20);
+            this.textBoxFFmpegBin.TabIndex = 1;
+            // 
+            // labelFFmpegBin
+            // 
+            this.labelFFmpegBin.AutoSize = true;
+            this.labelFFmpegBin.Location = new System.Drawing.Point(6, 19);
+            this.labelFFmpegBin.Name = "labelFFmpegBin";
+            this.labelFFmpegBin.Size = new System.Drawing.Size(48, 13);
+            this.labelFFmpegBin.TabIndex = 0;
+            this.labelFFmpegBin.Text = "FFmpeg:";
             // 
             // tabTagging
             // 
@@ -341,6 +341,154 @@ namespace FFmpegCatapult
             this.tabTagging.TabIndex = 5;
             this.tabTagging.Text = "Tagging";
             this.tabTagging.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxMiscTags
+            // 
+            this.groupBoxMiscTags.Controls.Add(this.textBoxPublisher);
+            this.groupBoxMiscTags.Controls.Add(this.textBoxComment);
+            this.groupBoxMiscTags.Controls.Add(this.labelComment);
+            this.groupBoxMiscTags.Controls.Add(this.labelPublisher);
+            this.groupBoxMiscTags.Controls.Add(this.textBoxAlbumArtist);
+            this.groupBoxMiscTags.Controls.Add(this.labelAlbumArtist);
+            this.groupBoxMiscTags.Location = new System.Drawing.Point(148, 107);
+            this.groupBoxMiscTags.Name = "groupBoxMiscTags";
+            this.groupBoxMiscTags.Size = new System.Drawing.Size(317, 78);
+            this.groupBoxMiscTags.TabIndex = 2;
+            this.groupBoxMiscTags.TabStop = false;
+            this.groupBoxMiscTags.Text = "Misc";
+            // 
+            // textBoxPublisher
+            // 
+            this.textBoxPublisher.Location = new System.Drawing.Point(211, 19);
+            this.textBoxPublisher.Name = "textBoxPublisher";
+            this.textBoxPublisher.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPublisher.TabIndex = 5;
+            // 
+            // textBoxComment
+            // 
+            this.textBoxComment.Location = new System.Drawing.Point(66, 45);
+            this.textBoxComment.Name = "textBoxComment";
+            this.textBoxComment.Size = new System.Drawing.Size(245, 20);
+            this.textBoxComment.TabIndex = 4;
+            // 
+            // labelComment
+            // 
+            this.labelComment.AutoSize = true;
+            this.labelComment.Location = new System.Drawing.Point(6, 48);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(54, 13);
+            this.labelComment.TabIndex = 3;
+            this.labelComment.Text = "Comment:";
+            // 
+            // labelPublisher
+            // 
+            this.labelPublisher.AutoSize = true;
+            this.labelPublisher.Location = new System.Drawing.Point(153, 22);
+            this.labelPublisher.Name = "labelPublisher";
+            this.labelPublisher.Size = new System.Drawing.Size(53, 13);
+            this.labelPublisher.TabIndex = 2;
+            this.labelPublisher.Text = "Publisher:";
+            // 
+            // textBoxAlbumArtist
+            // 
+            this.textBoxAlbumArtist.Location = new System.Drawing.Point(47, 19);
+            this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
+            this.textBoxAlbumArtist.Size = new System.Drawing.Size(100, 20);
+            this.textBoxAlbumArtist.TabIndex = 1;
+            // 
+            // labelAlbumArtist
+            // 
+            this.labelAlbumArtist.AutoSize = true;
+            this.labelAlbumArtist.Location = new System.Drawing.Point(6, 22);
+            this.labelAlbumArtist.Name = "labelAlbumArtist";
+            this.labelAlbumArtist.Size = new System.Drawing.Size(35, 13);
+            this.labelAlbumArtist.TabIndex = 0;
+            this.labelAlbumArtist.Text = "Band:";
+            // 
+            // groupBoxTrackTags
+            // 
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalDiscs);
+            this.groupBoxTrackTags.Controls.Add(this.labelOfDiscs);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxDisc);
+            this.groupBoxTrackTags.Controls.Add(this.labelDisc);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalTracks);
+            this.groupBoxTrackTags.Controls.Add(this.labelOfTrack);
+            this.groupBoxTrackTags.Controls.Add(this.textBoxTrack);
+            this.groupBoxTrackTags.Controls.Add(this.labelTrack);
+            this.groupBoxTrackTags.Location = new System.Drawing.Point(6, 107);
+            this.groupBoxTrackTags.Name = "groupBoxTrackTags";
+            this.groupBoxTrackTags.Size = new System.Drawing.Size(136, 78);
+            this.groupBoxTrackTags.TabIndex = 1;
+            this.groupBoxTrackTags.TabStop = false;
+            this.groupBoxTrackTags.Text = "Track";
+            // 
+            // textBoxTotalDiscs
+            // 
+            this.textBoxTotalDiscs.Location = new System.Drawing.Point(100, 45);
+            this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
+            this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalDiscs.TabIndex = 2;
+            this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelOfDiscs
+            // 
+            this.labelOfDiscs.AutoSize = true;
+            this.labelOfDiscs.Location = new System.Drawing.Point(82, 48);
+            this.labelOfDiscs.Name = "labelOfDiscs";
+            this.labelOfDiscs.Size = new System.Drawing.Size(12, 13);
+            this.labelOfDiscs.TabIndex = 2;
+            this.labelOfDiscs.Text = "/";
+            // 
+            // textBoxDisc
+            // 
+            this.textBoxDisc.Location = new System.Drawing.Point(51, 45);
+            this.textBoxDisc.Name = "textBoxDisc";
+            this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
+            this.textBoxDisc.TabIndex = 2;
+            this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelDisc
+            // 
+            this.labelDisc.AutoSize = true;
+            this.labelDisc.Location = new System.Drawing.Point(6, 47);
+            this.labelDisc.Name = "labelDisc";
+            this.labelDisc.Size = new System.Drawing.Size(31, 13);
+            this.labelDisc.TabIndex = 2;
+            this.labelDisc.Text = "Disc:";
+            // 
+            // textBoxTotalTracks
+            // 
+            this.textBoxTotalTracks.Location = new System.Drawing.Point(100, 19);
+            this.textBoxTotalTracks.Name = "textBoxTotalTracks";
+            this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalTracks.TabIndex = 2;
+            this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelOfTrack
+            // 
+            this.labelOfTrack.AutoSize = true;
+            this.labelOfTrack.Location = new System.Drawing.Point(82, 22);
+            this.labelOfTrack.Name = "labelOfTrack";
+            this.labelOfTrack.Size = new System.Drawing.Size(12, 13);
+            this.labelOfTrack.TabIndex = 2;
+            this.labelOfTrack.Text = "/";
+            // 
+            // textBoxTrack
+            // 
+            this.textBoxTrack.Location = new System.Drawing.Point(51, 19);
+            this.textBoxTrack.Name = "textBoxTrack";
+            this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTrack.TabIndex = 2;
+            this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelTrack
+            // 
+            this.labelTrack.AutoSize = true;
+            this.labelTrack.Location = new System.Drawing.Point(6, 22);
+            this.labelTrack.Name = "labelTrack";
+            this.labelTrack.Size = new System.Drawing.Size(38, 13);
+            this.labelTrack.TabIndex = 2;
+            this.labelTrack.Text = "Track:";
             // 
             // groupBoxGeneralTags
             // 
@@ -362,70 +510,12 @@ namespace FFmpegCatapult
             this.groupBoxGeneralTags.TabStop = false;
             this.groupBoxGeneralTags.Text = "General";
             // 
-            // labelTitle
+            // textBoxGenre
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(6, 19);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(30, 13);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Title:";
-            // 
-            // textBoxTitle
-            // 
-            this.textBoxTitle.Location = new System.Drawing.Point(51, 16);
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(402, 20);
-            this.textBoxTitle.TabIndex = 1;
-            // 
-            // textBoxYear
-            // 
-            this.textBoxYear.Location = new System.Drawing.Point(397, 41);
-            this.textBoxYear.Name = "textBoxYear";
-            this.textBoxYear.Size = new System.Drawing.Size(56, 20);
-            this.textBoxYear.TabIndex = 2;
-            this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // labelYear
-            // 
-            this.labelYear.AutoSize = true;
-            this.labelYear.Location = new System.Drawing.Point(359, 44);
-            this.labelYear.Name = "labelYear";
-            this.labelYear.Size = new System.Drawing.Size(32, 13);
-            this.labelYear.TabIndex = 3;
-            this.labelYear.Text = "Year:";
-            // 
-            // labelAlbum
-            // 
-            this.labelAlbum.AutoSize = true;
-            this.labelAlbum.Location = new System.Drawing.Point(6, 44);
-            this.labelAlbum.Name = "labelAlbum";
-            this.labelAlbum.Size = new System.Drawing.Size(39, 13);
-            this.labelAlbum.TabIndex = 4;
-            this.labelAlbum.Text = "Album:";
-            // 
-            // textBoxAlbum
-            // 
-            this.textBoxAlbum.Location = new System.Drawing.Point(51, 41);
-            this.textBoxAlbum.Name = "textBoxAlbum";
-            this.textBoxAlbum.Size = new System.Drawing.Size(302, 20);
-            this.textBoxAlbum.TabIndex = 5;
-            // 
-            // labelArtist
-            // 
-            this.labelArtist.AutoSize = true;
-            this.labelArtist.Location = new System.Drawing.Point(6, 69);
-            this.labelArtist.Name = "labelArtist";
-            this.labelArtist.Size = new System.Drawing.Size(30, 13);
-            this.labelArtist.TabIndex = 6;
-            this.labelArtist.Text = "Artist";
-            // 
-            // textBoxArtist
-            // 
-            this.textBoxArtist.Location = new System.Drawing.Point(51, 66);
-            this.textBoxArtist.Name = "textBoxArtist";
-            this.textBoxArtist.Size = new System.Drawing.Size(218, 20);
-            this.textBoxArtist.TabIndex = 7;
+            this.textBoxGenre.Location = new System.Drawing.Point(320, 66);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(133, 20);
+            this.textBoxGenre.TabIndex = 9;
             // 
             // labelGenre
             // 
@@ -436,160 +526,70 @@ namespace FFmpegCatapult
             this.labelGenre.TabIndex = 8;
             this.labelGenre.Text = "Genre:";
             // 
-            // textBoxGenre
+            // textBoxArtist
             // 
-            this.textBoxGenre.Location = new System.Drawing.Point(320, 66);
-            this.textBoxGenre.Name = "textBoxGenre";
-            this.textBoxGenre.Size = new System.Drawing.Size(133, 20);
-            this.textBoxGenre.TabIndex = 9;
+            this.textBoxArtist.Location = new System.Drawing.Point(51, 66);
+            this.textBoxArtist.Name = "textBoxArtist";
+            this.textBoxArtist.Size = new System.Drawing.Size(218, 20);
+            this.textBoxArtist.TabIndex = 7;
             // 
-            // groupBoxTrackTags
+            // labelArtist
             // 
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalDiscs);
-            this.groupBoxTrackTags.Controls.Add(this.labelOfDiscs);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxDisc);
-            this.groupBoxTrackTags.Controls.Add(this.labelDisc);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalTracks);
-            this.groupBoxTrackTags.Controls.Add(this.labelOfTrack);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTrack);
-            this.groupBoxTrackTags.Controls.Add(this.labelTrack);
-            this.groupBoxTrackTags.Location = new System.Drawing.Point(6, 107);
-            this.groupBoxTrackTags.Name = "groupBoxTrackTags";
-            this.groupBoxTrackTags.Size = new System.Drawing.Size(136, 78);
-            this.groupBoxTrackTags.TabIndex = 1;
-            this.groupBoxTrackTags.TabStop = false;
-            this.groupBoxTrackTags.Text = "Track";
+            this.labelArtist.AutoSize = true;
+            this.labelArtist.Location = new System.Drawing.Point(6, 69);
+            this.labelArtist.Name = "labelArtist";
+            this.labelArtist.Size = new System.Drawing.Size(30, 13);
+            this.labelArtist.TabIndex = 6;
+            this.labelArtist.Text = "Artist";
             // 
-            // labelTrack
+            // textBoxAlbum
             // 
-            this.labelTrack.AutoSize = true;
-            this.labelTrack.Location = new System.Drawing.Point(6, 22);
-            this.labelTrack.Name = "labelTrack";
-            this.labelTrack.Size = new System.Drawing.Size(38, 13);
-            this.labelTrack.TabIndex = 2;
-            this.labelTrack.Text = "Track:";
+            this.textBoxAlbum.Location = new System.Drawing.Point(51, 41);
+            this.textBoxAlbum.Name = "textBoxAlbum";
+            this.textBoxAlbum.Size = new System.Drawing.Size(302, 20);
+            this.textBoxAlbum.TabIndex = 5;
             // 
-            // textBoxTrack
+            // labelAlbum
             // 
-            this.textBoxTrack.Location = new System.Drawing.Point(51, 19);
-            this.textBoxTrack.Name = "textBoxTrack";
-            this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTrack.TabIndex = 2;
-            this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelAlbum.AutoSize = true;
+            this.labelAlbum.Location = new System.Drawing.Point(6, 44);
+            this.labelAlbum.Name = "labelAlbum";
+            this.labelAlbum.Size = new System.Drawing.Size(39, 13);
+            this.labelAlbum.TabIndex = 4;
+            this.labelAlbum.Text = "Album:";
             // 
-            // labelOfTrack
+            // labelYear
             // 
-            this.labelOfTrack.AutoSize = true;
-            this.labelOfTrack.Location = new System.Drawing.Point(82, 22);
-            this.labelOfTrack.Name = "labelOfTrack";
-            this.labelOfTrack.Size = new System.Drawing.Size(12, 13);
-            this.labelOfTrack.TabIndex = 2;
-            this.labelOfTrack.Text = "/";
+            this.labelYear.AutoSize = true;
+            this.labelYear.Location = new System.Drawing.Point(359, 44);
+            this.labelYear.Name = "labelYear";
+            this.labelYear.Size = new System.Drawing.Size(32, 13);
+            this.labelYear.TabIndex = 3;
+            this.labelYear.Text = "Year:";
             // 
-            // textBoxTotalTracks
+            // textBoxYear
             // 
-            this.textBoxTotalTracks.Location = new System.Drawing.Point(100, 19);
-            this.textBoxTotalTracks.Name = "textBoxTotalTracks";
-            this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTotalTracks.TabIndex = 2;
-            this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxYear.Location = new System.Drawing.Point(397, 41);
+            this.textBoxYear.Name = "textBoxYear";
+            this.textBoxYear.Size = new System.Drawing.Size(56, 20);
+            this.textBoxYear.TabIndex = 2;
+            this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelDisc
+            // textBoxTitle
             // 
-            this.labelDisc.AutoSize = true;
-            this.labelDisc.Location = new System.Drawing.Point(6, 47);
-            this.labelDisc.Name = "labelDisc";
-            this.labelDisc.Size = new System.Drawing.Size(31, 13);
-            this.labelDisc.TabIndex = 2;
-            this.labelDisc.Text = "Disc:";
+            this.textBoxTitle.Location = new System.Drawing.Point(51, 16);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(402, 20);
+            this.textBoxTitle.TabIndex = 1;
             // 
-            // textBoxDisc
+            // labelTitle
             // 
-            this.textBoxDisc.Location = new System.Drawing.Point(51, 45);
-            this.textBoxDisc.Name = "textBoxDisc";
-            this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
-            this.textBoxDisc.TabIndex = 2;
-            this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // labelOfDiscs
-            // 
-            this.labelOfDiscs.AutoSize = true;
-            this.labelOfDiscs.Location = new System.Drawing.Point(82, 48);
-            this.labelOfDiscs.Name = "labelOfDiscs";
-            this.labelOfDiscs.Size = new System.Drawing.Size(12, 13);
-            this.labelOfDiscs.TabIndex = 2;
-            this.labelOfDiscs.Text = "/";
-            // 
-            // textBoxTotalDiscs
-            // 
-            this.textBoxTotalDiscs.Location = new System.Drawing.Point(100, 45);
-            this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
-            this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTotalDiscs.TabIndex = 2;
-            this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // groupBoxMiscTags
-            // 
-            this.groupBoxMiscTags.Controls.Add(this.textBoxPublisher);
-            this.groupBoxMiscTags.Controls.Add(this.textBoxComment);
-            this.groupBoxMiscTags.Controls.Add(this.labelComment);
-            this.groupBoxMiscTags.Controls.Add(this.labelPublisher);
-            this.groupBoxMiscTags.Controls.Add(this.textBoxAlbumArtist);
-            this.groupBoxMiscTags.Controls.Add(this.labelAlbumArtist);
-            this.groupBoxMiscTags.Location = new System.Drawing.Point(148, 107);
-            this.groupBoxMiscTags.Name = "groupBoxMiscTags";
-            this.groupBoxMiscTags.Size = new System.Drawing.Size(317, 78);
-            this.groupBoxMiscTags.TabIndex = 2;
-            this.groupBoxMiscTags.TabStop = false;
-            this.groupBoxMiscTags.Text = "Misc";
-            // 
-            // labelAlbumArtist
-            // 
-            this.labelAlbumArtist.AutoSize = true;
-            this.labelAlbumArtist.Location = new System.Drawing.Point(6, 22);
-            this.labelAlbumArtist.Name = "labelAlbumArtist";
-            this.labelAlbumArtist.Size = new System.Drawing.Size(35, 13);
-            this.labelAlbumArtist.TabIndex = 0;
-            this.labelAlbumArtist.Text = "Band:";
-            // 
-            // textBoxAlbumArtist
-            // 
-            this.textBoxAlbumArtist.Location = new System.Drawing.Point(47, 19);
-            this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
-            this.textBoxAlbumArtist.Size = new System.Drawing.Size(100, 20);
-            this.textBoxAlbumArtist.TabIndex = 1;
-            // 
-            // labelPublisher
-            // 
-            this.labelPublisher.AutoSize = true;
-            this.labelPublisher.Location = new System.Drawing.Point(153, 22);
-            this.labelPublisher.Name = "labelPublisher";
-            this.labelPublisher.Size = new System.Drawing.Size(53, 13);
-            this.labelPublisher.TabIndex = 2;
-            this.labelPublisher.Text = "Publisher:";
-            // 
-            // labelComment
-            // 
-            this.labelComment.AutoSize = true;
-            this.labelComment.Location = new System.Drawing.Point(6, 48);
-            this.labelComment.Name = "labelComment";
-            this.labelComment.Size = new System.Drawing.Size(54, 13);
-            this.labelComment.TabIndex = 3;
-            this.labelComment.Text = "Comment:";
-            // 
-            // textBoxComment
-            // 
-            this.textBoxComment.Location = new System.Drawing.Point(66, 45);
-            this.textBoxComment.Name = "textBoxComment";
-            this.textBoxComment.Size = new System.Drawing.Size(245, 20);
-            this.textBoxComment.TabIndex = 4;
-            // 
-            // textBoxPublisher
-            // 
-            this.textBoxPublisher.Location = new System.Drawing.Point(211, 19);
-            this.textBoxPublisher.Name = "textBoxPublisher";
-            this.textBoxPublisher.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPublisher.TabIndex = 5;
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(6, 19);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(30, 13);
+            this.labelTitle.TabIndex = 0;
+            this.labelTitle.Text = "Title:";
             // 
             // tabAudio
             // 
@@ -606,73 +606,82 @@ namespace FFmpegCatapult
             this.tabAudio.Text = "Audio";
             this.tabAudio.UseVisualStyleBackColor = true;
             // 
-            // groupBoxAudioCodec
+            // groupBoxAudioStream
             // 
-            this.groupBoxAudioCodec.Controls.Add(this.comboBoxAudioCodecs);
-            this.groupBoxAudioCodec.Controls.Add(this.labelAudioCodec);
-            this.groupBoxAudioCodec.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxAudioCodec.Name = "groupBoxAudioCodec";
-            this.groupBoxAudioCodec.Size = new System.Drawing.Size(184, 55);
-            this.groupBoxAudioCodec.TabIndex = 0;
-            this.groupBoxAudioCodec.TabStop = false;
-            this.groupBoxAudioCodec.Text = "Codec";
+            this.groupBoxAudioStream.Controls.Add(this.buttonBrowseAudioStream);
+            this.groupBoxAudioStream.Controls.Add(this.labelAudioStream);
+            this.groupBoxAudioStream.Controls.Add(this.textBoxAudioStream);
+            this.groupBoxAudioStream.Location = new System.Drawing.Point(6, 141);
+            this.groupBoxAudioStream.Name = "groupBoxAudioStream";
+            this.groupBoxAudioStream.Size = new System.Drawing.Size(459, 44);
+            this.groupBoxAudioStream.TabIndex = 7;
+            this.groupBoxAudioStream.TabStop = false;
+            this.groupBoxAudioStream.Text = "Stream";
             // 
-            // labelAudioCodec
+            // buttonBrowseAudioStream
             // 
-            this.labelAudioCodec.AutoSize = true;
-            this.labelAudioCodec.Location = new System.Drawing.Point(6, 22);
-            this.labelAudioCodec.Name = "labelAudioCodec";
-            this.labelAudioCodec.Size = new System.Drawing.Size(41, 13);
-            this.labelAudioCodec.TabIndex = 0;
-            this.labelAudioCodec.Text = "Codec:";
+            this.buttonBrowseAudioStream.Location = new System.Drawing.Point(378, 13);
+            this.buttonBrowseAudioStream.Name = "buttonBrowseAudioStream";
+            this.buttonBrowseAudioStream.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseAudioStream.TabIndex = 2;
+            this.buttonBrowseAudioStream.Text = "Browse";
+            this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
             // 
-            // comboBoxAudioCodecs
+            // labelAudioStream
             // 
-            this.comboBoxAudioCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAudioCodecs.FormattingEnabled = true;
-            this.comboBoxAudioCodecs.Location = new System.Drawing.Point(53, 19);
-            this.comboBoxAudioCodecs.Name = "comboBoxAudioCodecs";
-            this.comboBoxAudioCodecs.Size = new System.Drawing.Size(125, 21);
-            this.comboBoxAudioCodecs.TabIndex = 1;
+            this.labelAudioStream.AutoSize = true;
+            this.labelAudioStream.Location = new System.Drawing.Point(6, 18);
+            this.labelAudioStream.Name = "labelAudioStream";
+            this.labelAudioStream.Size = new System.Drawing.Size(37, 13);
+            this.labelAudioStream.TabIndex = 1;
+            this.labelAudioStream.Text = "Audio:";
             // 
-            // groupBoxAudioEncoder
+            // textBoxAudioStream
             // 
-            this.groupBoxAudioEncoder.Controls.Add(this.buttonAudioCodecProperties);
-            this.groupBoxAudioEncoder.Controls.Add(this.comboBoxAudioEncoders);
-            this.groupBoxAudioEncoder.Controls.Add(this.labelAudioEncoder);
-            this.groupBoxAudioEncoder.Location = new System.Drawing.Point(196, 6);
-            this.groupBoxAudioEncoder.Name = "groupBoxAudioEncoder";
-            this.groupBoxAudioEncoder.Size = new System.Drawing.Size(269, 80);
-            this.groupBoxAudioEncoder.TabIndex = 1;
-            this.groupBoxAudioEncoder.TabStop = false;
-            this.groupBoxAudioEncoder.Text = "Encoder";
+            this.textBoxAudioStream.Location = new System.Drawing.Point(49, 15);
+            this.textBoxAudioStream.Name = "textBoxAudioStream";
+            this.textBoxAudioStream.Size = new System.Drawing.Size(323, 20);
+            this.textBoxAudioStream.TabIndex = 0;
             // 
-            // labelAudioEncoder
+            // groupBoxAudioBitrate
             // 
-            this.labelAudioEncoder.AutoSize = true;
-            this.labelAudioEncoder.Location = new System.Drawing.Point(6, 22);
-            this.labelAudioEncoder.Name = "labelAudioEncoder";
-            this.labelAudioEncoder.Size = new System.Drawing.Size(50, 13);
-            this.labelAudioEncoder.TabIndex = 0;
-            this.labelAudioEncoder.Text = "Encoder:";
+            this.groupBoxAudioBitrate.Controls.Add(this.labelAudioBitrate);
+            this.groupBoxAudioBitrate.Controls.Add(this.checkBoxUseAudioVBR);
+            this.groupBoxAudioBitrate.Controls.Add(this.comboBoxAudioBitrates);
+            this.groupBoxAudioBitrate.Location = new System.Drawing.Point(6, 65);
+            this.groupBoxAudioBitrate.Name = "groupBoxAudioBitrate";
+            this.groupBoxAudioBitrate.Size = new System.Drawing.Size(184, 72);
+            this.groupBoxAudioBitrate.TabIndex = 3;
+            this.groupBoxAudioBitrate.TabStop = false;
+            this.groupBoxAudioBitrate.Text = "Bitrate";
             // 
-            // comboBoxAudioEncoders
+            // labelAudioBitrate
             // 
-            this.comboBoxAudioEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAudioEncoders.FormattingEnabled = true;
-            this.comboBoxAudioEncoders.Location = new System.Drawing.Point(62, 19);
-            this.comboBoxAudioEncoders.Name = "comboBoxAudioEncoders";
-            this.comboBoxAudioEncoders.Size = new System.Drawing.Size(201, 21);
-            this.comboBoxAudioEncoders.TabIndex = 1;
+            this.labelAudioBitrate.AutoSize = true;
+            this.labelAudioBitrate.Location = new System.Drawing.Point(6, 20);
+            this.labelAudioBitrate.Name = "labelAudioBitrate";
+            this.labelAudioBitrate.Size = new System.Drawing.Size(40, 13);
+            this.labelAudioBitrate.TabIndex = 0;
+            this.labelAudioBitrate.Text = "Bitrate:";
             // 
-            // buttonAudioCodecProperties
+            // checkBoxUseAudioVBR
             // 
-            this.buttonAudioCodecProperties.Location = new System.Drawing.Point(188, 46);
-            this.buttonAudioCodecProperties.Name = "buttonAudioCodecProperties";
-            this.buttonAudioCodecProperties.Size = new System.Drawing.Size(75, 23);
-            this.buttonAudioCodecProperties.TabIndex = 2;
-            this.buttonAudioCodecProperties.Text = "Properties";
-            this.buttonAudioCodecProperties.UseVisualStyleBackColor = true;
+            this.checkBoxUseAudioVBR.AutoSize = true;
+            this.checkBoxUseAudioVBR.Location = new System.Drawing.Point(10, 44);
+            this.checkBoxUseAudioVBR.Name = "checkBoxUseAudioVBR";
+            this.checkBoxUseAudioVBR.Size = new System.Drawing.Size(70, 17);
+            this.checkBoxUseAudioVBR.TabIndex = 2;
+            this.checkBoxUseAudioVBR.Text = "Use VBR";
+            this.checkBoxUseAudioVBR.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxAudioBitrates
+            // 
+            this.comboBoxAudioBitrates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioBitrates.FormattingEnabled = true;
+            this.comboBoxAudioBitrates.Location = new System.Drawing.Point(53, 17);
+            this.comboBoxAudioBitrates.Name = "comboBoxAudioBitrates";
+            this.comboBoxAudioBitrates.Size = new System.Drawing.Size(125, 21);
+            this.comboBoxAudioBitrates.TabIndex = 1;
             // 
             // groupBoxAudioOutput
             // 
@@ -687,23 +696,14 @@ namespace FFmpegCatapult
             this.groupBoxAudioOutput.TabStop = false;
             this.groupBoxAudioOutput.Text = "Output";
             // 
-            // labelSampleRate
+            // comboBoxChannels
             // 
-            this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(141, 19);
-            this.labelSampleRate.Name = "labelSampleRate";
-            this.labelSampleRate.Size = new System.Drawing.Size(31, 13);
-            this.labelSampleRate.TabIndex = 0;
-            this.labelSampleRate.Text = "Freq:";
-            // 
-            // comboBoxSampleRates
-            // 
-            this.comboBoxSampleRates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSampleRates.FormattingEnabled = true;
-            this.comboBoxSampleRates.Location = new System.Drawing.Point(178, 15);
-            this.comboBoxSampleRates.Name = "comboBoxSampleRates";
-            this.comboBoxSampleRates.Size = new System.Drawing.Size(85, 21);
-            this.comboBoxSampleRates.TabIndex = 2;
+            this.comboBoxChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxChannels.FormattingEnabled = true;
+            this.comboBoxChannels.Location = new System.Drawing.Point(66, 15);
+            this.comboBoxChannels.Name = "comboBoxChannels";
+            this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
+            this.comboBoxChannels.TabIndex = 3;
             // 
             // labelChannels
             // 
@@ -714,91 +714,91 @@ namespace FFmpegCatapult
             this.labelChannels.TabIndex = 1;
             this.labelChannels.Text = "Channels:";
             // 
-            // comboBoxChannels
+            // comboBoxSampleRates
             // 
-            this.comboBoxChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxChannels.FormattingEnabled = true;
-            this.comboBoxChannels.Location = new System.Drawing.Point(66, 15);
-            this.comboBoxChannels.Name = "comboBoxChannels";
-            this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
-            this.comboBoxChannels.TabIndex = 3;
+            this.comboBoxSampleRates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSampleRates.FormattingEnabled = true;
+            this.comboBoxSampleRates.Location = new System.Drawing.Point(178, 15);
+            this.comboBoxSampleRates.Name = "comboBoxSampleRates";
+            this.comboBoxSampleRates.Size = new System.Drawing.Size(85, 21);
+            this.comboBoxSampleRates.TabIndex = 2;
             // 
-            // groupBoxAudioBitrate
+            // labelSampleRate
             // 
-            this.groupBoxAudioBitrate.Controls.Add(this.labelAudioBitrate);
-            this.groupBoxAudioBitrate.Controls.Add(this.checkBoxUseAudioVBR);
-            this.groupBoxAudioBitrate.Controls.Add(this.comboBoxAudioBitrates);
-            this.groupBoxAudioBitrate.Location = new System.Drawing.Point(6, 65);
-            this.groupBoxAudioBitrate.Name = "groupBoxAudioBitrate";
-            this.groupBoxAudioBitrate.Size = new System.Drawing.Size(184, 72);
-            this.groupBoxAudioBitrate.TabIndex = 3;
-            this.groupBoxAudioBitrate.TabStop = false;
-            this.groupBoxAudioBitrate.Text = "Bitrate";
+            this.labelSampleRate.AutoSize = true;
+            this.labelSampleRate.Location = new System.Drawing.Point(141, 19);
+            this.labelSampleRate.Name = "labelSampleRate";
+            this.labelSampleRate.Size = new System.Drawing.Size(31, 13);
+            this.labelSampleRate.TabIndex = 0;
+            this.labelSampleRate.Text = "Freq:";
             // 
-            // comboBoxAudioBitrates
+            // groupBoxAudioEncoder
             // 
-            this.comboBoxAudioBitrates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAudioBitrates.FormattingEnabled = true;
-            this.comboBoxAudioBitrates.Location = new System.Drawing.Point(53, 17);
-            this.comboBoxAudioBitrates.Name = "comboBoxAudioBitrates";
-            this.comboBoxAudioBitrates.Size = new System.Drawing.Size(125, 21);
-            this.comboBoxAudioBitrates.TabIndex = 1;
+            this.groupBoxAudioEncoder.Controls.Add(this.buttonAudioCodecProperties);
+            this.groupBoxAudioEncoder.Controls.Add(this.comboBoxAudioEncoders);
+            this.groupBoxAudioEncoder.Controls.Add(this.labelAudioEncoder);
+            this.groupBoxAudioEncoder.Location = new System.Drawing.Point(196, 6);
+            this.groupBoxAudioEncoder.Name = "groupBoxAudioEncoder";
+            this.groupBoxAudioEncoder.Size = new System.Drawing.Size(269, 80);
+            this.groupBoxAudioEncoder.TabIndex = 1;
+            this.groupBoxAudioEncoder.TabStop = false;
+            this.groupBoxAudioEncoder.Text = "Encoder";
             // 
-            // checkBoxUseAudioVBR
+            // buttonAudioCodecProperties
             // 
-            this.checkBoxUseAudioVBR.AutoSize = true;
-            this.checkBoxUseAudioVBR.Location = new System.Drawing.Point(10, 44);
-            this.checkBoxUseAudioVBR.Name = "checkBoxUseAudioVBR";
-            this.checkBoxUseAudioVBR.Size = new System.Drawing.Size(70, 17);
-            this.checkBoxUseAudioVBR.TabIndex = 2;
-            this.checkBoxUseAudioVBR.Text = "Use VBR";
-            this.checkBoxUseAudioVBR.UseVisualStyleBackColor = true;
+            this.buttonAudioCodecProperties.Location = new System.Drawing.Point(188, 46);
+            this.buttonAudioCodecProperties.Name = "buttonAudioCodecProperties";
+            this.buttonAudioCodecProperties.Size = new System.Drawing.Size(75, 23);
+            this.buttonAudioCodecProperties.TabIndex = 2;
+            this.buttonAudioCodecProperties.Text = "Properties";
+            this.buttonAudioCodecProperties.UseVisualStyleBackColor = true;
             // 
-            // labelAudioBitrate
+            // comboBoxAudioEncoders
             // 
-            this.labelAudioBitrate.AutoSize = true;
-            this.labelAudioBitrate.Location = new System.Drawing.Point(6, 20);
-            this.labelAudioBitrate.Name = "labelAudioBitrate";
-            this.labelAudioBitrate.Size = new System.Drawing.Size(40, 13);
-            this.labelAudioBitrate.TabIndex = 0;
-            this.labelAudioBitrate.Text = "Bitrate:";
+            this.comboBoxAudioEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioEncoders.FormattingEnabled = true;
+            this.comboBoxAudioEncoders.Location = new System.Drawing.Point(62, 19);
+            this.comboBoxAudioEncoders.Name = "comboBoxAudioEncoders";
+            this.comboBoxAudioEncoders.Size = new System.Drawing.Size(201, 21);
+            this.comboBoxAudioEncoders.TabIndex = 1;
             // 
-            // groupBoxAudioStream
+            // labelAudioEncoder
             // 
-            this.groupBoxAudioStream.Controls.Add(this.buttonBrowseAudioStream);
-            this.groupBoxAudioStream.Controls.Add(this.labelAudioStream);
-            this.groupBoxAudioStream.Controls.Add(this.textBoxAudioStream);
-            this.groupBoxAudioStream.Location = new System.Drawing.Point(6, 141);
-            this.groupBoxAudioStream.Name = "groupBoxAudioStream";
-            this.groupBoxAudioStream.Size = new System.Drawing.Size(459, 44);
-            this.groupBoxAudioStream.TabIndex = 7;
-            this.groupBoxAudioStream.TabStop = false;
-            this.groupBoxAudioStream.Text = "Stream";
+            this.labelAudioEncoder.AutoSize = true;
+            this.labelAudioEncoder.Location = new System.Drawing.Point(6, 22);
+            this.labelAudioEncoder.Name = "labelAudioEncoder";
+            this.labelAudioEncoder.Size = new System.Drawing.Size(50, 13);
+            this.labelAudioEncoder.TabIndex = 0;
+            this.labelAudioEncoder.Text = "Encoder:";
             // 
-            // textBoxAudioStream
+            // groupBoxAudioCodec
             // 
-            this.textBoxAudioStream.Location = new System.Drawing.Point(49, 15);
-            this.textBoxAudioStream.Name = "textBoxAudioStream";
-            this.textBoxAudioStream.Size = new System.Drawing.Size(323, 20);
-            this.textBoxAudioStream.TabIndex = 0;
+            this.groupBoxAudioCodec.Controls.Add(this.comboBoxAudioCodecs);
+            this.groupBoxAudioCodec.Controls.Add(this.labelAudioCodec);
+            this.groupBoxAudioCodec.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxAudioCodec.Name = "groupBoxAudioCodec";
+            this.groupBoxAudioCodec.Size = new System.Drawing.Size(184, 55);
+            this.groupBoxAudioCodec.TabIndex = 0;
+            this.groupBoxAudioCodec.TabStop = false;
+            this.groupBoxAudioCodec.Text = "Codec";
             // 
-            // labelAudioStream
+            // comboBoxAudioCodecs
             // 
-            this.labelAudioStream.AutoSize = true;
-            this.labelAudioStream.Location = new System.Drawing.Point(6, 18);
-            this.labelAudioStream.Name = "labelAudioStream";
-            this.labelAudioStream.Size = new System.Drawing.Size(37, 13);
-            this.labelAudioStream.TabIndex = 1;
-            this.labelAudioStream.Text = "Audio:";
+            this.comboBoxAudioCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioCodecs.FormattingEnabled = true;
+            this.comboBoxAudioCodecs.Location = new System.Drawing.Point(53, 19);
+            this.comboBoxAudioCodecs.Name = "comboBoxAudioCodecs";
+            this.comboBoxAudioCodecs.Size = new System.Drawing.Size(125, 21);
+            this.comboBoxAudioCodecs.TabIndex = 1;
             // 
-            // buttonBrowseAudioStream
+            // labelAudioCodec
             // 
-            this.buttonBrowseAudioStream.Location = new System.Drawing.Point(378, 13);
-            this.buttonBrowseAudioStream.Name = "buttonBrowseAudioStream";
-            this.buttonBrowseAudioStream.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseAudioStream.TabIndex = 2;
-            this.buttonBrowseAudioStream.Text = "Browse";
-            this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
+            this.labelAudioCodec.AutoSize = true;
+            this.labelAudioCodec.Location = new System.Drawing.Point(6, 22);
+            this.labelAudioCodec.Name = "labelAudioCodec";
+            this.labelAudioCodec.Size = new System.Drawing.Size(41, 13);
+            this.labelAudioCodec.TabIndex = 0;
+            this.labelAudioCodec.Text = "Codec:";
             // 
             // tabVideo
             // 
@@ -812,85 +812,6 @@ namespace FFmpegCatapult
             this.tabVideo.TabIndex = 2;
             this.tabVideo.Text = "Video";
             this.tabVideo.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxVideoCodec
-            // 
-            this.groupBoxVideoCodec.Controls.Add(this.checkBoxTwoPassEncoding);
-            this.groupBoxVideoCodec.Controls.Add(this.comboBoxVideoCodecs);
-            this.groupBoxVideoCodec.Controls.Add(this.labelVideoCodec);
-            this.groupBoxVideoCodec.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxVideoCodec.Name = "groupBoxVideoCodec";
-            this.groupBoxVideoCodec.Size = new System.Drawing.Size(184, 80);
-            this.groupBoxVideoCodec.TabIndex = 0;
-            this.groupBoxVideoCodec.TabStop = false;
-            this.groupBoxVideoCodec.Text = "Codec";
-            // 
-            // labelVideoCodec
-            // 
-            this.labelVideoCodec.AutoSize = true;
-            this.labelVideoCodec.Location = new System.Drawing.Point(6, 22);
-            this.labelVideoCodec.Name = "labelVideoCodec";
-            this.labelVideoCodec.Size = new System.Drawing.Size(41, 13);
-            this.labelVideoCodec.TabIndex = 0;
-            this.labelVideoCodec.Text = "Codec:";
-            // 
-            // comboBoxVideoCodecs
-            // 
-            this.comboBoxVideoCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxVideoCodecs.FormattingEnabled = true;
-            this.comboBoxVideoCodecs.Location = new System.Drawing.Point(53, 19);
-            this.comboBoxVideoCodecs.Name = "comboBoxVideoCodecs";
-            this.comboBoxVideoCodecs.Size = new System.Drawing.Size(125, 21);
-            this.comboBoxVideoCodecs.TabIndex = 1;
-            // 
-            // checkBoxTwoPassEncoding
-            // 
-            this.checkBoxTwoPassEncoding.AutoSize = true;
-            this.checkBoxTwoPassEncoding.Location = new System.Drawing.Point(9, 50);
-            this.checkBoxTwoPassEncoding.Name = "checkBoxTwoPassEncoding";
-            this.checkBoxTwoPassEncoding.Size = new System.Drawing.Size(119, 17);
-            this.checkBoxTwoPassEncoding.TabIndex = 2;
-            this.checkBoxTwoPassEncoding.Text = "Two-pass encoding";
-            this.checkBoxTwoPassEncoding.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxVideoEncoder
-            // 
-            this.groupBoxVideoEncoder.Controls.Add(this.buttonVideoCodecProperties);
-            this.groupBoxVideoEncoder.Controls.Add(this.comboBoxVideoEncoders);
-            this.groupBoxVideoEncoder.Controls.Add(this.labelVideoEncoder);
-            this.groupBoxVideoEncoder.Location = new System.Drawing.Point(196, 6);
-            this.groupBoxVideoEncoder.Name = "groupBoxVideoEncoder";
-            this.groupBoxVideoEncoder.Size = new System.Drawing.Size(269, 80);
-            this.groupBoxVideoEncoder.TabIndex = 1;
-            this.groupBoxVideoEncoder.TabStop = false;
-            this.groupBoxVideoEncoder.Text = "Encoder";
-            // 
-            // labelVideoEncoder
-            // 
-            this.labelVideoEncoder.AutoSize = true;
-            this.labelVideoEncoder.Location = new System.Drawing.Point(6, 22);
-            this.labelVideoEncoder.Name = "labelVideoEncoder";
-            this.labelVideoEncoder.Size = new System.Drawing.Size(50, 13);
-            this.labelVideoEncoder.TabIndex = 0;
-            this.labelVideoEncoder.Text = "Encoder:";
-            // 
-            // comboBoxVideoEncoders
-            // 
-            this.comboBoxVideoEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxVideoEncoders.FormattingEnabled = true;
-            this.comboBoxVideoEncoders.Location = new System.Drawing.Point(62, 19);
-            this.comboBoxVideoEncoders.Name = "comboBoxVideoEncoders";
-            this.comboBoxVideoEncoders.Size = new System.Drawing.Size(201, 21);
-            this.comboBoxVideoEncoders.TabIndex = 1;
-            // 
-            // buttonVideoCodecProperties
-            // 
-            this.buttonVideoCodecProperties.Location = new System.Drawing.Point(188, 46);
-            this.buttonVideoCodecProperties.Name = "buttonVideoCodecProperties";
-            this.buttonVideoCodecProperties.Size = new System.Drawing.Size(75, 23);
-            this.buttonVideoCodecProperties.TabIndex = 2;
-            this.buttonVideoCodecProperties.Text = "Properties";
-            this.buttonVideoCodecProperties.UseVisualStyleBackColor = true;
             // 
             // groupBoxVideoBitrate
             // 
@@ -920,49 +841,115 @@ namespace FFmpegCatapult
             this.groupBoxVideoBitrate.TabStop = false;
             this.groupBoxVideoBitrate.Text = "Bitrate";
             // 
-            // labelVideoBitrate
+            // textBoxQmax
             // 
-            this.labelVideoBitrate.AutoSize = true;
-            this.labelVideoBitrate.Location = new System.Drawing.Point(6, 21);
-            this.labelVideoBitrate.Name = "labelVideoBitrate";
-            this.labelVideoBitrate.Size = new System.Drawing.Size(40, 13);
-            this.labelVideoBitrate.TabIndex = 0;
-            this.labelVideoBitrate.Text = "Bitrate:";
+            this.textBoxQmax.Location = new System.Drawing.Point(217, 65);
+            this.textBoxQmax.Name = "textBoxQmax";
+            this.textBoxQmax.Size = new System.Drawing.Size(35, 20);
+            this.textBoxQmax.TabIndex = 24;
+            this.textBoxQmax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelMinBitrate
+            // labelQmax
             // 
-            this.labelMinBitrate.AutoSize = true;
-            this.labelMinBitrate.Location = new System.Drawing.Point(293, 20);
-            this.labelMinBitrate.Name = "labelMinBitrate";
-            this.labelMinBitrate.Size = new System.Drawing.Size(27, 13);
-            this.labelMinBitrate.TabIndex = 2;
-            this.labelMinBitrate.Text = "Min:";
+            this.labelQmax.AutoSize = true;
+            this.labelQmax.Location = new System.Drawing.Point(174, 68);
+            this.labelQmax.Name = "labelQmax";
+            this.labelQmax.Size = new System.Drawing.Size(37, 13);
+            this.labelQmax.TabIndex = 23;
+            this.labelQmax.Text = "Qmax:";
             // 
-            // comboBoxBits
+            // textBoxQmin
             // 
-            this.comboBoxBits.FormattingEnabled = true;
-            this.comboBoxBits.Location = new System.Drawing.Point(138, 18);
-            this.comboBoxBits.Name = "comboBoxBits";
-            this.comboBoxBits.Size = new System.Drawing.Size(53, 21);
-            this.comboBoxBits.TabIndex = 4;
+            this.textBoxQmin.Location = new System.Drawing.Point(133, 65);
+            this.textBoxQmin.Name = "textBoxQmin";
+            this.textBoxQmin.Size = new System.Drawing.Size(35, 20);
+            this.textBoxQmin.TabIndex = 22;
+            this.textBoxQmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelMaxBitrate
+            // labelQmin
             // 
-            this.labelMaxBitrate.AutoSize = true;
-            this.labelMaxBitrate.Location = new System.Drawing.Point(290, 45);
-            this.labelMaxBitrate.Name = "labelMaxBitrate";
-            this.labelMaxBitrate.Size = new System.Drawing.Size(30, 13);
-            this.labelMaxBitrate.TabIndex = 5;
-            this.labelMaxBitrate.Text = "Max:";
+            this.labelQmin.AutoSize = true;
+            this.labelQmin.Location = new System.Drawing.Point(93, 68);
+            this.labelQmin.Name = "labelQmin";
+            this.labelQmin.Size = new System.Drawing.Size(34, 13);
+            this.labelQmin.TabIndex = 21;
+            this.labelQmin.Text = "Qmin:";
             // 
-            // labelBuffer
+            // textBoxBufferSize
             // 
-            this.labelBuffer.AutoSize = true;
-            this.labelBuffer.Location = new System.Drawing.Point(282, 69);
-            this.labelBuffer.Name = "labelBuffer";
-            this.labelBuffer.Size = new System.Drawing.Size(38, 13);
-            this.labelBuffer.TabIndex = 9;
-            this.labelBuffer.Text = "Buffer:";
+            this.textBoxBufferSize.Location = new System.Drawing.Point(326, 67);
+            this.textBoxBufferSize.Name = "textBoxBufferSize";
+            this.textBoxBufferSize.Size = new System.Drawing.Size(80, 20);
+            this.textBoxBufferSize.TabIndex = 20;
+            this.textBoxBufferSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxBitrate_KeyPressDecimal);
+            // 
+            // textBoxMaxBitrate
+            // 
+            this.textBoxMaxBitrate.Location = new System.Drawing.Point(326, 42);
+            this.textBoxMaxBitrate.Name = "textBoxMaxBitrate";
+            this.textBoxMaxBitrate.Size = new System.Drawing.Size(80, 20);
+            this.textBoxMaxBitrate.TabIndex = 19;
+            this.textBoxMaxBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxBitrate_KeyPressDecimal);
+            // 
+            // textBoxMinBitrate
+            // 
+            this.textBoxMinBitrate.Location = new System.Drawing.Point(326, 17);
+            this.textBoxMinBitrate.Name = "textBoxMinBitrate";
+            this.textBoxMinBitrate.Size = new System.Drawing.Size(80, 20);
+            this.textBoxMinBitrate.TabIndex = 18;
+            this.textBoxMinBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxBitrate_KeyPressDecimal);
+            // 
+            // textBoxVideoBitrate
+            // 
+            this.textBoxVideoBitrate.Location = new System.Drawing.Point(50, 18);
+            this.textBoxVideoBitrate.Name = "textBoxVideoBitrate";
+            this.textBoxVideoBitrate.Size = new System.Drawing.Size(80, 20);
+            this.textBoxVideoBitrate.TabIndex = 17;
+            this.textBoxVideoBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxBitrate_KeyPressDecimal);
+            // 
+            // comboBoxBytes
+            // 
+            this.comboBoxBytes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBytes.FormattingEnabled = true;
+            this.comboBoxBytes.Location = new System.Drawing.Point(412, 66);
+            this.comboBoxBytes.Name = "comboBoxBytes";
+            this.comboBoxBytes.Size = new System.Drawing.Size(41, 21);
+            this.comboBoxBytes.TabIndex = 16;
+            // 
+            // labelMinBits
+            // 
+            this.labelMinBits.AutoSize = true;
+            this.labelMinBits.Location = new System.Drawing.Point(412, 21);
+            this.labelMinBits.Name = "labelMinBits";
+            this.labelMinBits.Size = new System.Drawing.Size(33, 13);
+            this.labelMinBits.TabIndex = 15;
+            this.labelMinBits.Text = "Mbps";
+            // 
+            // labelMaxBits
+            // 
+            this.labelMaxBits.AutoSize = true;
+            this.labelMaxBits.Location = new System.Drawing.Point(412, 46);
+            this.labelMaxBits.Name = "labelMaxBits";
+            this.labelMaxBits.Size = new System.Drawing.Size(33, 13);
+            this.labelMaxBits.TabIndex = 14;
+            this.labelMaxBits.Text = "Mbps";
+            // 
+            // textBoxCRF
+            // 
+            this.textBoxCRF.Location = new System.Drawing.Point(43, 65);
+            this.textBoxCRF.Name = "textBoxCRF";
+            this.textBoxCRF.Size = new System.Drawing.Size(35, 20);
+            this.textBoxCRF.TabIndex = 13;
+            this.textBoxCRF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelCRF
+            // 
+            this.labelCRF.AutoSize = true;
+            this.labelCRF.Location = new System.Drawing.Point(6, 68);
+            this.labelCRF.Name = "labelCRF";
+            this.labelCRF.Size = new System.Drawing.Size(31, 13);
+            this.labelCRF.TabIndex = 12;
+            this.labelCRF.Text = "CRF:";
             // 
             // checkBoxUseCRF
             // 
@@ -974,115 +961,128 @@ namespace FFmpegCatapult
             this.checkBoxUseCRF.Text = "Use CRF";
             this.checkBoxUseCRF.UseVisualStyleBackColor = true;
             // 
-            // labelCRF
+            // labelBuffer
             // 
-            this.labelCRF.AutoSize = true;
-            this.labelCRF.Location = new System.Drawing.Point(6, 68);
-            this.labelCRF.Name = "labelCRF";
-            this.labelCRF.Size = new System.Drawing.Size(31, 13);
-            this.labelCRF.TabIndex = 12;
-            this.labelCRF.Text = "CRF:";
+            this.labelBuffer.AutoSize = true;
+            this.labelBuffer.Location = new System.Drawing.Point(282, 69);
+            this.labelBuffer.Name = "labelBuffer";
+            this.labelBuffer.Size = new System.Drawing.Size(38, 13);
+            this.labelBuffer.TabIndex = 9;
+            this.labelBuffer.Text = "Buffer:";
             // 
-            // textBoxCRF
+            // labelMaxBitrate
             // 
-            this.textBoxCRF.Location = new System.Drawing.Point(43, 65);
-            this.textBoxCRF.Name = "textBoxCRF";
-            this.textBoxCRF.Size = new System.Drawing.Size(35, 20);
-            this.textBoxCRF.TabIndex = 13;
-            this.textBoxCRF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelMaxBitrate.AutoSize = true;
+            this.labelMaxBitrate.Location = new System.Drawing.Point(290, 45);
+            this.labelMaxBitrate.Name = "labelMaxBitrate";
+            this.labelMaxBitrate.Size = new System.Drawing.Size(30, 13);
+            this.labelMaxBitrate.TabIndex = 5;
+            this.labelMaxBitrate.Text = "Max:";
             // 
-            // labelMaxBits
+            // comboBoxBits
             // 
-            this.labelMaxBits.AutoSize = true;
-            this.labelMaxBits.Location = new System.Drawing.Point(412, 46);
-            this.labelMaxBits.Name = "labelMaxBits";
-            this.labelMaxBits.Size = new System.Drawing.Size(33, 13);
-            this.labelMaxBits.TabIndex = 14;
-            this.labelMaxBits.Text = "Mbps";
+            this.comboBoxBits.FormattingEnabled = true;
+            this.comboBoxBits.Location = new System.Drawing.Point(138, 18);
+            this.comboBoxBits.Name = "comboBoxBits";
+            this.comboBoxBits.Size = new System.Drawing.Size(53, 21);
+            this.comboBoxBits.TabIndex = 4;
             // 
-            // labelMinBits
+            // labelMinBitrate
             // 
-            this.labelMinBits.AutoSize = true;
-            this.labelMinBits.Location = new System.Drawing.Point(412, 21);
-            this.labelMinBits.Name = "labelMinBits";
-            this.labelMinBits.Size = new System.Drawing.Size(33, 13);
-            this.labelMinBits.TabIndex = 15;
-            this.labelMinBits.Text = "Mbps";
+            this.labelMinBitrate.AutoSize = true;
+            this.labelMinBitrate.Location = new System.Drawing.Point(293, 20);
+            this.labelMinBitrate.Name = "labelMinBitrate";
+            this.labelMinBitrate.Size = new System.Drawing.Size(27, 13);
+            this.labelMinBitrate.TabIndex = 2;
+            this.labelMinBitrate.Text = "Min:";
             // 
-            // comboBoxBytes
+            // labelVideoBitrate
             // 
-            this.comboBoxBytes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxBytes.FormattingEnabled = true;
-            this.comboBoxBytes.Location = new System.Drawing.Point(412, 66);
-            this.comboBoxBytes.Name = "comboBoxBytes";
-            this.comboBoxBytes.Size = new System.Drawing.Size(41, 21);
-            this.comboBoxBytes.TabIndex = 16;
+            this.labelVideoBitrate.AutoSize = true;
+            this.labelVideoBitrate.Location = new System.Drawing.Point(6, 21);
+            this.labelVideoBitrate.Name = "labelVideoBitrate";
+            this.labelVideoBitrate.Size = new System.Drawing.Size(40, 13);
+            this.labelVideoBitrate.TabIndex = 0;
+            this.labelVideoBitrate.Text = "Bitrate:";
             // 
-            // textBoxVideoBitrate
+            // groupBoxVideoEncoder
             // 
-            this.textBoxVideoBitrate.Location = new System.Drawing.Point(50, 18);
-            this.textBoxVideoBitrate.Name = "textBoxVideoBitrate";
-            this.textBoxVideoBitrate.Size = new System.Drawing.Size(80, 20);
-            this.textBoxVideoBitrate.TabIndex = 17;
-            this.textBoxVideoBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.groupBoxVideoEncoder.Controls.Add(this.buttonVideoCodecProperties);
+            this.groupBoxVideoEncoder.Controls.Add(this.comboBoxVideoEncoders);
+            this.groupBoxVideoEncoder.Controls.Add(this.labelVideoEncoder);
+            this.groupBoxVideoEncoder.Location = new System.Drawing.Point(196, 6);
+            this.groupBoxVideoEncoder.Name = "groupBoxVideoEncoder";
+            this.groupBoxVideoEncoder.Size = new System.Drawing.Size(269, 80);
+            this.groupBoxVideoEncoder.TabIndex = 1;
+            this.groupBoxVideoEncoder.TabStop = false;
+            this.groupBoxVideoEncoder.Text = "Encoder";
             // 
-            // textBoxMinBitrate
+            // buttonVideoCodecProperties
             // 
-            this.textBoxMinBitrate.Location = new System.Drawing.Point(326, 17);
-            this.textBoxMinBitrate.Name = "textBoxMinBitrate";
-            this.textBoxMinBitrate.Size = new System.Drawing.Size(80, 20);
-            this.textBoxMinBitrate.TabIndex = 18;
-            this.textBoxMinBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.buttonVideoCodecProperties.Location = new System.Drawing.Point(188, 46);
+            this.buttonVideoCodecProperties.Name = "buttonVideoCodecProperties";
+            this.buttonVideoCodecProperties.Size = new System.Drawing.Size(75, 23);
+            this.buttonVideoCodecProperties.TabIndex = 2;
+            this.buttonVideoCodecProperties.Text = "Properties";
+            this.buttonVideoCodecProperties.UseVisualStyleBackColor = true;
             // 
-            // textBoxMaxBitrate
+            // comboBoxVideoEncoders
             // 
-            this.textBoxMaxBitrate.Location = new System.Drawing.Point(326, 42);
-            this.textBoxMaxBitrate.Name = "textBoxMaxBitrate";
-            this.textBoxMaxBitrate.Size = new System.Drawing.Size(80, 20);
-            this.textBoxMaxBitrate.TabIndex = 19;
-            this.textBoxMaxBitrate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.comboBoxVideoEncoders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVideoEncoders.FormattingEnabled = true;
+            this.comboBoxVideoEncoders.Location = new System.Drawing.Point(62, 19);
+            this.comboBoxVideoEncoders.Name = "comboBoxVideoEncoders";
+            this.comboBoxVideoEncoders.Size = new System.Drawing.Size(201, 21);
+            this.comboBoxVideoEncoders.TabIndex = 1;
             // 
-            // textBoxBufferSize
+            // labelVideoEncoder
             // 
-            this.textBoxBufferSize.Location = new System.Drawing.Point(326, 67);
-            this.textBoxBufferSize.Name = "textBoxBufferSize";
-            this.textBoxBufferSize.Size = new System.Drawing.Size(80, 20);
-            this.textBoxBufferSize.TabIndex = 20;
-            this.textBoxBufferSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelVideoEncoder.AutoSize = true;
+            this.labelVideoEncoder.Location = new System.Drawing.Point(6, 22);
+            this.labelVideoEncoder.Name = "labelVideoEncoder";
+            this.labelVideoEncoder.Size = new System.Drawing.Size(50, 13);
+            this.labelVideoEncoder.TabIndex = 0;
+            this.labelVideoEncoder.Text = "Encoder:";
             // 
-            // labelQmin
+            // groupBoxVideoCodec
             // 
-            this.labelQmin.AutoSize = true;
-            this.labelQmin.Location = new System.Drawing.Point(93, 68);
-            this.labelQmin.Name = "labelQmin";
-            this.labelQmin.Size = new System.Drawing.Size(34, 13);
-            this.labelQmin.TabIndex = 21;
-            this.labelQmin.Text = "Qmin:";
+            this.groupBoxVideoCodec.Controls.Add(this.checkBoxTwoPassEncoding);
+            this.groupBoxVideoCodec.Controls.Add(this.comboBoxVideoCodecs);
+            this.groupBoxVideoCodec.Controls.Add(this.labelVideoCodec);
+            this.groupBoxVideoCodec.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxVideoCodec.Name = "groupBoxVideoCodec";
+            this.groupBoxVideoCodec.Size = new System.Drawing.Size(184, 80);
+            this.groupBoxVideoCodec.TabIndex = 0;
+            this.groupBoxVideoCodec.TabStop = false;
+            this.groupBoxVideoCodec.Text = "Codec";
             // 
-            // textBoxQmin
+            // checkBoxTwoPassEncoding
             // 
-            this.textBoxQmin.Location = new System.Drawing.Point(133, 65);
-            this.textBoxQmin.Name = "textBoxQmin";
-            this.textBoxQmin.Size = new System.Drawing.Size(35, 20);
-            this.textBoxQmin.TabIndex = 22;
-            this.textBoxQmin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.checkBoxTwoPassEncoding.AutoSize = true;
+            this.checkBoxTwoPassEncoding.Location = new System.Drawing.Point(9, 50);
+            this.checkBoxTwoPassEncoding.Name = "checkBoxTwoPassEncoding";
+            this.checkBoxTwoPassEncoding.Size = new System.Drawing.Size(119, 17);
+            this.checkBoxTwoPassEncoding.TabIndex = 2;
+            this.checkBoxTwoPassEncoding.Text = "Two-pass encoding";
+            this.checkBoxTwoPassEncoding.UseVisualStyleBackColor = true;
             // 
-            // labelQmax
+            // comboBoxVideoCodecs
             // 
-            this.labelQmax.AutoSize = true;
-            this.labelQmax.Location = new System.Drawing.Point(174, 68);
-            this.labelQmax.Name = "labelQmax";
-            this.labelQmax.Size = new System.Drawing.Size(37, 13);
-            this.labelQmax.TabIndex = 23;
-            this.labelQmax.Text = "Qmax:";
+            this.comboBoxVideoCodecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVideoCodecs.FormattingEnabled = true;
+            this.comboBoxVideoCodecs.Location = new System.Drawing.Point(53, 19);
+            this.comboBoxVideoCodecs.Name = "comboBoxVideoCodecs";
+            this.comboBoxVideoCodecs.Size = new System.Drawing.Size(125, 21);
+            this.comboBoxVideoCodecs.TabIndex = 1;
             // 
-            // textBoxQmax
+            // labelVideoCodec
             // 
-            this.textBoxQmax.Location = new System.Drawing.Point(217, 65);
-            this.textBoxQmax.Name = "textBoxQmax";
-            this.textBoxQmax.Size = new System.Drawing.Size(35, 20);
-            this.textBoxQmax.TabIndex = 24;
-            this.textBoxQmax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelVideoCodec.AutoSize = true;
+            this.labelVideoCodec.Location = new System.Drawing.Point(6, 22);
+            this.labelVideoCodec.Name = "labelVideoCodec";
+            this.labelVideoCodec.Size = new System.Drawing.Size(41, 13);
+            this.labelVideoCodec.TabIndex = 0;
+            this.labelVideoCodec.Text = "Codec:";
             // 
             // tabPicture
             // 
@@ -1098,172 +1098,34 @@ namespace FFmpegCatapult
             this.tabPicture.Text = "Picture";
             this.tabPicture.UseVisualStyleBackColor = true;
             // 
-            // groupBoxResolution
+            // groupBoxScalingMethods
             // 
-            this.groupBoxResolution.Controls.Add(this.textBoxHeight);
-            this.groupBoxResolution.Controls.Add(this.textBoxWidth);
-            this.groupBoxResolution.Controls.Add(this.labelHeight);
-            this.groupBoxResolution.Controls.Add(this.radioButtonCustomRes);
-            this.groupBoxResolution.Controls.Add(this.radioButtonHalfRes);
-            this.groupBoxResolution.Controls.Add(this.radioButtonKeepRes);
-            this.groupBoxResolution.Location = new System.Drawing.Point(6, 6);
-            this.groupBoxResolution.Name = "groupBoxResolution";
-            this.groupBoxResolution.Size = new System.Drawing.Size(238, 95);
-            this.groupBoxResolution.TabIndex = 0;
-            this.groupBoxResolution.TabStop = false;
-            this.groupBoxResolution.Text = "Resolution";
+            this.groupBoxScalingMethods.Controls.Add(this.comboBoxScalingMethods);
+            this.groupBoxScalingMethods.Controls.Add(this.labelMethod);
+            this.groupBoxScalingMethods.Location = new System.Drawing.Point(250, 133);
+            this.groupBoxScalingMethods.Name = "groupBoxScalingMethods";
+            this.groupBoxScalingMethods.Size = new System.Drawing.Size(215, 52);
+            this.groupBoxScalingMethods.TabIndex = 3;
+            this.groupBoxScalingMethods.TabStop = false;
+            this.groupBoxScalingMethods.Text = "Scaling";
             // 
-            // radioButtonKeepRes
+            // comboBoxScalingMethods
             // 
-            this.radioButtonKeepRes.AutoSize = true;
-            this.radioButtonKeepRes.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonKeepRes.Name = "radioButtonKeepRes";
-            this.radioButtonKeepRes.Size = new System.Drawing.Size(134, 17);
-            this.radioButtonKeepRes.TabIndex = 0;
-            this.radioButtonKeepRes.TabStop = true;
-            this.radioButtonKeepRes.Text = "Keep original resolution";
-            this.radioButtonKeepRes.UseVisualStyleBackColor = true;
+            this.comboBoxScalingMethods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxScalingMethods.FormattingEnabled = true;
+            this.comboBoxScalingMethods.Location = new System.Drawing.Point(58, 19);
+            this.comboBoxScalingMethods.Name = "comboBoxScalingMethods";
+            this.comboBoxScalingMethods.Size = new System.Drawing.Size(151, 21);
+            this.comboBoxScalingMethods.TabIndex = 1;
             // 
-            // radioButtonHalfRes
+            // labelMethod
             // 
-            this.radioButtonHalfRes.AutoSize = true;
-            this.radioButtonHalfRes.Location = new System.Drawing.Point(6, 42);
-            this.radioButtonHalfRes.Name = "radioButtonHalfRes";
-            this.radioButtonHalfRes.Size = new System.Drawing.Size(92, 17);
-            this.radioButtonHalfRes.TabIndex = 1;
-            this.radioButtonHalfRes.TabStop = true;
-            this.radioButtonHalfRes.Text = "Half resolution";
-            this.radioButtonHalfRes.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonCustomRes
-            // 
-            this.radioButtonCustomRes.AutoSize = true;
-            this.radioButtonCustomRes.Location = new System.Drawing.Point(6, 65);
-            this.radioButtonCustomRes.Name = "radioButtonCustomRes";
-            this.radioButtonCustomRes.Size = new System.Drawing.Size(56, 17);
-            this.radioButtonCustomRes.TabIndex = 2;
-            this.radioButtonCustomRes.TabStop = true;
-            this.radioButtonCustomRes.Text = "Width:";
-            this.radioButtonCustomRes.UseVisualStyleBackColor = true;
-            // 
-            // labelHeight
-            // 
-            this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(130, 67);
-            this.labelHeight.Name = "labelHeight";
-            this.labelHeight.Size = new System.Drawing.Size(41, 13);
-            this.labelHeight.TabIndex = 4;
-            this.labelHeight.Text = "Height:";
-            // 
-            // textBoxWidth
-            // 
-            this.textBoxWidth.Enabled = false;
-            this.textBoxWidth.Location = new System.Drawing.Point(68, 64);
-            this.textBoxWidth.Name = "textBoxWidth";
-            this.textBoxWidth.Size = new System.Drawing.Size(55, 20);
-            this.textBoxWidth.TabIndex = 6;
-            this.textBoxWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // textBoxHeight
-            // 
-            this.textBoxHeight.Enabled = false;
-            this.textBoxHeight.Location = new System.Drawing.Point(177, 64);
-            this.textBoxHeight.Name = "textBoxHeight";
-            this.textBoxHeight.Size = new System.Drawing.Size(55, 20);
-            this.textBoxHeight.TabIndex = 7;
-            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // groupBoxScreen
-            // 
-            this.groupBoxScreen.Controls.Add(this.textBoxFPS);
-            this.groupBoxScreen.Controls.Add(this.textBoxRatioB);
-            this.groupBoxScreen.Controls.Add(this.textBoxRatioA);
-            this.groupBoxScreen.Controls.Add(this.labelFPS);
-            this.groupBoxScreen.Controls.Add(this.labelRatioDash);
-            this.groupBoxScreen.Controls.Add(this.labelRatio);
-            this.groupBoxScreen.Controls.Add(this.checkBoxDeinterlace);
-            this.groupBoxScreen.Controls.Add(this.checkBoxAspectRatio);
-            this.groupBoxScreen.Location = new System.Drawing.Point(6, 107);
-            this.groupBoxScreen.Name = "groupBoxScreen";
-            this.groupBoxScreen.Size = new System.Drawing.Size(238, 78);
-            this.groupBoxScreen.TabIndex = 1;
-            this.groupBoxScreen.TabStop = false;
-            this.groupBoxScreen.Text = "Screen";
-            // 
-            // checkBoxAspectRatio
-            // 
-            this.checkBoxAspectRatio.AutoSize = true;
-            this.checkBoxAspectRatio.Location = new System.Drawing.Point(6, 19);
-            this.checkBoxAspectRatio.Name = "checkBoxAspectRatio";
-            this.checkBoxAspectRatio.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxAspectRatio.TabIndex = 0;
-            this.checkBoxAspectRatio.Text = "Aspect ratio";
-            this.checkBoxAspectRatio.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxDeinterlace
-            // 
-            this.checkBoxDeinterlace.AutoSize = true;
-            this.checkBoxDeinterlace.Location = new System.Drawing.Point(152, 19);
-            this.checkBoxDeinterlace.Name = "checkBoxDeinterlace";
-            this.checkBoxDeinterlace.Size = new System.Drawing.Size(80, 17);
-            this.checkBoxDeinterlace.TabIndex = 1;
-            this.checkBoxDeinterlace.Text = "Deinterlace";
-            this.checkBoxDeinterlace.UseVisualStyleBackColor = true;
-            // 
-            // labelRatio
-            // 
-            this.labelRatio.AutoSize = true;
-            this.labelRatio.Enabled = false;
-            this.labelRatio.Location = new System.Drawing.Point(3, 48);
-            this.labelRatio.Name = "labelRatio";
-            this.labelRatio.Size = new System.Drawing.Size(35, 13);
-            this.labelRatio.TabIndex = 2;
-            this.labelRatio.Text = "Ratio:";
-            // 
-            // labelRatioDash
-            // 
-            this.labelRatioDash.AutoSize = true;
-            this.labelRatioDash.Enabled = false;
-            this.labelRatioDash.Location = new System.Drawing.Point(75, 48);
-            this.labelRatioDash.Name = "labelRatioDash";
-            this.labelRatioDash.Size = new System.Drawing.Size(10, 13);
-            this.labelRatioDash.TabIndex = 4;
-            this.labelRatioDash.Text = ":";
-            // 
-            // labelFPS
-            // 
-            this.labelFPS.AutoSize = true;
-            this.labelFPS.Location = new System.Drawing.Point(171, 51);
-            this.labelFPS.Name = "labelFPS";
-            this.labelFPS.Size = new System.Drawing.Size(30, 13);
-            this.labelFPS.TabIndex = 6;
-            this.labelFPS.Text = "FPS:";
-            // 
-            // textBoxRatioA
-            // 
-            this.textBoxRatioA.Enabled = false;
-            this.textBoxRatioA.Location = new System.Drawing.Point(44, 46);
-            this.textBoxRatioA.Name = "textBoxRatioA";
-            this.textBoxRatioA.Size = new System.Drawing.Size(25, 20);
-            this.textBoxRatioA.TabIndex = 8;
-            this.textBoxRatioA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // textBoxRatioB
-            // 
-            this.textBoxRatioB.Enabled = false;
-            this.textBoxRatioB.Location = new System.Drawing.Point(91, 46);
-            this.textBoxRatioB.Name = "textBoxRatioB";
-            this.textBoxRatioB.Size = new System.Drawing.Size(25, 20);
-            this.textBoxRatioB.TabIndex = 9;
-            this.textBoxRatioB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
-            // 
-            // textBoxFPS
-            // 
-            this.textBoxFPS.Location = new System.Drawing.Point(207, 48);
-            this.textBoxFPS.Name = "textBoxFPS";
-            this.textBoxFPS.Size = new System.Drawing.Size(25, 20);
-            this.textBoxFPS.TabIndex = 10;
-            this.textBoxFPS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelMethod.AutoSize = true;
+            this.labelMethod.Location = new System.Drawing.Point(6, 22);
+            this.labelMethod.Name = "labelMethod";
+            this.labelMethod.Size = new System.Drawing.Size(46, 13);
+            this.labelMethod.TabIndex = 0;
+            this.labelMethod.Text = "Method:";
             // 
             // groupBoxLayout
             // 
@@ -1286,65 +1148,49 @@ namespace FFmpegCatapult
             this.groupBoxLayout.TabStop = false;
             this.groupBoxLayout.Text = "Layout";
             // 
-            // checkBoxCrop
+            // textBoxLayoutHoriz
             // 
-            this.checkBoxCrop.AutoSize = true;
-            this.checkBoxCrop.Location = new System.Drawing.Point(9, 19);
-            this.checkBoxCrop.Name = "checkBoxCrop";
-            this.checkBoxCrop.Size = new System.Drawing.Size(48, 17);
-            this.checkBoxCrop.TabIndex = 0;
-            this.checkBoxCrop.Text = "Crop";
-            this.checkBoxCrop.UseVisualStyleBackColor = true;
+            this.textBoxLayoutHoriz.Enabled = false;
+            this.textBoxLayoutHoriz.Location = new System.Drawing.Point(159, 65);
+            this.textBoxLayoutHoriz.Name = "textBoxLayoutHoriz";
+            this.textBoxLayoutHoriz.Size = new System.Drawing.Size(50, 20);
+            this.textBoxLayoutHoriz.TabIndex = 15;
+            this.textBoxLayoutHoriz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // checkBoxPad
+            // textBoxLayoutVert
             // 
-            this.checkBoxPad.AutoSize = true;
-            this.checkBoxPad.Location = new System.Drawing.Point(159, 19);
-            this.checkBoxPad.Name = "checkBoxPad";
-            this.checkBoxPad.Size = new System.Drawing.Size(45, 17);
-            this.checkBoxPad.TabIndex = 1;
-            this.checkBoxPad.Text = "Pad";
-            this.checkBoxPad.UseVisualStyleBackColor = true;
+            this.textBoxLayoutVert.Enabled = false;
+            this.textBoxLayoutVert.Location = new System.Drawing.Point(50, 65);
+            this.textBoxLayoutVert.Name = "textBoxLayoutVert";
+            this.textBoxLayoutVert.Size = new System.Drawing.Size(50, 20);
+            this.textBoxLayoutVert.TabIndex = 14;
+            this.textBoxLayoutVert.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelLayoutWidth
+            // textBoxLayoutHeight
             // 
-            this.labelLayoutWidth.AutoSize = true;
-            this.labelLayoutWidth.Enabled = false;
-            this.labelLayoutWidth.Location = new System.Drawing.Point(6, 44);
-            this.labelLayoutWidth.Name = "labelLayoutWidth";
-            this.labelLayoutWidth.Size = new System.Drawing.Size(38, 13);
-            this.labelLayoutWidth.TabIndex = 2;
-            this.labelLayoutWidth.Text = "Width:";
+            this.textBoxLayoutHeight.Enabled = false;
+            this.textBoxLayoutHeight.Location = new System.Drawing.Point(159, 41);
+            this.textBoxLayoutHeight.Name = "textBoxLayoutHeight";
+            this.textBoxLayoutHeight.Size = new System.Drawing.Size(50, 20);
+            this.textBoxLayoutHeight.TabIndex = 13;
+            this.textBoxLayoutHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelLayoutHeight
+            // textBoxLayoutWidth
             // 
-            this.labelLayoutHeight.AutoSize = true;
-            this.labelLayoutHeight.Enabled = false;
-            this.labelLayoutHeight.Location = new System.Drawing.Point(112, 44);
-            this.labelLayoutHeight.Name = "labelLayoutHeight";
-            this.labelLayoutHeight.Size = new System.Drawing.Size(41, 13);
-            this.labelLayoutHeight.TabIndex = 4;
-            this.labelLayoutHeight.Text = "Height:";
+            this.textBoxLayoutWidth.Enabled = false;
+            this.textBoxLayoutWidth.Location = new System.Drawing.Point(50, 41);
+            this.textBoxLayoutWidth.Name = "textBoxLayoutWidth";
+            this.textBoxLayoutWidth.Size = new System.Drawing.Size(50, 20);
+            this.textBoxLayoutWidth.TabIndex = 12;
+            this.textBoxLayoutWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
-            // labelVert
+            // textBoxLayoutColour
             // 
-            this.labelVert.AutoSize = true;
-            this.labelVert.Enabled = false;
-            this.labelVert.Location = new System.Drawing.Point(6, 69);
-            this.labelVert.Name = "labelVert";
-            this.labelVert.Size = new System.Drawing.Size(29, 13);
-            this.labelVert.TabIndex = 6;
-            this.labelVert.Text = "Vert:";
-            // 
-            // labelHoriz
-            // 
-            this.labelHoriz.AutoSize = true;
-            this.labelHoriz.Enabled = false;
-            this.labelHoriz.Location = new System.Drawing.Point(112, 69);
-            this.labelHoriz.Name = "labelHoriz";
-            this.labelHoriz.Size = new System.Drawing.Size(34, 13);
-            this.labelHoriz.TabIndex = 8;
-            this.labelHoriz.Text = "Horiz:";
+            this.textBoxLayoutColour.Enabled = false;
+            this.textBoxLayoutColour.Location = new System.Drawing.Point(50, 91);
+            this.textBoxLayoutColour.Name = "textBoxLayoutColour";
+            this.textBoxLayoutColour.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLayoutColour.TabIndex = 11;
             // 
             // labelLayoutColour
             // 
@@ -1356,78 +1202,232 @@ namespace FFmpegCatapult
             this.labelLayoutColour.TabIndex = 10;
             this.labelLayoutColour.Text = "Colour:";
             // 
-            // textBoxLayoutColour
+            // labelHoriz
             // 
-            this.textBoxLayoutColour.Enabled = false;
-            this.textBoxLayoutColour.Location = new System.Drawing.Point(50, 91);
-            this.textBoxLayoutColour.Name = "textBoxLayoutColour";
-            this.textBoxLayoutColour.Size = new System.Drawing.Size(100, 20);
-            this.textBoxLayoutColour.TabIndex = 11;
+            this.labelHoriz.AutoSize = true;
+            this.labelHoriz.Enabled = false;
+            this.labelHoriz.Location = new System.Drawing.Point(112, 69);
+            this.labelHoriz.Name = "labelHoriz";
+            this.labelHoriz.Size = new System.Drawing.Size(34, 13);
+            this.labelHoriz.TabIndex = 8;
+            this.labelHoriz.Text = "Horiz:";
             // 
-            // textBoxLayoutWidth
+            // labelVert
             // 
-            this.textBoxLayoutWidth.Enabled = false;
-            this.textBoxLayoutWidth.Location = new System.Drawing.Point(50, 41);
-            this.textBoxLayoutWidth.Name = "textBoxLayoutWidth";
-            this.textBoxLayoutWidth.Size = new System.Drawing.Size(50, 20);
-            this.textBoxLayoutWidth.TabIndex = 12;
-            this.textBoxLayoutWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelVert.AutoSize = true;
+            this.labelVert.Enabled = false;
+            this.labelVert.Location = new System.Drawing.Point(6, 69);
+            this.labelVert.Name = "labelVert";
+            this.labelVert.Size = new System.Drawing.Size(29, 13);
+            this.labelVert.TabIndex = 6;
+            this.labelVert.Text = "Vert:";
             // 
-            // textBoxLayoutHeight
+            // labelLayoutHeight
             // 
-            this.textBoxLayoutHeight.Enabled = false;
-            this.textBoxLayoutHeight.Location = new System.Drawing.Point(159, 41);
-            this.textBoxLayoutHeight.Name = "textBoxLayoutHeight";
-            this.textBoxLayoutHeight.Size = new System.Drawing.Size(50, 20);
-            this.textBoxLayoutHeight.TabIndex = 13;
-            this.textBoxLayoutHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelLayoutHeight.AutoSize = true;
+            this.labelLayoutHeight.Enabled = false;
+            this.labelLayoutHeight.Location = new System.Drawing.Point(112, 44);
+            this.labelLayoutHeight.Name = "labelLayoutHeight";
+            this.labelLayoutHeight.Size = new System.Drawing.Size(41, 13);
+            this.labelLayoutHeight.TabIndex = 4;
+            this.labelLayoutHeight.Text = "Height:";
             // 
-            // textBoxLayoutVert
+            // labelLayoutWidth
             // 
-            this.textBoxLayoutVert.Enabled = false;
-            this.textBoxLayoutVert.Location = new System.Drawing.Point(50, 65);
-            this.textBoxLayoutVert.Name = "textBoxLayoutVert";
-            this.textBoxLayoutVert.Size = new System.Drawing.Size(50, 20);
-            this.textBoxLayoutVert.TabIndex = 14;
-            this.textBoxLayoutVert.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.labelLayoutWidth.AutoSize = true;
+            this.labelLayoutWidth.Enabled = false;
+            this.labelLayoutWidth.Location = new System.Drawing.Point(6, 44);
+            this.labelLayoutWidth.Name = "labelLayoutWidth";
+            this.labelLayoutWidth.Size = new System.Drawing.Size(38, 13);
+            this.labelLayoutWidth.TabIndex = 2;
+            this.labelLayoutWidth.Text = "Width:";
             // 
-            // textBoxLayoutHoriz
+            // checkBoxPad
             // 
-            this.textBoxLayoutHoriz.Enabled = false;
-            this.textBoxLayoutHoriz.Location = new System.Drawing.Point(159, 65);
-            this.textBoxLayoutHoriz.Name = "textBoxLayoutHoriz";
-            this.textBoxLayoutHoriz.Size = new System.Drawing.Size(50, 20);
-            this.textBoxLayoutHoriz.TabIndex = 15;
-            this.textBoxLayoutHoriz.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.checkBoxPad.AutoSize = true;
+            this.checkBoxPad.Location = new System.Drawing.Point(159, 19);
+            this.checkBoxPad.Name = "checkBoxPad";
+            this.checkBoxPad.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxPad.TabIndex = 1;
+            this.checkBoxPad.Text = "Pad";
+            this.checkBoxPad.UseVisualStyleBackColor = true;
             // 
-            // groupBoxScalingMethods
+            // checkBoxCrop
             // 
-            this.groupBoxScalingMethods.Controls.Add(this.comboBoxScalingMethods);
-            this.groupBoxScalingMethods.Controls.Add(this.labelMethod);
-            this.groupBoxScalingMethods.Location = new System.Drawing.Point(250, 133);
-            this.groupBoxScalingMethods.Name = "groupBoxScalingMethods";
-            this.groupBoxScalingMethods.Size = new System.Drawing.Size(215, 52);
-            this.groupBoxScalingMethods.TabIndex = 3;
-            this.groupBoxScalingMethods.TabStop = false;
-            this.groupBoxScalingMethods.Text = "Scaling";
+            this.checkBoxCrop.AutoSize = true;
+            this.checkBoxCrop.Location = new System.Drawing.Point(9, 19);
+            this.checkBoxCrop.Name = "checkBoxCrop";
+            this.checkBoxCrop.Size = new System.Drawing.Size(48, 17);
+            this.checkBoxCrop.TabIndex = 0;
+            this.checkBoxCrop.Text = "Crop";
+            this.checkBoxCrop.UseVisualStyleBackColor = true;
             // 
-            // labelMethod
+            // groupBoxScreen
             // 
-            this.labelMethod.AutoSize = true;
-            this.labelMethod.Location = new System.Drawing.Point(6, 22);
-            this.labelMethod.Name = "labelMethod";
-            this.labelMethod.Size = new System.Drawing.Size(46, 13);
-            this.labelMethod.TabIndex = 0;
-            this.labelMethod.Text = "Method:";
+            this.groupBoxScreen.Controls.Add(this.textBoxFPS);
+            this.groupBoxScreen.Controls.Add(this.textBoxRatioB);
+            this.groupBoxScreen.Controls.Add(this.textBoxRatioA);
+            this.groupBoxScreen.Controls.Add(this.labelFPS);
+            this.groupBoxScreen.Controls.Add(this.labelRatioDash);
+            this.groupBoxScreen.Controls.Add(this.labelRatio);
+            this.groupBoxScreen.Controls.Add(this.checkBoxDeinterlace);
+            this.groupBoxScreen.Controls.Add(this.checkBoxAspectRatio);
+            this.groupBoxScreen.Location = new System.Drawing.Point(6, 107);
+            this.groupBoxScreen.Name = "groupBoxScreen";
+            this.groupBoxScreen.Size = new System.Drawing.Size(238, 78);
+            this.groupBoxScreen.TabIndex = 1;
+            this.groupBoxScreen.TabStop = false;
+            this.groupBoxScreen.Text = "Screen";
             // 
-            // comboBoxScalingMethods
+            // textBoxFPS
             // 
-            this.comboBoxScalingMethods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxScalingMethods.FormattingEnabled = true;
-            this.comboBoxScalingMethods.Location = new System.Drawing.Point(58, 19);
-            this.comboBoxScalingMethods.Name = "comboBoxScalingMethods";
-            this.comboBoxScalingMethods.Size = new System.Drawing.Size(151, 21);
-            this.comboBoxScalingMethods.TabIndex = 1;
+            this.textBoxFPS.Location = new System.Drawing.Point(207, 48);
+            this.textBoxFPS.Name = "textBoxFPS";
+            this.textBoxFPS.Size = new System.Drawing.Size(25, 20);
+            this.textBoxFPS.TabIndex = 10;
+            this.textBoxFPS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // textBoxRatioB
+            // 
+            this.textBoxRatioB.Enabled = false;
+            this.textBoxRatioB.Location = new System.Drawing.Point(91, 46);
+            this.textBoxRatioB.Name = "textBoxRatioB";
+            this.textBoxRatioB.Size = new System.Drawing.Size(25, 20);
+            this.textBoxRatioB.TabIndex = 9;
+            this.textBoxRatioB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // textBoxRatioA
+            // 
+            this.textBoxRatioA.Enabled = false;
+            this.textBoxRatioA.Location = new System.Drawing.Point(44, 46);
+            this.textBoxRatioA.Name = "textBoxRatioA";
+            this.textBoxRatioA.Size = new System.Drawing.Size(25, 20);
+            this.textBoxRatioA.TabIndex = 8;
+            this.textBoxRatioA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelFPS
+            // 
+            this.labelFPS.AutoSize = true;
+            this.labelFPS.Location = new System.Drawing.Point(171, 51);
+            this.labelFPS.Name = "labelFPS";
+            this.labelFPS.Size = new System.Drawing.Size(30, 13);
+            this.labelFPS.TabIndex = 6;
+            this.labelFPS.Text = "FPS:";
+            // 
+            // labelRatioDash
+            // 
+            this.labelRatioDash.AutoSize = true;
+            this.labelRatioDash.Enabled = false;
+            this.labelRatioDash.Location = new System.Drawing.Point(75, 48);
+            this.labelRatioDash.Name = "labelRatioDash";
+            this.labelRatioDash.Size = new System.Drawing.Size(10, 13);
+            this.labelRatioDash.TabIndex = 4;
+            this.labelRatioDash.Text = ":";
+            // 
+            // labelRatio
+            // 
+            this.labelRatio.AutoSize = true;
+            this.labelRatio.Enabled = false;
+            this.labelRatio.Location = new System.Drawing.Point(3, 48);
+            this.labelRatio.Name = "labelRatio";
+            this.labelRatio.Size = new System.Drawing.Size(35, 13);
+            this.labelRatio.TabIndex = 2;
+            this.labelRatio.Text = "Ratio:";
+            // 
+            // checkBoxDeinterlace
+            // 
+            this.checkBoxDeinterlace.AutoSize = true;
+            this.checkBoxDeinterlace.Location = new System.Drawing.Point(152, 19);
+            this.checkBoxDeinterlace.Name = "checkBoxDeinterlace";
+            this.checkBoxDeinterlace.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxDeinterlace.TabIndex = 1;
+            this.checkBoxDeinterlace.Text = "Deinterlace";
+            this.checkBoxDeinterlace.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAspectRatio
+            // 
+            this.checkBoxAspectRatio.AutoSize = true;
+            this.checkBoxAspectRatio.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxAspectRatio.Name = "checkBoxAspectRatio";
+            this.checkBoxAspectRatio.Size = new System.Drawing.Size(82, 17);
+            this.checkBoxAspectRatio.TabIndex = 0;
+            this.checkBoxAspectRatio.Text = "Aspect ratio";
+            this.checkBoxAspectRatio.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxResolution
+            // 
+            this.groupBoxResolution.Controls.Add(this.textBoxHeight);
+            this.groupBoxResolution.Controls.Add(this.textBoxWidth);
+            this.groupBoxResolution.Controls.Add(this.labelHeight);
+            this.groupBoxResolution.Controls.Add(this.radioButtonCustomRes);
+            this.groupBoxResolution.Controls.Add(this.radioButtonHalfRes);
+            this.groupBoxResolution.Controls.Add(this.radioButtonKeepRes);
+            this.groupBoxResolution.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxResolution.Name = "groupBoxResolution";
+            this.groupBoxResolution.Size = new System.Drawing.Size(238, 95);
+            this.groupBoxResolution.TabIndex = 0;
+            this.groupBoxResolution.TabStop = false;
+            this.groupBoxResolution.Text = "Resolution";
+            // 
+            // textBoxHeight
+            // 
+            this.textBoxHeight.Enabled = false;
+            this.textBoxHeight.Location = new System.Drawing.Point(177, 64);
+            this.textBoxHeight.Name = "textBoxHeight";
+            this.textBoxHeight.Size = new System.Drawing.Size(55, 20);
+            this.textBoxHeight.TabIndex = 7;
+            this.textBoxHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // textBoxWidth
+            // 
+            this.textBoxWidth.Enabled = false;
+            this.textBoxWidth.Location = new System.Drawing.Point(68, 64);
+            this.textBoxWidth.Name = "textBoxWidth";
+            this.textBoxWidth.Size = new System.Drawing.Size(55, 20);
+            this.textBoxWidth.TabIndex = 6;
+            this.textBoxWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
+            // labelHeight
+            // 
+            this.labelHeight.AutoSize = true;
+            this.labelHeight.Location = new System.Drawing.Point(130, 67);
+            this.labelHeight.Name = "labelHeight";
+            this.labelHeight.Size = new System.Drawing.Size(41, 13);
+            this.labelHeight.TabIndex = 4;
+            this.labelHeight.Text = "Height:";
+            // 
+            // radioButtonCustomRes
+            // 
+            this.radioButtonCustomRes.AutoSize = true;
+            this.radioButtonCustomRes.Location = new System.Drawing.Point(6, 65);
+            this.radioButtonCustomRes.Name = "radioButtonCustomRes";
+            this.radioButtonCustomRes.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonCustomRes.TabIndex = 2;
+            this.radioButtonCustomRes.TabStop = true;
+            this.radioButtonCustomRes.Text = "Width:";
+            this.radioButtonCustomRes.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHalfRes
+            // 
+            this.radioButtonHalfRes.AutoSize = true;
+            this.radioButtonHalfRes.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonHalfRes.Name = "radioButtonHalfRes";
+            this.radioButtonHalfRes.Size = new System.Drawing.Size(92, 17);
+            this.radioButtonHalfRes.TabIndex = 1;
+            this.radioButtonHalfRes.TabStop = true;
+            this.radioButtonHalfRes.Text = "Half resolution";
+            this.radioButtonHalfRes.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonKeepRes
+            // 
+            this.radioButtonKeepRes.AutoSize = true;
+            this.radioButtonKeepRes.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonKeepRes.Name = "radioButtonKeepRes";
+            this.radioButtonKeepRes.Size = new System.Drawing.Size(134, 17);
+            this.radioButtonKeepRes.TabIndex = 0;
+            this.radioButtonKeepRes.TabStop = true;
+            this.radioButtonKeepRes.Text = "Keep original resolution";
+            this.radioButtonKeepRes.UseVisualStyleBackColor = true;
             // 
             // tabMain
             // 
@@ -1441,6 +1441,108 @@ namespace FFmpegCatapult
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxSession
+            // 
+            this.groupBoxSession.Controls.Add(this.radioButtonRefresh);
+            this.groupBoxSession.Controls.Add(this.radioButtonKeep);
+            this.groupBoxSession.Location = new System.Drawing.Point(384, 107);
+            this.groupBoxSession.Name = "groupBoxSession";
+            this.groupBoxSession.Size = new System.Drawing.Size(81, 78);
+            this.groupBoxSession.TabIndex = 2;
+            this.groupBoxSession.TabStop = false;
+            this.groupBoxSession.Text = "Session";
+            // 
+            // radioButtonRefresh
+            // 
+            this.radioButtonRefresh.AutoSize = true;
+            this.radioButtonRefresh.Location = new System.Drawing.Point(6, 45);
+            this.radioButtonRefresh.Name = "radioButtonRefresh";
+            this.radioButtonRefresh.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonRefresh.TabIndex = 2;
+            this.radioButtonRefresh.TabStop = true;
+            this.radioButtonRefresh.Text = "Refresh";
+            this.radioButtonRefresh.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonKeep
+            // 
+            this.radioButtonKeep.AutoSize = true;
+            this.radioButtonKeep.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonKeep.Name = "radioButtonKeep";
+            this.radioButtonKeep.Size = new System.Drawing.Size(50, 17);
+            this.radioButtonKeep.TabIndex = 1;
+            this.radioButtonKeep.TabStop = true;
+            this.radioButtonKeep.Text = "Keep";
+            this.radioButtonKeep.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxEncoding
+            // 
+            this.groupBoxEncoding.Controls.Add(this.comboBoxThreads);
+            this.groupBoxEncoding.Controls.Add(this.labelThreads);
+            this.groupBoxEncoding.Controls.Add(this.comboBoxContainers);
+            this.groupBoxEncoding.Controls.Add(this.labelFormat);
+            this.groupBoxEncoding.Controls.Add(this.comboBoxPresets);
+            this.groupBoxEncoding.Controls.Add(this.labelPreset);
+            this.groupBoxEncoding.Location = new System.Drawing.Point(6, 107);
+            this.groupBoxEncoding.Name = "groupBoxEncoding";
+            this.groupBoxEncoding.Size = new System.Drawing.Size(372, 78);
+            this.groupBoxEncoding.TabIndex = 1;
+            this.groupBoxEncoding.TabStop = false;
+            this.groupBoxEncoding.Text = "Encoding";
+            // 
+            // comboBoxThreads
+            // 
+            this.comboBoxThreads.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxThreads.FormattingEnabled = true;
+            this.comboBoxThreads.Location = new System.Drawing.Point(313, 45);
+            this.comboBoxThreads.Name = "comboBoxThreads";
+            this.comboBoxThreads.Size = new System.Drawing.Size(53, 21);
+            this.comboBoxThreads.TabIndex = 5;
+            // 
+            // labelThreads
+            // 
+            this.labelThreads.AutoSize = true;
+            this.labelThreads.Location = new System.Drawing.Point(258, 48);
+            this.labelThreads.Name = "labelThreads";
+            this.labelThreads.Size = new System.Drawing.Size(49, 13);
+            this.labelThreads.TabIndex = 4;
+            this.labelThreads.Text = "Threads:";
+            // 
+            // comboBoxContainers
+            // 
+            this.comboBoxContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxContainers.FormattingEnabled = true;
+            this.comboBoxContainers.Location = new System.Drawing.Point(54, 45);
+            this.comboBoxContainers.Name = "comboBoxContainers";
+            this.comboBoxContainers.Size = new System.Drawing.Size(198, 21);
+            this.comboBoxContainers.TabIndex = 3;
+            // 
+            // labelFormat
+            // 
+            this.labelFormat.AutoSize = true;
+            this.labelFormat.Location = new System.Drawing.Point(6, 48);
+            this.labelFormat.Name = "labelFormat";
+            this.labelFormat.Size = new System.Drawing.Size(42, 13);
+            this.labelFormat.TabIndex = 2;
+            this.labelFormat.Text = "Format:";
+            // 
+            // comboBoxPresets
+            // 
+            this.comboBoxPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPresets.FormattingEnabled = true;
+            this.comboBoxPresets.Location = new System.Drawing.Point(54, 18);
+            this.comboBoxPresets.Name = "comboBoxPresets";
+            this.comboBoxPresets.Size = new System.Drawing.Size(312, 21);
+            this.comboBoxPresets.TabIndex = 1;
+            // 
+            // labelPreset
+            // 
+            this.labelPreset.AutoSize = true;
+            this.labelPreset.Location = new System.Drawing.Point(6, 21);
+            this.labelPreset.Name = "labelPreset";
+            this.labelPreset.Size = new System.Drawing.Size(40, 13);
+            this.labelPreset.TabIndex = 0;
+            this.labelPreset.Text = "Preset:";
             // 
             // groupBoxFiles
             // 
@@ -1458,57 +1560,6 @@ namespace FFmpegCatapult
             this.groupBoxFiles.TabStop = false;
             this.groupBoxFiles.Text = "Files";
             // 
-            // labelInput
-            // 
-            this.labelInput.AutoSize = true;
-            this.labelInput.Location = new System.Drawing.Point(6, 19);
-            this.labelInput.Name = "labelInput";
-            this.labelInput.Size = new System.Drawing.Size(34, 13);
-            this.labelInput.TabIndex = 0;
-            this.labelInput.Text = "Input:";
-            // 
-            // labelOutput
-            // 
-            this.labelOutput.AutoSize = true;
-            this.labelOutput.Location = new System.Drawing.Point(6, 45);
-            this.labelOutput.Name = "labelOutput";
-            this.labelOutput.Size = new System.Drawing.Size(42, 13);
-            this.labelOutput.TabIndex = 1;
-            this.labelOutput.Text = "Output:";
-            // 
-            // textBoxInFile
-            // 
-            this.textBoxInFile.AllowDrop = true;
-            this.textBoxInFile.Location = new System.Drawing.Point(54, 16);
-            this.textBoxInFile.Name = "textBoxInFile";
-            this.textBoxInFile.Size = new System.Drawing.Size(318, 20);
-            this.textBoxInFile.TabIndex = 2;
-            // 
-            // textBoxOutFile
-            // 
-            this.textBoxOutFile.Location = new System.Drawing.Point(54, 42);
-            this.textBoxOutFile.Name = "textBoxOutFile";
-            this.textBoxOutFile.Size = new System.Drawing.Size(318, 20);
-            this.textBoxOutFile.TabIndex = 3;
-            // 
-            // buttonBrowseInput
-            // 
-            this.buttonBrowseInput.Location = new System.Drawing.Point(378, 13);
-            this.buttonBrowseInput.Name = "buttonBrowseInput";
-            this.buttonBrowseInput.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseInput.TabIndex = 4;
-            this.buttonBrowseInput.Text = "Browse";
-            this.buttonBrowseInput.UseVisualStyleBackColor = true;
-            // 
-            // buttonBrowseOutput
-            // 
-            this.buttonBrowseOutput.Location = new System.Drawing.Point(378, 40);
-            this.buttonBrowseOutput.Name = "buttonBrowseOutput";
-            this.buttonBrowseOutput.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowseOutput.TabIndex = 5;
-            this.buttonBrowseOutput.Text = "Save";
-            this.buttonBrowseOutput.UseVisualStyleBackColor = true;
-            // 
             // checkBoxOverwrite
             // 
             this.checkBoxOverwrite.AutoSize = true;
@@ -1519,107 +1570,56 @@ namespace FFmpegCatapult
             this.checkBoxOverwrite.Text = "Overwrite existing file";
             this.checkBoxOverwrite.UseVisualStyleBackColor = true;
             // 
-            // groupBoxEncoding
+            // buttonBrowseOutput
             // 
-            this.groupBoxEncoding.Controls.Add(this.comboBoxThreads);
-            this.groupBoxEncoding.Controls.Add(this.labelThreads);
-            this.groupBoxEncoding.Controls.Add(this.comboBoxContainers);
-            this.groupBoxEncoding.Controls.Add(this.labelFormat);
-            this.groupBoxEncoding.Controls.Add(this.comboBoxPresets);
-            this.groupBoxEncoding.Controls.Add(this.labelPreset);
-            this.groupBoxEncoding.Location = new System.Drawing.Point(6, 107);
-            this.groupBoxEncoding.Name = "groupBoxEncoding";
-            this.groupBoxEncoding.Size = new System.Drawing.Size(372, 78);
-            this.groupBoxEncoding.TabIndex = 1;
-            this.groupBoxEncoding.TabStop = false;
-            this.groupBoxEncoding.Text = "Encoding";
+            this.buttonBrowseOutput.Location = new System.Drawing.Point(378, 40);
+            this.buttonBrowseOutput.Name = "buttonBrowseOutput";
+            this.buttonBrowseOutput.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseOutput.TabIndex = 5;
+            this.buttonBrowseOutput.Text = "Save";
+            this.buttonBrowseOutput.UseVisualStyleBackColor = true;
             // 
-            // labelPreset
+            // buttonBrowseInput
             // 
-            this.labelPreset.AutoSize = true;
-            this.labelPreset.Location = new System.Drawing.Point(6, 21);
-            this.labelPreset.Name = "labelPreset";
-            this.labelPreset.Size = new System.Drawing.Size(40, 13);
-            this.labelPreset.TabIndex = 0;
-            this.labelPreset.Text = "Preset:";
+            this.buttonBrowseInput.Location = new System.Drawing.Point(378, 13);
+            this.buttonBrowseInput.Name = "buttonBrowseInput";
+            this.buttonBrowseInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseInput.TabIndex = 4;
+            this.buttonBrowseInput.Text = "Browse";
+            this.buttonBrowseInput.UseVisualStyleBackColor = true;
             // 
-            // comboBoxPresets
+            // textBoxOutFile
             // 
-            this.comboBoxPresets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPresets.FormattingEnabled = true;
-            this.comboBoxPresets.Location = new System.Drawing.Point(67, 18);
-            this.comboBoxPresets.Name = "comboBoxPresets";
-            this.comboBoxPresets.Size = new System.Drawing.Size(299, 21);
-            this.comboBoxPresets.TabIndex = 1;
+            this.textBoxOutFile.Location = new System.Drawing.Point(54, 42);
+            this.textBoxOutFile.Name = "textBoxOutFile";
+            this.textBoxOutFile.Size = new System.Drawing.Size(318, 20);
+            this.textBoxOutFile.TabIndex = 3;
             // 
-            // labelFormat
+            // textBoxInFile
             // 
-            this.labelFormat.AutoSize = true;
-            this.labelFormat.Location = new System.Drawing.Point(6, 48);
-            this.labelFormat.Name = "labelFormat";
-            this.labelFormat.Size = new System.Drawing.Size(55, 13);
-            this.labelFormat.TabIndex = 2;
-            this.labelFormat.Text = "Container:";
+            this.textBoxInFile.AllowDrop = true;
+            this.textBoxInFile.Location = new System.Drawing.Point(54, 16);
+            this.textBoxInFile.Name = "textBoxInFile";
+            this.textBoxInFile.Size = new System.Drawing.Size(318, 20);
+            this.textBoxInFile.TabIndex = 2;
             // 
-            // comboBoxContainers
+            // labelOutput
             // 
-            this.comboBoxContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxContainers.FormattingEnabled = true;
-            this.comboBoxContainers.Location = new System.Drawing.Point(67, 45);
-            this.comboBoxContainers.Name = "comboBoxContainers";
-            this.comboBoxContainers.Size = new System.Drawing.Size(185, 21);
-            this.comboBoxContainers.TabIndex = 3;
+            this.labelOutput.AutoSize = true;
+            this.labelOutput.Location = new System.Drawing.Point(6, 45);
+            this.labelOutput.Name = "labelOutput";
+            this.labelOutput.Size = new System.Drawing.Size(42, 13);
+            this.labelOutput.TabIndex = 1;
+            this.labelOutput.Text = "Output:";
             // 
-            // labelThreads
+            // labelInput
             // 
-            this.labelThreads.AutoSize = true;
-            this.labelThreads.Location = new System.Drawing.Point(258, 48);
-            this.labelThreads.Name = "labelThreads";
-            this.labelThreads.Size = new System.Drawing.Size(49, 13);
-            this.labelThreads.TabIndex = 4;
-            this.labelThreads.Text = "Threads:";
-            // 
-            // comboBoxThreads
-            // 
-            this.comboBoxThreads.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxThreads.FormattingEnabled = true;
-            this.comboBoxThreads.Location = new System.Drawing.Point(313, 45);
-            this.comboBoxThreads.Name = "comboBoxThreads";
-            this.comboBoxThreads.Size = new System.Drawing.Size(53, 21);
-            this.comboBoxThreads.TabIndex = 5;
-            // 
-            // groupBoxSession
-            // 
-            this.groupBoxSession.Controls.Add(this.radioButtonRefresh);
-            this.groupBoxSession.Controls.Add(this.radioButtonKeep);
-            this.groupBoxSession.Location = new System.Drawing.Point(384, 107);
-            this.groupBoxSession.Name = "groupBoxSession";
-            this.groupBoxSession.Size = new System.Drawing.Size(81, 78);
-            this.groupBoxSession.TabIndex = 2;
-            this.groupBoxSession.TabStop = false;
-            this.groupBoxSession.Text = "Session";
-            // 
-            // radioButtonKeep
-            // 
-            this.radioButtonKeep.AutoSize = true;
-            this.radioButtonKeep.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonKeep.Name = "radioButtonKeep";
-            this.radioButtonKeep.Size = new System.Drawing.Size(50, 17);
-            this.radioButtonKeep.TabIndex = 1;
-            this.radioButtonKeep.TabStop = true;
-            this.radioButtonKeep.Text = "Keep";
-            this.radioButtonKeep.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonRefresh
-            // 
-            this.radioButtonRefresh.AutoSize = true;
-            this.radioButtonRefresh.Location = new System.Drawing.Point(6, 45);
-            this.radioButtonRefresh.Name = "radioButtonRefresh";
-            this.radioButtonRefresh.Size = new System.Drawing.Size(62, 17);
-            this.radioButtonRefresh.TabIndex = 2;
-            this.radioButtonRefresh.TabStop = true;
-            this.radioButtonRefresh.Text = "Refresh";
-            this.radioButtonRefresh.UseVisualStyleBackColor = true;
+            this.labelInput.AutoSize = true;
+            this.labelInput.Location = new System.Drawing.Point(6, 19);
+            this.labelInput.Name = "labelInput";
+            this.labelInput.Size = new System.Drawing.Size(34, 13);
+            this.labelInput.TabIndex = 0;
+            this.labelInput.Text = "Input:";
             // 
             // tabControl
             // 
@@ -1652,46 +1652,46 @@ namespace FFmpegCatapult
             this.groupBoxBinaries.ResumeLayout(false);
             this.groupBoxBinaries.PerformLayout();
             this.tabTagging.ResumeLayout(false);
-            this.groupBoxGeneralTags.ResumeLayout(false);
-            this.groupBoxGeneralTags.PerformLayout();
-            this.groupBoxTrackTags.ResumeLayout(false);
-            this.groupBoxTrackTags.PerformLayout();
             this.groupBoxMiscTags.ResumeLayout(false);
             this.groupBoxMiscTags.PerformLayout();
+            this.groupBoxTrackTags.ResumeLayout(false);
+            this.groupBoxTrackTags.PerformLayout();
+            this.groupBoxGeneralTags.ResumeLayout(false);
+            this.groupBoxGeneralTags.PerformLayout();
             this.tabAudio.ResumeLayout(false);
-            this.groupBoxAudioCodec.ResumeLayout(false);
-            this.groupBoxAudioCodec.PerformLayout();
-            this.groupBoxAudioEncoder.ResumeLayout(false);
-            this.groupBoxAudioEncoder.PerformLayout();
-            this.groupBoxAudioOutput.ResumeLayout(false);
-            this.groupBoxAudioOutput.PerformLayout();
-            this.groupBoxAudioBitrate.ResumeLayout(false);
-            this.groupBoxAudioBitrate.PerformLayout();
             this.groupBoxAudioStream.ResumeLayout(false);
             this.groupBoxAudioStream.PerformLayout();
+            this.groupBoxAudioBitrate.ResumeLayout(false);
+            this.groupBoxAudioBitrate.PerformLayout();
+            this.groupBoxAudioOutput.ResumeLayout(false);
+            this.groupBoxAudioOutput.PerformLayout();
+            this.groupBoxAudioEncoder.ResumeLayout(false);
+            this.groupBoxAudioEncoder.PerformLayout();
+            this.groupBoxAudioCodec.ResumeLayout(false);
+            this.groupBoxAudioCodec.PerformLayout();
             this.tabVideo.ResumeLayout(false);
-            this.groupBoxVideoCodec.ResumeLayout(false);
-            this.groupBoxVideoCodec.PerformLayout();
-            this.groupBoxVideoEncoder.ResumeLayout(false);
-            this.groupBoxVideoEncoder.PerformLayout();
             this.groupBoxVideoBitrate.ResumeLayout(false);
             this.groupBoxVideoBitrate.PerformLayout();
+            this.groupBoxVideoEncoder.ResumeLayout(false);
+            this.groupBoxVideoEncoder.PerformLayout();
+            this.groupBoxVideoCodec.ResumeLayout(false);
+            this.groupBoxVideoCodec.PerformLayout();
             this.tabPicture.ResumeLayout(false);
-            this.groupBoxResolution.ResumeLayout(false);
-            this.groupBoxResolution.PerformLayout();
-            this.groupBoxScreen.ResumeLayout(false);
-            this.groupBoxScreen.PerformLayout();
-            this.groupBoxLayout.ResumeLayout(false);
-            this.groupBoxLayout.PerformLayout();
             this.groupBoxScalingMethods.ResumeLayout(false);
             this.groupBoxScalingMethods.PerformLayout();
+            this.groupBoxLayout.ResumeLayout(false);
+            this.groupBoxLayout.PerformLayout();
+            this.groupBoxScreen.ResumeLayout(false);
+            this.groupBoxScreen.PerformLayout();
+            this.groupBoxResolution.ResumeLayout(false);
+            this.groupBoxResolution.PerformLayout();
             this.tabMain.ResumeLayout(false);
-            this.groupBoxFiles.ResumeLayout(false);
-            this.groupBoxFiles.PerformLayout();
-            this.groupBoxEncoding.ResumeLayout(false);
-            this.groupBoxEncoding.PerformLayout();
             this.groupBoxSession.ResumeLayout(false);
             this.groupBoxSession.PerformLayout();
+            this.groupBoxEncoding.ResumeLayout(false);
+            this.groupBoxEncoding.PerformLayout();
+            this.groupBoxFiles.ResumeLayout(false);
+            this.groupBoxFiles.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
