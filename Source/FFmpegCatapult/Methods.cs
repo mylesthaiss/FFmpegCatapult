@@ -97,7 +97,7 @@ namespace FFmpegCatapult
             }
 
             return x;
-        }
+        }        
 
         public static bool IsAudioFile()
         {

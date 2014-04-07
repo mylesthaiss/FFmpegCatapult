@@ -38,7 +38,7 @@ namespace FFmpegCatapult
             {"MP2", "mp2"}, {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"}, 
             {"Speex", "speex"}, {"Vorbis", "vorbis"}, {"WMA", "wma"}, 
             {"Copy", "copy"}, {"None", "none"}
-        };        
+        };
         private static string[,] videoCodecs = new string[,]
         {
             {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
@@ -63,131 +63,184 @@ namespace FFmpegCatapult
         public static string Format
         {
             get { return format; }
-            set 
-            { 
-                string oldFormat = format;
+            set
+            {
                 format = value;
 
                 switch (format)
                 {
                     case "avi":
-                        Audio.Codec = "mp3";
                         Audio.Codecs = audioCodecs;
-                        Video.Codec = "mpeg4";
                         Video.Codecs = videoCodecs;
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "mp3";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "mpeg4";
+                        }
                         break;
                     case "m4a":
-                        Audio.Codec = "aac";
                         Audio.Codecs = new string[,] {
                             {"AAC", "aac"}, {"HE-AAC", "heaac"}, {"Copy", "copy"}
                         };
-                        Video.Codec = "none";
                         Video.Codecs = new string[,] {
                             {"None", "none"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "aac";
+                        }
                         break;
                     case "mkv":
-                        Audio.Codec = "aac";
                         Audio.Codecs = audioCodecs;
-                        Video.Codec = "h264";
                         Video.Codecs = videoCodecs;
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs) | Audio.Codec == "wma")
+                        {
+                            Audio.Codec = "aac";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs) | Video.Codec == "wmv")
+                        {
+                            Video.Codec = "h264";
+                        }
                         break;
                     case "mp3":
-                        Audio.Codec = "mp3";
                         Audio.Codecs = new string[,]
                         {
                             {"MP3", "mp3"}, {"Copy", "copy"}
                         };
-                        Video.Codec = "none";
                         Video.Codecs = new string[,]
                         {
                             {"None", "none"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "mp3";
+                        }
                         break;
-                    case "mp4":                   
-                        Audio.Codec = "aac";
+                    case "mp4":
                         Audio.Codecs = new string[,]
                         {
                             {"AC-3", "ac3"}, {"AAC", "aac"}, {"HE-AAC", "heaac"},
                             {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-                        Video.Codec = "mpeg4";
                         Video.Codecs = new string[,]
                         {
                             {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
                             {"Copy", "copy"}, {"None", "none"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs) | Audio.Codec == "mp3")
+                        {
+                            Audio.Codec = "aac";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "mpeg4";
+                        }
                         break;
                     case "mpg":
-                        Audio.Codec = "mp2";
                         Audio.Codecs = new string[,]
                         {
                             {"MP2", "mp2"}, {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-                        Video.Codec = "mpeg2";
                         Video.Codecs = new string[,]
                         {
                             {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "mp2";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "mpeg2";
+                        }
                         break;
                     case "ts":
-                        Audio.Codec = "mp2";
                         Audio.Codecs = new string[,]
                         {
                             {"AC-3", "ac3"}, {"AAC", "aac"}, {"MP2", "mp2"},
                             {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-                        Video.Codec = "mpeg2";
                         Video.Codecs = new string[,] {
                             {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "mp2";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "mpeg2";
+                        }
                         break;
-                    case "ogg":
-                        Audio.Codec = "vorbis";
+                    case "ogg":                        
                         Audio.Codecs = new string[,] {
                             {"FLAC", "flac"}, {"Opus", "opus"}, {"Speex", "speex"},
                             {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
-                        };
-                        Video.Codec = "theora";
+                        };                        
                         Video.Codecs = new string[,] {
                             {"Theora", "theora"}, {"Copy", "copy"}, {"None", "none"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "vorbis";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "theora";
+                        }
                         break;
-                    case "webm":
-                        Audio.Codec = "vorbis";
+                    case "webm":                        
                         Audio.Codecs = new string[,] {
                             {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
-                        };
-                        Video.Codec = "vp8";
+                        };                        
                         Video.Codecs = new string[,] {
                             {"VP8", "vp8"}, {"Copy", "copy"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "vorbis";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "vp8";
+                        }
                         break;
                     case "wma":
-                        Audio.Codec = "wma";
                         Audio.Codecs = new string[,] {
                             {"WMA", "wma"}, {"Copy", "copy"}
                         };
-                        Video.Codec = "none";
                         Video.Codecs = new string[,] {
                             {"None", "none"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "wma";
+                        }
                         break;
-                    case "wmv":
-                        Audio.Codec = "wma";
+                    case "wmv":                        
                         Audio.Codecs = new string[,] {
                             {"WMA", "wma"}, {"Copy", "copy"}, {"None", "none"}
-                        };
-                        Video.Codec = "wmv";
+                        };                        
                         Video.Codecs = new string[,] {
                             {"WMV", "wmv"}, {"Copy", "copy"}
                         };
+                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        {
+                            Audio.Codec = "wma";
+                        }
+                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        {
+                            Video.Codec = "wmv";
+                        }
                         break;
                     default:
                         Audio.Codecs = audioCodecs;
                         Video.Codecs = videoCodecs;
                         break;
-                }                
+                }
             }
         }
 
@@ -230,6 +283,23 @@ namespace FFmpegCatapult
                     output = outfile;
                 }
             }
+        }
+
+        // Supported codec check
+        private static bool IsCodecSupported(string codec, string[,] codecs)
+        {
+            bool supported = false;
+
+            for (int i = 0; i < codecs.GetLength(0); i++)
+            {
+                if (codec == codecs[i, 1])
+                {
+                    supported = true;
+                    break;
+                }
+            }
+
+            return supported;
         }
     }
 }

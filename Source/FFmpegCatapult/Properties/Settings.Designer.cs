@@ -229,7 +229,7 @@ namespace FFmpegCatapult.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("lanczos")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ScaleMethod {
             get {
                 return ((string)(this["ScaleMethod"]));

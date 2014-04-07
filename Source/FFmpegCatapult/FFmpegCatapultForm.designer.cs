@@ -174,7 +174,6 @@ namespace FFmpegCatapult
             this.radioButtonKeep = new System.Windows.Forms.RadioButton();
             this.groupBoxEncoding = new System.Windows.Forms.GroupBox();
             this.comboBoxThreads = new System.Windows.Forms.ComboBox();
-            this.labelThreads = new System.Windows.Forms.Label();
             this.comboBoxContainers = new System.Windows.Forms.ComboBox();
             this.labelFormat = new System.Windows.Forms.Label();
             this.comboBoxPresets = new System.Windows.Forms.ComboBox();
@@ -188,6 +187,7 @@ namespace FFmpegCatapult
             this.labelOutput = new System.Windows.Forms.Label();
             this.labelInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.labelThreads = new System.Windows.Forms.Label();
             this.tabMisc.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
             this.tabTagging.SuspendLayout();
@@ -1499,15 +1499,6 @@ namespace FFmpegCatapult
             this.comboBoxThreads.Size = new System.Drawing.Size(53, 21);
             this.comboBoxThreads.TabIndex = 5;
             // 
-            // labelThreads
-            // 
-            this.labelThreads.AutoSize = true;
-            this.labelThreads.Location = new System.Drawing.Point(258, 48);
-            this.labelThreads.Name = "labelThreads";
-            this.labelThreads.Size = new System.Drawing.Size(49, 13);
-            this.labelThreads.TabIndex = 4;
-            this.labelThreads.Text = "Threads:";
-            // 
             // comboBoxContainers
             // 
             this.comboBoxContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1634,6 +1625,15 @@ namespace FFmpegCatapult
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(479, 220);
             this.tabControl.TabIndex = 2;
+            // 
+            // labelThreads
+            // 
+            this.labelThreads.AutoSize = true;
+            this.labelThreads.Location = new System.Drawing.Point(258, 48);
+            this.labelThreads.Name = "labelThreads";
+            this.labelThreads.Size = new System.Drawing.Size(49, 13);
+            this.labelThreads.TabIndex = 4;
+            this.labelThreads.Text = "Threads:";
             // 
             // FFmpegCatapultForm
             // 
@@ -1828,7 +1828,6 @@ namespace FFmpegCatapult
         private System.Windows.Forms.RadioButton radioButtonKeep;
         private System.Windows.Forms.GroupBox groupBoxEncoding;
         private System.Windows.Forms.ComboBox comboBoxThreads;
-        private System.Windows.Forms.Label labelThreads;
         private System.Windows.Forms.ComboBox comboBoxContainers;
         private System.Windows.Forms.Label labelFormat;
         private System.Windows.Forms.ComboBox comboBoxPresets;
@@ -1842,6 +1841,7 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelOutput;
         private System.Windows.Forms.Label labelInput;
         private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.Label labelThreads;
     }
 }
 

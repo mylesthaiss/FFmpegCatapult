@@ -1,4 +1,4 @@
-﻿// Encoding preset preset properties interface for FFmpeg Catapult.
+﻿﻿// Encoding preset preset properties interface for FFmpeg Catapult.
 // Copyright (C) 2013 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
@@ -219,7 +219,7 @@ namespace FFmpegCatapult
                     Screen.ScaleOption = 1;
                     Screen.Width = 0;
                     Screen.Height = 480;
-                    Audio.Codec = "aac";                    
+                    Audio.Codec = "aac";
                     break;
                 case "mp4hd":
                     File.Format = "mp4";

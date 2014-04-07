@@ -40,7 +40,7 @@ namespace FFmpegCatapult
         private static int winHeight;
         private static int winWidth;
         private static string vfColour;
-        private static string scalingMethod;
+        private static string scalingMethod = "lanczos";
         private static string[,] scalingMethods = new string[,] {
             {"Bicubic", "bicubic"} , {"Bilinear", "bilinear"},
             {"Gaussian", "gauss"}, {"Lanczos", "lanczos"},
