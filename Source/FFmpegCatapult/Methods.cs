@@ -57,46 +57,28 @@ namespace FFmpegCatapult
         {
             double x;
 
-            try
+            if (!string.IsNullOrEmpty(value) && double.TryParse(value, out x))
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    x = Convert.ToDouble(value);
-                }
-                else
-                {
-                    x = 0;
-                }
+                return x;
             }
-            catch (Exception)
+            else
             {
-                x = 0;
+                return 0;
             }
-
-            return x;
         }
 
         public static int TextToInt(string value)
         {
             int x;
 
-            try
+            if (!string.IsNullOrEmpty(value) && int.TryParse(value, out x))
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    x = Convert.ToInt16(value);
-                }
-                else
-                {
-                    x = 0;
-                }
+                return x;
             }
-            catch (Exception)
+            else
             {
-                x = 0;
+                return 0;
             }
-
-            return x;
         }        
 
         public static bool IsAudioFile()
