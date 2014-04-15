@@ -1,4 +1,4 @@
-﻿﻿// Audio properties interface for FFmpeg Catapult.
+﻿﻿// Audio properties for FFmpeg Catapult.
 // Copyright (C) 2013 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
@@ -41,8 +41,12 @@ namespace FFmpegCatapult
         private static string[,] codecs;
         private static string encoder;
         private static string[,] encoders;
-
-        // Property methods
+        
+        /// <summary>
+        /// Stores audio codec value and determines available encoders for 
+        /// FFmpeg to use. Also new settings such as bitrate and samplerate 
+        /// will be set if codec value is changed.
+        /// </summary>
         public static string Codec
         {
             get { return codec; }
@@ -248,6 +252,10 @@ namespace FFmpegCatapult
             set { bitrate = value; }
         }
 
+        /// <summary>
+        /// Determines and returns supported bitrates that is based on 
+        /// the audio codec and sample rates.
+        /// </summary>
         public static int[] Bitrates
         {
             get
@@ -346,6 +354,9 @@ namespace FFmpegCatapult
             set { channels = value; }
         }
 
+        /// <summary>
+        /// Stores audio encoder value and determines encoder settings and presets.
+        /// </summary>
         public static string Encoder
         {
             get { return encoder; }

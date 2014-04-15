@@ -24,7 +24,11 @@ namespace FFmpegCatapult
 {
     class Methods
     {
-        // Misc methods
+        /// <summary>
+        /// Converts numbers to string if a number is greater than zero.
+        /// A 'null' value will return if x = 0.
+        /// </summary>
+        /// <param name="x"></param>       
         public static string NumToText(double x)
         {
             string value;
@@ -53,6 +57,11 @@ namespace FFmpegCatapult
             return value;
         }
 
+        /// <summary>
+        /// Converts string value to double type. Zero will be returned 
+        /// if value is null or empty.
+        /// </summary>
+        /// <param name="value"></param>       
         public static double TextToDouble(string value)
         {
             double x;
@@ -67,6 +76,11 @@ namespace FFmpegCatapult
             }
         }
 
+        /// <summary>
+        /// Converts string value to integer type. Zero will be returned 
+        /// if value is null or empty.
+        /// </summary>
+        /// <param name="value"></param>        
         public static int TextToInt(string value)
         {
             int x;
@@ -81,6 +95,9 @@ namespace FFmpegCatapult
             }
         }        
 
+        /// <summary>
+        /// Determines if the current settings is used to encode audio files only.
+        /// </summary>        
         public static bool IsAudioFile()
         {
             if (File.Format == "m4a" | File.Format == "mp3" | File.Format == "wma")
@@ -93,6 +110,9 @@ namespace FFmpegCatapult
             }
         }
 
+        /// <summary>
+        /// Determines if video scaling is available.
+        /// </summary>        
         public static bool IsPictureScalable()
         {
             if (IsAudioFile() | Video.Codec == "copy" | Video.Codec == "none")
@@ -103,6 +123,6 @@ namespace FFmpegCatapult
             {
                 return true;
             }
-        }        
+        }   
     }
 }

@@ -288,7 +288,7 @@ namespace FFmpegCatapult
             textBoxFPS.TextChanged -= new EventHandler(textBoxFPS_TextChanged);
             textBoxFPS.Text = Methods.NumToText(Screen.FPS);
             textBoxFPS.TextChanged += new EventHandler(textBoxFPS_TextChanged);
-
+            
             textBoxLayoutWidth.TextChanged -= new EventHandler(textBoxLayoutWidth_TextChanged);
             textBoxLayoutWidth.Text = Methods.NumToText(Screen.WinWidth);
             textBoxLayoutWidth.TextChanged += new EventHandler(textBoxLayoutWidth_TextChanged);

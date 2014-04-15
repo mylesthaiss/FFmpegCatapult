@@ -30,8 +30,11 @@ namespace FFmpegCatapult
         private static string termBin;
         private static string termArgs;
         private static string nullPath;
-
-        // Run method
+                
+        /// <summary>
+        /// Produces command line arguments based on current properties and then run FFmpeg 
+        /// in a seperate process.
+        /// </summary>
         public static void Run()
         {
             // Variables

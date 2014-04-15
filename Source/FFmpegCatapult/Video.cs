@@ -118,6 +118,11 @@ namespace FFmpegCatapult
             get { return cmpFuncs; }
         }
 
+        /// <summary>
+        /// Stores video codec value and determines supported video encoders for
+        /// FFmpeg to use. Also all codec settings are set to default when codec
+        /// value is changed.
+        /// </summary>
         public static string Codec
         {
             get { return codec; }
@@ -236,6 +241,9 @@ namespace FFmpegCatapult
             set { diaSize = value; }
         }
 
+        /// <summary>
+        /// Stores video encoder value and determines encoder settings and presets.
+        /// </summary>
         public static string Encoder
         {
             get { return encoder; }

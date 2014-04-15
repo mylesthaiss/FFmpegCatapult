@@ -29,7 +29,7 @@ namespace FFmpegCatapult
         private static string audio = "";
         private static string format = "";
         private static string input = "";
-        private static string output = "";
+        private static string output = "";       
 
         // Codecs and file extensions
         private static string[,] audioCodecs = new string[,]
@@ -60,6 +60,10 @@ namespace FFmpegCatapult
             set { audio = value; }
         }
 
+        /// <summary>
+        /// Stores file container value and determines available supported audio 
+        /// and video codecs. Unsupported codec values will be changed to default.
+        /// </summary>
         public static string Format
         {
             get { return format; }
@@ -243,7 +247,7 @@ namespace FFmpegCatapult
                 }
             }
         }
-
+        
         public static string[,] Formats
         {
             get { return formats; }
@@ -255,6 +259,10 @@ namespace FFmpegCatapult
             set { input = value; }
         }
 
+        /// <summary>
+        /// Sets output file name for FFmpeg to use. File extension is automatically
+        /// added if File.Format property is not set to 'custom'.
+        /// </summary>
         public static string Output
         {
             get { return output; }
