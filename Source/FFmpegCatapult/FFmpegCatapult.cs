@@ -30,6 +30,9 @@ namespace FFmpegCatapult
         [STAThread]
         static void Main(String[] args)
         {
+            // Variables
+            bool initPreset;
+
             if (Properties.Settings.Default.TermBin == "")
             {
                 // Determine running operating system
@@ -68,45 +71,71 @@ namespace FFmpegCatapult
                 Session.Threads = Properties.Settings.Default.Threads;
             }
 
+            initPreset = Properties.Settings.Default.InitPreset;
             Session.Preset = Properties.Settings.Default.Preset;
             Session.KeepValues = Properties.Settings.Default.KeepValues;
             Session.Overwrite = Properties.Settings.Default.OverwriteFiles;
             Session.TwoPassEncoding = Properties.Settings.Default.TwoPassEncoding;
             
             // Command line interface
-            for (int i = 0; i < args.Length; i++)
+            if (args.Length > 0)
             {
-                switch (args[i])
+                for (int i = 0; i < args.Length; i++)
                 {
-                    case "-preset":
-                        i++;
-                        Session.Preset = args[i];
-                        break;
-                    case "-out":
-                        i++;
-                        File.Format = "custom";
-                        File.Output = args[i];
-                        break;
-                    case "-bin":
-                        i++;
-                        Bin.FFmpegBin = args[i];
-                        break;
-                    case "-term":
-                        i++;
-                        Bin.TermBin = args[i];
-                        break;
-                    case "-termargs":
-                        i++;
-                        Bin.TermArgs = args[i];
-                        break;
-                    default:
-                        File.Input = args[i];
-                        break;
+                    int n = i + 1;
+                    if (n >= args.Length)
+                    {
+                        n = i;
+                    }
+
+                    switch (args[i])
+                    {
+                        case "-preset":
+                            if (!args[n].StartsWith("-"))
+                            {
+                                i = n;
+                                initPreset = true;
+                                Session.Preset = args[i];
+                            }
+                            break;
+                        case "-out":
+                            if (!args[n].StartsWith("-"))
+                            {
+                                i = n;
+                                File.Format = "custom";
+                                File.Output = args[i];
+                            }
+                            break;
+                        case "-bin":
+                            if (!args[n].StartsWith("-"))
+                            {
+                                i = n;
+                                Bin.FFmpegBin = args[i];
+                            }
+                            break;
+                        case "-term":
+                            if (!args[n].StartsWith("-"))
+                            {
+                                i = n;
+                                Bin.TermBin = args[i];
+                            }
+                            break;
+                        case "-termargs":
+                            if (!args[n].StartsWith("-"))
+                            {
+                                i = n;
+                                Bin.TermArgs = args[i];
+                            }
+                            break;
+                        default:
+                            File.Input = args[i];
+                            break;
+                    }
                 }
-            }
+            }            
 
             // Init settings
-            if (Properties.Settings.Default.InitPreset == true)
+            if (initPreset)
             {
                 Preset.InitPreset();
             }
