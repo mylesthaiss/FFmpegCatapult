@@ -1,5 +1,5 @@
-﻿// FFmpeg binary launcher for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// Binary is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -20,6 +20,8 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace FFmpegCatapult
 {
@@ -30,7 +32,7 @@ namespace FFmpegCatapult
         private static string termBin;
         private static string termArgs;
         private static string nullPath;
-                
+
         /// <summary>
         /// Produces command line arguments based on current properties and then run FFmpeg 
         /// in a seperate process.
@@ -39,6 +41,7 @@ namespace FFmpegCatapult
         {
             // Variables
             string audio;
+            string args;
             string input;
             string output;
             string threads;
@@ -75,7 +78,7 @@ namespace FFmpegCatapult
 
                 if (Audio.Codec != "copy")
                 {
-                    if (!string.IsNullOrEmpty(Audio.CodecProfile))
+                    if (Audio.CodecProfile != "default")
                     {
                         audioArgs.Add(string.Format("-profile:a {0}", Audio.CodecProfile));
                     }
@@ -367,35 +370,91 @@ namespace FFmpegCatapult
 
             // Launch process
             Process Term = new Process();
-            Term.StartInfo.FileName = termBin;
 
-            if (Session.TwoPassEncoding == true)
+            try
             {
-                string waitArgs;
-                if (termBin == "cmd.exe")
+                Term.StartInfo.FileName = termBin;
+                if (Session.TwoPassEncoding == true)
                 {
-                    waitArgs = "/c start /wait";
+                    string waitArgs;
+                    if (termBin == "cmd.exe")
+                    {
+                        waitArgs = "/c start /wait";
+                    }
+                    else
+                    {
+                        waitArgs = termArgs;
+                    }
+
+                    // First pass
+                    args = string.Format("-i \"{0}\" {1} -pass 1 {2} -an -y -f rawvideo {3}", File.Input, threads, video, nullPath);
+                    Term.StartInfo.Arguments = string.Format("{0} {1} {2}", waitArgs, ffmpegBin, args);
+                    Term.Start();
+                    if (Session.WriteLog == true)
+                    {
+                        Log(args, "First pass");
+                    }
+                    Term.WaitForExit();
+
+                    // Second pass
+                    args = string.Format("{0} {1} -pass 2 {2} {3} {4}", input, threads, audio, video, output);
+                    Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
+                    Term.Start();
+                    if (Session.WriteLog == true)
+                    {
+                        Log(args, "Second pass");
+                    }
                 }
                 else
                 {
-                    waitArgs = termArgs;
+                    // Single pass
+                    args = string.Format(string.Format("{0} {1} {2} {3} {4}", input, threads, audio, video, output));
+                    Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
+                    Term.Start();
+                    if (Session.WriteLog == true)
+                    {
+                        Log(args, "Single pass");
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Unable to run FFmpeg.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+        }
 
-                // First pass
-                Term.StartInfo.Arguments = string.Format("{0} {1} -i \"{2}\" {3} -pass 1 {4} -an -y -f rawvideo {5}", waitArgs, ffmpegBin, File.Input, threads, video, nullPath);
-                Term.Start();
-                Term.WaitForExit();
-
-                // Second pass                
-                Term.StartInfo.Arguments = string.Format("{0} {1} {2} {3} -pass 2 {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
-                Term.Start();
+        private static void Log(string args, string pass)
+        {
+            string fileName;
+            if (!string.IsNullOrEmpty(File.Log))
+            {
+                fileName = File.Log + ".txt";
             }
             else
             {
-                // Single pass
-                Term.StartInfo.Arguments = string.Format("{0} {1} {2} {3} {4} {5} {6}", termArgs, ffmpegBin, input, threads, audio, video, output);
-                Term.Start();
+                fileName = "FFmpegCatapult_Log.txt";
             }
+            string logPath = Path.GetDirectoryName(File.Output);
+            string output = Path.Combine(logPath, fileName);
+            StreamWriter file;
+
+            if (!System.IO.File.Exists(output))
+            {
+                file = new StreamWriter(output);
+            }
+            else
+            {
+                file = System.IO.File.AppendText(output);
+            }
+
+            file.WriteLine("Date: {0}", DateTime.Now);
+            file.WriteLine("Input file: {0}", File.Input);
+            file.WriteLine("Output file: {0}", File.Output);
+            file.WriteLine("Preset: {0}", Session.Preset);
+            file.WriteLine("Encoding: {0}", pass);
+            file.WriteLine("Arguments: {0}", args);
+            file.WriteLine();
+            file.Close();
         }
 
         // Property methods

@@ -1,5 +1,5 @@
-﻿﻿// Encoding preset preset properties interface for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// Preset is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License

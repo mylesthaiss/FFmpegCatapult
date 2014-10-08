@@ -1,5 +1,5 @@
-﻿// Session properties interface for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// Session is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -25,9 +25,11 @@ namespace FFmpegCatapult
     class Session
     {
         // Variables
-        public static bool KeepValues;        
+        public static bool KeepValues;
         public static bool TwoPassEncoding;
         public static bool Overwrite;
+        public static bool WriteLog;
+        public static bool SaveProperties;
         private static int maxThreads = Environment.ProcessorCount;
         private static int threads;
         private static string preset;
@@ -124,6 +126,8 @@ namespace FFmpegCatapult
             Properties.Settings.Default.TermArgs = Bin.TermArgs;
             Properties.Settings.Default.TermBin = Bin.TermBin;
             Properties.Settings.Default.NullPath = Bin.NullPath;
+            Properties.Settings.Default.WriteLog = Session.WriteLog;
+            Properties.Settings.Default.LogFileName = File.Log;
 
             // Picture settings
             Properties.Settings.Default.ScaleMethod = Screen.ScalingMethod;

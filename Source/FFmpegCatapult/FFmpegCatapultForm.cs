@@ -1,5 +1,5 @@
-﻿// WinForms code and events for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// FFmpegCatapultForm is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -131,7 +131,7 @@ namespace FFmpegCatapult
 
             InitAudio();
 
-            // Misc           
+            // Options           
             if (Bin.FFmpegBin != null)
             {
                 textBoxFFmpegBin.Text = Bin.FFmpegBin;
@@ -152,6 +152,14 @@ namespace FFmpegCatapult
             }
             textBoxTermArgs.TextChanged += new EventHandler(textBoxTermArgs_TextChanged);
 
+            checkBoxWriteLog.Checked = Session.WriteLog;
+            checkBoxWriteLog.CheckedChanged += new EventHandler(checkBoxWriteLog_CheckedChanged);
+            EnableLogFileTextBox(Session.WriteLog);
+            textBoxLog.Text = File.Log;
+            textBoxLog.TextChanged += new EventHandler(textBoxLog_TextChanged);
+            checkBoxSaveSettings.Checked = Session.SaveProperties;
+            checkBoxSaveSettings.CheckedChanged += new EventHandler(checkBoxSaveSettings_CheckedChanged);
+
             // Metadata tab
             textBoxAlbum.TextChanged += new EventHandler(textBoxAlbum_TextChanged);
             textBoxAlbumArtist.TextChanged += new EventHandler(textBoxAlbumArtist_TextChanged);
@@ -171,7 +179,7 @@ namespace FFmpegCatapult
 
         // Methods
         private void InitTabs()
-        {   
+        {
             // Picture tab
             if (Methods.IsPictureScalable())
             {
@@ -288,7 +296,7 @@ namespace FFmpegCatapult
             textBoxFPS.TextChanged -= new EventHandler(textBoxFPS_TextChanged);
             textBoxFPS.Text = Methods.NumToText(Screen.FPS);
             textBoxFPS.TextChanged += new EventHandler(textBoxFPS_TextChanged);
-            
+
             textBoxLayoutWidth.TextChanged -= new EventHandler(textBoxLayoutWidth_TextChanged);
             textBoxLayoutWidth.Text = Methods.NumToText(Screen.WinWidth);
             textBoxLayoutWidth.TextChanged += new EventHandler(textBoxLayoutWidth_TextChanged);
@@ -862,6 +870,12 @@ namespace FFmpegCatapult
             }
         }
 
+        private void EnableLogFileTextBox(bool enable)
+        {
+            labelLogName.Enabled = enable;
+            textBoxLog.Enabled = enable;
+        }
+
         private void ClearMetadataFields()
         {
             textBoxAlbum.Text = "";
@@ -1036,7 +1050,10 @@ namespace FFmpegCatapult
 
         void buttonExit_Click(object sender, EventArgs e)
         {
-            Session.SaveSettings();
+            if (Session.SaveProperties == true)
+            {
+                Session.SaveSettings();
+            }            
             System.Environment.Exit(0);
         }
 
@@ -1379,7 +1396,7 @@ namespace FFmpegCatapult
             Metadata.Year = Methods.TextToInt(textBoxYear.Text);
         }
 
-        // Misc event handlers
+        // Options event handlers
         void textBoxFFmpegBin_TextChanged(object sender, EventArgs e)
         {
             Bin.FFmpegBin = textBoxFFmpegBin.Text;
@@ -1395,6 +1412,11 @@ namespace FFmpegCatapult
             Bin.TermArgs = textBoxTermArgs.Text;
         }
 
+        void textBoxLog_TextChanged(object sender, EventArgs e)
+        {
+            File.Log = textBoxLog.Text;
+        }
+
         void buttonBrowseFFmpegBin_Click(object sender, EventArgs e)
         {
             OpenFileDialog binFile = new OpenFileDialog();
@@ -1405,6 +1427,19 @@ namespace FFmpegCatapult
             {
                 textBoxFFmpegBin.Text = binFile.FileName;
             }
+        }
+
+        void checkBoxWriteLog_CheckedChanged(object sender, EventArgs e)
+        {
+            Session.WriteLog = checkBoxWriteLog.Checked;
+            EnableLogFileTextBox(Session.WriteLog);
+        }
+
+        void checkBoxSaveSettings_CheckedChanged(object sender, EventArgs e)
+        {
+            Session.SaveProperties = checkBoxSaveSettings.Checked;
+            Properties.Settings.Default.SaveSettings = Session.SaveProperties;
+            Properties.Settings.Default.Save();
         }
 
         void buttonBrowseTermBin_Click(object sender, EventArgs e)
@@ -1434,9 +1469,9 @@ namespace FFmpegCatapult
             {
                 if (e.KeyChar != '.' | Video.Bits == "k")
                 {
-                    e.Handled = e.KeyChar != (char)Keys.Back;                    
+                    e.Handled = e.KeyChar != (char)Keys.Back;
                 }
-            }            
+            }
         }
 
         private void textBoxBufferSize_KeyPressDecimal(object sender, KeyPressEventArgs e)

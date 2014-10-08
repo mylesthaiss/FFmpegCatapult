@@ -1,5 +1,5 @@
-﻿// File properties interface for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// File is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -29,25 +29,13 @@ namespace FFmpegCatapult
         private static string audio = "";
         private static string format = "";
         private static string input = "";
-        private static string output = "";       
+        private static string log = "";
+        private static string output = "";
 
-        // Codecs and file extensions
-        private static string[,] audioCodecs = new string[,]
-        {
-            {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"HE-AAC", "heaac"},
-            {"MP2", "mp2"}, {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"}, 
-            {"Speex", "speex"}, {"Vorbis", "vorbis"}, {"WMA", "wma"}, 
-            {"Copy", "copy"}, {"None", "none"}
-        };
-        private static string[,] videoCodecs = new string[,]
-        {
-            {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
-            {"Theora", "theora"}, {"VP8", "vp8"}, {"WMV", "wmv"},
-            {"Copy", "copy"}, {"None", "none"}
-        };
+        // Container formats
         private static string[,] formats = new string[,]
         {
-            {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "mkv"}, {"MP3", "mp3"}, 
+            {"3GP", "3gp"}, {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "mkv"}, {"MP3", "mp3"}, 
             {"MP4", "mp4"}, {"MPEG Program Stream", "mpg"}, {"MPEG Transport Stream", "ts"},
             {"Ogg", "ogg"}, {"WebM", "webm"}, {"Windows Media Audio", "wma"},
             {"Windows Media Video", "wmv"}, {"Custom", "custom"}
@@ -73,17 +61,43 @@ namespace FFmpegCatapult
 
                 switch (format)
                 {
-                    case "avi":
-                        Audio.Codecs = audioCodecs;
-                        Video.Codecs = videoCodecs;
+                    case "3gp":
+                        Audio.Codecs = new string[,] {
+                            {"AAC", "aac"}, {"HE-AAC", "heaac"}, {"Copy", "copy"}
+                        };
+                        Video.Codecs = new string[,] {
+                            {"H.263", "h263"}, {"H.264", "h264"}, {"MPEG-4", "mpeg4"},
+                            {"Copy", "copy"}, {"None", "none"}
+                        };
                         if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
                         {
-                            Audio.Codec = "mp3";
+                            Audio.Codec = "heaac";
                         }
                         if (!IsCodecSupported(Video.Codec, Video.Codecs))
                         {
-                            Video.Codec = "mpeg4";
+                            Video.Codec = "h264";
                         }
+                        break;
+                    case "avi":
+                    case "custom":
+                    case "mkv":
+                        Audio.Codecs = new string[,] {
+                            {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"HE-AAC", "heaac"},
+                            {"MP2", "mp2"}, {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"},
+                            {"Speex", "speex"}, {"Vorbis", "vorbis"}, {"WMA", "wma"},
+                            {"Copy", "copy"}, {"None", "none"}
+                        };
+                        Video.Codecs = new string[,] {
+                            {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
+                            {"Theora", "theora"}, {"VP8", "vp8"}, {"WMV", "wmv"},
+                            {"Copy", "copy"}, {"None", "none"}
+                        };
+
+                        // Using Vorbis with AVI is not recommended.
+                        if (format == "avi" && Audio.Codec == "vorbis")
+                        {
+                            Audio.Codec = "mp3";
+                        }                    
                         break;
                     case "m4a":
                         Audio.Codecs = new string[,] {
@@ -96,19 +110,7 @@ namespace FFmpegCatapult
                         {
                             Audio.Codec = "aac";
                         }
-                        break;
-                    case "mkv":
-                        Audio.Codecs = audioCodecs;
-                        Video.Codecs = videoCodecs;
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs) | Audio.Codec == "wma")
-                        {
-                            Audio.Codec = "aac";
-                        }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs) | Video.Codec == "wmv")
-                        {
-                            Video.Codec = "h264";
-                        }
-                        break;
+                        break;                    
                     case "mp3":
                         Audio.Codecs = new string[,]
                         {
@@ -131,8 +133,8 @@ namespace FFmpegCatapult
                         };
                         Video.Codecs = new string[,]
                         {
-                            {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
-                            {"Copy", "copy"}, {"None", "none"}
+                            {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"}, 
+                            {"MPEG-4", "mpeg4"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         if (!IsCodecSupported(Audio.Codec, Audio.Codecs) | Audio.Codec == "mp3")
                         {
@@ -179,11 +181,11 @@ namespace FFmpegCatapult
                             Video.Codec = "mpeg2";
                         }
                         break;
-                    case "ogg":                        
+                    case "ogg":
                         Audio.Codecs = new string[,] {
                             {"FLAC", "flac"}, {"Opus", "opus"}, {"Speex", "speex"},
                             {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
-                        };                        
+                        };
                         Video.Codecs = new string[,] {
                             {"Theora", "theora"}, {"Copy", "copy"}, {"None", "none"}
                         };
@@ -196,10 +198,10 @@ namespace FFmpegCatapult
                             Video.Codec = "theora";
                         }
                         break;
-                    case "webm":                        
+                    case "webm":
                         Audio.Codecs = new string[,] {
                             {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
-                        };                        
+                        };
                         Video.Codecs = new string[,] {
                             {"VP8", "vp8"}, {"Copy", "copy"}
                         };
@@ -224,10 +226,10 @@ namespace FFmpegCatapult
                             Audio.Codec = "wma";
                         }
                         break;
-                    case "wmv":                        
+                    case "wmv":
                         Audio.Codecs = new string[,] {
                             {"WMA", "wma"}, {"Copy", "copy"}, {"None", "none"}
-                        };                        
+                        };
                         Video.Codecs = new string[,] {
                             {"WMV", "wmv"}, {"Copy", "copy"}
                         };
@@ -239,15 +241,11 @@ namespace FFmpegCatapult
                         {
                             Video.Codec = "wmv";
                         }
-                        break;
-                    default:
-                        Audio.Codecs = audioCodecs;
-                        Video.Codecs = videoCodecs;
-                        break;
+                        break;                    
                 }
             }
         }
-        
+
         public static string[,] Formats
         {
             get { return formats; }
@@ -257,6 +255,12 @@ namespace FFmpegCatapult
         {
             get { return input; }
             set { input = value; }
+        }
+
+        public static string Log
+        {
+            get { return log; }
+            set { log = value; }
         }
 
         /// <summary>

@@ -742,5 +742,41 @@ namespace FFmpegCatapult.Properties {
                 this["PadColour"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SaveSettings {
+            get {
+                return ((bool)(this["SaveSettings"]));
+            }
+            set {
+                this["SaveSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WriteLog {
+            get {
+                return ((bool)(this["WriteLog"]));
+            }
+            set {
+                this["WriteLog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LogFileName {
+            get {
+                return ((string)(this["LogFileName"]));
+            }
+            set {
+                this["LogFileName"] = value;
+            }
+        }
     }
 }

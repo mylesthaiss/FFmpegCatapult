@@ -1,5 +1,5 @@
-﻿// WinForms code and events for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// AudioSettingsForm is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -72,6 +72,7 @@ namespace FFmpegCatapult
             this.comboBoxCodecProfiles.Name = "comboBoxCodecProfiles";
             this.comboBoxCodecProfiles.Size = new System.Drawing.Size(143, 21);
             this.comboBoxCodecProfiles.TabIndex = 1;
+            this.comboBoxCodecProfiles.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelProfile
             // 
@@ -84,6 +85,7 @@ namespace FFmpegCatapult
             // 
             // buttonApply
             // 
+            this.buttonApply.Enabled = false;
             this.buttonApply.Location = new System.Drawing.Point(137, 61);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(75, 23);

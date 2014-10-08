@@ -1,5 +1,6 @@
 ﻿// FFmpeg Catapult
-// Copyright (C) 2013 Myles Thaiss
+// A WinForms GUI launcher for FFmpeg.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -76,7 +77,10 @@ namespace FFmpegCatapult
             Session.KeepValues = Properties.Settings.Default.KeepValues;
             Session.Overwrite = Properties.Settings.Default.OverwriteFiles;
             Session.TwoPassEncoding = Properties.Settings.Default.TwoPassEncoding;
-            
+            Session.WriteLog = Properties.Settings.Default.WriteLog;
+            Session.SaveProperties = Properties.Settings.Default.SaveSettings;
+            File.Log = Properties.Settings.Default.LogFileName;
+
             // Command line interface
             if (args.Length > 0)
             {
@@ -132,7 +136,7 @@ namespace FFmpegCatapult
                             break;
                     }
                 }
-            }            
+            }
 
             // Init settings
             if (initPreset)
@@ -147,7 +151,7 @@ namespace FFmpegCatapult
             // Load main form
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FFmpegCatapultForm());           
+            Application.Run(new FFmpegCatapultForm());
         }
     }
 }

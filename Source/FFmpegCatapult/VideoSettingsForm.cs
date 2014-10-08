@@ -1,5 +1,5 @@
-﻿// WinForms code and events for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// VideoSettingsForm is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -69,13 +69,13 @@ namespace FFmpegCatapult
             comboBoxTrellis.Items.Add(new ListComboIntContent("None", 0));
             comboBoxTrellis.Items.Add(new ListComboIntContent("Final", 1));
             comboBoxTrellis.Items.Add(new ListComboIntContent("All RD", 2));
-            comboBoxTrellis.Items.Add(new ListComboIntContent("", 3));
+            comboBoxTrellis.Items.Add(new ListComboIntContent("Default", 3));
             comboBoxTrellis.SelectedIndex = Video.Trellis;
 
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Always", 0));
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Avoid high motion", 1));
             comboBoxBFStrats.Items.Add(new ListComboIntContent("Less or more", 2));
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("", 3));
+            comboBoxBFStrats.Items.Add(new ListComboIntContent("Default", 3));
             comboBoxBFStrats.SelectedIndex = Video.BFStrategy;
 
             for (int i = 0; i < Video.CMPFuncs.GetLength(0); i++)
@@ -110,6 +110,8 @@ namespace FFmpegCatapult
             textBoxBFrames.Text = Methods.NumToText(Video.BFrames);
             textBoxDiaSize.Text = Methods.NumToText(Video.DiaSize);
             textBoxGOPSize.Text = Methods.NumToText(Video.GOPSize);
+
+            buttonApply.Enabled = false;
         }
 
         // Combobox list helpers
@@ -148,6 +150,11 @@ namespace FFmpegCatapult
         }
 
         // Event handlers
+        private void valueChanged(object sender, EventArgs e)
+        {
+            buttonApply.Enabled = true;
+        }
+
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar))
@@ -163,9 +170,9 @@ namespace FFmpegCatapult
                 if (e.KeyChar != '.')
                 {
                     e.Handled = e.KeyChar != (char)Keys.Back;
-                }                
+                }
             }
-        } 
+        }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -173,17 +180,17 @@ namespace FFmpegCatapult
         }
 
         private void buttonApply_Click(object sender, EventArgs e)
-        {            
+        {
             ListComboContent meMethod = (ListComboContent)comboBoxMEMethods.SelectedItem;
             ListComboContent picFormat = (ListComboContent)comboBoxPictureFormats.SelectedItem;
             ListComboIntContent bstrat = (ListComboIntContent)comboBoxBFStrats.SelectedItem;
             ListComboIntContent cmp = (ListComboIntContent)comboBoxCMPFuncs.SelectedItem;
             ListComboIntContent subcmp = (ListComboIntContent)comboBoxSubCMPFuncs.SelectedItem;
-            ListComboIntContent trellis = (ListComboIntContent)comboBoxTrellis.SelectedItem;           
+            ListComboIntContent trellis = (ListComboIntContent)comboBoxTrellis.SelectedItem;
 
             Video.BFrames = Methods.TextToInt(textBoxBFrames.Text);
             Video.BFStrategy = bstrat.Value;
-            Video.CMP = cmp.Value;                                  
+            Video.CMP = cmp.Value;
             Video.DiaSize = Methods.TextToInt(textBoxDiaSize.Text);
             Video.GOPSize = Methods.TextToInt(textBoxGOPSize.Text);
             Video.MEMethod = meMethod.Value;
@@ -205,6 +212,6 @@ namespace FFmpegCatapult
             }
 
             this.Close();
-        }              
+        }
     }
 }

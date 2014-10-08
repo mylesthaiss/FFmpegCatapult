@@ -1,5 +1,5 @@
-﻿﻿// Video properties interface for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// Video is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -32,11 +32,11 @@ namespace FFmpegCatapult
         private static double maxBitrate;
         private static double minBitrate;
         private static int bFrames;
-        private static int bFStrat;       
-        private static int cmp;        
+        private static int bFStrat;
+        private static int cmp;
         private static int crf;
         private static int diaSize;
-        private static int gopSize;        
+        private static int gopSize;
         private static int qmax;
         private static int qmin;
         private static int subcmp;
@@ -53,21 +53,21 @@ namespace FFmpegCatapult
         private static string[,] encoderPresets;
         private static string[] cmpFuncs = new string[] {
             "sad", "sse", "satd", "dct", "psnr", "bit", "rd", "zero", "vsad",
-            "vsse", "nsse", "w53", "w97", "dctmax", "chroma", ""
+            "vsse", "nsse", "w53", "w97", "dctmax", "chroma", "Default"
         };
         private static string meMethod;
         private static string[,] meMethods = new string[,] {
             {"Zero", "zero"}, {"Full", "full"}, {"EPZS", "epzs"}, {"Esa", "esa"},
             {"Tesa", "tesa"}, {"Dia", "dia"}, {"Log", "log"}, {"Phods", "phods"},
             {"X1", "x1"}, {"Hex", "hex"}, {"Umh", "umh"}, {"Iter", "iter"},
-            {"", ""}
+            {"Default", ""}
         };
         private static string pictureFormat = "";
         private static string[,] pictureFormats = new string[,] {
             {"YUV 4:2:0", "yuv420p"}, {"YUYV 4:2:2", "yuyv422"}, {"RGB 24", "rgb24"},
             {"BGR 24","bgr24"}, {"YUV 4:2:2", "yuv422p"}, {"YUV 4:4:4", "yuv44p"},
             {"YUV 4:1:0", "yuv410p"}, {"YUV 4:1:1", "yuv411p"}, {"Gray", "gray"},
-            {"", ""}
+            {"Default", ""}
         };
 
         // Property methods
@@ -196,7 +196,7 @@ namespace FFmpegCatapult
                         Encoder = "wmv2";
                         break;
                     default:
-                        bitrate = 1500;                        
+                        bitrate = 1500;
                         encoders = new string[,] {
                             {codec, codec}
                         };

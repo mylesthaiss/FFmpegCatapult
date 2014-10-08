@@ -1,5 +1,5 @@
-﻿// WinForms code and events for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// VideoSettingsForm is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -110,6 +110,7 @@ namespace FFmpegCatapult
             this.comboBoxTrellis.Name = "comboBoxTrellis";
             this.comboBoxTrellis.Size = new System.Drawing.Size(66, 21);
             this.comboBoxTrellis.TabIndex = 9;
+            this.comboBoxTrellis.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelTrellis
             // 
@@ -126,6 +127,7 @@ namespace FFmpegCatapult
             this.textBoxDiaSize.Name = "textBoxDiaSize";
             this.textBoxDiaSize.Size = new System.Drawing.Size(35, 20);
             this.textBoxDiaSize.TabIndex = 6;
+            this.textBoxDiaSize.TextChanged += new System.EventHandler(this.valueChanged);
             this.textBoxDiaSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelDieSize
@@ -145,6 +147,7 @@ namespace FFmpegCatapult
             this.comboBoxMEMethods.Name = "comboBoxMEMethods";
             this.comboBoxMEMethods.Size = new System.Drawing.Size(102, 21);
             this.comboBoxMEMethods.TabIndex = 4;
+            this.comboBoxMEMethods.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelMEMethod
             // 
@@ -164,6 +167,7 @@ namespace FFmpegCatapult
             this.comboBoxEncoderPresets.Name = "comboBoxEncoderPresets";
             this.comboBoxEncoderPresets.Size = new System.Drawing.Size(106, 21);
             this.comboBoxEncoderPresets.TabIndex = 1;
+            this.comboBoxEncoderPresets.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelEncoderPreset
             // 
@@ -195,6 +199,7 @@ namespace FFmpegCatapult
             this.textBoxCodecLevel.Name = "textBoxCodecLevel";
             this.textBoxCodecLevel.Size = new System.Drawing.Size(35, 20);
             this.textBoxCodecLevel.TabIndex = 2;
+            this.textBoxCodecLevel.TextChanged += new System.EventHandler(this.valueChanged);
             this.textBoxCodecLevel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPressDecimal);
             // 
             // labelEncodingLevel
@@ -223,6 +228,7 @@ namespace FFmpegCatapult
             this.comboBoxCodecProfiles.Name = "comboBoxCodecProfiles";
             this.comboBoxCodecProfiles.Size = new System.Drawing.Size(138, 21);
             this.comboBoxCodecProfiles.TabIndex = 1;
+            this.comboBoxCodecProfiles.SelectedIndexChanged += new System.EventHandler(this.valueChanged);
             // 
             // buttonApply
             // 
@@ -265,6 +271,7 @@ namespace FFmpegCatapult
             this.comboBoxBFStrats.Name = "comboBoxBFStrats";
             this.comboBoxBFStrats.Size = new System.Drawing.Size(109, 21);
             this.comboBoxBFStrats.TabIndex = 3;
+            this.comboBoxBFStrats.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelBFStrategy
             // 
@@ -281,6 +288,7 @@ namespace FFmpegCatapult
             this.textBoxBFrames.Name = "textBoxBFrames";
             this.textBoxBFrames.Size = new System.Drawing.Size(35, 20);
             this.textBoxBFrames.TabIndex = 1;
+            this.textBoxBFrames.TextChanged += new System.EventHandler(this.valueChanged);
             this.textBoxBFrames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelBFrames
@@ -312,6 +320,7 @@ namespace FFmpegCatapult
             this.comboBoxPictureFormats.Name = "comboBoxPictureFormats";
             this.comboBoxPictureFormats.Size = new System.Drawing.Size(124, 21);
             this.comboBoxPictureFormats.TabIndex = 3;
+            this.comboBoxPictureFormats.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // labelPicFormat
             // 
@@ -328,6 +337,7 @@ namespace FFmpegCatapult
             this.textBoxGOPSize.Name = "textBoxGOPSize";
             this.textBoxGOPSize.Size = new System.Drawing.Size(35, 20);
             this.textBoxGOPSize.TabIndex = 1;
+            this.textBoxGOPSize.TextChanged += new System.EventHandler(this.valueChanged);
             this.textBoxGOPSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // labelGOPSize
@@ -380,6 +390,7 @@ namespace FFmpegCatapult
             this.comboBoxSubCMPFuncs.Name = "comboBoxSubCMPFuncs";
             this.comboBoxSubCMPFuncs.Size = new System.Drawing.Size(74, 21);
             this.comboBoxSubCMPFuncs.TabIndex = 2;
+            this.comboBoxSubCMPFuncs.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // comboBoxCMPFuncs
             // 
@@ -389,6 +400,7 @@ namespace FFmpegCatapult
             this.comboBoxCMPFuncs.Name = "comboBoxCMPFuncs";
             this.comboBoxCMPFuncs.Size = new System.Drawing.Size(74, 21);
             this.comboBoxCMPFuncs.TabIndex = 1;
+            this.comboBoxCMPFuncs.TextChanged += new System.EventHandler(this.valueChanged);
             // 
             // label1
             // 

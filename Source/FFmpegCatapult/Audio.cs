@@ -1,5 +1,5 @@
-﻿﻿// Audio properties for FFmpeg Catapult.
-// Copyright (C) 2013 Myles Thaiss
+﻿﻿// Audio is part of FFmpeg Catapult.
+// Copyright (C) 2014 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -41,7 +41,7 @@ namespace FFmpegCatapult
         private static string[,] codecs;
         private static string encoder;
         private static string[,] encoders;
-        
+
         /// <summary>
         /// Stores audio codec value and determines available encoders for 
         /// FFmpeg to use. Also new settings such as bitrate and samplerate 
@@ -363,6 +363,7 @@ namespace FFmpegCatapult
             set
             {
                 encoder = value;
+                codecProfile = "default";
 
                 switch (encoder)
                 {
@@ -378,7 +379,7 @@ namespace FFmpegCatapult
                         quality = 3;
                         vbrModes = new int[] {
                             1, 2, 3, 4
-                        };                        
+                        };
 
                         if (codec == "heaac")
                         {
@@ -388,8 +389,7 @@ namespace FFmpegCatapult
                             };
                         }
                         else
-                        {
-                            codecProfile = "default";
+                        {                            
                             codecProfiles = new string[,] {
                                 {"Default", "default"}, {"Low Complexity", "aac_low"},
                                 {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"},
