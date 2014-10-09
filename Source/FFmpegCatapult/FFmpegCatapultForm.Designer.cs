@@ -49,6 +49,8 @@ namespace FFmpegCatapult
             this.buttonExit = new System.Windows.Forms.Button();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.groupBoxSessionOptions = new System.Windows.Forms.GroupBox();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.labelLogName = new System.Windows.Forms.Label();
             this.checkBoxSaveSettings = new System.Windows.Forms.CheckBox();
             this.checkBoxWriteLog = new System.Windows.Forms.CheckBox();
             this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
@@ -176,8 +178,8 @@ namespace FFmpegCatapult
             this.radioButtonRefresh = new System.Windows.Forms.RadioButton();
             this.radioButtonKeep = new System.Windows.Forms.RadioButton();
             this.groupBoxEncoding = new System.Windows.Forms.GroupBox();
+            this.checkBoxMultiThreading = new System.Windows.Forms.CheckBox();
             this.comboBoxThreads = new System.Windows.Forms.ComboBox();
-            this.labelThreads = new System.Windows.Forms.Label();
             this.comboBoxContainers = new System.Windows.Forms.ComboBox();
             this.labelFormat = new System.Windows.Forms.Label();
             this.comboBoxPresets = new System.Windows.Forms.ComboBox();
@@ -191,8 +193,6 @@ namespace FFmpegCatapult
             this.labelOutput = new System.Windows.Forms.Label();
             this.labelInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.labelLogName = new System.Windows.Forms.Label();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
@@ -265,6 +265,22 @@ namespace FFmpegCatapult
             this.groupBoxSessionOptions.TabIndex = 1;
             this.groupBoxSessionOptions.TabStop = false;
             this.groupBoxSessionOptions.Text = "Session";
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Location = new System.Drawing.Point(69, 45);
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.Size = new System.Drawing.Size(163, 20);
+            this.textBoxLog.TabIndex = 3;
+            // 
+            // labelLogName
+            // 
+            this.labelLogName.AutoSize = true;
+            this.labelLogName.Location = new System.Drawing.Point(6, 48);
+            this.labelLogName.Name = "labelLogName";
+            this.labelLogName.Size = new System.Drawing.Size(57, 13);
+            this.labelLogName.TabIndex = 2;
+            this.labelLogName.Text = "Log name:";
             // 
             // checkBoxSaveSettings
             // 
@@ -1517,8 +1533,8 @@ namespace FFmpegCatapult
             // 
             // groupBoxEncoding
             // 
+            this.groupBoxEncoding.Controls.Add(this.checkBoxMultiThreading);
             this.groupBoxEncoding.Controls.Add(this.comboBoxThreads);
-            this.groupBoxEncoding.Controls.Add(this.labelThreads);
             this.groupBoxEncoding.Controls.Add(this.comboBoxContainers);
             this.groupBoxEncoding.Controls.Add(this.labelFormat);
             this.groupBoxEncoding.Controls.Add(this.comboBoxPresets);
@@ -1530,6 +1546,16 @@ namespace FFmpegCatapult
             this.groupBoxEncoding.TabStop = false;
             this.groupBoxEncoding.Text = "Encoding";
             // 
+            // checkBoxMultiThreading
+            // 
+            this.checkBoxMultiThreading.AutoSize = true;
+            this.checkBoxMultiThreading.Location = new System.Drawing.Point(242, 48);
+            this.checkBoxMultiThreading.Name = "checkBoxMultiThreading";
+            this.checkBoxMultiThreading.Size = new System.Drawing.Size(68, 17);
+            this.checkBoxMultiThreading.TabIndex = 6;
+            this.checkBoxMultiThreading.Text = "Threads:";
+            this.checkBoxMultiThreading.UseVisualStyleBackColor = true;
+            // 
             // comboBoxThreads
             // 
             this.comboBoxThreads.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1539,22 +1565,13 @@ namespace FFmpegCatapult
             this.comboBoxThreads.Size = new System.Drawing.Size(53, 21);
             this.comboBoxThreads.TabIndex = 5;
             // 
-            // labelThreads
-            // 
-            this.labelThreads.AutoSize = true;
-            this.labelThreads.Location = new System.Drawing.Point(258, 48);
-            this.labelThreads.Name = "labelThreads";
-            this.labelThreads.Size = new System.Drawing.Size(49, 13);
-            this.labelThreads.TabIndex = 4;
-            this.labelThreads.Text = "Threads:";
-            // 
             // comboBoxContainers
             // 
             this.comboBoxContainers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxContainers.FormattingEnabled = true;
             this.comboBoxContainers.Location = new System.Drawing.Point(54, 45);
             this.comboBoxContainers.Name = "comboBoxContainers";
-            this.comboBoxContainers.Size = new System.Drawing.Size(198, 21);
+            this.comboBoxContainers.Size = new System.Drawing.Size(179, 21);
             this.comboBoxContainers.TabIndex = 3;
             // 
             // labelFormat
@@ -1674,22 +1691,6 @@ namespace FFmpegCatapult
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(479, 220);
             this.tabControl.TabIndex = 2;
-            // 
-            // labelLogName
-            // 
-            this.labelLogName.AutoSize = true;
-            this.labelLogName.Location = new System.Drawing.Point(6, 48);
-            this.labelLogName.Name = "labelLogName";
-            this.labelLogName.Size = new System.Drawing.Size(57, 13);
-            this.labelLogName.TabIndex = 2;
-            this.labelLogName.Text = "Log name:";
-            // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Location = new System.Drawing.Point(69, 45);
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.Size = new System.Drawing.Size(163, 20);
-            this.textBoxLog.TabIndex = 3;
             // 
             // FFmpegCatapultForm
             // 
@@ -1899,12 +1900,12 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelOutput;
         private System.Windows.Forms.Label labelInput;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.Label labelThreads;
         private System.Windows.Forms.GroupBox groupBoxSessionOptions;
         private System.Windows.Forms.CheckBox checkBoxSaveSettings;
         private System.Windows.Forms.CheckBox checkBoxWriteLog;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.Label labelLogName;
+        private System.Windows.Forms.CheckBox checkBoxMultiThreading;
     }
 }
 

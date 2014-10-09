@@ -30,6 +30,7 @@ namespace FFmpegCatapult
         public static bool Overwrite;
         public static bool WriteLog;
         public static bool SaveProperties;
+        public static bool MultiThreading;
         private static int maxThreads = Environment.ProcessorCount;
         private static int threads;
         private static string preset;

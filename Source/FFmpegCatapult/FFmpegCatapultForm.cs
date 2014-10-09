@@ -229,6 +229,12 @@ namespace FFmpegCatapult
                 textBoxOutFile.Text = File.Output;
                 textBoxOutFile.TextChanged += new EventHandler(textBoxOutFile_TextChanged);
             }
+
+            // Checkboxes
+            checkBoxMultiThreading.CheckedChanged -= new EventHandler(checkBoxMultiThreading_CheckedChanged);
+            checkBoxMultiThreading.Checked = Session.MultiThreading;
+            comboBoxThreads.Enabled = Session.MultiThreading;
+            checkBoxMultiThreading.CheckedChanged += new EventHandler(checkBoxMultiThreading_CheckedChanged);
         }
 
         private void InitPicture()
@@ -986,6 +992,12 @@ namespace FFmpegCatapult
         void checkBoxOverwrite_CheckedChanged(object sender, EventArgs e)
         {
             Session.Overwrite = checkBoxOverwrite.Checked;
+        }
+
+        void checkBoxMultiThreading_CheckedChanged(object sender, EventArgs e)
+        {
+            Session.MultiThreading = checkBoxMultiThreading.Checked;
+            comboBoxThreads.Enabled = Session.MultiThreading;
         }
 
         void comboBoxContainers_SelectedIndexChanged(object sender, EventArgs e)

@@ -77,6 +77,7 @@ namespace FFmpegCatapult
             Session.KeepValues = Properties.Settings.Default.KeepValues;
             Session.Overwrite = Properties.Settings.Default.OverwriteFiles;
             Session.TwoPassEncoding = Properties.Settings.Default.TwoPassEncoding;
+            Session.MultiThreading = Properties.Settings.Default.MultiThreading;
             Session.WriteLog = Properties.Settings.Default.WriteLog;
             Session.SaveProperties = Properties.Settings.Default.SaveSettings;
             File.Log = Properties.Settings.Default.LogFileName;

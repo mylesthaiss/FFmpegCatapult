@@ -44,8 +44,8 @@ namespace FFmpegCatapult
             string args;
             string input;
             string output;
-            string threads;
             string video;
+            string nullFile = nullPath;
 
             // Input arguments
             if (!string.IsNullOrEmpty(File.AudioStream))
@@ -65,10 +65,14 @@ namespace FFmpegCatapult
             else
             {
                 output = string.Format("-n \"{0}\"", File.Output);
-            }
+            }            
 
             // Threads arguments
-            threads = string.Format("-threads {0}", Session.Threads);
+            if (Session.MultiThreading)
+            {
+                output = string.Format("-threads {0} {1}", Session.Threads, output);
+                nullFile = string.Format("-threads {0} {1}", Session.Threads, nullPath);
+            }             
 
             // Audio arguments
             if (Audio.Codec != "none")
@@ -387,7 +391,7 @@ namespace FFmpegCatapult
                     }
 
                     // First pass
-                    args = string.Format("-i \"{0}\" {1} -pass 1 {2} -an -y -f rawvideo {3}", File.Input, threads, video, nullPath);
+                    args = string.Format("-i \"{0}\" -pass 1 {1} -an -y -f rawvideo {2}", File.Input, video, nullFile);
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", waitArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)
@@ -397,7 +401,7 @@ namespace FFmpegCatapult
                     Term.WaitForExit();
 
                     // Second pass
-                    args = string.Format("{0} {1} -pass 2 {2} {3} {4}", input, threads, audio, video, output);
+                    args = string.Format("{0} -pass 2 {1} {2} {3}", input, video, audio, output);
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)
@@ -408,7 +412,7 @@ namespace FFmpegCatapult
                 else
                 {
                     // Single pass
-                    args = string.Format(string.Format("{0} {1} {2} {3} {4}", input, threads, audio, video, output));
+                    args = string.Format(string.Format("{0} {1} {2} {3}", input, video, audio, output));
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)

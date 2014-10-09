@@ -778,5 +778,17 @@ namespace FFmpegCatapult.Properties {
                 this["LogFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MultiThreading {
+            get {
+                return ((bool)(this["MultiThreading"]));
+            }
+            set {
+                this["MultiThreading"] = value;
+            }
+        }
     }
 }
