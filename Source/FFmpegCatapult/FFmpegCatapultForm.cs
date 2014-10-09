@@ -1225,6 +1225,16 @@ namespace FFmpegCatapult
         void checkBoxTwoPassEncoding_CheckedChanged(object sender, EventArgs e)
         {
             Session.TwoPassEncoding = checkBoxTwoPassEncoding.Checked;
+            if (Session.TwoPassEncoding)
+            {
+                checkBoxUseCRF.Enabled = false;
+                EnableCRFControls(false);
+            }
+            else
+            {
+                checkBoxUseCRF.Enabled = true;
+                EnableCRFControls(Video.UseCRF);
+            }
         }
 
         void checkBoxUseCRF_CheckedChanged(object sender, EventArgs e)

@@ -25,7 +25,7 @@ namespace FFmpegCatapult
     class Video
     {
         // Variables
-        public static bool UseCRF = false;
+        private static bool useCRF = false;
         private static double bitrate;
         private static double bufferSize;
         private static double codecLevel;
@@ -131,7 +131,7 @@ namespace FFmpegCatapult
                 codec = value;
 
                 // Reset to default values
-                UseCRF = false;
+                useCRF = false;
                 bits = "k";
                 bytes = "M";
                 bFrames = 0;
@@ -351,6 +351,22 @@ namespace FFmpegCatapult
         {
             get { return trellis; }
             set { trellis = value; }
+        }
+
+        public static bool UseCRF
+        {
+            get
+            {
+                if(Session.TwoPassEncoding)
+                {
+                    return false;
+                }
+                else
+                {
+                    return useCRF;
+                }
+            }
+            set { useCRF = value; }
         }
     }
 }
