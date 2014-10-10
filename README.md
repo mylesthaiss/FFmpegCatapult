@@ -5,17 +5,17 @@ A clean and simple graphical launcher for FFmpeg:
 
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Main.png)
 
-
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Picture.png)
-
 
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Video.png)
 
-
 ![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/VideoSettings.png)
 
+![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Audio.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Main.png)
+![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Tagging.png)
+
+![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Options.png)
 
 Requirements
 ============

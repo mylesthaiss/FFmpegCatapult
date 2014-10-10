@@ -1,3 +1,17 @@
+--- 0.3
+- Fixed audio codec profile switch appearing on every audio codec.
+- Fixes and minor improvements to the user interface.
+- Xvid is now the default preset.
+- Unsupported codecs change to a new default when a user changes file format.
+- CRF is disabled when two-pass encoding is enabled.
+- Settings are now saved to user preferences properties.
+- Added support for custom audio streams via Audio tab.
+- Added option to disable saving during exist.
+- Added logging support.
+- Added option to custom name launcher log file.
+- Added option to disable "-threads" switch
+- Added 3GP container support.
+
 --- 0.2
 - NEW Metadata tagging tab.
 - NEW Video properties window.

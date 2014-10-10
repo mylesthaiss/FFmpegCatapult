@@ -100,6 +100,7 @@ namespace FFmpegCatapult
             checkBoxOverwrite.Checked = Session.Overwrite;
             checkBoxOverwrite.CheckedChanged += new EventHandler(checkBoxOverwrite_CheckedChanged);
 
+            this.FormClosing += MainForm_Closing;
             buttonExit.Click += new EventHandler(buttonExit_Click);
             buttonRun.Click += new EventHandler(buttonRun_Click);
 
@@ -666,6 +667,15 @@ namespace FFmpegCatapult
         }
 
         // Misc methods
+        private void ExitFFmpegCatapult()
+        {
+            if (Session.SaveProperties == true)
+            {
+                Session.SaveSettings();
+            }
+            System.Environment.Exit(0);
+        }
+
         private void EnableRatioControls(bool enable)
         {
             labelRatio.Enabled = enable;
@@ -1060,13 +1070,14 @@ namespace FFmpegCatapult
             }
         }
 
+        private void MainForm_Closing(object sender, FormClosingEventArgs e)
+        {
+            ExitFFmpegCatapult();
+        }
+
         void buttonExit_Click(object sender, EventArgs e)
         {
-            if (Session.SaveProperties == true)
-            {
-                Session.SaveSettings();
-            }            
-            System.Environment.Exit(0);
+            ExitFFmpegCatapult();
         }
 
         void buttonRun_Click(object sender, EventArgs e)

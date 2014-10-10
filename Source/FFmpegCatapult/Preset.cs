@@ -43,10 +43,7 @@ namespace FFmpegCatapult
         {
             switch (Session.Preset)
             {
-                case "default":
-                    File.Format = "avi";
-                    Screen.ScaleOption = 0;
-                    break;
+                case "default":                    
                 case "xvid":
                     File.Format = "avi";
                     Video.Codec = "mpeg4";

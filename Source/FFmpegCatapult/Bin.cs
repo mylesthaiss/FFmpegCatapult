@@ -65,14 +65,14 @@ namespace FFmpegCatapult
             else
             {
                 output = string.Format("-n \"{0}\"", File.Output);
-            }            
+            }
 
             // Threads arguments
             if (Session.MultiThreading)
             {
                 output = string.Format("-threads {0} {1}", Session.Threads, output);
                 nullFile = string.Format("-threads {0} {1}", Session.Threads, nullPath);
-            }             
+            }
 
             // Audio arguments
             if (Audio.Codec != "none")
@@ -421,10 +421,27 @@ namespace FFmpegCatapult
                     }
                 }
             }
-            catch (Exception e)
+            catch (FileNotFoundException)
             {
-                MessageBox.Show("Unable to run FFmpeg.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                ErrorMessage("File not found.");
             }
+            catch (DirectoryNotFoundException)
+            {
+                ErrorMessage("Invalid folder path.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                ErrorMessage("Permission denied.");
+            }
+            catch (Exception)
+            {
+                ErrorMessage("Unable to run FFmpeg.");
+            }
+        }
+
+        private static void ErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
         }
 
         private static void Log(string args, string pass)
