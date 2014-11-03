@@ -152,7 +152,7 @@ namespace FFmpegCatapult
             // Load main form
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FFmpegCatapultForm());
+            Application.Run(new MainForm());
         }
     }
 }
