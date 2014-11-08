@@ -73,7 +73,7 @@
       <DependentUpon>AudioSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bin.cs" />
-    <Compile Include="FFmpegCatapult.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

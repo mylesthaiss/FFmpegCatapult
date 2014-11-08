@@ -29,7 +29,7 @@ namespace FFmpegCatapult
             {"Default", "default"}, {"Xvid", "xvid"}, {"MPEG-2, Standard Definition", "mp2sd"}, 
             {"MPEG-2, High Definintion", "mp2hd"}, {"MPEG-4, Standard Definintion", "mp4sd"}, 
             {"MPEG-4, High Definintion", "mp4hd"}, {"H.264, Standard Definintion", "h264sd"},
-            {"H.264, High Definintion", "h264hd"}, {"VP8, Standard Definintion", "vp8sd"},
+            {"H.264, High Definintion", "h264hd"}, {"H.264, Standard Definintion @ 1Mbps", "webh264sd"}, {"VP8, Standard Definintion", "vp8sd"},
             {"VP8, High Definintion", "vp8hd"}, {"iPod (5th Gen), 240p MPEG-4","ipod240mp4"},
             {"iPod (5th Gen), 240p H.264", "ipod240h264"}, {"iPod (5th Gen), 480p MPEG-4", "ipod480mp4"},
             {"iPod (5th Gen), 480p H.264", "ipod480h264"}, {"iPhone 4", "iphone4"}, {"Sony PSP", "psp"},
@@ -65,7 +65,7 @@ namespace FFmpegCatapult
                     File.Format = "mp4";
                     Video.Codec = "h264";
                     Video.CodecProfile = "main";
-                    Video.CodecLevel = 4.0;
+                    Video.CodecLevel = 3.1;
                     Video.UseCRF = true;
                     Video.CRF = 24;
                     Screen.ScaleOption = 1;
@@ -91,6 +91,22 @@ namespace FFmpegCatapult
                     Screen.RatioB = 9;
                     Audio.Codec = "aac";
                     Audio.Bitrate = 160;
+                    break;
+                case "webh264sd":
+                    File.Format = "mp4";
+                    Video.Codec = "h264";
+                    Video.CodecProfile = "main";
+                    Video.CodecLevel = 3.0;
+                    Video.UseCRF = false;
+                    Video.CRF = 32;
+                    Video.Bitrate = 1000;
+                    Screen.ScaleOption = 1;
+                    Screen.Width = 0;
+                    Screen.Height = 480;
+                    Screen.AspectRatio = false;
+                    Screen.RatioA = 16;
+                    Screen.RatioB = 9;
+                    Audio.Codec = "aac";
                     break;
                 case "ipod240h264":
                     File.Format = "mp4";

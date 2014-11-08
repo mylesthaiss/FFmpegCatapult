@@ -23,7 +23,7 @@ using System.Windows.Forms;
 
 namespace FFmpegCatapult
 {
-    static class FFmpegCatapult
+    static class Program
     {
         /// <summary>
         /// The main entry point for the application.
