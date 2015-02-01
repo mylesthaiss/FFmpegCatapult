@@ -58,20 +58,20 @@ namespace FFmpegCatapult
 
         void comboBoxSampleRates_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent sampleRate = (ListComboIntContent)comboBoxSampleRates.SelectedItem;
-            if (sampleRate.Value != Audio.SampleRate)
+            ListComboContent sampleRate = (ListComboContent)comboBoxSampleRates.SelectedItem;
+            if (sampleRate.X != Audio.SampleRate)
             {
-                Audio.SampleRate = sampleRate.Value;
+                Audio.SampleRate = sampleRate.X;
                 InitAudioBitrates();
             }
         }
 
         void comboBoxChannels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent channels = (ListComboIntContent)comboBoxChannels.SelectedItem;
-            if (channels.Value != Audio.Channels)
+            ListComboContent channels = (ListComboContent)comboBoxChannels.SelectedItem;
+            if (channels.X != Audio.Channels)
             {
-                Audio.Channels = channels.Value;
+                Audio.Channels = channels.X;
             }
         }
 
@@ -83,15 +83,15 @@ namespace FFmpegCatapult
 
         void comboBoxAudioBitrates_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent bitrate = (ListComboIntContent)comboBoxAudioBitrates.SelectedItem;
+            ListComboContent bitrate = (ListComboContent)comboBoxAudioBitrates.SelectedItem;
 
             if (Audio.UseVBR == true)
             {
-                Audio.Quality = bitrate.Value;
+                Audio.Quality = bitrate.X;
             }
             else
             {
-                Audio.Bitrate = bitrate.Value;
+                Audio.Bitrate = bitrate.X;
             }
         }
 

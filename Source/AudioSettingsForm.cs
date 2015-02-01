@@ -48,24 +48,6 @@ namespace FFmpegCatapult
             buttonApply.Enabled = false;
         }
 
-        // Combobox list helpers
-        private class ListComboContent
-        {
-            public string Name;
-            public string Value;
-
-            public ListComboContent(string name, string value)
-            {
-                this.Name = name;
-                this.Value = value;
-            }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
-
         // Event handlers
         private void valueChanged(object sender, EventArgs e)
         {
@@ -82,6 +64,24 @@ namespace FFmpegCatapult
             ListComboContent codecProfile = (ListComboContent)comboBoxCodecProfiles.SelectedItem;
             Audio.CodecProfile = codecProfile.Value;
             this.Close();
+        }
+
+        // Combobox list helper
+        private class ListComboContent
+        {
+            public string Name;
+            public string Value;
+
+            public ListComboContent(string name, string value)
+            {
+                this.Name = name;
+                this.Value = value;
+            }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
     }
 }

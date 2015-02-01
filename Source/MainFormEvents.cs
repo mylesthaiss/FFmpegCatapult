@@ -69,10 +69,10 @@ namespace FFmpegCatapult
             }
             comboBoxPresets.SelectedIndexChanged += new EventHandler(comboBoxPresets_SelectedIndexChanged);
 
-            comboBoxThreads.Items.Add(new ListComboIntContent("Auto", 0));
+            comboBoxThreads.Items.Add(new ListComboContent("Auto", 0));
             for (int i = 1; i <= Session.MaxThreads; i++)
             {
-                comboBoxThreads.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
+                comboBoxThreads.Items.Add(new ListComboContent(Convert.ToString(i), i));
             }
 
             if (Session.KeepValues == true)

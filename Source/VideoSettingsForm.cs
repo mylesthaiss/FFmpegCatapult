@@ -66,22 +66,22 @@ namespace FFmpegCatapult
             }
 
             // Comboboxes
-            comboBoxTrellis.Items.Add(new ListComboIntContent("None", 0));
-            comboBoxTrellis.Items.Add(new ListComboIntContent("Final", 1));
-            comboBoxTrellis.Items.Add(new ListComboIntContent("All RD", 2));
-            comboBoxTrellis.Items.Add(new ListComboIntContent("Default", 3));
+            comboBoxTrellis.Items.Add(new ListComboContent("None", 0));
+            comboBoxTrellis.Items.Add(new ListComboContent("Final", 1));
+            comboBoxTrellis.Items.Add(new ListComboContent("All RD", 2));
+            comboBoxTrellis.Items.Add(new ListComboContent("Default", 3));
             comboBoxTrellis.SelectedIndex = Video.Trellis;
 
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("Always", 0));
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("Avoid high motion", 1));
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("Less or more", 2));
-            comboBoxBFStrats.Items.Add(new ListComboIntContent("Default", 3));
+            comboBoxBFStrats.Items.Add(new ListComboContent("Always", 0));
+            comboBoxBFStrats.Items.Add(new ListComboContent("Avoid high motion", 1));
+            comboBoxBFStrats.Items.Add(new ListComboContent("Less or more", 2));
+            comboBoxBFStrats.Items.Add(new ListComboContent("Default", 3));
             comboBoxBFStrats.SelectedIndex = Video.BFStrategy;
 
             for (int i = 0; i < Video.CMPFuncs.GetLength(0); i++)
             {
-                comboBoxCMPFuncs.Items.Add(new ListComboIntContent(Video.CMPFuncs[i], i));
-                comboBoxSubCMPFuncs.Items.Add(new ListComboIntContent(Video.CMPFuncs[i], i));
+                comboBoxCMPFuncs.Items.Add(new ListComboContent(Video.CMPFuncs[i], i));
+                comboBoxSubCMPFuncs.Items.Add(new ListComboContent(Video.CMPFuncs[i], i));
             }
             comboBoxCMPFuncs.SelectedIndex = Video.CMP;
             comboBoxSubCMPFuncs.SelectedIndex = Video.SubCMP;
@@ -112,41 +112,6 @@ namespace FFmpegCatapult
             textBoxGOPSize.Text = Methods.NumToText(Video.GOPSize);
 
             buttonApply.Enabled = false;
-        }
-
-        // Combobox list helpers
-        private class ListComboContent
-        {
-            public string Name;
-            public string Value;
-
-            public ListComboContent(string name, string value)
-            {
-                this.Name = name;
-                this.Value = value;
-            }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
-
-        private class ListComboIntContent
-        {
-            public string Name;
-            public int Value;
-
-            public ListComboIntContent(string name, int x)
-            {
-                this.Name = name;
-                this.Value = x;
-            }
-
-            public override string ToString()
-            {
-                return Name;
-            }
         }
 
         // Event handlers
@@ -183,20 +148,20 @@ namespace FFmpegCatapult
         {
             ListComboContent meMethod = (ListComboContent)comboBoxMEMethods.SelectedItem;
             ListComboContent picFormat = (ListComboContent)comboBoxPictureFormats.SelectedItem;
-            ListComboIntContent bstrat = (ListComboIntContent)comboBoxBFStrats.SelectedItem;
-            ListComboIntContent cmp = (ListComboIntContent)comboBoxCMPFuncs.SelectedItem;
-            ListComboIntContent subcmp = (ListComboIntContent)comboBoxSubCMPFuncs.SelectedItem;
-            ListComboIntContent trellis = (ListComboIntContent)comboBoxTrellis.SelectedItem;
+            ListComboContent bstrat = (ListComboContent)comboBoxBFStrats.SelectedItem;
+            ListComboContent cmp = (ListComboContent)comboBoxCMPFuncs.SelectedItem;
+            ListComboContent subcmp = (ListComboContent)comboBoxSubCMPFuncs.SelectedItem;
+            ListComboContent trellis = (ListComboContent)comboBoxTrellis.SelectedItem;
 
             Video.BFrames = Methods.TextToInt(textBoxBFrames.Text);
-            Video.BFStrategy = bstrat.Value;
-            Video.CMP = cmp.Value;
+            Video.BFStrategy = bstrat.X;
+            Video.CMP = cmp.X;
             Video.DiaSize = Methods.TextToInt(textBoxDiaSize.Text);
             Video.GOPSize = Methods.TextToInt(textBoxGOPSize.Text);
             Video.MEMethod = meMethod.Value;
             Video.PictureFormat = picFormat.Value;
-            Video.SubCMP = subcmp.Value;
-            Video.Trellis = trellis.Value;
+            Video.SubCMP = subcmp.X;
+            Video.Trellis = trellis.X;
 
             if (groupBoxCodec.Enabled == true)
             {
@@ -212,6 +177,46 @@ namespace FFmpegCatapult
             }
 
             this.Close();
+        }
+
+        // Combobox list helper
+        private class ListComboContent
+        {
+            private string name;
+            private string value;
+            private int x;
+
+            public ListComboContent(string label, string arg)
+            {
+                name = label;
+                value = arg;
+            }
+
+            public ListComboContent(string label, int y)
+            {
+                name = label;
+                x = y;
+            }
+
+            public int X
+            {
+                get { return x; }
+            }
+
+            public string Value
+            {
+                get { return value; }
+            }
+
+            public string Name
+            {
+                get { return name; }
+            }
+
+            public override string ToString()
+            {
+                return name;
+            }
         }
     }
 }

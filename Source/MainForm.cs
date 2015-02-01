@@ -358,9 +358,9 @@ namespace FFmpegCatapult
 
             for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
             {
-                comboBoxSampleRates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
+                comboBoxSampleRates.Items.Add(new ListComboContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
             }
-            comboBoxSampleRates.Items.Add(new ListComboIntContent("", 0));
+            comboBoxSampleRates.Items.Add(new ListComboContent("", 0));
 
             if (Audio.SampleRate != 0)
             {
@@ -381,9 +381,9 @@ namespace FFmpegCatapult
 
             for (int i = 1; i <= Audio.MaxChannels; i++)
             {
-                comboBoxChannels.Items.Add(new ListComboIntContent(Convert.ToString(i), i));
+                comboBoxChannels.Items.Add(new ListComboContent(Convert.ToString(i), i));
             }
-            comboBoxChannels.Items.Add(new ListComboIntContent("", 0));
+            comboBoxChannels.Items.Add(new ListComboContent("", 0));
 
             if (Audio.Channels != 0)
             {
@@ -427,7 +427,7 @@ namespace FFmpegCatapult
 
                 for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
                 {
-                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.VBRModes[i]), Audio.VBRModes[i]));
+                    comboBoxAudioBitrates.Items.Add(new ListComboContent(Convert.ToString(Audio.VBRModes[i]), Audio.VBRModes[i]));
                 }
                 for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
                 {
@@ -445,7 +445,7 @@ namespace FFmpegCatapult
 
                 for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
                 {
-                    comboBoxAudioBitrates.Items.Add(new ListComboIntContent(Convert.ToString(Audio.Bitrates[i]) + " Kbps", Audio.Bitrates[i]));
+                    comboBoxAudioBitrates.Items.Add(new ListComboContent(Convert.ToString(Audio.Bitrates[i]) + " Kbps", Audio.Bitrates[i]));
                 }
                 for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
                 {
@@ -767,38 +767,43 @@ namespace FFmpegCatapult
             textBoxYear.Text = "";
         }
 
-        // Combobox list helpers
+        // Combobox list helper
         private class ListComboContent
         {
-            public string Name;
-            public string Value;
+            private string name;
+            private string value;
+            private int x;
 
-            public ListComboContent(string name, string value)
+            public ListComboContent(string label, string arg)
             {
-                this.Name = name;
-                this.Value = value;
+                name = label;
+                value = arg;
+            }
+            
+            public ListComboContent(string label, int y)
+            {
+                name = label;
+                x = y;
+            }
+
+            public int X
+            {
+                get { return x; }
+            }
+
+            public string Value
+            {
+                get { return value; }
+            }
+
+            public string Name
+            {
+                get { return name; }
             }
 
             public override string ToString()
             {
-                return Name;
-            }
-        }
-
-        private class ListComboIntContent
-        {
-            public string Name;
-            public int Value;
-
-            public ListComboIntContent(string name, int x)
-            {
-                this.Name = name;
-                this.Value = x;
-            }
-
-            public override string ToString()
-            {
-                return Name;
+                return name;
             }
         }
     }

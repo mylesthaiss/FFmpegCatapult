@@ -169,8 +169,8 @@ namespace FFmpegCatapult
 
         void comboBoxThreads_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent threads = (ListComboIntContent)comboBoxThreads.SelectedItem;
-            Session.Threads = threads.Value;
+            ListComboContent threads = (ListComboContent)comboBoxThreads.SelectedItem;
+            Session.Threads = threads.X;
         }
 
         void radioButtonKeep_CheckedChanged(object sender, EventArgs e)
