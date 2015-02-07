@@ -23,6 +23,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
 
 namespace FFmpegCatapult
 {
@@ -55,6 +57,7 @@ namespace FFmpegCatapult
                 comboBoxContainers.Items.Add(new ListComboContent(File.Formats[i, 0], File.Formats[i, 1]));
             }
 
+            /*
             for (int i = 0; i < Preset.GetPresets().GetLength(0); i++)
             {
                 comboBoxPresets.Items.Add(new ListComboContent(Preset.GetPresets()[i, 0], Preset.GetPresets()[i, 1]));
@@ -67,6 +70,30 @@ namespace FFmpegCatapult
                     break;
                 }
             }
+            */
+
+            comboBoxPresets.Items.Add(new ListComboContent("Default", "default"));
+
+            // Set up preset combobox
+            string path = Directory.GetCurrentDirectory();
+            string[] files = Directory.GetFiles(path, "*.xml");
+
+            foreach (string file in files)
+            {
+                XmlDocument preset = new XmlDocument();
+                preset.Load(file);
+                XmlNodeList nodes = preset.DocumentElement.SelectNodes("/preset/title");
+                
+                foreach (XmlNode node in nodes)
+                {
+                    string title = node.SelectSingleNode("name").InnerText;
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        comboBoxPresets.Items.Add(new ListComboContent(title, file));
+                    }
+                }
+            }
+            
             comboBoxPresets.SelectedIndexChanged += new EventHandler(comboBoxPresets_SelectedIndexChanged);
 
             comboBoxThreads.Items.Add(new ListComboContent("Auto", 0));
