@@ -142,7 +142,7 @@ namespace FFmpegCatapult
             // Init settings
             if (initPreset)
             {
-                Preset.InitPreset();
+                Preset.InitPreset("Default","default");
             }
             else
             {

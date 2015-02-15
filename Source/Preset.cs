@@ -19,336 +19,159 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace FFmpegCatapult
 {
-    class Preset
+    class Preset : Methods
     {
-        // Variables        
-        private static string[,] presets = new string[,] {
-            {"Default", "default"}, {"Xvid", "xvid"}, {"MPEG-2, Standard Definition", "mp2sd"}, 
-            {"MPEG-2, High Definintion", "mp2hd"}, {"MPEG-4, Standard Definintion", "mp4sd"}, 
-            {"MPEG-4, High Definintion", "mp4hd"}, {"H.264, Standard Definintion", "h264sd"},
-            {"H.264, High Definintion", "h264hd"}, {"H.264, Standard Definintion @ 1Mbps", "webh264sd"}, {"VP8, Standard Definintion", "vp8sd"},
-            {"VP8, High Definintion", "vp8hd"}, {"iPod (5th Gen), 240p MPEG-4","ipod240mp4"},
-            {"iPod (5th Gen), 240p H.264", "ipod240h264"}, {"iPod (5th Gen), 480p MPEG-4", "ipod480mp4"},
-            {"iPod (5th Gen), 480p H.264", "ipod480h264"}, {"iPhone 4", "iphone4"}, {"Sony PSP", "psp"},
-            {"Sony PSP, TV Out", "psptv"}, {"Extract audio stream to MP3", "tomp3"},
-            {"Copy audio and video to AVI","copyavi"}, {"Copy audio and video to MKV", "copymkv"},
-            {"Copy audio and video to MP4", "copymp4"}
-        };
-
-        // Init preset method
-        public static void InitPreset()
+        public static void InitPreset(string name, string file)
         {
-            switch (Session.Preset)
+            if (file == "default")
             {
-                case "default":                    
-                case "xvid":
-                    File.Format = "avi";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 1000;
-                    Video.MaxBitrate = 1500;
-                    Video.BufferSize = 2;
-                    Video.BFrames = 2;
-                    Video.BFStrategy = 2;
-                    Video.GOPSize = 300;
-                    Video.Trellis = 2;
-                    Audio.Codec = "mp3";
-                    Audio.Channels = 2;
-                    Audio.SampleRate = 44100;
-                    Screen.Width = 512;
-                    Screen.Height = 0;
-                    Screen.ScaleOption = 1;
-                    break;
-                case "h264sd":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "main";
-                    Video.CodecLevel = 3.1;
-                    Video.UseCRF = true;
-                    Video.CRF = 24;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "aac";
-                    break;
-                case "h264hd":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "high";
-                    Video.CodecLevel = 4.1;
-                    Video.UseCRF = true;
-                    Video.CRF = 18;
-                    Screen.ScaleOption = 0;
-                    Screen.Width = 0;
-                    Screen.Height = 720;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 160;
-                    break;
-                case "webh264sd":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "main";
-                    Video.CodecLevel = 3.0;
-                    Video.UseCRF = false;
-                    Video.CRF = 32;
-                    Video.Bitrate = 1000;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "aac";
-                    break;
-                case "ipod240h264":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 1.3;
-                    Video.Bitrate = 500;
-                    Video.MaxBitrate = 768;
-                    Video.BufferSize = 3;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 320;
-                    Screen.Height = 0;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 4;
-                    Screen.RatioB = 3;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 128;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "ipod240mp4":
-                    File.Format = "mp4";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 768;
-                    Video.MaxBitrate = 1000;
-                    Video.BufferSize = 3;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 320;
-                    Screen.Height = 0;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 4;
-                    Screen.RatioB = 3;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 128;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "ipod480h264":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 3.0;
-                    Video.Bitrate = 768;
-                    Video.MaxBitrate = 1000;
-                    Video.BufferSize = 1;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 640;
-                    Screen.Height = 0;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 4;
-                    Screen.RatioB = 3;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 128;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "ipod480mp4":
-                    File.Format = "mp4";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 1500;
-                    Video.MaxBitrate = 2500;
-                    Video.BufferSize = 3;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 640;
-                    Screen.Height = 0;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 4;
-                    Screen.RatioB = 3;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 128;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "iphone4":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "main";
-                    Video.CodecLevel = 3.1;
-                    Video.Bitrate = 2000;
-                    Video.MaxBitrate = 2500;
-                    Video.BufferSize = 1;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 720;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 4;
-                    Screen.RatioB = 3;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 160;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "mp2sd":
-                    File.Format = "mpg";
-                    Video.Codec = "mpeg2";
-                    Video.Bitrate = 4500;
-                    Video.BFrames = 2;
-                    Video.GOPSize = 16;
-                    Video.MEMethod = "epzs";
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Audio.Codec = "mp2";
-                    break;
-                case "mp2hd":
-                    File.Format = "ts";
-                    Video.Codec = "mpeg2";
-                    Video.Bitrate = 10000;
-                    Video.BFrames = 2;
-                    Video.GOPSize = 15;
-                    Video.MEMethod = "epzs";
-                    Screen.ScaleOption = 0;
-                    Screen.Width = 0;
-                    Screen.Height = 720;
-                    Audio.Codec = "mp2";
-                    Audio.Bitrate = 256;
-                    break;
-                case "mp4sd":
-                    File.Format = "mp4";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 2500;
-                    Video.MaxBitrate = 4000;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Audio.Codec = "aac";
-                    break;
-                case "mp4hd":
-                    File.Format = "mp4";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 15000;
-                    Video.MaxBitrate = 20000;
-                    Screen.ScaleOption = 0;
-                    Screen.Width = 0;
-                    Screen.Height = 720;
-                    Audio.Codec = "aac";
-                    break;
-                case "psp":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 2.1;
-                    Video.Bitrate = 500;
-                    Video.MaxBitrate = 768;
-                    Video.BufferSize = 2;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 480;
-                    Screen.Height = 0;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 128;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "psptv":
-                    File.Format = "mp4";
-                    Video.Codec = "h264";
-                    Video.CodecProfile = "baseline";
-                    Video.CodecLevel = 3.0;
-                    Video.Bitrate = 1500;
-                    Video.MaxBitrate = 2000;
-                    Video.BufferSize = 2;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Screen.AspectRatio = false;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "aac";
-                    Audio.Bitrate = 160;
-                    Audio.SampleRate = 44100;
-                    Audio.Channels = 2;
-                    break;
-                case "vp8sd":
-                    File.Format = "webm";
-                    Video.Codec = "vp8";
-                    Video.Bitrate = 1000;
-                    Video.MaxBitrate = 1500;
-                    Video.Qmin = 0;
-                    Video.Qmax = 63;
-                    Screen.ScaleOption = 1;
-                    Screen.Width = 0;
-                    Screen.Height = 480;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "vorbis";
-                    break;
-                case "vp8hd":
-                    File.Format = "webm";
-                    Video.Codec = "vp8";
-                    Video.Bitrate = 12000;
-                    Video.MaxBitrate = 15000;
-                    Video.Qmin = 10;
-                    Video.Qmax = 52;
-                    Screen.ScaleOption = 0;
-                    Screen.Width = 0;
-                    Screen.Height = 720;
-                    Screen.RatioA = 16;
-                    Screen.RatioB = 9;
-                    Audio.Codec = "vorbis";
-                    break;
-                case "tomp3":
-                    File.Format = "mp3";
-                    Video.Codec = "none";
-                    Audio.Codec = "mp3";
-                    Audio.Bitrate = 192;
-                    Audio.Channels = 2;
-                    Audio.SampleRate = 44100;
-                    break;
-                case "copyavi":
-                    File.Format = "avi";
-                    Video.Codec = "copy";
-                    Audio.Codec = "copy";
-                    break;
-                case "copymkv":
-                    File.Format = "mkv";
-                    Video.Codec = "copy";
-                    Audio.Codec = "copy";
-                    break;
-                case "copymp4":
-                    File.Format = "mp4";
-                    Video.Codec = "copy";
-                    Audio.Codec = "copy";
-                    break;
-                default:
-                    File.Format = "mp4";
-                    Video.Codec = "mpeg4";
-                    Video.Bitrate = 2000;
-                    Video.Encoder = "mpeg4";
-                    Screen.Width = 0;
-                    Screen.Height = 0;
-                    Screen.ScaleOption = 0;
-                    Audio.Codec = "aac";
-                    break;
+                InitDefault();
             }
+            else
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(file);
+                string path = @"/presets/preset[@name='" + name + @"']";
+                XmlNodeList nodes = doc.SelectNodes(path);
+
+                foreach (XmlNode node in nodes)
+                {
+                    if (node != null)
+                    {
+                        if (node["format"] != null)
+                        {
+                            File.Format = node["format"].InnerText;
+                        }
+                        if (node["vcodec"] != null)
+                        {
+                            Video.Codec = node["vcodec"].InnerText;
+                        }                      
+                        if (node["videoenc"] != null)
+                        {
+                            Video.Encoder = node["videoenc"].InnerText;
+                        }
+                        if (node["vprofile"] != null)
+                        {
+                            Video.CodecProfile = node["vprofile"].InnerText;
+                        }
+                        if (node["level"] != null)
+                        {
+                            Video.CodecLevel = TextToDouble(node["level"].InnerText);
+                        }
+                        if (node["vb"] != null)
+                        {
+                            Video.Bitrate = TextToDouble(node["vb"].InnerText);
+                        }
+                        if (node["minvb"] != null)
+                        {
+                            Video.MinBitrate = TextToInt(node["minvb"].InnerText);
+                        }
+                        if (node["maxvb"] != null)
+                        {
+                            Video.MaxBitrate = TextToInt(node["maxvb"].InnerText);
+                        }
+                        if (node["buffersize"] != null)
+                        {
+                            Video.BufferSize = TextToInt(node["buffersize"].InnerText);
+                        }
+                        if (node["crf"] != null)
+                        {
+                            Video.UseCRF = TextToBoolean(node["crf"].InnerText);
+                        }
+                        if (node["vq"] != null)
+                        {
+                            Video.CRF = TextToInt(node["vq"].InnerText);
+                        }
+                        if (node["qmin"] != null)
+                        {
+                            Video.Qmin = TextToInt(node["qmin"].InnerText);
+                        }
+                        if (node["memethod"] != null)
+                        {
+                            Video.MEMethod = node["memethod"].InnerText;
+                        }
+                        if (node["trellis"] != null)
+                        {
+                            Video.Trellis = TextToInt(node["trellis"].InnerText);
+                        }
+                        if (node["gopsize"] != null)
+                        {
+                            Video.GOPSize = TextToInt(node["gopsize"].InnerText);
+                        }
+                        if (node["bframes"] != null)
+                        {
+                            Video.BFrames = TextToInt(node["bframes"].InnerText);
+                        }
+                        if (node["bftrategy"] != null)
+                        {
+                            Video.BFStrategy = TextToInt(node["bftrategy"].InnerText);
+                        }                        
+                        if (node["acodec"] != null)
+                        {
+                            Audio.Codec = node["acodec"].InnerText;
+                        }
+                        if (node["audioenc"] != null)
+                        {
+                            Audio.Encoder = node["audioenc"].InnerText;
+                        }
+                        if (node["aprofile"] != null)
+                        {
+                            Audio.CodecProfile = node["aprofile"].InnerText;
+                        }
+                        if (node["ab"] != null)
+                        {
+                            Audio.Bitrate = TextToInt(node["ab"].InnerText);
+                        }
+                        if (node["samplerate"] != null)
+                        {
+                            Audio.SampleRate = TextToInt(node["samplerate"].InnerText);
+                        }
+                        if (node["channels"] != null)
+                        {
+                            Audio.Channels = TextToInt(node["channels"].InnerText);
+                        }
+                        if (node["scale"] != null)
+                        {
+                            Screen.ScaleOption = TextToInt(node["scale"].InnerText);
+                        }
+                        if (node["width"] !=  null)
+                        {
+                            Screen.Width = TextToInt(node["width"].InnerText);
+                        }
+                        if (node["height"] != null)
+                        {
+                            Screen.Height = TextToInt(node["height"].InnerText);
+                        }
+                        if (node["aspect"] != null)
+                        {
+                            Screen.AspectRatio = TextToBoolean(node["aspect"].InnerText);
+                        }
+                    }
+                }
+            }            
         }
 
-        public static string[,] GetPresets()
+        private static void InitDefault()
         {
-            return presets;
+            File.Format = "avi";
+            Video.Codec = "mpeg4";
+            Video.Bitrate = 1000;
+            Video.MaxBitrate = 1500;
+            Video.BufferSize = 2;
+            Video.BFrames = 2;
+            Video.BFStrategy = 2;
+            Video.GOPSize = 300;
+            Video.Trellis = 2;
+            Audio.Codec = "mp3";
+            Audio.Channels = 2;
+            Audio.SampleRate = 44100;
+            Screen.Width = 512;
+            Screen.Height = 0;
+            Screen.ScaleOption = 1;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace FFmpegCatapult
         {
             for (int i = 0; i < Audio.CodecProfiles.GetLength(0); i++)
             {
-                comboBoxCodecProfiles.Items.Add(new ListComboContent(Audio.CodecProfiles[i, 0], Audio.CodecProfiles[i, 1]));
+                comboBoxCodecProfiles.Items.Add(new Methods.ListComboContent(Audio.CodecProfiles[i, 0], Audio.CodecProfiles[i, 1]));
 
                 if (Audio.CodecProfile == Audio.CodecProfiles[i, 1])
                 {
@@ -61,27 +61,9 @@ namespace FFmpegCatapult
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            ListComboContent codecProfile = (ListComboContent)comboBoxCodecProfiles.SelectedItem;
+            Methods.ListComboContent codecProfile = (Methods.ListComboContent)comboBoxCodecProfiles.SelectedItem;
             Audio.CodecProfile = codecProfile.Value;
             this.Close();
-        }
-
-        // Combobox list helper
-        private class ListComboContent
-        {
-            public string Name;
-            public string Value;
-
-            public ListComboContent(string name, string value)
-            {
-                this.Name = name;
-                this.Value = value;
-            }
-
-            public override string ToString()
-            {
-                return Name;
-            }
-        }
+        }       
     }
 }

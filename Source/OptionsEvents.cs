@@ -28,61 +28,6 @@ namespace FFmpegCatapult
 {
     partial class MainForm : Form
     {
-        void textBoxFFmpegBin_TextChanged(object sender, EventArgs e)
-        {
-            Bin.FFmpegBin = textBoxFFmpegBin.Text;
-        }
-
-        void textBoxTermBin_TextChanged(object sender, EventArgs e)
-        {
-            Bin.TermBin = textBoxTermBin.Text;
-        }
-
-        void textBoxTermArgs_TextChanged(object sender, EventArgs e)
-        {
-            Bin.TermArgs = textBoxTermArgs.Text;
-        }
-
-        void textBoxLog_TextChanged(object sender, EventArgs e)
-        {
-            File.Log = textBoxLog.Text;
-        }
-
-        void buttonBrowseFFmpegBin_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog binFile = new OpenFileDialog();
-            binFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
-            binFile.ShowDialog();
-
-            if (binFile.FileName != "")
-            {
-                textBoxFFmpegBin.Text = binFile.FileName;
-            }
-        }
-
-        void checkBoxWriteLog_CheckedChanged(object sender, EventArgs e)
-        {
-            Session.WriteLog = checkBoxWriteLog.Checked;
-            EnableLogFileTextBox(Session.WriteLog);
-        }
-
-        void checkBoxSaveSettings_CheckedChanged(object sender, EventArgs e)
-        {
-            Session.SaveProperties = checkBoxSaveSettings.Checked;
-            Properties.Settings.Default.SaveSettings = Session.SaveProperties;
-            Properties.Settings.Default.Save();
-        }
-
-        void buttonBrowseTermBin_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog termBinFile = new OpenFileDialog();
-            termBinFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
-            termBinFile.ShowDialog();
-
-            if (termBinFile.FileName != "")
-            {
-                textBoxTermBin.Text = termBinFile.FileName;
-            }
-        }
+        
     }
 }

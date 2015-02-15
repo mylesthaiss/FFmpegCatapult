@@ -44,7 +44,7 @@ namespace FFmpegCatapult
 
                 for (int i = 0; i < Video.CodecProfiles.GetLength(0); i++)
                 {
-                    comboBoxCodecProfiles.Items.Add(new ListComboContent(Video.CodecProfiles[i, 0], Video.CodecProfiles[i, 1]));
+                    comboBoxCodecProfiles.Items.Add(new Methods.ListComboContent(Video.CodecProfiles[i, 0], Video.CodecProfiles[i, 1]));
 
                     if (Video.CodecProfile == Video.CodecProfiles[i, 1])
                     {
@@ -54,7 +54,7 @@ namespace FFmpegCatapult
 
                 for (int i = 0; i < Video.EncoderPresets.GetLength(0); i++)
                 {
-                    comboBoxEncoderPresets.Items.Add(new ListComboContent(Video.EncoderPresets[i, 0], Video.EncoderPresets[i, 1]));
+                    comboBoxEncoderPresets.Items.Add(new Methods.ListComboContent(Video.EncoderPresets[i, 0], Video.EncoderPresets[i, 1]));
 
                     if (Video.EncoderPreset == Video.EncoderPresets[i, 1])
                     {
@@ -66,29 +66,29 @@ namespace FFmpegCatapult
             }
 
             // Comboboxes
-            comboBoxTrellis.Items.Add(new ListComboContent("None", 0));
-            comboBoxTrellis.Items.Add(new ListComboContent("Final", 1));
-            comboBoxTrellis.Items.Add(new ListComboContent("All RD", 2));
-            comboBoxTrellis.Items.Add(new ListComboContent("Default", 3));
+            comboBoxTrellis.Items.Add(new Methods.ListComboContent("None", 0));
+            comboBoxTrellis.Items.Add(new Methods.ListComboContent("Final", 1));
+            comboBoxTrellis.Items.Add(new Methods.ListComboContent("All RD", 2));
+            comboBoxTrellis.Items.Add(new Methods.ListComboContent("Default", 3));
             comboBoxTrellis.SelectedIndex = Video.Trellis;
 
-            comboBoxBFStrats.Items.Add(new ListComboContent("Always", 0));
-            comboBoxBFStrats.Items.Add(new ListComboContent("Avoid high motion", 1));
-            comboBoxBFStrats.Items.Add(new ListComboContent("Less or more", 2));
-            comboBoxBFStrats.Items.Add(new ListComboContent("Default", 3));
+            comboBoxBFStrats.Items.Add(new Methods.ListComboContent("Always", 0));
+            comboBoxBFStrats.Items.Add(new Methods.ListComboContent("Avoid high motion", 1));
+            comboBoxBFStrats.Items.Add(new Methods.ListComboContent("Less or more", 2));
+            comboBoxBFStrats.Items.Add(new Methods.ListComboContent("Default", 3));
             comboBoxBFStrats.SelectedIndex = Video.BFStrategy;
 
             for (int i = 0; i < Video.CMPFuncs.GetLength(0); i++)
             {
-                comboBoxCMPFuncs.Items.Add(new ListComboContent(Video.CMPFuncs[i], i));
-                comboBoxSubCMPFuncs.Items.Add(new ListComboContent(Video.CMPFuncs[i], i));
+                comboBoxCMPFuncs.Items.Add(new Methods.ListComboContent(Video.CMPFuncs[i], i));
+                comboBoxSubCMPFuncs.Items.Add(new Methods.ListComboContent(Video.CMPFuncs[i], i));
             }
             comboBoxCMPFuncs.SelectedIndex = Video.CMP;
             comboBoxSubCMPFuncs.SelectedIndex = Video.SubCMP;
 
             for (int i = 0; i < Video.MEMethods.GetLength(0); i++)
             {
-                comboBoxMEMethods.Items.Add(new ListComboContent(Video.MEMethods[i, 0], Video.MEMethods[i, 1]));
+                comboBoxMEMethods.Items.Add(new Methods.ListComboContent(Video.MEMethods[i, 0], Video.MEMethods[i, 1]));
 
                 if (Video.MEMethod == Video.MEMethods[i, 1])
                 {
@@ -98,7 +98,7 @@ namespace FFmpegCatapult
 
             for (int i = 0; i < Video.PictureFormats.GetLength(0); i++)
             {
-                comboBoxPictureFormats.Items.Add(new ListComboContent(Video.PictureFormats[i, 0], Video.PictureFormats[i, 1]));
+                comboBoxPictureFormats.Items.Add(new Methods.ListComboContent(Video.PictureFormats[i, 0], Video.PictureFormats[i, 1]));
 
                 if (Video.PictureFormat == Video.PictureFormats[i, 1])
                 {
@@ -146,12 +146,12 @@ namespace FFmpegCatapult
 
         private void buttonApply_Click(object sender, EventArgs e)
         {
-            ListComboContent meMethod = (ListComboContent)comboBoxMEMethods.SelectedItem;
-            ListComboContent picFormat = (ListComboContent)comboBoxPictureFormats.SelectedItem;
-            ListComboContent bstrat = (ListComboContent)comboBoxBFStrats.SelectedItem;
-            ListComboContent cmp = (ListComboContent)comboBoxCMPFuncs.SelectedItem;
-            ListComboContent subcmp = (ListComboContent)comboBoxSubCMPFuncs.SelectedItem;
-            ListComboContent trellis = (ListComboContent)comboBoxTrellis.SelectedItem;
+            Methods.ListComboContent meMethod = (Methods.ListComboContent)comboBoxMEMethods.SelectedItem;
+            Methods.ListComboContent picFormat = (Methods.ListComboContent)comboBoxPictureFormats.SelectedItem;
+            Methods.ListComboContent bstrat = (Methods.ListComboContent)comboBoxBFStrats.SelectedItem;
+            Methods.ListComboContent cmp = (Methods.ListComboContent)comboBoxCMPFuncs.SelectedItem;
+            Methods.ListComboContent subcmp = (Methods.ListComboContent)comboBoxSubCMPFuncs.SelectedItem;
+            Methods.ListComboContent trellis = (Methods.ListComboContent)comboBoxTrellis.SelectedItem;
 
             Video.BFrames = Methods.TextToInt(textBoxBFrames.Text);
             Video.BFStrategy = bstrat.X;
@@ -165,58 +165,18 @@ namespace FFmpegCatapult
 
             if (groupBoxCodec.Enabled == true)
             {
-                ListComboContent codecProfile = (ListComboContent)comboBoxCodecProfiles.SelectedItem;
+                Methods.ListComboContent codecProfile = (Methods.ListComboContent)comboBoxCodecProfiles.SelectedItem;
                 Video.CodecLevel = Methods.TextToDouble(textBoxCodecLevel.Text);
                 Video.CodecProfile = codecProfile.Value;
             }
 
             if (comboBoxEncoderPresets.Enabled == true)
             {
-                ListComboContent encPreset = (ListComboContent)comboBoxEncoderPresets.SelectedItem;
+                Methods.ListComboContent encPreset = (Methods.ListComboContent)comboBoxEncoderPresets.SelectedItem;
                 Video.EncoderPreset = encPreset.Value;
             }
 
             this.Close();
-        }
-
-        // Combobox list helper
-        private class ListComboContent
-        {
-            private string name;
-            private string value;
-            private int x;
-
-            public ListComboContent(string label, string arg)
-            {
-                name = label;
-                value = arg;
-            }
-
-            public ListComboContent(string label, int y)
-            {
-                name = label;
-                x = y;
-            }
-
-            public int X
-            {
-                get { return x; }
-            }
-
-            public string Value
-            {
-                get { return value; }
-            }
-
-            public string Name
-            {
-                get { return name; }
-            }
-
-            public override string ToString()
-            {
-                return name;
-            }
         }
     }
 }

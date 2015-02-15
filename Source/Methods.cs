@@ -58,6 +58,26 @@ namespace FFmpegCatapult
         }
 
         /// <summary>
+        /// Converts a string value to a boolean type     
+        /// </summary>
+        /// <param name="value"></param> 
+        public static bool TextToBoolean(string value)
+        {
+            bool output;
+
+            if (value == "true" | value == "1")
+            {
+                output = true;
+            }
+            else
+            {
+                output = false;
+            }
+
+            return output;
+        }
+
+        /// <summary>
         /// Converts string value to double type. Zero will be returned 
         /// if value is null or empty.
         /// </summary>
@@ -122,6 +142,46 @@ namespace FFmpegCatapult
             else
             {
                 return true;
+            }
+        }
+
+        // Combobox list helper
+        public class ListComboContent
+        {
+            private string name;
+            private string value;
+            private int x;
+
+            public ListComboContent(string label, string arg)
+            {
+                name = label;
+                value = arg;
+            }
+
+            public ListComboContent(string label, int y)
+            {
+                name = label;
+                x = y;
+            }
+
+            public int X
+            {
+                get { return x; }
+            }
+
+            public string Value
+            {
+                get { return value; }
+            }
+
+            public string Name
+            {
+                get { return name; }
+            }
+
+            public override string ToString()
+            {
+                return name;
             }
         }
     }
