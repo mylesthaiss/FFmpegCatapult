@@ -58,13 +58,12 @@ namespace FFmpegCatapult
         }
 
         /// <summary>
-        /// Converts a string value to a boolean type     
+        /// Converts a string value to a boolean type.     
         /// </summary>
         /// <param name="value"></param> 
         public static bool TextToBoolean(string value)
         {
             bool output;
-
             if (value == "true" | value == "1")
             {
                 output = true;
@@ -73,7 +72,6 @@ namespace FFmpegCatapult
             {
                 output = false;
             }
-
             return output;
         }
 
@@ -85,7 +83,6 @@ namespace FFmpegCatapult
         public static double TextToDouble(string value)
         {
             double x;
-
             if (!string.IsNullOrEmpty(value) && double.TryParse(value, out x))
             {
                 return x;
@@ -104,7 +101,6 @@ namespace FFmpegCatapult
         public static int TextToInt(string value)
         {
             int x;
-
             if (!string.IsNullOrEmpty(value) && int.TryParse(value, out x))
             {
                 return x;
@@ -131,6 +127,53 @@ namespace FFmpegCatapult
         }
 
         /// <summary>
+        /// Checks if value matches a value from a array.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="items"></param>
+        public static bool IsValid(string value, string[] items)
+        {
+            bool valid = false;
+            for (int i = 0; i < items.GetLength(0); i++)
+            {
+                if (value == items[i])
+                {
+                    valid = true;
+                    break;
+                }
+            }
+            return valid;
+        }
+
+        public static bool IsValid(string value, string[,] items)
+        {
+            bool valid = false;
+            for (int i = 0; i < items.GetLength(0); i++)
+            {
+                if (value == items[i, 1])
+                {
+                    valid = true;
+                    break;
+                }
+            }
+            return valid;
+        }
+
+        public static bool IsValid(int x, int[] items)
+        {
+            bool valid = false;
+            for (int i = 0; i < items.GetLength(0); i++)
+            {
+                if (x == items[i])
+                {
+                    valid = true;
+                    break;
+                }
+            }
+            return valid;
+        }
+
+        /// <summary>
         /// Determines if video scaling is available.
         /// </summary>        
         public static bool IsPictureScalable()
@@ -145,7 +188,9 @@ namespace FFmpegCatapult
             }
         }
 
-        // Combobox list helper
+        /// <summary>
+        /// Combobox list helper.
+        /// </summary>
         public class ListComboContent
         {
             private string name;

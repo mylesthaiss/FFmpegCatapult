@@ -63,7 +63,7 @@
 		<vpreset>main</vpreset>
 		<level>3.1</level>
 		<crf>true</crf>
-		<qa>24</qa>
+		<vq>24</vq>
 		<acodec>aac</acodec>
 		<ab>96</ab>
 		<scale>0</scale>
@@ -77,7 +77,7 @@
 		<vpreset>main</vpreset>
 		<level>4.1</level>
 		<crf>true</crf>
-		<qa>18</qa>
+		<vq>18</vq>
 		<acodec>aac</acodec>
 		<ab>160</ab>
 		<scale>0</scale>

@@ -44,19 +44,35 @@ namespace FFmpegCatapult
                     {
                         if (node["format"] != null)
                         {
-                            File.Format = node["format"].InnerText;
+                            string format = node["format"].InnerText;
+                            if (IsValid(format, File.Formats))
+                            {
+                                File.Format = format;
+                            }
                         }
                         if (node["vcodec"] != null)
                         {
-                            Video.Codec = node["vcodec"].InnerText;
+                            string codec = node["vcodec"].InnerText;
+                            if (IsValid(codec, Video.Codecs))
+                            {
+                                Video.Codec = codec;
+                            }
                         }                      
                         if (node["videoenc"] != null)
                         {
-                            Video.Encoder = node["videoenc"].InnerText;
+                            string encoder = node["videoenc"].InnerText;
+                            if (IsValid(encoder, Video.Encoders))
+                            {
+                                Video.Encoder = encoder;
+                            }
                         }
                         if (node["vprofile"] != null)
                         {
-                            Video.CodecProfile = node["vprofile"].InnerText;
+                            string profile = node["vprofile"].InnerText;
+                            if (IsValid(profile, Video.CodecProfiles))
+                            {
+                                Video.CodecProfile = profile;
+                            }
                         }
                         if (node["level"] != null)
                         {
@@ -92,7 +108,11 @@ namespace FFmpegCatapult
                         }
                         if (node["memethod"] != null)
                         {
-                            Video.MEMethod = node["memethod"].InnerText;
+                            string meMethod = node["memethod"].InnerText;
+                            if (IsValid(meMethod, Video.MEMethods))
+                            {
+                                Video.MEMethod = meMethod;
+                            }
                         }
                         if (node["trellis"] != null)
                         {
@@ -112,23 +132,43 @@ namespace FFmpegCatapult
                         }                        
                         if (node["acodec"] != null)
                         {
-                            Audio.Codec = node["acodec"].InnerText;
+                            string codec = node["acodec"].InnerText;
+                            if (IsValid(codec, Audio.Codecs))
+                            {
+                                Audio.Codec = codec;
+                            }
                         }
                         if (node["audioenc"] != null)
                         {
-                            Audio.Encoder = node["audioenc"].InnerText;
+                            string encoder = node["audioenc"].InnerText;
+                            if (IsValid(encoder, Audio.Encoders))
+                            {
+                                Audio.Encoder = encoder;
+                            }                            
                         }
                         if (node["aprofile"] != null)
                         {
-                            Audio.CodecProfile = node["aprofile"].InnerText;
+                            string profile = node["aprofile"].InnerText;
+                            if (IsValid(profile, Audio.CodecProfiles))
+                            {
+                                Audio.CodecProfile = profile;
+                            }
                         }
                         if (node["ab"] != null)
                         {
-                            Audio.Bitrate = TextToInt(node["ab"].InnerText);
+                            int bitrate = TextToInt(node["ab"].InnerText);
+                            if (IsValid(bitrate, Audio.Bitrates))
+                            {
+                                Audio.Bitrate = bitrate;
+                            }                            
                         }
                         if (node["samplerate"] != null)
                         {
-                            Audio.SampleRate = TextToInt(node["samplerate"].InnerText);
+                            int samplerate = TextToInt(node["samplerate"].InnerText);
+                            if (IsValid(samplerate, Audio.SampleRates))
+                            {
+                                Audio.SampleRate = samplerate;
+                            }                            
                         }
                         if (node["channels"] != null)
                         {

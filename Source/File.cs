@@ -23,7 +23,7 @@ using System.Text;
 
 namespace FFmpegCatapult
 {
-    class File
+    class File : Methods
     {
         // Variables
         private static string audio = "";
@@ -69,11 +69,11 @@ namespace FFmpegCatapult
                             {"H.263", "h263"}, {"H.264", "h264"}, {"MPEG-4", "mpeg4"},
                             {"Copy", "copy"}, {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "heaac";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "h264";
                         }
@@ -106,7 +106,7 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "aac";
                         }
@@ -120,7 +120,7 @@ namespace FFmpegCatapult
                         {
                             {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "mp3";
                         }
@@ -136,11 +136,11 @@ namespace FFmpegCatapult
                             {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"}, 
                             {"MPEG-4", "mpeg4"}, {"Copy", "copy"}, {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs) | Audio.Codec == "mp3")
+                        if (!IsValid(Audio.Codec, Audio.Codecs) | Audio.Codec == "mp3")
                         {
                             Audio.Codec = "aac";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "mpeg4";
                         }
@@ -154,11 +154,11 @@ namespace FFmpegCatapult
                         {
                             {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "mp2";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "mpeg2";
                         }
@@ -172,11 +172,11 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "mp2";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "mpeg2";
                         }
@@ -189,11 +189,11 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"Theora", "theora"}, {"Copy", "copy"}, {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "vorbis";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "theora";
                         }
@@ -205,11 +205,11 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"VP8", "vp8"}, {"Copy", "copy"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "vorbis";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "vp8";
                         }
@@ -221,7 +221,7 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"None", "none"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "wma";
                         }
@@ -233,11 +233,11 @@ namespace FFmpegCatapult
                         Video.Codecs = new string[,] {
                             {"WMV", "wmv"}, {"Copy", "copy"}
                         };
-                        if (!IsCodecSupported(Audio.Codec, Audio.Codecs))
+                        if (!IsValid(Audio.Codec, Audio.Codecs))
                         {
                             Audio.Codec = "wma";
                         }
-                        if (!IsCodecSupported(Video.Codec, Video.Codecs))
+                        if (!IsValid(Video.Codec, Video.Codecs))
                         {
                             Video.Codec = "wmv";
                         }
@@ -295,23 +295,6 @@ namespace FFmpegCatapult
                     output = outfile;
                 }
             }
-        }
-
-        // Supported codec check
-        private static bool IsCodecSupported(string codec, string[,] codecs)
-        {
-            bool supported = false;
-
-            for (int i = 0; i < codecs.GetLength(0); i++)
-            {
-                if (codec == codecs[i, 1])
-                {
-                    supported = true;
-                    break;
-                }
-            }
-
-            return supported;
         }
     }
 }
