@@ -130,21 +130,7 @@ namespace FFmpegCatapult
         /// Checks if value matches a value from a array.
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="items"></param>
-        public static bool IsValid(string value, string[] items)
-        {
-            bool valid = false;
-            for (int i = 0; i < items.GetLength(0); i++)
-            {
-                if (value == items[i])
-                {
-                    valid = true;
-                    break;
-                }
-            }
-            return valid;
-        }
-
+        /// <param name="items"></param>       
         public static bool IsValid(string value, string[,] items)
         {
             bool valid = false;

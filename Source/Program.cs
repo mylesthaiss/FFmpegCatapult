@@ -94,15 +94,7 @@ namespace FFmpegCatapult
                     }
 
                     switch (args[i])
-                    {
-                        case "-preset":
-                            if (!args[n].StartsWith("-"))
-                            {
-                                i = n;
-                                initPreset = true;
-                                Session.Preset = args[i];
-                            }
-                            break;
+                    {                        
                         case "-out":
                             if (!args[n].StartsWith("-"))
                             {

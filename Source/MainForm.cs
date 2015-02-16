@@ -802,7 +802,7 @@ namespace FFmpegCatapult
 
             comboBoxPresets.Items.Add(new Methods.ListComboContent("Default", "default"));
 
-            // Set up preset combobox
+            // Populate combobox with parsed XML files and preset names
             string path = Directory.GetCurrentDirectory();
             string[] files = Directory.GetFiles(path, "*.xml");
 
@@ -820,6 +820,18 @@ namespace FFmpegCatapult
                 }
             }
 
+            // Set selected preset
+            int x = 0;
+            for (int i = 0; i < comboBoxPresets.Items.Count; i++)
+            {
+                Methods.ListComboContent preset = (Methods.ListComboContent)comboBoxPresets.Items[i];
+                if (preset.Name == Session.Preset)
+                {
+                    x = i;
+                    break;
+                }
+            }
+            comboBoxPresets.SelectedIndex = x;
             comboBoxPresets.SelectedIndexChanged += new EventHandler(comboBoxPresets_SelectedIndexChanged);
 
             comboBoxThreads.Items.Add(new Methods.ListComboContent("Auto", 0));
@@ -1105,7 +1117,7 @@ namespace FFmpegCatapult
         void comboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             Methods.ListComboContent preset = (Methods.ListComboContent)comboBoxPresets.SelectedItem;
-            Session.Preset = preset.Value;
+            Session.Preset = preset.Name;
             Preset.InitPreset(preset.Name, preset.Value);
             InitTabs();
             InitMain();

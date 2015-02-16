@@ -117,7 +117,7 @@ namespace FFmpegCatapult
                         if (node["trellis"] != null)
                         {
                             Video.Trellis = TextToInt(node["trellis"].InnerText);
-                        }
+                        }                        
                         if (node["gopsize"] != null)
                         {
                             Video.GOPSize = TextToInt(node["gopsize"].InnerText);
@@ -172,7 +172,11 @@ namespace FFmpegCatapult
                         }
                         if (node["channels"] != null)
                         {
-                            Audio.Channels = TextToInt(node["channels"].InnerText);
+                            int channels = TextToInt(node["channels"].InnerText);
+                            if (channels <= Audio.MaxChannels)
+                            {
+                                Audio.Channels = channels;
+                            }
                         }
                         if (node["scale"] != null)
                         {
