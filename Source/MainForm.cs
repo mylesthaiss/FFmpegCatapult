@@ -800,24 +800,37 @@ namespace FFmpegCatapult
                 comboBoxContainers.Items.Add(new Methods.ListComboContent(File.Formats[i, 0], File.Formats[i, 1]));
             }
 
-            comboBoxPresets.Items.Add(new Methods.ListComboContent("Default", "default"));
+            comboBoxPresets.Items.Add(new Methods.ListComboContent("Default", null));
 
             // Populate combobox with parsed XML files and preset names
             string path = Directory.GetCurrentDirectory();
             string[] files = Directory.GetFiles(path, "*.xml");
 
             foreach (string file in files)
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(file);
-                XmlNodeList nodes = doc.SelectNodes("/presets/preset");
-
-                foreach (XmlNode node in nodes)
+            {              
+                try
                 {
-                    string title = node.Attributes["name"].Value;
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(file);
+                    XmlNodeList nodes = doc.SelectNodes("/presets/preset");
 
-                    comboBoxPresets.Items.Add(new Methods.ListComboContent(title, file));
+                    foreach (XmlNode node in nodes)
+                    {
+                        if (node.Attributes["name"] != null)
+                        {
+                            string title = node.Attributes["name"].Value;
+                            comboBoxPresets.Items.Add(new Methods.ListComboContent(title, file));
+                        }
+                    }
                 }
+                catch (XmlException)
+                {
+                    MessageBox.Show("Invalid XML file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Unable to access file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }                
             }
 
             // Set selected preset

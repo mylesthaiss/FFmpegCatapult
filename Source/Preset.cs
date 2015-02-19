@@ -27,9 +27,23 @@ namespace FFmpegCatapult
     {
         public static void InitPreset(string name, string file)
         {
-            if (file == "default")
+            if (name == "Default" & file == null)
             {
-                InitDefault();
+                File.Format = "avi";
+                Video.Codec = "mpeg4";
+                Video.Bitrate = 1000;
+                Video.MaxBitrate = 1500;
+                Video.BufferSize = 2;
+                Video.BFrames = 2;
+                Video.BFStrategy = 2;
+                Video.GOPSize = 300;
+                Video.Trellis = 2;
+                Audio.Codec = "mp3";
+                Audio.Channels = 2;
+                Audio.SampleRate = 44100;
+                Screen.Width = 512;
+                Screen.Height = 0;
+                Screen.ScaleOption = 1;
             }
             else
             {
@@ -57,7 +71,7 @@ namespace FFmpegCatapult
                             {
                                 Video.Codec = codec;
                             }
-                        }                      
+                        }
                         if (node["videoenc"] != null)
                         {
                             string encoder = node["videoenc"].InnerText;
@@ -117,7 +131,7 @@ namespace FFmpegCatapult
                         if (node["trellis"] != null)
                         {
                             Video.Trellis = TextToInt(node["trellis"].InnerText);
-                        }                        
+                        }
                         if (node["gopsize"] != null)
                         {
                             Video.GOPSize = TextToInt(node["gopsize"].InnerText);
@@ -129,7 +143,7 @@ namespace FFmpegCatapult
                         if (node["bftrategy"] != null)
                         {
                             Video.BFStrategy = TextToInt(node["bftrategy"].InnerText);
-                        }                        
+                        }
                         if (node["acodec"] != null)
                         {
                             string codec = node["acodec"].InnerText;
@@ -144,7 +158,7 @@ namespace FFmpegCatapult
                             if (IsValid(encoder, Audio.Encoders))
                             {
                                 Audio.Encoder = encoder;
-                            }                            
+                            }
                         }
                         if (node["aprofile"] != null)
                         {
@@ -160,7 +174,7 @@ namespace FFmpegCatapult
                             if (IsValid(bitrate, Audio.Bitrates))
                             {
                                 Audio.Bitrate = bitrate;
-                            }                            
+                            }
                         }
                         if (node["samplerate"] != null)
                         {
@@ -168,7 +182,7 @@ namespace FFmpegCatapult
                             if (IsValid(samplerate, Audio.SampleRates))
                             {
                                 Audio.SampleRate = samplerate;
-                            }                            
+                            }
                         }
                         if (node["channels"] != null)
                         {
@@ -182,7 +196,7 @@ namespace FFmpegCatapult
                         {
                             Screen.ScaleOption = TextToInt(node["scale"].InnerText);
                         }
-                        if (node["width"] !=  null)
+                        if (node["width"] != null)
                         {
                             Screen.Width = TextToInt(node["width"].InnerText);
                         }
@@ -196,26 +210,7 @@ namespace FFmpegCatapult
                         }
                     }
                 }
-            }            
-        }
-
-        private static void InitDefault()
-        {
-            File.Format = "avi";
-            Video.Codec = "mpeg4";
-            Video.Bitrate = 1000;
-            Video.MaxBitrate = 1500;
-            Video.BufferSize = 2;
-            Video.BFrames = 2;
-            Video.BFStrategy = 2;
-            Video.GOPSize = 300;
-            Video.Trellis = 2;
-            Audio.Codec = "mp3";
-            Audio.Channels = 2;
-            Audio.SampleRate = 44100;
-            Screen.Width = 512;
-            Screen.Height = 0;
-            Screen.ScaleOption = 1;
+            }
         }
     }
 }
