@@ -38,6 +38,44 @@
 		<aspect>false</aspect>
 		<ratio>4:3</ratio>
 	</preset>
+	<preset name="Sony PSP">
+		<format>mp4</format>
+		<vcodec>h264</vcodec>
+		<vpreset>baseline</vpreset>
+		<level>2.1</level>
+		<crf>false</crf>
+		<vb>500</vb>
+		<maxvb>768</maxvb>
+		<buffersize>2</buffersize>
+		<acodec>aac</acodec>
+		<ab>96</ab>
+		<samplerate>44100</samplerate>
+		<channels>2</channels>
+		<scale>1</scale>
+		<width>480</width>
+		<height>0</height>
+		<aspect>false</aspect>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="Sony PSP, 480p">
+		<format>mp4</format>
+		<vcodec>h264</vcodec>
+		<vpreset>baseline</vpreset>
+		<level>3.0</level>
+		<crf>false</crf>
+		<vb>1500</vb>
+		<maxvb>2000</maxvb>
+		<buffersize>2</buffersize>
+		<acodec>aac</acodec>
+		<ab>128</ab>
+		<samplerate>44100</samplerate>
+		<channels>2</channels>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+		<aspect>false</aspect>
+		<ratio>16:9</ratio>
+	</preset>
 	<preset name="DivX">
 		<format>avi</format>
 		<vcodec>mpeg4</vcodec>
@@ -164,5 +202,20 @@
 		<ab>192</ab>
 		<samplerate>44100</samplerate>
 		<channels>2</channels>
+	</preset>
+	<preset name="Copy audio and video to AVI">
+		<format>avi</format>
+		<vcodec>copy</vcodec>
+		<acodec>copy</acodec>
+	</preset>
+	<preset name="Copy audio and video to MKV">
+		<format>mkv</format>
+		<vcodec>copy</vcodec>
+		<acodec>copy</acodec>
+	</preset>
+	<preset name="Copy audio and video to MP4">
+		<format>mp4</format>
+		<vcodec>copy</vcodec>
+		<acodec>copy</acodec>
 	</preset>
 </presets>

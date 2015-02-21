@@ -64,6 +64,7 @@ namespace FFmpegCatapult
                                 File.Format = format;
                             }
                         }
+
                         if (node["vcodec"] != null)
                         {
                             string codec = node["vcodec"].InnerText;
@@ -72,6 +73,7 @@ namespace FFmpegCatapult
                                 Video.Codec = codec;
                             }
                         }
+
                         if (node["videoenc"] != null)
                         {
                             string encoder = node["videoenc"].InnerText;
@@ -80,6 +82,7 @@ namespace FFmpegCatapult
                                 Video.Encoder = encoder;
                             }
                         }
+
                         if (node["vprofile"] != null)
                         {
                             string profile = node["vprofile"].InnerText;
@@ -88,38 +91,47 @@ namespace FFmpegCatapult
                                 Video.CodecProfile = profile;
                             }
                         }
+
                         if (node["level"] != null)
                         {
                             Video.CodecLevel = TextToDouble(node["level"].InnerText);
                         }
+
                         if (node["vb"] != null)
                         {
                             Video.Bitrate = TextToDouble(node["vb"].InnerText);
                         }
+
                         if (node["minvb"] != null)
                         {
                             Video.MinBitrate = TextToInt(node["minvb"].InnerText);
                         }
+
                         if (node["maxvb"] != null)
                         {
                             Video.MaxBitrate = TextToInt(node["maxvb"].InnerText);
                         }
+
                         if (node["buffersize"] != null)
                         {
                             Video.BufferSize = TextToInt(node["buffersize"].InnerText);
                         }
+
                         if (node["crf"] != null)
                         {
                             Video.UseCRF = TextToBoolean(node["crf"].InnerText);
                         }
+
                         if (node["vq"] != null)
                         {
                             Video.CRF = TextToInt(node["vq"].InnerText);
                         }
+
                         if (node["qmin"] != null)
                         {
                             Video.Qmin = TextToInt(node["qmin"].InnerText);
                         }
+
                         if (node["memethod"] != null)
                         {
                             string meMethod = node["memethod"].InnerText;
@@ -128,22 +140,27 @@ namespace FFmpegCatapult
                                 Video.MEMethod = meMethod;
                             }
                         }
+
                         if (node["trellis"] != null)
                         {
                             Video.Trellis = TextToInt(node["trellis"].InnerText);
                         }
+
                         if (node["gopsize"] != null)
                         {
                             Video.GOPSize = TextToInt(node["gopsize"].InnerText);
                         }
+
                         if (node["bframes"] != null)
                         {
                             Video.BFrames = TextToInt(node["bframes"].InnerText);
                         }
+
                         if (node["bftrategy"] != null)
                         {
                             Video.BFStrategy = TextToInt(node["bftrategy"].InnerText);
                         }
+
                         if (node["acodec"] != null)
                         {
                             string codec = node["acodec"].InnerText;
@@ -152,6 +169,7 @@ namespace FFmpegCatapult
                                 Audio.Codec = codec;
                             }
                         }
+
                         if (node["audioenc"] != null)
                         {
                             string encoder = node["audioenc"].InnerText;
@@ -160,6 +178,7 @@ namespace FFmpegCatapult
                                 Audio.Encoder = encoder;
                             }
                         }
+
                         if (node["aprofile"] != null)
                         {
                             string profile = node["aprofile"].InnerText;
@@ -168,6 +187,7 @@ namespace FFmpegCatapult
                                 Audio.CodecProfile = profile;
                             }
                         }
+
                         if (node["ab"] != null)
                         {
                             int bitrate = TextToInt(node["ab"].InnerText);
@@ -176,6 +196,7 @@ namespace FFmpegCatapult
                                 Audio.Bitrate = bitrate;
                             }
                         }
+
                         if (node["samplerate"] != null)
                         {
                             int samplerate = TextToInt(node["samplerate"].InnerText);
@@ -184,6 +205,7 @@ namespace FFmpegCatapult
                                 Audio.SampleRate = samplerate;
                             }
                         }
+
                         if (node["channels"] != null)
                         {
                             int channels = TextToInt(node["channels"].InnerText);
@@ -192,21 +214,41 @@ namespace FFmpegCatapult
                                 Audio.Channels = channels;
                             }
                         }
+
                         if (node["scale"] != null)
                         {
                             Screen.ScaleOption = TextToInt(node["scale"].InnerText);
                         }
+
                         if (node["width"] != null)
                         {
                             Screen.Width = TextToInt(node["width"].InnerText);
                         }
+
                         if (node["height"] != null)
                         {
                             Screen.Height = TextToInt(node["height"].InnerText);
                         }
+
+                        if (node["fps"] != null)
+                        {
+                            Screen.FPS = TextToInt(node["fps"].InnerText);
+                        }
+
                         if (node["aspect"] != null)
                         {
                             Screen.AspectRatio = TextToBoolean(node["aspect"].InnerText);
+                        }
+
+                        if (node["ratio"] != null)
+                        {
+                            string ratio = node["ratio"].InnerText;
+                            string[] values = ratio.Split(':');
+                            if (values.Length == 2)
+                            {
+                                Screen.RatioA = TextToInt(values[0]);
+                                Screen.RatioB = TextToInt(values[1]);
+                            }
                         }
                     }
                 }
