@@ -1,5 +1,5 @@
 ﻿﻿// FFmpegCatapultForm is part of FFmpeg Catapult.
-// Copyright (C) 2014 Myles Thaiss
+// Copyright (C) 2015 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -55,7 +55,7 @@ namespace FFmpegCatapult
             this.checkBoxWriteLog = new System.Windows.Forms.CheckBox();
             this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
             this.textBoxTermArgs = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelTermArgs = new System.Windows.Forms.Label();
             this.textBoxTermBin = new System.Windows.Forms.TextBox();
             this.labelTermBin = new System.Windows.Forms.Label();
             this.buttonBrowseTermBin = new System.Windows.Forms.Button();
@@ -305,7 +305,7 @@ namespace FFmpegCatapult
             // groupBoxBinaries
             // 
             this.groupBoxBinaries.Controls.Add(this.textBoxTermArgs);
-            this.groupBoxBinaries.Controls.Add(this.label3);
+            this.groupBoxBinaries.Controls.Add(this.labelTermArgs);
             this.groupBoxBinaries.Controls.Add(this.textBoxTermBin);
             this.groupBoxBinaries.Controls.Add(this.labelTermBin);
             this.groupBoxBinaries.Controls.Add(this.buttonBrowseTermBin);
@@ -326,14 +326,14 @@ namespace FFmpegCatapult
             this.textBoxTermArgs.Size = new System.Drawing.Size(355, 20);
             this.textBoxTermArgs.TabIndex = 7;
             // 
-            // label3
+            // labelTermArgs
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Term arguments:";
+            this.labelTermArgs.AutoSize = true;
+            this.labelTermArgs.Location = new System.Drawing.Point(6, 69);
+            this.labelTermArgs.Name = "labelTermArgs";
+            this.labelTermArgs.Size = new System.Drawing.Size(86, 13);
+            this.labelTermArgs.TabIndex = 6;
+            this.labelTermArgs.Text = "Term arguments:";
             // 
             // textBoxTermBin
             // 
@@ -1692,7 +1692,7 @@ namespace FFmpegCatapult
             this.tabControl.Size = new System.Drawing.Size(479, 220);
             this.tabControl.TabIndex = 2;
             // 
-            // FFmpegCatapultForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1702,7 +1702,7 @@ namespace FFmpegCatapult
             this.Controls.Add(this.buttonRun);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "FFmpegCatapultForm";
+            this.Name = "MainForm";
             this.Text = "FFmpeg Catapult";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabOptions.ResumeLayout(false);
@@ -1763,7 +1763,7 @@ namespace FFmpegCatapult
         private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.GroupBox groupBoxBinaries;
         private System.Windows.Forms.TextBox textBoxTermArgs;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelTermArgs;
         private System.Windows.Forms.TextBox textBoxTermBin;
         private System.Windows.Forms.Label labelTermBin;
         private System.Windows.Forms.Button buttonBrowseTermBin;
