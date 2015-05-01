@@ -53,6 +53,8 @@ namespace FFmpegCatapult
             this.checkBoxSaveSettings = new System.Windows.Forms.CheckBox();
             this.checkBoxWriteLog = new System.Windows.Forms.CheckBox();
             this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
+            this.textBoxBinArgs = new System.Windows.Forms.TextBox();
+            this.labelBinArgs = new System.Windows.Forms.Label();
             this.textBoxTermArgs = new System.Windows.Forms.TextBox();
             this.labelTermArgs = new System.Windows.Forms.Label();
             this.textBoxTermBin = new System.Windows.Forms.TextBox();
@@ -192,8 +194,6 @@ namespace FFmpegCatapult
             this.labelOutput = new System.Windows.Forms.Label();
             this.labelInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.labelBinArgs = new System.Windows.Forms.Label();
-            this.textBoxBinArgs = new System.Windows.Forms.TextBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
@@ -268,7 +268,7 @@ namespace FFmpegCatapult
             // 
             // textBoxLog
             // 
-            this.textBoxLog.Location = new System.Drawing.Point(96, 18);
+            this.textBoxLog.Location = new System.Drawing.Point(96, 19);
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.Size = new System.Drawing.Size(213, 20);
             this.textBoxLog.TabIndex = 3;
@@ -286,7 +286,7 @@ namespace FFmpegCatapult
             // checkBoxWriteLog
             // 
             this.checkBoxWriteLog.AutoSize = true;
-            this.checkBoxWriteLog.Location = new System.Drawing.Point(9, 20);
+            this.checkBoxWriteLog.Location = new System.Drawing.Point(9, 21);
             this.checkBoxWriteLog.Name = "checkBoxWriteLog";
             this.checkBoxWriteLog.Size = new System.Drawing.Size(87, 17);
             this.checkBoxWriteLog.TabIndex = 0;
@@ -311,6 +311,22 @@ namespace FFmpegCatapult
             this.groupBoxBinaries.TabIndex = 0;
             this.groupBoxBinaries.TabStop = false;
             this.groupBoxBinaries.Text = "Binaries";
+            // 
+            // textBoxBinArgs
+            // 
+            this.textBoxBinArgs.Location = new System.Drawing.Point(112, 92);
+            this.textBoxBinArgs.Name = "textBoxBinArgs";
+            this.textBoxBinArgs.Size = new System.Drawing.Size(341, 20);
+            this.textBoxBinArgs.TabIndex = 9;
+            // 
+            // labelBinArgs
+            // 
+            this.labelBinArgs.AutoSize = true;
+            this.labelBinArgs.Location = new System.Drawing.Point(6, 95);
+            this.labelBinArgs.Name = "labelBinArgs";
+            this.labelBinArgs.Size = new System.Drawing.Size(100, 13);
+            this.labelBinArgs.TabIndex = 8;
+            this.labelBinArgs.Text = "FFmpeg arguments:";
             // 
             // textBoxTermArgs
             // 
@@ -1684,22 +1700,6 @@ namespace FFmpegCatapult
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(479, 220);
             this.tabControl.TabIndex = 2;
-            // 
-            // labelBinArgs
-            // 
-            this.labelBinArgs.AutoSize = true;
-            this.labelBinArgs.Location = new System.Drawing.Point(6, 95);
-            this.labelBinArgs.Name = "labelBinArgs";
-            this.labelBinArgs.Size = new System.Drawing.Size(100, 13);
-            this.labelBinArgs.TabIndex = 8;
-            this.labelBinArgs.Text = "FFmpeg arguments:";
-            // 
-            // textBoxBinArgs
-            // 
-            this.textBoxBinArgs.Location = new System.Drawing.Point(112, 92);
-            this.textBoxBinArgs.Name = "textBoxBinArgs";
-            this.textBoxBinArgs.Size = new System.Drawing.Size(341, 20);
-            this.textBoxBinArgs.TabIndex = 9;
             // 
             // MainForm
             // 

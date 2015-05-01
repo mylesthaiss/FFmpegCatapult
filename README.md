@@ -25,16 +25,17 @@ Requirements
 
 Features
 ========
-- Built in pre-sets for widely used codecs and multi-media devices.
+- XML formatted Presets for widely used codecs and multi-media devices.
+- Support for user created preset files.
 - Encode videos with only a few clicks.
 - Lightweight.
 - Two-pass encoding.
 
 Install
 =======
-After extracting the FFCatapult_xx.zip file, copy the ffcatapult.exe file onto 
-your FFmpeg binary folder or place the FFmpeg binary onto the folder where the 
-FFmpeg Catapult executable is.
+After extracting the FFCatapult_xx.zip file, copy the ffcatapult.exe and presets.xml 
+files onto your FFmpeg binary folder or place the FFmpeg binary onto the folder where 
+the FFmpeg Catapult executable is.
 
 
 

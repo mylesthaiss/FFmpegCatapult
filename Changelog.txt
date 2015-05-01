@@ -1,3 +1,9 @@
+--- 0.4 (Beta)
+- NEW XML formatted preset support.
+- Added option to add additional command switches onto FFmpeg.
+- Ported hard coded presets onto presets.xml.
+- Cleaned up code.
+
 --- 0.3
 - Fixed audio codec profile switch appearing on every audio codec.
 - Fixes and minor improvements to the user interface.
