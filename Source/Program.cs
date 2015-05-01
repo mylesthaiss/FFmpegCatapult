@@ -57,6 +57,7 @@ namespace FFmpegCatapult
             }
             else
             {
+                Bin.BinArgs = Properties.Settings.Default.BinArgs;
                 Bin.FFmpegBin = Properties.Settings.Default.FFmpegBin;
                 Bin.TermBin = Properties.Settings.Default.TermBin;
                 Bin.TermArgs = Properties.Settings.Default.TermArgs;

@@ -748,8 +748,7 @@ namespace FFmpegCatapult
         }
 
         private void EnableLogFileTextBox(bool enable)
-        {
-            labelLogName.Enabled = enable;
+        {            
             textBoxLog.Enabled = enable;
         }
 
@@ -915,6 +914,12 @@ namespace FFmpegCatapult
             }
             textBoxTermBin.TextChanged += new EventHandler(textBoxTermBin_TextChanged);
             buttonBrowseTermBin.Click += new EventHandler(buttonBrowseTermBin_Click);
+
+            if (Bin.BinArgs != null)
+            {
+                textBoxBinArgs.Text = Bin.BinArgs;
+            }
+            textBoxBinArgs.TextChanged += new EventHandler(textBoxBinArgs_TextChanged);
 
             if (Bin.TermArgs != null)
             {
@@ -1508,6 +1513,11 @@ namespace FFmpegCatapult
         void textBoxTermBin_TextChanged(object sender, EventArgs e)
         {
             Bin.TermBin = textBoxTermBin.Text;
+        }
+
+        void textBoxBinArgs_TextChanged(object sender, EventArgs e)
+        {
+            Bin.BinArgs = textBoxBinArgs.Text;
         }
 
         void textBoxTermArgs_TextChanged(object sender, EventArgs e)

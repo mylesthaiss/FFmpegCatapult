@@ -31,6 +31,7 @@ namespace FFmpegCatapult
         private static string ffmpegBin;
         private static string termBin;
         private static string termArgs;
+        private static string binArgs;
         private static string nullPath;
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace FFmpegCatapult
             string input;
             string output;
             string video;
+            string userArgs = "";
             string nullFile = nullPath;
 
             // Input arguments
@@ -372,6 +374,12 @@ namespace FFmpegCatapult
                 }
             }
 
+            // User commands
+            if (!string.IsNullOrEmpty(binArgs))
+            {
+                userArgs = " " + binArgs + " ";
+            }
+
             // Launch process
             Process Term = new Process();
 
@@ -391,7 +399,7 @@ namespace FFmpegCatapult
                     }
 
                     // First pass
-                    args = string.Format("-i \"{0}\" -pass 1 {1} -an -y -f rawvideo {2}", File.Input, video, nullFile);
+                    args = string.Format("-i \"{0}\" -pass 1 {1} -an -y -f rawvideo {2}{3}", File.Input, video, userArgs, nullFile);
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", waitArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)
@@ -401,7 +409,7 @@ namespace FFmpegCatapult
                     Term.WaitForExit();
 
                     // Second pass
-                    args = string.Format("{0} -pass 2 {1} {2} {3}", input, video, audio, output);
+                    args = string.Format("{0} -pass 2 {1} {2} {3}{4}", input, video, audio, userArgs, output);
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)
@@ -412,7 +420,7 @@ namespace FFmpegCatapult
                 else
                 {
                     // Single pass
-                    args = string.Format(string.Format("{0} {1} {2} {3}", input, video, audio, output));
+                    args = string.Format(string.Format("{0} {1} {2} {3}{4}", input, video, audio, userArgs, output));
                     Term.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, ffmpegBin, args);
                     Term.Start();
                     if (Session.WriteLog == true)
@@ -479,6 +487,12 @@ namespace FFmpegCatapult
         }
 
         // Property methods
+        public static string BinArgs
+        {
+            get { return binArgs; }
+            set { binArgs = value; }
+        }
+
         public static string FFmpegBin
         {
             get { return ffmpegBin; }

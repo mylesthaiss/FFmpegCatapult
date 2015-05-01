@@ -124,6 +124,7 @@ namespace FFmpegCatapult
             Properties.Settings.Default.Preset = Session.Preset;
             Properties.Settings.Default.FileFormat = File.Format;
             Properties.Settings.Default.FFmpegBin = Bin.FFmpegBin;
+            Properties.Settings.Default.BinArgs = Bin.BinArgs;
             Properties.Settings.Default.TermArgs = Bin.TermArgs;
             Properties.Settings.Default.TermBin = Bin.TermBin;
             Properties.Settings.Default.NullPath = Bin.NullPath;
