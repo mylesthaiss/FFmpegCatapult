@@ -46,11 +46,12 @@ namespace FFmpegCatapult
                 Screen.ScaleOption = 1;
             }
             else
-            {
+            {                
                 XmlDocument doc = new XmlDocument();
                 doc.Load(file);
                 string path = @"/presets/preset[@name='" + name + @"']";
                 XmlNodeList nodes = doc.SelectNodes(path);
+                Bin.PresetArgs = "";
 
                 foreach (XmlNode node in nodes)
                 {
@@ -250,6 +251,11 @@ namespace FFmpegCatapult
                                 Screen.RatioB = TextToInt(values[1]);
                             }
                         }
+
+                        if (node["arguments"] !=null)
+                        {
+                            Bin.PresetArgs = node["arguments"].InnerText;
+                        }                        
                     }
                 }
             }

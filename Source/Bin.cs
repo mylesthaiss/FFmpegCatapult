@@ -32,6 +32,7 @@ namespace FFmpegCatapult
         private static string termBin;
         private static string termArgs;
         private static string binArgs;
+        private static string presetArgs;
         private static string nullPath;
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace FFmpegCatapult
             string input;
             string output;
             string video;
-            string userArgs = "";
+            string userArgs;
             string nullFile = nullPath;
 
             // Input arguments
@@ -374,10 +375,22 @@ namespace FFmpegCatapult
                 }
             }
 
-            // User commands
-            if (!string.IsNullOrEmpty(binArgs))
+            // User and preset arguments
+            if (!string.IsNullOrEmpty(binArgs) && !string.IsNullOrEmpty(presetArgs))
             {
-                userArgs = " " + binArgs + " ";
+                userArgs = presetArgs + " " + binArgs + " ";
+            }
+            else if (!string.IsNullOrEmpty(presetArgs))
+            {
+                userArgs = presetArgs + " ";
+            }
+            else if (!string.IsNullOrEmpty(binArgs))
+            {
+                userArgs = binArgs + " ";
+            }
+            else
+            {
+                userArgs = "";
             }
 
             // Launch process
@@ -491,6 +504,12 @@ namespace FFmpegCatapult
         {
             get { return binArgs; }
             set { binArgs = value; }
+        }
+
+        public static string PresetArgs
+        {
+            get { return presetArgs; }
+            set { presetArgs = value; }
         }
 
         public static string FFmpegBin

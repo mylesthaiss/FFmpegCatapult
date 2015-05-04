@@ -802,5 +802,17 @@ namespace FFmpegCatapult.Properties {
                 this["BinArgs"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PresetArgs {
+            get {
+                return ((string)(this["PresetArgs"]));
+            }
+            set {
+                this["PresetArgs"] = value;
+            }
+        }
     }
 }

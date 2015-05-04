@@ -58,6 +58,7 @@ namespace FFmpegCatapult
         public static void LoadSettings()
         {
             File.Format = Properties.Settings.Default.FileFormat;
+            Bin.PresetArgs = Properties.Settings.Default.PresetArgs;
 
             // Picure settings
             Screen.AspectRatio = Properties.Settings.Default.AspectRatio;
@@ -125,6 +126,7 @@ namespace FFmpegCatapult
             Properties.Settings.Default.FileFormat = File.Format;
             Properties.Settings.Default.FFmpegBin = Bin.FFmpegBin;
             Properties.Settings.Default.BinArgs = Bin.BinArgs;
+            Properties.Settings.Default.PresetArgs = Bin.PresetArgs;
             Properties.Settings.Default.TermArgs = Bin.TermArgs;
             Properties.Settings.Default.TermBin = Bin.TermBin;
             Properties.Settings.Default.NullPath = Bin.NullPath;
