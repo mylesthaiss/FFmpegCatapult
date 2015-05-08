@@ -537,6 +537,14 @@ namespace FFmpegCatapult
             System.Environment.Exit(0);
         }
 
+        private void EnableFileOutputControls(bool enable)
+        {
+            labelOutput.Enabled = enable;
+            textBoxOutFile.Enabled = enable;
+            buttonBrowseOutput.Enabled = enable;
+            checkBoxOverwrite.Enabled = enable;
+        }
+
         private void EnableRatioControls(bool enable)
         {
             labelRatio.Enabled = enable;
@@ -768,6 +776,20 @@ namespace FFmpegCatapult
             textBoxYear.Text = "";
         }
 
+        private void EnableBinArgsControls(bool enable)
+        {
+            labelBinArgs.Enabled = enable;
+            textBoxBinArgs.Enabled = enable;
+            buttonBrowseFFmpegBin.Enabled = enable;
+        }
+
+        private void EnableTermArgsControls(bool enable)
+        {
+            labelTermArgs.Enabled = enable;
+            textBoxTermArgs.Enabled = enable;
+            buttonBrowseTermBin.Enabled = enable;
+        }        
+
         //
         // Event handlers
         //
@@ -904,6 +926,13 @@ namespace FFmpegCatapult
             if (Bin.FFmpegBin != null)
             {
                 textBoxFFmpegBin.Text = Bin.FFmpegBin;
+                EnableBinArgsControls(true);
+                EnableTermArgsControls(true);                
+            }
+            else
+            {
+                EnableBinArgsControls(false);
+                EnableTermArgsControls(false); 
             }
             textBoxFFmpegBin.TextChanged += new EventHandler(textBoxFFmpegBin_TextChanged);
             buttonBrowseFFmpegBin.Click += new EventHandler(buttonBrowseFFmpegBin_Click);
@@ -911,6 +940,11 @@ namespace FFmpegCatapult
             if (Bin.TermBin != null)
             {
                 textBoxTermBin.Text = Bin.TermBin;
+                EnableTermArgsControls(true);
+            }
+            else
+            {
+                EnableTermArgsControls(false);
             }
             textBoxTermBin.TextChanged += new EventHandler(textBoxTermBin_TextChanged);
             buttonBrowseTermBin.Click += new EventHandler(buttonBrowseTermBin_Click);
@@ -1010,7 +1044,17 @@ namespace FFmpegCatapult
         {
             File.Input = textBoxInFile.Text;
 
-            if (textBoxInFile.Text != "" && textBoxOutFile.Text != "")
+            if (!string.IsNullOrEmpty(textBoxInFile.Text))
+            {
+                EnableFileOutputControls(true);
+            }
+            else
+            {
+                EnableFileOutputControls(false);
+                textBoxOutFile.Text = "";
+            }
+
+            if (!string.IsNullOrEmpty(textBoxInFile.Text) && string.IsNullOrEmpty(textBoxOutFile.Text))
             {
                 buttonRun.Enabled = true;
             }
@@ -1049,10 +1093,10 @@ namespace FFmpegCatapult
             inFile.Filter = "Any file (*.*) | *.*";
 
             if (inFile.FileName != "")
-            {
+            {                
                 textBoxInFile.Text = inFile.FileName;
                 textBoxOutFile.Text = inFile.FileName;
-            }
+            }            
         }
 
         private void buttonBrowseOutput_Click(object sender, EventArgs e)
@@ -1508,11 +1552,13 @@ namespace FFmpegCatapult
         void textBoxFFmpegBin_TextChanged(object sender, EventArgs e)
         {
             Bin.FFmpegBin = textBoxFFmpegBin.Text;
+            EnableBinArgsControls(!string.IsNullOrEmpty(textBoxFFmpegBin.Text));
         }
 
         void textBoxTermBin_TextChanged(object sender, EventArgs e)
         {
             Bin.TermBin = textBoxTermBin.Text;
+            EnableTermArgsControls(!string.IsNullOrEmpty(textBoxTermBin.Text));
         }
 
         void textBoxBinArgs_TextChanged(object sender, EventArgs e)

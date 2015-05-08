@@ -366,7 +366,7 @@ namespace FFmpegCatapult
             this.buttonBrowseTermBin.Name = "buttonBrowseTermBin";
             this.buttonBrowseTermBin.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseTermBin.TabIndex = 3;
-            this.buttonBrowseTermBin.Text = "Browse";
+            this.buttonBrowseTermBin.Text = "Browse...";
             this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
             // 
             // buttonBrowseFFmpegBin
@@ -375,7 +375,7 @@ namespace FFmpegCatapult
             this.buttonBrowseFFmpegBin.Name = "buttonBrowseFFmpegBin";
             this.buttonBrowseFFmpegBin.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseFFmpegBin.TabIndex = 2;
-            this.buttonBrowseFFmpegBin.Text = "Browse";
+            this.buttonBrowseFFmpegBin.Text = "Browse...";
             this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
             // 
             // textBoxFFmpegBin
@@ -689,7 +689,7 @@ namespace FFmpegCatapult
             this.buttonBrowseAudioStream.Name = "buttonBrowseAudioStream";
             this.buttonBrowseAudioStream.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseAudioStream.TabIndex = 2;
-            this.buttonBrowseAudioStream.Text = "Browse";
+            this.buttonBrowseAudioStream.Text = "Browse...";
             this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
             // 
             // labelAudioStream
@@ -1629,6 +1629,7 @@ namespace FFmpegCatapult
             // checkBoxOverwrite
             // 
             this.checkBoxOverwrite.AutoSize = true;
+            this.checkBoxOverwrite.Enabled = false;
             this.checkBoxOverwrite.Location = new System.Drawing.Point(9, 68);
             this.checkBoxOverwrite.Name = "checkBoxOverwrite";
             this.checkBoxOverwrite.Size = new System.Drawing.Size(125, 17);
@@ -1638,11 +1639,12 @@ namespace FFmpegCatapult
             // 
             // buttonBrowseOutput
             // 
+            this.buttonBrowseOutput.Enabled = false;
             this.buttonBrowseOutput.Location = new System.Drawing.Point(378, 40);
             this.buttonBrowseOutput.Name = "buttonBrowseOutput";
             this.buttonBrowseOutput.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseOutput.TabIndex = 5;
-            this.buttonBrowseOutput.Text = "Save";
+            this.buttonBrowseOutput.Text = "Save...";
             this.buttonBrowseOutput.UseVisualStyleBackColor = true;
             // 
             // buttonBrowseInput
@@ -1651,11 +1653,12 @@ namespace FFmpegCatapult
             this.buttonBrowseInput.Name = "buttonBrowseInput";
             this.buttonBrowseInput.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseInput.TabIndex = 4;
-            this.buttonBrowseInput.Text = "Browse";
+            this.buttonBrowseInput.Text = "Browse...";
             this.buttonBrowseInput.UseVisualStyleBackColor = true;
             // 
             // textBoxOutFile
             // 
+            this.textBoxOutFile.Enabled = false;
             this.textBoxOutFile.Location = new System.Drawing.Point(54, 42);
             this.textBoxOutFile.Name = "textBoxOutFile";
             this.textBoxOutFile.Size = new System.Drawing.Size(318, 20);
@@ -1672,6 +1675,7 @@ namespace FFmpegCatapult
             // labelOutput
             // 
             this.labelOutput.AutoSize = true;
+            this.labelOutput.Enabled = false;
             this.labelOutput.Location = new System.Drawing.Point(6, 45);
             this.labelOutput.Name = "labelOutput";
             this.labelOutput.Size = new System.Drawing.Size(42, 13);
