@@ -1047,6 +1047,10 @@ namespace FFmpegCatapult
             if (!string.IsNullOrEmpty(textBoxInFile.Text))
             {
                 EnableFileOutputControls(true);
+                File.Output = textBoxInFile.Text;
+                textBoxOutFile.TextChanged -= this.textBoxOutFile_TextChanged;
+                textBoxOutFile.Text = File.Output;
+                textBoxOutFile.TextChanged += this.textBoxOutFile_TextChanged;
             }
             else
             {
@@ -1094,14 +1098,14 @@ namespace FFmpegCatapult
 
             if (inFile.FileName != "")
             {                
-                textBoxInFile.Text = inFile.FileName;
-                textBoxOutFile.Text = inFile.FileName;
+                textBoxInFile.Text = inFile.FileName;                
             }            
         }
 
         private void buttonBrowseOutput_Click(object sender, EventArgs e)
         {
             SaveFileDialog outFile = new SaveFileDialog();
+            outFile.FileName = Path.GetFileName(File.Output);
             if (fileExtension == "custom")
             {
                 outFile.Filter = "Any file *.* | *.*";
