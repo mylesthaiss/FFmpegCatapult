@@ -756,7 +756,7 @@ namespace FFmpegCatapult
         }
 
         private void EnableLogFileTextBox(bool enable)
-        {            
+        {
             textBoxLog.Enabled = enable;
         }
 
@@ -788,7 +788,20 @@ namespace FFmpegCatapult
             labelTermArgs.Enabled = enable;
             textBoxTermArgs.Enabled = enable;
             buttonBrowseTermBin.Enabled = enable;
-        }        
+        }
+
+        private void BrowseFFmpegBin()
+        {
+            OpenFileDialog binFile = new OpenFileDialog();
+            binFile.Title = "Locate FFmpeg";
+            binFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
+            binFile.ShowDialog();
+
+            if (binFile.FileName != "")
+            {
+                textBoxFFmpegBin.Text = binFile.FileName;
+            }
+        }
 
         //
         // Event handlers
@@ -828,7 +841,7 @@ namespace FFmpegCatapult
             string[] files = Directory.GetFiles(path, "*.xml");
 
             foreach (string file in files)
-            {              
+            {
                 try
                 {
                     XmlDocument doc = new XmlDocument();
@@ -851,7 +864,7 @@ namespace FFmpegCatapult
                 catch (IOException)
                 {
                     MessageBox.Show("Unable to access file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }                
+                }
             }
 
             // Set selected preset
@@ -927,12 +940,12 @@ namespace FFmpegCatapult
             {
                 textBoxFFmpegBin.Text = Bin.FFmpegBin;
                 EnableBinArgsControls(true);
-                EnableTermArgsControls(true);                
+                EnableTermArgsControls(true);
             }
             else
             {
                 EnableBinArgsControls(false);
-                EnableTermArgsControls(false); 
+                EnableTermArgsControls(false);
             }
             textBoxFFmpegBin.TextChanged += new EventHandler(textBoxFFmpegBin_TextChanged);
             buttonBrowseFFmpegBin.Click += new EventHandler(buttonBrowseFFmpegBin_Click);
@@ -998,13 +1011,21 @@ namespace FFmpegCatapult
 
         void buttonRun_Click(object sender, EventArgs e)
         {
-            Bin.Run();
-
-            if (Session.KeepValues == false)
+            if (System.IO.File.Exists(Bin.FFmpegBin) | Methods.EnvironmentPathExists(Bin.FFmpegBin))
             {
-                textBoxInFile.Text = "";
-                textBoxOutFile.Text = "";
-                ClearMetadataFields();
+                Bin.Run();
+
+                if (Session.KeepValues == false)
+                {
+                    textBoxInFile.Text = "";
+                    textBoxOutFile.Text = "";
+                    ClearMetadataFields();
+                }
+            }
+            else
+            {
+                MessageBox.Show("FFmpeg not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                BrowseFFmpegBin();
             }
         }
 
@@ -1025,6 +1046,25 @@ namespace FFmpegCatapult
                 {
                     e.Handled = e.KeyChar != (char)Keys.Back;
                 }
+            }
+        }
+
+        // Key press event handler to filter invalid chars
+        private void textBox_KeyPress_FSFilter(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case '<':
+                case '>':
+                case '*':
+                case '?':
+                case '"':
+                case '|':
+                case '/':
+                    e.Handled = e.KeyChar != (char)Keys.Back;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -1058,7 +1098,7 @@ namespace FFmpegCatapult
                 textBoxOutFile.Text = "";
             }
 
-            if (!string.IsNullOrEmpty(textBoxInFile.Text) && string.IsNullOrEmpty(textBoxOutFile.Text))
+            if (System.IO.File.Exists(File.Input) && !string.IsNullOrEmpty(textBoxOutFile.Text))
             {
                 buttonRun.Enabled = true;
             }
@@ -1097,9 +1137,9 @@ namespace FFmpegCatapult
             inFile.Filter = "Any file (*.*) | *.*";
 
             if (inFile.FileName != "")
-            {                
-                textBoxInFile.Text = inFile.FileName;                
-            }            
+            {
+                textBoxInFile.Text = inFile.FileName;
+            }
         }
 
         private void buttonBrowseOutput_Click(object sender, EventArgs e)
@@ -1582,14 +1622,7 @@ namespace FFmpegCatapult
 
         void buttonBrowseFFmpegBin_Click(object sender, EventArgs e)
         {
-            OpenFileDialog binFile = new OpenFileDialog();
-            binFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
-            binFile.ShowDialog();
-
-            if (binFile.FileName != "")
-            {
-                textBoxFFmpegBin.Text = binFile.FileName;
-            }
+            BrowseFFmpegBin();
         }
 
         void checkBoxWriteLog_CheckedChanged(object sender, EventArgs e)
@@ -1608,6 +1641,7 @@ namespace FFmpegCatapult
         void buttonBrowseTermBin_Click(object sender, EventArgs e)
         {
             OpenFileDialog termBinFile = new OpenFileDialog();
+            termBinFile.Title = "Locate Terminal Emulator";
             termBinFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
             termBinFile.ShowDialog();
 

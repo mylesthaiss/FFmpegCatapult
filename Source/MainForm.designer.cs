@@ -350,6 +350,7 @@ namespace FFmpegCatapult
             this.textBoxTermBin.Name = "textBoxTermBin";
             this.textBoxTermBin.Size = new System.Drawing.Size(310, 20);
             this.textBoxTermBin.TabIndex = 5;
+            this.textBoxTermBin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress_FSFilter);
             // 
             // labelTermBin
             // 
@@ -384,6 +385,7 @@ namespace FFmpegCatapult
             this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
             this.textBoxFFmpegBin.Size = new System.Drawing.Size(310, 20);
             this.textBoxFFmpegBin.TabIndex = 1;
+            this.textBoxFFmpegBin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress_FSFilter);
             // 
             // labelFFmpegBin
             // 
@@ -707,6 +709,7 @@ namespace FFmpegCatapult
             this.textBoxAudioStream.Name = "textBoxAudioStream";
             this.textBoxAudioStream.Size = new System.Drawing.Size(323, 20);
             this.textBoxAudioStream.TabIndex = 0;
+            this.textBoxAudioStream.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress_FSFilter);
             // 
             // groupBoxAudioBitrate
             // 
@@ -1663,6 +1666,7 @@ namespace FFmpegCatapult
             this.textBoxOutFile.Name = "textBoxOutFile";
             this.textBoxOutFile.Size = new System.Drawing.Size(318, 20);
             this.textBoxOutFile.TabIndex = 3;
+            this.textBoxOutFile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress_FSFilter);
             // 
             // textBoxInFile
             // 
@@ -1671,6 +1675,7 @@ namespace FFmpegCatapult
             this.textBoxInFile.Name = "textBoxInFile";
             this.textBoxInFile.Size = new System.Drawing.Size(318, 20);
             this.textBoxInFile.TabIndex = 2;
+            this.textBoxInFile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress_FSFilter);
             // 
             // labelOutput
             // 

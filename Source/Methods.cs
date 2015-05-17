@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace FFmpegCatapult
 {
@@ -157,6 +158,26 @@ namespace FFmpegCatapult
                 }
             }
             return valid;
+        }
+
+        /// <summary>
+        /// Determines if given process name exists in OS's global environment path.
+        /// </summary>        
+        public static bool EnvironmentPathExists(string file)
+        {
+            bool exists = false;
+            string paths = Environment.GetEnvironmentVariable("PATH");
+            foreach (string path in paths.Split(';'))
+            {
+                string fullPath = System.IO.Path.Combine(path, file);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
+            return exists;
         }
 
         /// <summary>
