@@ -195,6 +195,7 @@ namespace FFmpegCatapult
             // 
             // textBoxCodecLevel
             // 
+            this.textBoxCodecLevel.Enabled = false;
             this.textBoxCodecLevel.Location = new System.Drawing.Point(237, 15);
             this.textBoxCodecLevel.Name = "textBoxCodecLevel";
             this.textBoxCodecLevel.Size = new System.Drawing.Size(35, 20);
@@ -205,6 +206,7 @@ namespace FFmpegCatapult
             // labelEncodingLevel
             // 
             this.labelEncodingLevel.AutoSize = true;
+            this.labelEncodingLevel.Enabled = false;
             this.labelEncodingLevel.Location = new System.Drawing.Point(195, 18);
             this.labelEncodingLevel.Name = "labelEncodingLevel";
             this.labelEncodingLevel.Size = new System.Drawing.Size(36, 13);

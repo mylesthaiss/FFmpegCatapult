@@ -67,7 +67,7 @@ namespace FFmpegCatapult
                         };
                         Video.Codecs = new string[,] {
                             {"H.263", "h263"}, {"H.264", "h264"}, {"MPEG-4", "mpeg4"},
-                            {"Copy", "copy"}, {"None", "none"}
+                             {"Copy", "copy"}, {"None", "none"}
                         };
                         if (!IsValid(Audio.Codec, Audio.Codecs))
                         {

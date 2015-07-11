@@ -35,13 +35,10 @@ namespace FFmpegCatapult
 
         private void VideoSettingsForm_Load(object sender, EventArgs e)
         {
-            // H.264 values
-            if (Video.Codec == "h264")
+            // Codec profiles
+            if (Video.CodecProfiles[0, 0] != null)
             {
                 groupBoxCodec.Enabled = true;
-                labelEncoderPreset.Enabled = true;
-                comboBoxEncoderPresets.Enabled = true;
-
                 for (int i = 0; i < Video.CodecProfiles.GetLength(0); i++)
                 {
                     comboBoxCodecProfiles.Items.Add(new Methods.ListComboContent(Video.CodecProfiles[i, 0], Video.CodecProfiles[i, 1]));
@@ -52,6 +49,19 @@ namespace FFmpegCatapult
                     }
                 }
 
+                if (Video.Codec == "h264")
+                {
+                    labelEncodingLevel.Enabled = true;
+                    textBoxCodecLevel.Enabled = true;
+                    textBoxCodecLevel.Text = Methods.NumToText(Video.CodecLevel);
+                }
+            }
+
+            // Encoder presets
+            if (Video.EncoderPresets[0, 0] != null)
+            {
+                labelEncoderPreset.Enabled = true;
+                comboBoxEncoderPresets.Enabled = true;
                 for (int i = 0; i < Video.EncoderPresets.GetLength(0); i++)
                 {
                     comboBoxEncoderPresets.Items.Add(new Methods.ListComboContent(Video.EncoderPresets[i, 0], Video.EncoderPresets[i, 1]));
@@ -61,8 +71,6 @@ namespace FFmpegCatapult
                         comboBoxEncoderPresets.SelectedIndex = i;
                     }
                 }
-
-                textBoxCodecLevel.Text = Methods.NumToText(Video.CodecLevel);
             }
 
             // Comboboxes

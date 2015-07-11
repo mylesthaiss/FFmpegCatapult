@@ -138,6 +138,11 @@ namespace FFmpegCatapult
                         videoArgs.Add(string.Format("-profile:v {0}", Video.CodecProfile));
                     }
 
+                    if (!string.IsNullOrEmpty(Video.EncoderPreset))
+                    {
+                        videoArgs.Add(string.Format("-preset {0}", Video.EncoderPreset));
+                    }
+
                     if (Video.CodecLevel > 0 && Video.Encoder == "libx264")
                     {
                         videoArgs.Add(string.Format("-level {0}", Video.CodecLevel));
@@ -146,7 +151,14 @@ namespace FFmpegCatapult
                     // Video bitrates and quality settings
                     if (Video.UseCRF == true)
                     {
-                        videoArgs.Add(string.Format("-crf {0}", Video.CRF));
+                        if (Video.Encoder == "libx265")
+                        {
+                            videoArgs.Add(string.Format("-x265-params crf={0}", Video.CRF));
+                        }
+                        else
+                        {
+                            videoArgs.Add(string.Format("-crf {0}", Video.CRF));
+                        }                        
                     }
                     else
                     {

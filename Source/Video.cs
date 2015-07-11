@@ -130,7 +130,12 @@ namespace FFmpegCatapult
             {
                 codec = value;
 
+                codecProfiles = new string[,] { { null, null } };
+                encoderPresets = new string[,] { { null, null } };
+
                 // Reset to default values
+                codecProfile = "";
+                crf = 0;
                 useCRF = false;
                 bits = "k";
                 bytes = "M";
@@ -154,11 +159,23 @@ namespace FFmpegCatapult
                     case "h264":
                         bitrate = 1000;
                         codecLevel = 3.1;
+                        codecProfiles = new string[,] {
+                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                        };
                         codecProfile = "main";
                         encoders = new string[,] {
                             {"x264", "libx264"}
                         };
                         Encoder = "libx264";
+                        break;
+                    case "h265":
+                        bitrate = 768;
+                        crf = 28;
+                        useCRF = true;
+                        encoders = new string[,] {
+                            {"x265", "libx265"}
+                        };
+                        Encoder = "libx265";
                         break;
                     case "mpeg2":
                         bitrate = 4000;
@@ -254,9 +271,7 @@ namespace FFmpegCatapult
                 switch (encoder)
                 {
                     case "libx264":
-                        codecProfiles = new string[,] {
-                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
-                        };
+                    case "libx265":
                         encoderPreset = "medium";
                         encoderPresets = new string[,] {
                             {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
@@ -357,7 +372,7 @@ namespace FFmpegCatapult
         {
             get
             {
-                if(Session.TwoPassEncoding)
+                if (Session.TwoPassEncoding)
                 {
                     return false;
                 }
