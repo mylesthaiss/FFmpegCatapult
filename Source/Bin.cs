@@ -158,7 +158,7 @@ namespace FFmpegCatapult
                         else
                         {
                             videoArgs.Add(string.Format("-crf {0}", Video.CRF));
-                        }                        
+                        }
                     }
                     else
                     {
@@ -238,6 +238,21 @@ namespace FFmpegCatapult
                     if (Screen.FPS != 0)
                     {
                         videoArgs.Add(string.Format("-r {0}", Screen.FPS));
+                    }
+
+                    // VPX encoder arguments
+                    if (Video.Codec == "vp8" | Video.Codec == "vp9")
+                    {
+                        if (Video.Encoder == "libvpx-vp9")
+                        {
+                            int a = Video.AutoAltRef ? 1 : 0;
+                            int f = Video.FrameParallel ? 1 : 0;
+                            videoArgs.Add(string.Format("-speed {0}", Video.Speed));
+                            videoArgs.Add(string.Format("-tile-columns {0}", Video.TileColumns));
+                            videoArgs.Add(string.Format("-frame-parallel {0}", f));
+                            videoArgs.Add(string.Format("-auto-alt-ref {0}", a));
+                            videoArgs.Add(string.Format("-lag-in-frames {0}", Video.LagInFrames));
+                        }
                     }
 
                     // Video filtering arguments

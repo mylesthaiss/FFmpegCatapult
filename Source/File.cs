@@ -89,7 +89,7 @@ namespace FFmpegCatapult
                         };
                         Video.Codecs = new string[,] {
                             {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
-                            {"Theora", "theora"}, {"VP8", "vp8"}, {"WMV", "wmv"},
+                            {"Theora", "theora"}, {"VP8", "vp8"}, {"VP9", "vp9"}, {"WMV", "wmv"},
                             {"Copy", "copy"}, {"None", "none"}
                         };
 
@@ -200,10 +200,10 @@ namespace FFmpegCatapult
                         break;
                     case "webm":
                         Audio.Codecs = new string[,] {
-                            {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
+                            {"Opus", "opus"}, {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         Video.Codecs = new string[,] {
-                            {"VP8", "vp8"}, {"Copy", "copy"}
+                            {"VP8", "vp8"}, {"VP9", "vp9"}, {"Copy", "copy"}
                         };
                         if (!IsValid(Audio.Codec, Audio.Codecs))
                         {

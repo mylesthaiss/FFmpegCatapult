@@ -25,6 +25,8 @@ namespace FFmpegCatapult
     class Video
     {
         // Variables
+        private static bool autoAltRef;
+        private static bool frameParallel;
         private static bool useCRF = false;
         private static double bitrate;
         private static double bufferSize;
@@ -37,9 +39,12 @@ namespace FFmpegCatapult
         private static int crf;
         private static int diaSize;
         private static int gopSize;
+        private static int lagInFrames;
         private static int qmax;
         private static int qmin;
+        private static int speed;
         private static int subcmp;
+        private static int tileColumns;
         private static int trellis;
         private static string bits;
         private static string bytes;
@@ -71,6 +76,12 @@ namespace FFmpegCatapult
         };
 
         // Property methods
+        public static bool AutoAltRef
+        {
+            get { return autoAltRef; }
+            set { autoAltRef = value; }
+        }
+
         public static double Bitrate
         {
             get { return bitrate; }
@@ -205,6 +216,18 @@ namespace FFmpegCatapult
                         };
                         Encoder = "libvpx";
                         break;
+                    case "vp9":
+                        bitrate = 1000;
+                        encoders = new string[,] {
+                            {"VPX", "libvpx-vp9"}
+                        };
+                        Encoder = "libvpx-vp9";
+                        speed = 1;
+                        tileColumns = 6;
+                        lagInFrames = 25;
+                        frameParallel = true;
+                        autoAltRef = true;
+                        break;
                     case "wmv":
                         bitrate = 1500;
                         encoders = new string[,] {
@@ -304,10 +327,22 @@ namespace FFmpegCatapult
             get { return encoderPresets; }
         }
 
+        public static bool FrameParallel
+        {
+            get { return frameParallel; }
+            set { frameParallel = value; }
+        }
+
         public static int GOPSize
         {
             get { return gopSize; }
             set { gopSize = value; }
+        }
+
+        public static int LagInFrames
+        {
+            get { return lagInFrames; }
+            set { lagInFrames = value; }
         }
 
         public static double MaxBitrate
@@ -356,10 +391,22 @@ namespace FFmpegCatapult
             set { qmin = value; }
         }
 
+        public static int Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
+
         public static int SubCMP
         {
             get { return subcmp; }
             set { subcmp = value; }
+        }
+
+        public static int TileColumns
+        {
+            get { return tileColumns; }
+            set { tileColumns = value; }
         }
 
         public static int Trellis
