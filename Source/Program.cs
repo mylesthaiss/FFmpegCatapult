@@ -1,6 +1,5 @@
 ﻿// FFmpeg Catapult
 // A WinForms GUI launcher for FFmpeg.
-// Copyright (C) 2015 Myles Thaiss
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -17,8 +16,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace FFmpegCatapult
