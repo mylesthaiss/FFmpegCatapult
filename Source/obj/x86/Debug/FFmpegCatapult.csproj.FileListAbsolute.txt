@@ -1,0 +1,12 @@
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\bin\Debug\ffcatapult.exe.config
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\bin\Debug\ffcatapult.exe
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\bin\Debug\ffcatapult.pdb
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.csprojAssemblyReference.cache
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.AudioSettingsForm.resources
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.MainForm.resources
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.Properties.Resources.resources
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.VideoSettingsForm.resources
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.csproj.GenerateResource.cache
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\FFmpegCatapult.csproj.CoreCompileInputs.cache
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\ffcatapult.exe
+C:\Users\Myles\source\repos\FFmpegCatapult\Source\obj\x86\Debug\ffcatapult.pdb

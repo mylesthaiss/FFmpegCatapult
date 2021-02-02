@@ -100,7 +100,7 @@ namespace FFmpegCatapult
                     // Audio encoder switches
                     if (Audio.Encoder == "aac")
                     {
-                        audioArgs.Add("-strict experimental");
+                        // audioArgs.Add("-strict experimental");
                     }
 
                     // Audio output

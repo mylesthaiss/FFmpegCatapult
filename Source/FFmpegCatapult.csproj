@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FFmpegCatapult</RootNamespace>
     <AssemblyName>ffcatapult</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -48,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,18 +65,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Audio.cs" />
-    <Compile Include="AudioSettingsForm.cs">
+    <Compile Include="Forms\AudioSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AudioSettingsForm.Designer.cs">
+    <Compile Include="Forms\AudioSettingsForm.Designer.cs">
       <DependentUpon>AudioSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bin.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.designer.cs">
+    <Compile Include="Forms\MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\File.cs" />
@@ -85,16 +87,16 @@
     <Compile Include="Session.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Models\Video.cs" />
-    <Compile Include="VideoSettingsForm.cs">
+    <Compile Include="Forms\VideoSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VideoSettingsForm.Designer.cs">
+    <Compile Include="Forms\VideoSettingsForm.Designer.cs">
       <DependentUpon>VideoSettingsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AudioSettingsForm.resx">
+    <EmbeddedResource Include="Forms\AudioSettingsForm.resx">
       <DependentUpon>AudioSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,7 +109,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="VideoSettingsForm.resx">
+    <EmbeddedResource Include="Forms\VideoSettingsForm.resx">
       <DependentUpon>VideoSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
