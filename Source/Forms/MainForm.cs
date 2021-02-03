@@ -803,6 +803,7 @@ namespace FFmpegCatapult
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Icon = Properties.Resources.FFmpegCatapult;
             InitTabs();
 
             // Main tab
