@@ -70,8 +70,7 @@ namespace FFmpegCatapult
                         channels = 0;
                         maxChannels = 8;
                         encoders = new string[,] {
-                            {"AAC (FFmpeg)", "aac"}, {"FAAC", "libfaac"}, 
-                            {"Fraunhofer FDK", "libfdk_aac"}, {"Visual On", "libvo_aacenc"}
+                            {"AAC (FFmpeg)", "aac"}, {"Fraunhofer FDK", "libfdk_aac"}
                         };
                         sampleRate = 0;
                         sampleRates = new int[] {

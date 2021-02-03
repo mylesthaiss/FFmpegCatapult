@@ -161,6 +161,14 @@ namespace FFmpegCatapult
                 // Init codec values
                 switch (codec)
                 {
+                    case "av1":
+                        bitrate = 768;
+                        crf = 30;
+                        encoders = new string[,] {
+                            {"libaom", "libaom-av1"}
+                        };
+                        Encoder = "libaom-av1";
+                        break;
                     case "h264":
                         bitrate = 1000;
                         codecLevel = 3.1;
@@ -169,7 +177,7 @@ namespace FFmpegCatapult
                         };
                         codecProfile = "main";
                         encoders = new string[,] {
-                            {"x264", "libx264"}
+                            {"x264", "libx264"}, {"Nvidia NVENC", "nvenc_h264"}
                         };
                         Encoder = "libx264";
                         break;
@@ -178,7 +186,7 @@ namespace FFmpegCatapult
                         crf = 28;
                         useCRF = true;
                         encoders = new string[,] {
-                            {"x265", "libx265"}
+                            {"x265", "libx265"}, {"Nvidia NVENC", "nvenc_hevc"}
                         };
                         Encoder = "libx265";
                         break;
@@ -295,6 +303,15 @@ namespace FFmpegCatapult
                             {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
                             {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
                             {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
+                        };
+                        break;
+                    case "nvenc_h264":
+                    case "nvenc_hevc":
+                        encoderPreset = "slow";
+                        encoderPresets = new string[,] {
+                            {"Slow", "slow"}, {"Medium", "medium"}, {"Fast", "fast"},
+                            {"High Quality", "hq"}, {"Low Latency", "ll"}, {"Low Latency HQ", "llhq"},
+                            {"Low Latency HP", "llhp"}, {"Lossless", "lossless"}, {"Lossless HP", "losslesshp"}
                         };
                         break;
                     default:

@@ -83,9 +83,9 @@ namespace FFmpegCatapult
                             {"Copy", "copy"}, {"None", "none"}
                         };
                         Video.Codecs = new string[,] {
-                            {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"}, {"MPEG-4", "mpeg4"},
-                            {"Theora", "theora"}, {"VP8", "vp8"}, {"VP9", "vp9"}, {"WMV", "wmv"},
-                            {"Copy", "copy"}, {"None", "none"}
+                            {"AV1", "av1" }, {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"},
+                            {"MPEG-4", "mpeg4"}, {"Theora", "theora"}, {"VP8", "vp8"}, {"VP9", "vp9"},
+                            {"WMV", "wmv"}, {"Copy", "copy"}, {"None", "none"}
                         };
 
                         // Using Vorbis with AVI is not recommended.
