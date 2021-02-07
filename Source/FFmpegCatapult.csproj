@@ -75,6 +75,19 @@
       <DependentUpon>AudioSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bin.cs" />
+    <Compile Include="Models\FileFormat.cs" />
+    <Compile Include="Models\FilePaths.cs" />
+    <Compile Include="Models\IAudio.cs" />
+    <Compile Include="Models\ICodec.cs" />
+    <Compile Include="Models\IFileFormat.cs" />
+    <Compile Include="Models\IFilePaths.cs" />
+    <Compile Include="Models\IPicture.cs" />
+    <Compile Include="Models\ISettings.cs" />
+    <Compile Include="Models\ITags.cs" />
+    <Compile Include="Models\IVideo.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\Tags.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
