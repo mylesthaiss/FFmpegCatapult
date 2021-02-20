@@ -14,6 +14,8 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using System;
+
 namespace FFmpegCatapult.Models
 {
     class Settings : ISettings
@@ -23,9 +25,10 @@ namespace FFmpegCatapult.Models
         private bool multiThreading = true;
         private int threads;
         private int processorCount;
-        private string ffmpegPath = "ffmpeg.exe";
-        private string termPath = "cmd.exe";
-        private string termArgs = "/c";
+        private string ffmpegPath;
+        private string termPath;
+        private string termArgs;
+        private string nullPath;
         private string preset;
 
         public bool PreferNonfreeEncoders
@@ -76,10 +79,37 @@ namespace FFmpegCatapult.Models
             set { termArgs = value; }
         }
 
+        public string NullPath
+        {
+            get { return nullPath; }
+        }
+
         public string Preset
         {
             get { return preset; }
             set { preset = value; }
+        }
+
+        public Settings()
+        {
+            // Determine default paths based on operation system
+            switch (Convert.ToInt16(Environment.OSVersion.Platform))
+            {
+                case 4:
+                case 6:
+                case 128:
+                    ffmpegPath = "ffmpeg";
+                    termPath = "xterm";
+                    termArgs = "-e";
+                    nullPath = "/dev/null";
+                    break;
+                default:
+                    ffmpegPath = "ffmpeg.exe";
+                    termPath = "cmd.exe";
+                    termArgs = "/c start";
+                    nullPath = "NULL";
+                    break;
+            }
         }
     }
 }

@@ -91,7 +91,6 @@
     <Compile Include="Models\ITags.cs" />
     <Compile Include="Models\IVideo.cs" />
     <Compile Include="Models\Picture.cs" />
-    <Compile Include="Models\Preset.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Program.cs" />

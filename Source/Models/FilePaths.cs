@@ -14,13 +14,16 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using System;
+
 namespace FFmpegCatapult.Models
 {
     class FilePaths : IFilePaths
     {
+        private bool overwrite;
         private string source;
         private string output;
-        private bool overwrite;
+        private string log;
 
         public bool Overwrite
         {
@@ -28,9 +31,13 @@ namespace FFmpegCatapult.Models
             set
             {
                 if (source != output)
+                {
                     overwrite = value;
+                }                    
                 else
+                {
                     overwrite = false;
+                }                    
             }
         }
 
@@ -46,8 +53,16 @@ namespace FFmpegCatapult.Models
             set { output = value; }
         }
 
-        public string Log { get; set; }
+        public string Log
+        {
+            get { return log; }
+            set { log = value; }
+        }
 
-        public string Null { get; set; }
+        public FilePaths()
+        {
+            log = "FFmpegCatapult.txt";
+            overwrite = false;
+        }
     }
 }

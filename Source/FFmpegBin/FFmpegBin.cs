@@ -46,7 +46,7 @@ namespace FFmpegCatapult.FFmpegBin
                     //
                     // First pass
                     //
-                    ffmpegArgs = string.Format("-i \"{0}\" -pass 1 {1} {2} -an -y -f rawvideo {3}", paths.Source, videoArgs, pictureArgs, paths.Null);
+                    ffmpegArgs = string.Format("-i \"{0}\" -pass 1 {1} {2} -an -y -f rawvideo {3}", paths.Source, videoArgs, pictureArgs, settings.NullPath);
                     termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, settings.FFmpegBinPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "First pass", settings, paths);
                     termProcess.Start();
@@ -116,8 +116,8 @@ namespace FFmpegCatapult.FFmpegBin
             }
             else
             {
-                Debug.WriteLine("{0} encoding for {1}", encoding, paths.Source);
-                Debug.WriteLine("FFmpeg arguments: {0}", args);
+                Debug.WriteLine(string.Format("{0} encoding for {1}:", encoding, paths.Source));
+                Debug.WriteLine(args);
             }
         }
 

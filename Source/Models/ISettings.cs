@@ -26,6 +26,7 @@ namespace FFmpegCatapult.Models
         string FFmpegBinPath { get; set; }
         string TerminalPath { get; set; }
         string TerminalArgs { get; set; }
+        string NullPath { get; }
         string Preset { get; set; }
     }
 }
