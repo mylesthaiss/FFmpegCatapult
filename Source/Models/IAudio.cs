@@ -18,6 +18,7 @@ namespace FFmpegCatapult.Models
 {
     interface IAudio : ICodec
     {
+        bool UseVBR { get; set; }
         int[] BitRates { get; set; } 
         int SampleRate { get; set; }
         int[] SampleRates { get; set; }

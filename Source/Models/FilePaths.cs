@@ -22,6 +22,18 @@ namespace FFmpegCatapult.Models
         private string output;
         private bool overwrite;
 
+        public bool Overwrite
+        {
+            get { return overwrite; }
+            set
+            {
+                if (source != output)
+                    overwrite = value;
+                else
+                    overwrite = false;
+            }
+        }
+
         public string Source
         {
             get { return source; }
@@ -34,16 +46,8 @@ namespace FFmpegCatapult.Models
             set { output = value; }
         }
 
-        public bool Overwrite
-        {
-            get { return overwrite; }
-            set 
-            {
-                if (source != output)
-                    overwrite = value;
-                else
-                    overwrite = false;
-            }
-        }
+        public string Log { get; set; }
+
+        public string Null { get; set; }
     }
 }

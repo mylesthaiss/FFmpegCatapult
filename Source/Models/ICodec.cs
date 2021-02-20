@@ -24,6 +24,7 @@ namespace FFmpegCatapult.Models
         string Encoder { get; set; }
         string[,] Encoders { get; }
         string EncoderPreset { get; set; }
-        string[,] EncoderPresets { get; }        
+        string[,] EncoderPresets { get; }
+        string Profile { get; set; }
     }
 }

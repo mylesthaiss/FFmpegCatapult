@@ -14,10 +14,14 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+using System;
+using System.Xml;
+
 namespace FFmpegCatapult.Models
 {
     class FileFormat : IFileFormat
     {
+        private bool fastStart = false;
         private bool tagging;
         private string format;
         private string[,] audioCodecs;
@@ -170,6 +174,25 @@ namespace FFmpegCatapult.Models
             get { return videoCodecs; }
         }
 
+        public bool FastStartTagging
+        {
+            get { return fastStart; }
+            set
+            {
+                switch (format)
+                {
+                    case "mp4":
+                    case "m4a":
+                    case "mov":
+                        fastStart = value;
+                        break;
+                    default:
+                        fastStart = false;
+                        break;
+                }
+            }
+        }
+
         public bool Tagging
         {
             get { return tagging; }
@@ -195,6 +218,35 @@ namespace FFmpegCatapult.Models
             }
 
             return false;
+        }
+
+        public FileFormat()
+        {
+            Format = "avi";
+        }
+
+        public FileFormat(string xmlPath, string presetName)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlPath);
+            string path = @"/presets/preset[@name='" + presetName + @"']";
+            XmlNodeList nodes = doc.SelectNodes(path);
+
+            foreach (XmlNode node in nodes)
+            {
+                if (node != null)
+                {
+                    if (node["format"] != null)
+                    {
+                        Format = node["format"].InnerText;
+                    }
+
+                    if (node["faststart"] != null)
+                    {
+                        FastStartTagging = Convert.ToBoolean(node["faststart"].InnerText);
+                    }                        
+                }
+            }
         }
     }
 }

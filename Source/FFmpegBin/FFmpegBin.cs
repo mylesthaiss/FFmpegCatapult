@@ -1,0 +1,129 @@
+﻿// FFmpegBin is part of FFmpeg Catapult.
+
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
+using FFmpegCatapult.Models;
+
+namespace FFmpegCatapult.FFmpegBin
+{
+    partial class FFmpegBin
+    {
+        public void Run(IFileFormat file, IAudio audio, IVideo video, IPicture picture,
+                        ITags tagging, IFilePaths paths, ISettings settings)
+        {
+            string audioArgs = GetAudioArgs(audio);
+            string videoArgs = GetVideoArgs(video);   
+            string pictureArgs = GetPictureArgs(picture, video);
+            string taggingArgs = GetTaggingArgs(tagging, file);
+            string inFile = paths.Source;
+            string outfile = (paths.Overwrite) ? string.Format("-y \"{0}\"", paths.Output) : string.Format("\"{0}\"", paths.Output);
+            string ffmpegArgs;
+            Process termProcess = new Process();
+
+            try
+            {
+                termProcess.StartInfo.FileName = settings.TerminalPath;
+                if (video.TwoPassEncoding)
+                {
+                    string termArgs = (settings.TerminalPath == "cmd.exe") ? "/c start /wait" : settings.TerminalArgs;
+
+                    //
+                    // First pass
+                    //
+                    ffmpegArgs = string.Format("-i \"{0}\" -pass 1 {1} {2} -an -y -f rawvideo {3}", paths.Source, videoArgs, pictureArgs, paths.Null);
+                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    LogFFmpegLaunch(ffmpegArgs, "First pass", settings, paths);
+                    termProcess.Start();
+                    termProcess.WaitForExit();
+
+                    //
+                    // Second pass
+                    //
+                    ffmpegArgs = string.Format("{0} -pass 2 {1} {2} {3} {4} -f {5} {6}", inFile, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outfile);
+                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    LogFFmpegLaunch(ffmpegArgs, "Second pass", settings, paths);
+                    termProcess.Start();
+                }
+                else
+                {
+                    //
+                    // Single pass
+                    //
+                    ffmpegArgs = string.Format("{0} {1} {2} {3} {4} -f {5} {6}", inFile, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outfile);
+                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    LogFFmpegLaunch(ffmpegArgs, "Single pass", settings, paths);
+                    termProcess.Start();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                FFmpegLaunchErrorMessage("File not found.");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                FFmpegLaunchErrorMessage("Invalid folder path.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                FFmpegLaunchErrorMessage("Permission denied.");
+            }
+            catch (Exception)
+            {
+                FFmpegLaunchErrorMessage("Unable to run FFmpeg.");
+            }
+        }
+
+        private void LogFFmpegLaunch(string args, string encoding, ISettings settings, IFilePaths paths)
+        {
+            if (settings.WriteLog)
+            {
+                string parentFolder = Path.GetDirectoryName(paths.Source);
+                string logPath = Path.Combine(parentFolder, paths.Log);
+                StreamWriter logFile;
+
+                if (!System.IO.File.Exists(logPath))
+                {
+                    logFile = new StreamWriter(logPath);
+                }
+                else
+                {
+                    logFile = System.IO.File.AppendText(logPath);
+                }
+
+                logFile.WriteLine("Date:        {0}", DateTime.Now);
+                logFile.WriteLine("Input file:  {0}", paths.Source);
+                logFile.WriteLine("Output file: {0}", paths.Output);
+                logFile.WriteLine("Encoding:    {0}", encoding);
+                logFile.WriteLine("Arguments:   {0}", args);
+                logFile.WriteLine();
+                logFile.Close();
+            }
+            else
+            {
+                Debug.WriteLine("{0} encoding for {1}", encoding, paths.Source);
+                Debug.WriteLine("FFmpeg arguments: {0}", args);
+            }
+        }
+
+        private void FFmpegLaunchErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+        }
+    }
+}

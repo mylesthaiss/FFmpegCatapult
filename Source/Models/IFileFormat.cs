@@ -20,6 +20,7 @@ namespace FFmpegCatapult.Models
     {
         bool IsAudioCodecSupported(string codec);
         bool IsVideoCodecSupported(string codec);
+        bool FastStartTagging { get; set; }
         bool Tagging { get; }
         string Format { get; set; }
         string[,] Formats { get; }

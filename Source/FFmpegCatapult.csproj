@@ -67,6 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FFmpegBin\AudioArgs.cs" />
+    <Compile Include="FFmpegBin\FFmpegBin.cs" />
+    <Compile Include="FFmpegBin\PictureArgs.cs" />
+    <Compile Include="FFmpegBin\TaggingArgs.cs" />
+    <Compile Include="FFmpegBin\VideoArgs.cs" />
     <Compile Include="Models\Audio.cs" />
     <Compile Include="Forms\AudioSettingsForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +91,7 @@
     <Compile Include="Models\ITags.cs" />
     <Compile Include="Models\IVideo.cs" />
     <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Preset.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Program.cs" />
@@ -165,6 +171,7 @@
   <ItemGroup>
     <Content Include="Resources\FFmpegCatapult.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy /Y $(SolutionDir)Source\Presets.xml $(TargetDir)\presets.xml</PreBuildEvent>
