@@ -36,6 +36,7 @@ namespace FFmpegCatapult.Models
         int Speed { get; set; }
         int SubCMP { get; set; }
         int TileColumns { get; set; }
+        int TileRows { get; set; }
         int Trellis { get; set; }
         int QMin { get; set; }
         int QMax { get; set; } 

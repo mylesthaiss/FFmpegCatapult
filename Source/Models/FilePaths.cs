@@ -23,6 +23,7 @@ namespace FFmpegCatapult.Models
         private bool overwrite;
         private string source;
         private string output;
+        private string audio;
         private string log;
 
         public bool Overwrite
@@ -51,6 +52,12 @@ namespace FFmpegCatapult.Models
         {
             get { return output; }
             set { output = value; }
+        }
+
+        public string Audio
+        {
+            get { return audio; }
+            set { audio = value; }
         }
 
         public string Log

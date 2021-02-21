@@ -28,11 +28,11 @@ namespace FFmpegCatapult.FFmpegBin
                         ITags tagging, IFilePaths paths, ISettings settings)
         {
             string audioArgs = GetAudioArgs(audio);
-            string videoArgs = GetVideoArgs(video);   
+            string videoArgs = GetVideoArgs(video, settings);   
             string pictureArgs = GetPictureArgs(picture, video);
             string taggingArgs = GetTaggingArgs(tagging, file);
-            string inFile = paths.Source;
-            string outfile = (paths.Overwrite) ? string.Format("-y \"{0}\"", paths.Output) : string.Format("\"{0}\"", paths.Output);
+            string inArgs = string.IsNullOrEmpty(paths.Audio) ? string.Format("-i \"{0}\"", paths.Source) : string.Format("-i \"{0}\" -i \"{1}\"", paths.Source, paths.Audio);
+            string outArgs = paths.Overwrite ? string.Format("-y \"{0}\"", paths.Output) : string.Format("\"{0}\"", paths.Output);
             string ffmpegArgs;
             Process termProcess = new Process();
 
@@ -55,7 +55,7 @@ namespace FFmpegCatapult.FFmpegBin
                     //
                     // Second pass
                     //
-                    ffmpegArgs = string.Format("{0} -pass 2 {1} {2} {3} {4} -f {5} {6}", inFile, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outfile);
+                    ffmpegArgs = string.Format("{0} -pass 2 {1} {2} {3} {4} -f {5} {6}", inArgs, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outArgs);
                     termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "Second pass", settings, paths);
                     termProcess.Start();
@@ -65,7 +65,7 @@ namespace FFmpegCatapult.FFmpegBin
                     //
                     // Single pass
                     //
-                    ffmpegArgs = string.Format("{0} {1} {2} {3} {4} -f {5} {6}", inFile, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outfile);
+                    ffmpegArgs = string.Format("{0} {1} {2} {3} {4} -f {5} {6}", inArgs, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outArgs);
                     termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "Single pass", settings, paths);
                     termProcess.Start();

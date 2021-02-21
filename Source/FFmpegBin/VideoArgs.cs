@@ -20,7 +20,7 @@ namespace FFmpegCatapult.FFmpegBin
 {
     partial class FFmpegBin
     {
-        public string GetVideoArgs(IVideo video)
+        public string GetVideoArgs(IVideo video, ISettings settings)
         {
             string videoArgs;
 
@@ -140,6 +140,23 @@ namespace FFmpegCatapult.FFmpegBin
                             videoArgs += string.Format("-auto-alt-ref {0} ", aRef);
                             videoArgs += string.Format("-lag-in-frames {0} ", video.LagInFrames);
                         }
+                    }
+
+                    // AOMedia AV1 encoder arguments
+                    if (video.Encoder == "libaom-av1")
+                    {
+                        videoArgs += string.Format("-tile-columns {0} ", video.TileColumns);
+                        videoArgs += string.Format("-tile-rows {0} ", video.TileRows);
+
+                        if (settings.Processors > 1)
+                        {
+                            videoArgs += string.Format("-cpu-used {0} -row-mt 1 ", settings.Processors);
+                        }
+                    }
+
+                    if (settings.Threads > 0)
+                    {
+                        videoArgs += string.Format("-threads {0} ", settings.Threads);
                     }
                 }
             }

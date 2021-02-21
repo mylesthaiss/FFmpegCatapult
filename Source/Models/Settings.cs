@@ -24,7 +24,8 @@ namespace FFmpegCatapult.Models
         private bool writeLog;
         private bool multiThreading = true;
         private int threads;
-        private int processorCount;
+        private int processors;
+        private int maxThreads;
         private string ffmpegPath;
         private string termPath;
         private string termArgs;
@@ -55,10 +56,15 @@ namespace FFmpegCatapult.Models
             set { threads = value; }
         }
 
-        public int ProcessorCount
+        public int Processors
         {
-            get { return processorCount; }
-            set { processorCount = value; }
+            get { return processors; }
+            set { processors = value; }
+        }
+
+        public int MaxThreads
+        {
+            get { return maxThreads; }
         }
 
         public string FFmpegBinPath
@@ -92,6 +98,10 @@ namespace FFmpegCatapult.Models
 
         public Settings()
         {
+            threads = 0;
+            maxThreads = Environment.ProcessorCount;
+            processors = maxThreads / 2;
+
             // Determine default paths based on operation system
             switch (Convert.ToInt16(Environment.OSVersion.Platform))
             {
@@ -109,7 +119,7 @@ namespace FFmpegCatapult.Models
                     termArgs = "/c start";
                     nullPath = "NULL";
                     break;
-            }
+            }          
         }
     }
 }

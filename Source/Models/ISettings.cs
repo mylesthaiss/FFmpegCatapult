@@ -22,7 +22,8 @@ namespace FFmpegCatapult.Models
         bool WriteLog { get; set; }
         bool MultiThreading { get; set; }
         int Threads { get; set; }
-        int ProcessorCount { get; set; }
+        int Processors { get; set; }
+        int MaxThreads { get; }
         string FFmpegBinPath { get; set; }
         string TerminalPath { get; set; }
         string TerminalArgs { get; set; }
