@@ -23,10 +23,11 @@ namespace FFmpegCatapult.Models
         bool WriteLog { get; set; }
         int Threads { get; set; }
         int Processors { get; set; }
+        string DefaultOutputPath { get; set; }
         string FFmpegPath { get; set; }
+        string FFmpegArguments { get; set; }
         string LogFilename { get; set; }
         string NullFilePath { get; }
-        string Preset { get; set; }
         string TerminalArguments { get; set; }
         string TerminalPath { get; set; }
     }
@@ -40,10 +41,11 @@ namespace FFmpegCatapult.Models
         public int Processors { get; set; }
         public int MaxThreads { get; private set; }
         public int MaxProcessors { get; private set; }
+        public string DefaultOutputPath { get; set; }
         public string FFmpegPath { get; set; }
+        public string FFmpegArguments { get; set; }
         public string LogFilename { get; set; }
         public string NullFilePath { get; private set; }
-        public string Preset { get; set; }
         public string TerminalPath { get; set; }
         public string TerminalArguments { get; set; }
 

@@ -849,6 +849,10 @@ namespace FFmpegCatapult
             textBoxFFmpegBin.TextChanged += new EventHandler(TextBoxFFmpegBin_TextChanged);
             buttonBrowseFFmpegBin.Click += new EventHandler(ButtonBrowseFFmpegBin_Click);
 
+            textBoxBinArgs -= new EventHandler(TextBoxBinArgs_TextChanged);
+            textBoxBinArgs.Text = settings.FFmpegArguments;
+            textBoxBinArgs += new EventHandler(TextBoxBinArgs_TextChanged);
+
             if (settings.TerminalPath != null)
             {
                 textBoxTermBin.Text = settings.TerminalPath;
@@ -1532,7 +1536,7 @@ namespace FFmpegCatapult
 
         void TextBoxBinArgs_TextChanged(object sender, EventArgs e)
         {
-            //Bin.BinArgs = textBoxBinArgs.Text;
+            settings.FFmpegArguments = textBoxBinArgs.Text;
             settings.SaveSettings = true;
         }
 
