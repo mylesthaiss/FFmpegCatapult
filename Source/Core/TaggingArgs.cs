@@ -16,7 +16,7 @@
 
 using FFmpegCatapult.Models;
 
-namespace FFmpegCatapult.FFmpegBin
+namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
@@ -101,7 +101,7 @@ namespace FFmpegCatapult.FFmpegBin
                 }
             }
 
-            return taggingArgs;
+            return string.IsNullOrEmpty(taggingArgs) ? null : taggingArgs.Trim();
         }
     }
 }

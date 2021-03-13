@@ -16,7 +16,7 @@
 
 using FFmpegCatapult.Models;
 
-namespace FFmpegCatapult.FFmpegBin
+namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
@@ -50,11 +50,11 @@ namespace FFmpegCatapult.FFmpegBin
                     {
                         if (video.Encoder == "libx265")
                         {
-                            videoArgs += string.Format("-x265-params crf={0} ", video.CRF);
+                            videoArgs += string.Format("-x265-params crf={0} ", video.Quality);
                         }
                         else
                         {
-                            videoArgs += string.Format("-crf {0} ", video.CRF);
+                            videoArgs += string.Format("-crf {0} ", video.Quality);
                         }
                     }
                     else
@@ -165,7 +165,7 @@ namespace FFmpegCatapult.FFmpegBin
                 videoArgs = "-vn ";
             }
 
-            return videoArgs;
+            return videoArgs.Trim();
         }
     }
 }

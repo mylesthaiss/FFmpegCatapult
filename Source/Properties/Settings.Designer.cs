@@ -766,53 +766,5 @@ namespace FFmpegCatapult.Properties {
                 this["WriteLog"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LogFileName {
-            get {
-                return ((string)(this["LogFileName"]));
-            }
-            set {
-                this["LogFileName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool MultiThreading {
-            get {
-                return ((bool)(this["MultiThreading"]));
-            }
-            set {
-                this["MultiThreading"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string BinArgs {
-            get {
-                return ((string)(this["BinArgs"]));
-            }
-            set {
-                this["BinArgs"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PresetArgs {
-            get {
-                return ((string)(this["PresetArgs"]));
-            }
-            set {
-                this["PresetArgs"] = value;
-            }
-        }
     }
 }

@@ -16,13 +16,13 @@
 
 using FFmpegCatapult.Models;
 
-namespace FFmpegCatapult.FFmpegBin
+namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
         public string GetPictureArgs(IPicture picture, IVideo video)
         {
-            string pictureArgs = "";
+            string pictureArgs = null;
 
             if (video.Encoder == "copy" | video.Codec == "none")
             {
@@ -71,9 +71,9 @@ namespace FFmpegCatapult.FFmpegBin
 
             if (pictureArgs.Length > 0)
             {
-                pictureArgs = string.Format("-vf {0} ", pictureArgs);
+                pictureArgs = string.Format("-vf {0} ", pictureArgs.Trim());
 
-                if (Screen.ScaleOption > 0)
+                if (picture.ScaleOption > 0)
                 {
                     pictureArgs += string.Format("-sws_flags {0} ", picture.ScalingMethod);
                 }
@@ -89,7 +89,7 @@ namespace FFmpegCatapult.FFmpegBin
                 pictureArgs += string.Format("-r {0} ", picture.FPS);
             }
 
-            return pictureArgs;
+            return string.IsNullOrEmpty(pictureArgs) ? null : pictureArgs.Trim();
         }
     }
 }

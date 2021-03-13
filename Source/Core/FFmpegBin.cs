@@ -20,7 +20,7 @@ using System.IO;
 using System.Windows.Forms;
 using FFmpegCatapult.Models;
 
-namespace FFmpegCatapult.FFmpegBin
+namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
@@ -28,9 +28,10 @@ namespace FFmpegCatapult.FFmpegBin
                         ITags tagging, IFilePaths paths, ISettings settings)
         {
             string audioArgs = GetAudioArgs(audio);
-            string videoArgs = GetVideoArgs(video, settings);   
             string pictureArgs = GetPictureArgs(picture, video);
+            string videoArgs = !string.IsNullOrEmpty(pictureArgs) ? string.Format("{0} {1}", GetVideoArgs(video, settings), pictureArgs) : GetVideoArgs(video, settings);
             string taggingArgs = GetTaggingArgs(tagging, file);
+            string formatArgs = !string.IsNullOrEmpty(taggingArgs) ? string.Format("-f {0} {1}", file.Format, taggingArgs) : string.Format("-f {0}", file.Format);
             string inArgs = string.IsNullOrEmpty(paths.Audio) ? string.Format("-i \"{0}\"", paths.Source) : string.Format("-i \"{0}\" -i \"{1}\"", paths.Source, paths.Audio);
             string outArgs = paths.Overwrite ? string.Format("-y \"{0}\"", paths.Output) : string.Format("\"{0}\"", paths.Output);
             string ffmpegArgs;
@@ -41,13 +42,13 @@ namespace FFmpegCatapult.FFmpegBin
                 termProcess.StartInfo.FileName = settings.TerminalPath;
                 if (video.TwoPassEncoding)
                 {
-                    string termArgs = (settings.TerminalPath == "cmd.exe") ? "/c start /wait" : settings.TerminalArgs;
+                    string waitTermArgs = (settings.TerminalPath == "cmd.exe") ? "/c start \"\" /wait" : settings.TerminalArguments;
 
                     //
                     // First pass
                     //
-                    ffmpegArgs = string.Format("-i \"{0}\" -pass 1 {1} {2} -an -y -f rawvideo {3}", paths.Source, videoArgs, pictureArgs, settings.NullPath);
-                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", termArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    ffmpegArgs = string.Format("-i \"{0}\" -pass 1 {1} -an -y -f rawvideo {2}", paths.Source, videoArgs, settings.NullFilePath);
+                    termProcess.StartInfo.Arguments = string.Format("{0} \"{1}\" {2}", waitTermArgs, settings.FFmpegPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "First pass", settings, paths);
                     termProcess.Start();
                     termProcess.WaitForExit();
@@ -55,8 +56,8 @@ namespace FFmpegCatapult.FFmpegBin
                     //
                     // Second pass
                     //
-                    ffmpegArgs = string.Format("{0} -pass 2 {1} {2} {3} {4} -f {5} {6}", inArgs, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outArgs);
-                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    ffmpegArgs = string.Format("{0} -pass 2 {1} {2} {3} {4}", inArgs, videoArgs, audioArgs, formatArgs, outArgs);
+                    termProcess.StartInfo.Arguments = string.Format("{0} \"{1}\" {2}", settings.TerminalArguments, settings.FFmpegPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "Second pass", settings, paths);
                     termProcess.Start();
                 }
@@ -65,8 +66,8 @@ namespace FFmpegCatapult.FFmpegBin
                     //
                     // Single pass
                     //
-                    ffmpegArgs = string.Format("{0} {1} {2} {3} {4} -f {5} {6}", inArgs, videoArgs, pictureArgs, audioArgs, taggingArgs, file.Format, outArgs);
-                    termProcess.StartInfo.Arguments = string.Format("{0} {1} {2}", settings.TerminalArgs, settings.FFmpegBinPath, ffmpegArgs);
+                    ffmpegArgs = string.Format("{0} {1} {2} {3} {4}", inArgs, videoArgs, audioArgs, formatArgs, outArgs);
+                    termProcess.StartInfo.Arguments = string.Format("{0} \"{1}\" {2}", settings.TerminalArguments, settings.FFmpegPath, ffmpegArgs);
                     LogFFmpegLaunch(ffmpegArgs, "Single pass", settings, paths);
                     termProcess.Start();
                 }
@@ -94,7 +95,7 @@ namespace FFmpegCatapult.FFmpegBin
             if (settings.WriteLog)
             {
                 string parentFolder = Path.GetDirectoryName(paths.Source);
-                string logPath = Path.Combine(parentFolder, paths.Log);
+                string logPath = Path.Combine(parentFolder, settings.LogFilename);
                 StreamWriter logFile;
 
                 if (!System.IO.File.Exists(logPath))
@@ -125,5 +126,7 @@ namespace FFmpegCatapult.FFmpegBin
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
         }
+
+        public FFmpegBin() {}
     }
 }

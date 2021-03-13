@@ -19,21 +19,27 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
+    interface IFileFormat
+    {
+        bool FastStartTagging { get; set; }
+        bool Tagging { get; }
+        string Format { get; set; }
+    }
+
     class FileFormat : IFileFormat
     {
         private bool fastStart = false;
-        private bool tagging;
         private string format;
-        private string[,] audioCodecs;
-        private string[,] videoCodecs;
-
-        // Supported container formats
         private string[,] formats = new string[,] {
             {"3GP", "3gp"}, {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "mkv"}, {"MP3", "mp3"},
             {"MP4", "mp4"}, {"MPEG Program Stream", "mpg"}, {"MPEG Transport Stream", "ts"},
             {"Ogg", "ogg"}, {"WebM", "webm"}, {"Windows Media Audio", "wma"},
             {"Windows Media Video", "wmv"}, {"Custom", "custom"}
         };
+
+        public bool Tagging { get; private set; }
+        public string[,] SupportedAudioCodecs { get; private set; }
+        public string[,] SupportedVideoCodecs { get; private set; }
 
         public string Format
         {
@@ -45,113 +51,103 @@ namespace FFmpegCatapult.Models
                 switch (format)
                 {
                     case "3gp":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             { "AAC", "aac"}, { "HE-AAC", "heaac"}, { "Copy", "copy"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"H.263", "h263"}, {"H.264", "h264"}, {"MPEG-4", "mpeg4"},
                             {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
                     case "avi":
                     case "mkv":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"HE-AAC", "heaac"},
                             {"MP2", "mp2"}, {"MP3", "mp3"}, {"Opus", "opus"}, {"PCM", "pcm"},
                             {"Speex", "speex"}, {"Vorbis", "vorbis"}, {"WMA", "wma"},
                             {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"AV1", "av1" }, {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"},
                             {"MPEG-4", "mpeg4"}, {"Theora", "theora"}, {"VP8", "vp8"}, {"VP9", "vp9"},
                             {"WMV", "wmv"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
                     case "m4a":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"AAC", "aac"}, {"HE-AAC", "heaac"}, {"Copy", "copy"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"None", "none"}
                         };
                         break;
                     case "mp4":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"AC-3", "ac3"}, {"AAC", "aac"}, {"HE-AAC", "heaac"},
                             {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"H.264", "h264"}, {"H.265", "h265"}, {"MPEG-2", "mpeg2"},
                             {"MPEG-4", "mpeg4"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
                     case "mpg":
-                        tagging = false;
-                        audioCodecs = new string[,] {
+                        Tagging = false;
+                        SupportedAudioCodecs = new string[,] {
                             {"MP2", "mp2"}, {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
                         break;
                     case "ts":
-                        tagging = false;
-                        audioCodecs = new string[,] {
+                        Tagging = false;
+                        SupportedAudioCodecs = new string[,] {
                             {"AC-3", "ac3"}, {"AAC", "aac"}, {"MP2", "mp2"},
                             {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"H.264", "h264"}, {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
                         break;
                     case "ogg":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"FLAC", "flac"}, {"Opus", "opus"}, {"Speex", "speex"},
                             {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"Theora", "theora"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
                     case "webm":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"Opus", "opus"}, {"Vorbis", "vorbis"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"VP8", "vp8"}, {"VP9", "vp9"}, {"Copy", "copy"}
                         };
                         break;
                     case "wma":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"WMA", "wma"}, {"Copy", "copy"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"None", "none"}
                         };
                         break;
                     case "wmv":
-                        tagging = true;
-                        audioCodecs = new string[,] {
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
                             {"WMA", "wma"}, {"Copy", "copy"}, {"None", "none"}
                         };
-
-                        videoCodecs = new string[,] {
+                        SupportedVideoCodecs = new string[,] {
                             {"WMV", "wmv"}, {"Copy", "copy"}
                         };
                         break;
@@ -162,16 +158,6 @@ namespace FFmpegCatapult.Models
         public string[,] Formats
         {
             get { return formats; }
-        }
-
-        public string[,] SupportedAudioCodecs
-        {
-            get { return audioCodecs; }
-        }
-
-        public string[,] SupportedVideoCodecs
-        {
-            get { return videoCodecs; }
         }
 
         public bool FastStartTagging
@@ -191,33 +177,6 @@ namespace FFmpegCatapult.Models
                         break;
                 }
             }
-        }
-
-        public bool Tagging
-        {
-            get { return tagging; }
-        }
-
-        public bool IsAudioCodecSupported(string codec)
-        {
-            foreach (var audioCodec in audioCodecs)
-            {
-                if (audioCodec.Contains(codec))
-                    return true;
-            }
-
-            return false;           
-        }
-
-        public bool IsVideoCodecSupported(string codec)
-        {
-            foreach (var videoCodec in videoCodecs)
-            {
-                if (videoCodec.Contains(codec))
-                    return true;
-            }
-
-            return false;
         }
 
         public FileFormat()
@@ -247,6 +206,36 @@ namespace FFmpegCatapult.Models
                     }                        
                 }
             }
+        }
+
+        public bool IsCodecSupported(IOutput stream)
+        {
+            string[,] codecs;
+
+            if (stream is Audio)
+            {
+                // Vorbis in a AVI container is possible, but not recommended.
+                if (format == "avi" && stream.Codec == "vorbis")
+                {
+                    return false;
+                }
+
+                codecs = SupportedAudioCodecs;
+            }
+            else
+            {
+                codecs = SupportedVideoCodecs;
+            }
+
+            foreach (var codec in codecs)
+            {
+                if (codec.Contains(stream.Codec))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

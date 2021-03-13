@@ -18,89 +18,41 @@ using System;
 
 namespace FFmpegCatapult.Models
 {
+    interface ISettings
+    {
+        bool WriteLog { get; set; }
+        int Threads { get; set; }
+        int Processors { get; set; }
+        string FFmpegPath { get; set; }
+        string LogFilename { get; set; }
+        string NullFilePath { get; }
+        string Preset { get; set; }
+        string TerminalArguments { get; set; }
+        string TerminalPath { get; set; }
+    }
+
     class Settings : ISettings
     {
-        private bool preferNonfreeEncoders = false;
-        private bool writeLog;
-        private bool multiThreading = true;
-        private int threads;
-        private int processors;
-        private int maxThreads;
-        private string ffmpegPath;
-        private string termPath;
-        private string termArgs;
-        private string nullPath;
-        private string preset;
-
-        public bool PreferNonfreeEncoders
-        {
-            get { return preferNonfreeEncoders; }
-            set { preferNonfreeEncoders = value; }
-        }
-
-        public bool WriteLog
-        {
-            get { return writeLog; }
-            set { writeLog = value; }
-        }
-
-        public bool MultiThreading
-        {
-            get { return multiThreading; }
-            set { multiThreading = value; }
-        }
-
-        public int Threads
-        {
-            get { return threads; }
-            set { threads = value; }
-        }
-
-        public int Processors
-        {
-            get { return processors; }
-            set { processors = value; }
-        }
-
-        public int MaxThreads
-        {
-            get { return maxThreads; }
-        }
-
-        public string FFmpegBinPath
-        {
-            get { return ffmpegPath; }
-            set { ffmpegPath = value; }
-        }
-
-        public string TerminalPath
-        {
-            get { return termPath; }
-            set { termPath = value; }
-        }
-
-        public string TerminalArgs
-        {
-            get { return termArgs; }
-            set { termArgs = value; }
-        }
-
-        public string NullPath
-        {
-            get { return nullPath; }
-        }
-
-        public string Preset
-        {
-            get { return preset; }
-            set { preset = value; }
-        }
+        public bool KeepValues { get; set; }
+        public bool SaveSettings { get; set; }
+        public bool WriteLog { get; set; }
+        public int Threads { get; set; }
+        public int Processors { get; set; }
+        public int MaxThreads { get; private set; }
+        public int MaxProcessors { get; private set; }
+        public string FFmpegPath { get; set; }
+        public string LogFilename { get; set; }
+        public string NullFilePath { get; private set; }
+        public string Preset { get; set; }
+        public string TerminalPath { get; set; }
+        public string TerminalArguments { get; set; }
 
         public Settings()
         {
-            threads = 0;
-            maxThreads = Environment.ProcessorCount;
-            processors = maxThreads / 2;
+            MaxThreads = Environment.ProcessorCount;
+            Threads = 0;
+            MaxProcessors = Environment.ProcessorCount / 2;
+            Processors = MaxProcessors;
 
             // Determine default paths based on operation system
             switch (Convert.ToInt16(Environment.OSVersion.Platform))
@@ -108,18 +60,30 @@ namespace FFmpegCatapult.Models
                 case 4:
                 case 6:
                 case 128:
-                    ffmpegPath = "ffmpeg";
-                    termPath = "xterm";
-                    termArgs = "-e";
-                    nullPath = "/dev/null";
+                    FFmpegPath = "ffmpeg";
+                    TerminalPath = "xterm";
+                    TerminalArguments = "-e";
+                    NullFilePath = "/dev/null";
+                    LogFilename = "ffmpeg_catapalt.log";
                     break;
                 default:
-                    ffmpegPath = "ffmpeg.exe";
-                    termPath = "cmd.exe";
-                    termArgs = "/c start";
-                    nullPath = "NULL";
+                    FFmpegPath = "ffmpeg.exe";
+                    TerminalPath = "cmd.exe";
+                    TerminalArguments = "/c start \"\"";
+                    NullFilePath = "NULL";
+                    LogFilename = "FFmpegCatapult.txt";
                     break;
-            }          
+            }
+        }
+
+        public void Load()
+        {
+            // TODO: Load and set properties from local configuration file
+        }
+
+        public void Save()
+        {
+            // TODO: Save property values onto local configuration file
         }
     }
 }

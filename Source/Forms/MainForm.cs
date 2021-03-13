@@ -1,4 +1,4 @@
-﻿﻿// Main Windows Form logic methods for FFmpeg Catapult
+﻿// MainForm is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -18,78 +18,65 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using FFmpegCatapult.Models;
+using FFmpegCatapult.Core;
+using FFmpegCatapult.Helpers;
 
 namespace FFmpegCatapult
 {
     public partial class MainForm : Form
     {
-        // Variables
-        private String fileContainer;
-        private String fileExtension;
+        private FFmpegBin ffmpegBin = new FFmpegBin();
+        private Settings settings = new Settings();
+        private FilePaths paths = new FilePaths();
+        private FileFormat file = new FileFormat();
+        private Audio audio = new Audio();
+        private Video video = new Video();
+        private Picture picture = new Picture();
+        private Tags tags = new Tags();
 
         public MainForm()
         {
+            settings.Load();
             InitializeComponent();
         }
 
         // Methods
+        private void InitPreset(string presetName, string xmlFile)
+        {
+            file = new FileFormat(xmlFile, presetName);
+            video = new Video(xmlFile, presetName);
+            audio = new Audio(xmlFile, presetName);
+            picture = new Picture(xmlFile, presetName);
+        }
+
         private void InitTabs()
         {
-            // Picture tab
-            if (Methods.IsPictureScalable())
-            {
-                tabPicture.Enabled = true;
-            }
-            else
-            {
-                tabPicture.Enabled = false;
-            }
-
-            // Video tab
-            if (Methods.IsAudioFile())
-            {
-                tabVideo.Enabled = false;
-            }
-            else
-            {
-                tabVideo.Enabled = true;
-            }
+            tabVideo.Enabled = file.SupportedVideoCodecs.Length > 2;
+            tabAudio.Enabled = file.SupportedAudioCodecs.Length > 2;
+            tabPicture.Enabled = file.SupportedVideoCodecs.Length > 2;
         }
 
         private void InitMain()
         {
+            numericUpDownThreads.Maximum = settings.MaxThreads;
+            numericUpDownThreads.Value = settings.Threads;
+            numericUpDownProcessors.Maximum = settings.MaxThreads;
+            numericUpDownProcessors.Value = settings.Processors;
+
             // Combo boxes
             comboBoxContainers.SelectedIndexChanged -= new EventHandler(ComboBoxContainers_SelectedIndexChanged);
-            for (int i = 0; i < File.Formats.GetLength(0); i++)
-            {
-                if (File.Formats[i, 1] == File.Format)
-                {
-                    comboBoxContainers.SelectedIndex = i;
-                    fileContainer = File.Formats[i, 0];
-                    fileExtension = File.Formats[i, 1];
-                    break;
-                }
-            }
+            comboBoxContainers.SelectedIndex = GetSelectionIndex(file.Format, file.Formats);
             comboBoxContainers.SelectedIndexChanged += new EventHandler(ComboBoxContainers_SelectedIndexChanged);
 
-            comboBoxThreads.SelectedIndexChanged -= new EventHandler(ComboBoxThreads_SelectedIndexChanged);
-            comboBoxThreads.SelectedIndex = Session.Threads;
-            comboBoxThreads.SelectedIndexChanged += new EventHandler(ComboBoxThreads_SelectedIndexChanged);
-
             // Text boxes
-            if (textBoxOutFile.Text != "")
+            if (textBoxTargetFolder.Text != "")
             {
-                textBoxOutFile.TextChanged -= new EventHandler(TextBoxOutFile_TextChanged);
-                File.Output = textBoxOutFile.Text;
-                textBoxOutFile.Text = File.Output;
-                textBoxOutFile.TextChanged += new EventHandler(TextBoxOutFile_TextChanged);
+                textBoxTargetFolder.TextChanged -= new EventHandler(TextBoxTargetFolder_TextChanged);
+                paths.Output = textBoxTargetFolder.Text;
+                textBoxTargetFolder.Text = paths.Output;
+                textBoxTargetFolder.TextChanged += new EventHandler(TextBoxTargetFolder_TextChanged);
             }
-
-            // Checkboxes
-            checkBoxMultiThreading.CheckedChanged -= new EventHandler(CheckBoxMultiThreading_CheckedChanged);
-            checkBoxMultiThreading.Checked = Session.MultiThreading;
-            comboBoxThreads.Enabled = Session.MultiThreading;
-            checkBoxMultiThreading.CheckedChanged += new EventHandler(CheckBoxMultiThreading_CheckedChanged);
         }
 
         private void InitPicture()
@@ -98,12 +85,12 @@ namespace FFmpegCatapult
             radioButtonKeepRes.CheckedChanged -= new EventHandler(RadioButtonKeepRes_CheckedChanged);
             radioButtonHalfRes.CheckedChanged -= new EventHandler(RadioButtonHalfRes_CheckedChanged);
             radioButtonCustomRes.CheckedChanged -= new EventHandler(RadioButtonCustomRes_CheckedChanged);
-            if (Screen.ScaleOption == 0)
+            if (picture.ScaleOption == 0)
             {
                 radioButtonKeepRes.Checked = true;
                 EnableResControls(false);
             }
-            else if (Screen.ScaleOption == 1)
+            else if (picture.ScaleOption == 1)
             {
                 radioButtonCustomRes.Checked = true;
                 EnableResControls(true);
@@ -119,83 +106,37 @@ namespace FFmpegCatapult
 
             // Check boxes
             checkBoxAspectRatio.CheckedChanged -= new EventHandler(CheckBoxAspectRatio_CheckedChanged);
-            checkBoxAspectRatio.Checked = Screen.AspectRatio;
-            EnableRatioControls(Screen.AspectRatio);
+            checkBoxAspectRatio.Checked = picture.AspectRatio;
+            EnableRatioControls(picture.AspectRatio);
             checkBoxAspectRatio.CheckedChanged += new EventHandler(CheckBoxAspectRatio_CheckedChanged);
 
             checkBoxCrop.CheckedChanged += new EventHandler(CheckBoxCrop_CheckedChanged);
-            checkBoxCrop.Checked = Screen.CropVideo;
-            EnableLayoutControls(Screen.CropVideo);
+            checkBoxCrop.Checked = picture.Crop;
+            EnableLayoutControls(picture.Crop);
             checkBoxCrop.CheckedChanged += new EventHandler(CheckBoxCrop_CheckedChanged);
 
             checkBoxDeinterlace.CheckedChanged -= new EventHandler(CheckBoxDeinterlace_CheckedChanged);
-            checkBoxDeinterlace.Checked = Screen.Deinterlace;
+            checkBoxDeinterlace.Checked = picture.Deinterlace;
             checkBoxDeinterlace.CheckedChanged += new EventHandler(CheckBoxDeinterlace_CheckedChanged);
 
             checkBoxPad.CheckedChanged -= new EventHandler(CheckBoxPad_CheckedChanged);
-            checkBoxPad.Checked = Screen.PadVideo;
-            EnableLayoutControls(Screen.PadVideo);
+            checkBoxPad.Checked = picture.Pad;
+            EnableLayoutControls(picture.Pad);
             checkBoxPad.CheckedChanged += new EventHandler(CheckBoxPad_CheckedChanged);
 
-            // Text boxes
-            textBoxWidth.TextChanged -= new EventHandler(TextBoxWidth_TextChanged);
-            textBoxWidth.Text = Methods.NumToText(Screen.Width);
-            textBoxWidth.TextChanged += new EventHandler(TextBoxWidth_TextChanged);
-
-            textBoxHeight.TextChanged -= new EventHandler(TextBoxHeight_TextChanged);
-            textBoxHeight.Text = Methods.NumToText(Screen.Height);
-            textBoxHeight.TextChanged += new EventHandler(TextBoxHeight_TextChanged);
-
-            textBoxRatioA.TextChanged -= new EventHandler(TextBoxRatioA_TextChanged);
-            textBoxRatioA.Text = Methods.NumToText(Screen.RatioA);
-            textBoxRatioA.TextChanged += new EventHandler(TextBoxRatioA_TextChanged);
-
-            textBoxRatioB.TextChanged -= new EventHandler(TextBoxRatioB_TextChanged);
-            textBoxRatioB.Text = Methods.NumToText(Screen.RatioB);
-            textBoxRatioB.TextChanged += new EventHandler(TextBoxRatioB_TextChanged);
-
-            textBoxFPS.TextChanged -= new EventHandler(TextBoxFPS_TextChanged);
-            textBoxFPS.Text = Methods.NumToText(Screen.FPS);
-            textBoxFPS.TextChanged += new EventHandler(TextBoxFPS_TextChanged);
-
-            textBoxLayoutWidth.TextChanged -= new EventHandler(TextBoxLayoutWidth_TextChanged);
-            textBoxLayoutWidth.Text = Methods.NumToText(Screen.WinWidth);
-            textBoxLayoutWidth.TextChanged += new EventHandler(TextBoxLayoutWidth_TextChanged);
-
-            textBoxLayoutHeight.TextChanged -= new EventHandler(TextBoxLayoutHeight_TextChanged);
-            textBoxLayoutHeight.Text = Methods.NumToText(Screen.WinHeight);
-            textBoxLayoutHeight.TextChanged += new EventHandler(TextBoxLayoutHeight_TextChanged);
-
-            textBoxLayoutVert.TextChanged -= new EventHandler(TextBoxLayoutVert_TextChanged);
-            textBoxLayoutVert.Text = Methods.NumToText(Screen.X);
-            textBoxLayoutVert.TextChanged += new EventHandler(TextBoxLayoutVert_TextChanged);
-
-            textBoxLayoutHoriz.TextChanged -= new EventHandler(TextBoxLayoutHoriz_TextChanged);
-            textBoxLayoutHoriz.Text = Methods.NumToText(Screen.Y);
-            textBoxLayoutHoriz.TextChanged += new EventHandler(TextBoxLayoutHoriz_TextChanged);
-
-            // Set selected scaling method
-            comboBoxScalingMethods.SelectedIndexChanged -= new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
-            for (int i = 0; i < Screen.ScalingMethods.GetLength(0); i++)
-            {
-                if (Screen.ScalingMethod == Screen.ScalingMethods[i, 1])
-                {
-                    comboBoxScalingMethods.SelectedIndex = i;
-                    break;
-                }
-            }
-            comboBoxScalingMethods.SelectedIndexChanged += new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
+            // Numeric dropdowns
+            numericUpDownRatioA.ValueChanged -= new EventHandler(NumericUpDownRatio_ValueChanged);
+            numericUpDownRatioB.ValueChanged -= new EventHandler(NumericUpDownRatio_ValueChanged);
+            string[] ratioValues = picture.Ratio.Split(':');
+            numericUpDownRatioA.Value = Convert.ToInt32(ratioValues[0]);
+            numericUpDownRatioB.Value = Convert.ToInt32(ratioValues[1]);
+            numericUpDownRatioA.ValueChanged += new EventHandler(NumericUpDownRatio_ValueChanged);
+            numericUpDownRatioB.ValueChanged += new EventHandler(NumericUpDownRatio_ValueChanged);
         }
 
         private void InitVideo()
         {
-            comboBoxVideoCodecs.Items.Clear();
-            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
-            {
-                comboBoxVideoCodecs.Items.Add(new Methods.ListComboContent(Video.Codecs[i, 0], Video.Codecs[i, 1]));
-            }
-
-            if (Video.Codec == "copy" | Video.Codec == "none")
+            if (video.Codec == "copy" | video.Codec == "none")
             {
                 EnableVideoControls(false);
             }
@@ -206,258 +147,216 @@ namespace FFmpegCatapult
 
             // Combo boxes
             comboBoxVideoCodecs.SelectedIndexChanged -= new EventHandler(ComboBoxVideoCodecs_SelectedIndexChanged);
-            for (int i = 0; i < Video.Codecs.GetLength(0); i++)
-            {
-                if (Video.Codec == Video.Codecs[i, 1])
-                {
-                    comboBoxVideoCodecs.SelectedIndex = i;
-                    break;
-                }
-            }
+            comboBoxVideoCodecs = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVideoCodecs, file.SupportedVideoCodecs, video.Codec);
             comboBoxVideoCodecs.SelectedIndexChanged += new EventHandler(ComboBoxVideoCodecs_SelectedIndexChanged);
 
             comboBoxVideoEncoders.SelectedIndexChanged -= new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
-            comboBoxVideoEncoders.Items.Clear();
-            for (int i = 0; i < Video.Encoders.GetLength(0); i++)
-            {
-                comboBoxVideoEncoders.Items.Add(new Methods.ListComboContent(Video.Encoders[i, 0], Video.Encoders[i, 1]));
-
-                if (Video.Encoder == Video.Encoders[i, 1])
-                {
-                    comboBoxVideoEncoders.SelectedIndex = i;
-                }
-            }
+            comboBoxVideoEncoders = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVideoEncoders, video.Encoders, video.Encoder);
             comboBoxVideoEncoders.SelectedIndexChanged += new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
 
-            comboBoxBits.SelectedIndexChanged -= new EventHandler(ComboBoxBits_SelectedIndexChanged);
-            if (Video.Bits == "k")
-            {
-                comboBoxBits.SelectedIndex = 0;
-            }
-            else
-            {
-                comboBoxBits.SelectedIndex = 1;
-            }
-            labelMinBits.Text = comboBoxBits.Text;
-            labelMaxBits.Text = comboBoxBits.Text;
-            comboBoxBits.SelectedIndexChanged += new EventHandler(ComboBoxBits_SelectedIndexChanged);
-
-            comboBoxBytes.SelectedIndexChanged -= new EventHandler(ComboBoxBytes_SelectedIndexChanged);
-            if (Video.Bytes == "k")
-            {
-                comboBoxBytes.SelectedIndex = 0;
-            }
-            else if (Video.Bytes == "M")
-            {
-                comboBoxBytes.SelectedIndex = 1;
-            }
-            else
-            {
-                comboBoxBytes.SelectedIndex = 2;
-            }
-            comboBoxBytes.SelectedIndexChanged += new EventHandler(ComboBoxBytes_SelectedIndexChanged);
+            comboBoxPixelFormat.SelectedIndexChanged -= new EventHandler(ComboBoxPixelFormat_SelectedIndexChanged);
+            comboBoxPixelFormat = WinFormsHelper.AddMultiArrayToComboBox(comboBoxPixelFormat, video.PixelFormats, video.PixelFormat);
+            comboBoxPixelFormat.SelectedIndexChanged += new EventHandler(ComboBoxPixelFormat_SelectedIndexChanged);
 
             // Check boxes
             checkBoxTwoPassEncoding.CheckedChanged -= new EventHandler(CheckBoxTwoPassEncoding_CheckedChanged);
-            checkBoxTwoPassEncoding.Checked = Session.TwoPassEncoding;
+            checkBoxTwoPassEncoding.Checked = video.TwoPassEncoding;
             checkBoxTwoPassEncoding.CheckedChanged += new EventHandler(CheckBoxTwoPassEncoding_CheckedChanged);
 
             checkBoxUseCRF.CheckedChanged -= new EventHandler(CheckBoxUseCRF_CheckedChanged);
-            checkBoxUseCRF.Checked = Video.UseCRF;
-            EnableCRFControls(Video.UseCRF);
+            checkBoxUseCRF.Checked = video.UseCRF;
+            EnableCRFControls(video.UseCRF);
             checkBoxUseCRF.CheckedChanged += new EventHandler(CheckBoxUseCRF_CheckedChanged);
 
-            // Text boxes
-            textBoxVideoBitrate.TextChanged -= new EventHandler(TextBoxVideoBitrate_TextChanged);
-            textBoxVideoBitrate.Text = Methods.NumToText(Video.Bitrate);
-            textBoxVideoBitrate.TextChanged += new EventHandler(TextBoxVideoBitrate_TextChanged);
+            // Numeric up downs
+            numericUpDownVideoBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoBitrate_ValueChanged);
+            numericUpDownVideoBitrate.Value = video.Bitrate;
+            numericUpDownVideoBitrate.ValueChanged += new EventHandler(NumericUpDownVideoBitrate_ValueChanged);
 
-            textBoxMinBitrate.TextChanged -= new EventHandler(TextBoxMinBitrate_TextChanged);
-            textBoxMinBitrate.Text = Methods.NumToText(Video.MinBitrate);
-            textBoxMinBitrate.TextChanged += new EventHandler(TextBoxMinBitrate_TextChanged);
+            numericUpDownVideoMinBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoMinBitrate_ValueChanged);
+            numericUpDownVideoMinBitrate.Value = video.MinBitrate;
+            numericUpDownVideoMinBitrate.ValueChanged += new EventHandler(NumericUpDownVideoMinBitrate_ValueChanged);
 
-            textBoxMaxBitrate.TextChanged -= new EventHandler(TextBoxMaxBitrate_TextChanged);
-            textBoxMaxBitrate.Text = Methods.NumToText(Video.MaxBitrate);
-            textBoxMaxBitrate.TextChanged += new EventHandler(TextBoxMaxBitrate_TextChanged);
+            numericUpDownVideoMaxBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoMaxBitrate_ValueChanged);
+            numericUpDownVideoMaxBitrate.Value = video.MaxBitrate;
+            numericUpDownVideoMaxBitrate.ValueChanged += new EventHandler(NumericUpDownVideoMaxBitrate_ValueChanged);
 
-            textBoxBufferSize.TextChanged -= new EventHandler(TextBoxBufferSize_TextChanged);
-            textBoxBufferSize.Text = Methods.NumToText(Video.BufferSize);
-            textBoxBufferSize.TextChanged += new EventHandler(TextBoxBufferSize_TextChanged);
+            numericUpDownCRF.ValueChanged -= new EventHandler(NumericUpDownCRF_ValueChanged);
+            numericUpDownCRF.Value = video.Quality;
+            numericUpDownCRF.ValueChanged += new EventHandler(NumericUpDownCRF_ValueChanged);
 
-            textBoxCRF.TextChanged -= new EventHandler(TextBoxCRF_TextChanged);
-            textBoxCRF.Text = Methods.NumToText(Video.CRF);
-            textBoxCRF.TextChanged += new EventHandler(TextBoxCRF_TextChanged);
+            numericUpDownQMin.ValueChanged -= new EventHandler(NumericUpDownQMin_ValueChanged);
+            numericUpDownQMin.Value = video.QMin;
+            numericUpDownQMin.ValueChanged += new EventHandler(NumericUpDownQMin_ValueChanged);
 
-            textBoxQmax.TextChanged -= new EventHandler(TextBoxQmax_TextChanged);
-            textBoxQmax.Text = Methods.NumToText(Video.Qmax);
-            textBoxQmax.TextChanged += new EventHandler(TextBoxQmax_TextChanged);
+            numericUpDownQMax.ValueChanged -= new EventHandler(NumericUpDownQMax_ValueChanged);
+            numericUpDownQMax.Value = video.QMax;
+            numericUpDownQMax.ValueChanged += new EventHandler(NumericUpDownQMax_ValueChanged);
 
-            textBoxQmin.TextChanged -= new EventHandler(TextBoxQmin_TextChanged);
-            textBoxQmin.Text = Methods.NumToText(Video.Qmin);
-            textBoxQmin.TextChanged += new EventHandler(TextBoxQmin_TextChanged);
+            numericUpDownTargetSize.ValueChanged -= new EventHandler(NumericUpDownTargetSize_ValueChanged);
+            numericUpDownTargetSize.Value = video.TargetSize;
+            numericUpDownTargetSize.ValueChanged += new EventHandler(NumericUpDownTargetSize_ValueChanged);
+
+            numericUpDownBufferSize.ValueChanged -= new EventHandler(NumericUpDownBufferSize_ValueChanged);
+            numericUpDownBufferSize.Value = video.BufferSize;
+            numericUpDownBufferSize.ValueChanged += new EventHandler(NumericUpDownBufferSize_ValueChanged);
+
+            // Other items
+            InitVideoEncoderSettings();
+        }
+
+        private void InitVideoEncoderSettings()
+        {
+            if (video.Profiles != null)
+            {
+                comboBoxVCodecProfile.SelectedIndexChanged -= new EventHandler(ComboBoxVCodecProfile_SelectedIndexChanged);
+                comboBoxVCodecProfile = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVCodecProfile, video.Profiles, video.Profile);
+                comboBoxVCodecProfile.SelectedIndexChanged += new EventHandler(ComboBoxVCodecProfile_SelectedIndexChanged);
+                labelVCodecProfile.Enabled = true;
+                comboBoxVCodecProfile.Enabled = true;
+            }
+            else
+            {
+                comboBoxVCodecProfile.Items.Clear();
+                labelVCodecProfile.Enabled = false;
+                comboBoxVCodecProfile.Enabled = false;
+            }
+
+            if (video.CodecLevels != null)
+            {
+                comboBoxVideoCodecLevels.SelectedIndexChanged -= new EventHandler(ComboBoxVideoCodecLevels_SelectedIndexChanged);
+                comboBoxVideoCodecLevels = WinFormsHelper.AddArrayToComboBox(comboBoxVideoCodecLevels, video.CodecLevels, video.CodecLevel);
+                comboBoxVideoCodecLevels.SelectedIndexChanged += new EventHandler(ComboBoxVideoCodecLevels_SelectedIndexChanged);
+                labelVCodecLevel.Enabled = true;
+                comboBoxVideoCodecLevels.Enabled = true;
+            }
+            else
+            {
+                comboBoxVideoCodecLevels.Items.Clear();
+                labelVCodecLevel.Enabled = false;
+                comboBoxVideoCodecLevels.Enabled = false;
+            }
+
+            if (video.EncoderPresets != null)
+            {                
+                comboBoxVideoEncoderPresets.SelectedIndexChanged -= new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
+                comboBoxVideoEncoderPresets = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVideoEncoderPresets, video.EncoderPresets, video.EncoderPreset);
+                comboBoxVideoEncoderPresets.SelectedIndexChanged += new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
+                labelVideoEncoderPreset.Enabled = true;
+                comboBoxVideoEncoderPresets.Enabled = true;
+            }
+            else
+            {
+                comboBoxVideoEncoderPresets.Items.Clear();
+                labelVideoEncoderPreset.Enabled = false;
+                comboBoxVideoEncoderPresets.Enabled = false;
+            }
         }
 
         private void InitAudio()
         {
-            comboBoxAudioCodecs.Items.Clear();
-            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
-            {
-                comboBoxAudioCodecs.Items.Add(new Methods.ListComboContent(Audio.Codecs[i, 0], Audio.Codecs[i, 1]));
-            }
-
-            if (Audio.Codec == "copy" | Audio.Codec == "none")
+            if (audio.Codec == "copy" | audio.Codec == "none")
             {
                 EnableAudioControls(false);
-
-                if (Audio.Codec == "copy")
-                {
-                    groupBoxAudioStream.Enabled = true;
-                }
-                else
-                {
-                    groupBoxAudioStream.Enabled = false;
-                }
             }
             else
             {
                 EnableAudioControls(true);
-                groupBoxAudioStream.Enabled = true;
             }
 
             // Combo boxes
             comboBoxAudioCodecs.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCodecs_SelectedIndexChanged);
-            for (int i = 0; i < Audio.Codecs.GetLength(0); i++)
-            {
-                if (Audio.Codec == Audio.Codecs[i, 1])
-                {
-                    comboBoxAudioCodecs.SelectedIndex = i;
-                }
-            }
+            comboBoxAudioCodecs = WinFormsHelper.AddMultiArrayToComboBox(comboBoxAudioCodecs, file.SupportedAudioCodecs, audio.Codec);
             comboBoxAudioCodecs.SelectedIndexChanged += new EventHandler(ComboBoxAudioCodecs_SelectedIndexChanged);
 
             comboBoxAudioEncoders.SelectedIndexChanged -= new EventHandler(ComboBoxAudioEncoders_SelectedIndexChanged);
-            comboBoxAudioEncoders.Items.Clear();
-            for (int i = 0; i < Audio.Encoders.GetLength(0); i++)
-            {
-                comboBoxAudioEncoders.Items.Add(new Methods.ListComboContent(Audio.Encoders[i, 0], Audio.Encoders[i, 1]));
-
-                if (Audio.Encoder == Audio.Encoders[i, 1])
-                {
-                    comboBoxAudioEncoders.SelectedIndex = i;
-                }
-            }
+            comboBoxAudioEncoders = WinFormsHelper.AddMultiArrayToComboBox(comboBoxAudioEncoders, audio.Encoders, audio.Encoder);
             comboBoxAudioEncoders.SelectedIndexChanged += new EventHandler(ComboBoxAudioEncoders_SelectedIndexChanged);
 
             comboBoxSampleRates.SelectedIndexChanged -= new EventHandler(ComboBoxSampleRates_SelectedIndexChanged);
-            comboBoxSampleRates.Items.Clear();
-
-            for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
-            {
-                comboBoxSampleRates.Items.Add(new Methods.ListComboContent(Convert.ToString(Audio.SampleRates[i]) + " Hz", Audio.SampleRates[i]));
-            }
-            comboBoxSampleRates.Items.Add(new Methods.ListComboContent("", 0));
-
-            if (Audio.SampleRate != 0)
-            {
-                for (int i = 0; i < Audio.SampleRates.GetLength(0); i++)
-                {
-                    if (Audio.SampleRate == Audio.SampleRates[i])
-                    {
-                        comboBoxSampleRates.SelectedIndex = i;
-                        break;
-                    }
-                }
-            }
-
+            comboBoxSampleRates = WinFormsHelper.AddArrayToComboBox(comboBoxSampleRates, audio.SampleRates, "Hz", audio.SampleRate);
             comboBoxSampleRates.SelectedIndexChanged += new EventHandler(ComboBoxSampleRates_SelectedIndexChanged);
 
             comboBoxChannels.SelectedIndexChanged -= new EventHandler(ComboBoxChannels_SelectedIndexChanged);
             comboBoxChannels.Items.Clear();
 
-            for (int i = 1; i <= Audio.MaxChannels; i++)
+            for (int i = 1; i <= audio.MaxChannels; i++)
             {
-                comboBoxChannels.Items.Add(new Methods.ListComboContent(Convert.ToString(i), i));
+                comboBoxChannels.Items.Add(new WinFormsHelper.ListComboContent(Convert.ToString(i), i));
             }
-            comboBoxChannels.Items.Add(new Methods.ListComboContent("", 0));
+            comboBoxChannels.Items.Add(new WinFormsHelper.ListComboContent("", 0));
 
-            if (Audio.Channels != 0)
+            if (audio.Channels != 0)
             {
-                comboBoxChannels.SelectedIndex = Audio.Channels - 1;
+                comboBoxChannels.SelectedIndex = audio.Channels - 1;
             }
             comboBoxChannels.SelectedIndexChanged += new EventHandler(ComboBoxChannels_SelectedIndexChanged);
 
             // Other items
-            InitAudioEncPropertiesButton();
+            InitAudioProfiles();
             InitAudioBitrates();
-        }
-
-        private void InitAudioEncPropertiesButton()
-        {
-            if (Audio.Encoder == "libfdk_aac")
-            {
-                buttonAudioCodecProperties.Enabled = true;
-            }
-            else
-            {
-                buttonAudioCodecProperties.Enabled = false;
-            }
         }
 
         private void InitAudioBitrates()
         {
             // Check boxes
             checkBoxUseAudioVBR.CheckedChanged -= new EventHandler(CheckBoxUseAudioVBR_CheckedChanged);
-            checkBoxUseAudioVBR.Visible = Audio.VBRSupported;
-            checkBoxUseAudioVBR.Checked = Audio.UseVBR;
+            checkBoxUseAudioVBR.Visible = audio.IsVBRSupported;
+            comboBoxAudioVBRModes.Visible = audio.IsVBRSupported;
+            labelVBRMode.Visible = audio.IsVBRSupported;
+            checkBoxUseAudioVBR.Checked = audio.UseVBR;
             checkBoxUseAudioVBR.CheckedChanged += new EventHandler(CheckBoxUseAudioVBR_CheckedChanged);
 
-            // Combo boxes
+            // Audio bitrate combo box
             comboBoxAudioBitrates.SelectedIndexChanged -= new EventHandler(ComboBoxAudioBitrates_SelectedIndexChanged);
-            comboBoxAudioBitrates.Items.Clear();
+            comboBoxAudioBitrates = WinFormsHelper.AddArrayToComboBox(comboBoxAudioBitrates, audio.Bitrates, "Kbps", audio.Bitrate);
+            comboBoxAudioBitrates.SelectedIndexChanged += new EventHandler(ComboBoxAudioBitrates_SelectedIndexChanged);
 
-            if (Audio.UseVBR == true)
+            // Audio VBR modes combo box
+            if (audio.IsVBRSupported)
             {
-                // VBR modes
-                labelAudioBitrate.Text = "Quality:";
+                comboBoxAudioVBRModes.SelectedIndexChanged -= new EventHandler(ComboBoxAudioVBRModes_SelectedIndexChanged);
+                comboBoxAudioVBRModes = WinFormsHelper.AddIntArrayToComboBox(comboBoxAudioVBRModes, audio.VBRModes, audio.Quality);
+                comboBoxAudioVBRModes.SelectedIndexChanged += new EventHandler(ComboBoxAudioVBRModes_SelectedIndexChanged);
+            }
 
-                for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
-                {
-                    comboBoxAudioBitrates.Items.Add(new Methods.ListComboContent(Convert.ToString(Audio.VBRModes[i]), Audio.VBRModes[i]));
-                }
-                for (int i = 0; i < Audio.VBRModes.GetLength(0); i++)
-                {
-                    if (Audio.Quality == Audio.VBRModes[i])
-                    {
-                        comboBoxAudioBitrates.SelectedIndex = i;
-                        break;
-                    }
-                }
+            if (audio.UseVBR)
+            {
+                labelVBRMode.Enabled = true;
+                comboBoxAudioVBRModes.Enabled = true;
+                labelAudioBitrate.Enabled = false;
+                comboBoxAudioBitrates.Enabled = false;
+            } 
+            else
+            {
+                labelVBRMode.Enabled = false;
+                comboBoxAudioVBRModes.Enabled = false;
+                labelAudioBitrate.Enabled = true;
+                comboBoxAudioBitrates.Enabled = true;
+            }
+        }
+
+        private void InitAudioProfiles()
+        {
+            if (audio.Profiles != null)
+            {
+                comboBoxAudioCodecProfile.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCodecProfile_SelectedIndexChanged);
+                comboBoxAudioCodecProfile = WinFormsHelper.AddMultiArrayToComboBox(comboBoxAudioCodecProfile, audio.Profiles, audio.Profile);
+                comboBoxAudioCodecProfile.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCodecProfile_SelectedIndexChanged);
+                labelAudioCodecProfile.Enabled = true;
+                comboBoxAudioCodecProfile.Enabled = true;
             }
             else
             {
-                // ABR and CBR bitrates
-                labelAudioBitrate.Text = "Bitrate:";
-
-                for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
-                {
-                    comboBoxAudioBitrates.Items.Add(new Methods.ListComboContent(Convert.ToString(Audio.Bitrates[i]) + " Kbps", Audio.Bitrates[i]));
-                }
-                for (int i = 0; i < Audio.Bitrates.GetLength(0); i++)
-                {
-                    if (Audio.Bitrate == Audio.Bitrates[i])
-                    {
-                        comboBoxAudioBitrates.SelectedIndex = i;
-                        break;
-                    }
-                }
+                comboBoxAudioCodecProfile.Items.Clear();
+                labelAudioCodecProfile.Enabled = false;
+                comboBoxAudioCodecProfile.Enabled = false;
             }
-
-            comboBoxAudioBitrates.SelectedIndexChanged += new EventHandler(ComboBoxAudioBitrates_SelectedIndexChanged);
         }
 
         private void InitMetadata()
         {
-            if (File.Format == "raw" | File.Format == "mpg")
+            if (file.Format == "raw" | file.Format == "mpg")
             {
                 EnableTaggingControls(false);
             }
@@ -465,7 +364,7 @@ namespace FFmpegCatapult
             {
                 EnableTaggingControls(true);
 
-                switch (File.Format)
+                switch (file.Format)
                 {
                     case "avi":
                         EnableAlbumTagging(true);
@@ -520,30 +419,32 @@ namespace FFmpegCatapult
             }
         }
 
+        //
         // Misc methods
+        //
         private void ExitFFmpegCatapult()
         {
-            if (Session.SaveProperties == true)
+            if (settings.SaveSettings == true)
             {
-                Session.SaveSettings();
+                settings.Save();
             }
+
             System.Environment.Exit(0);
         }
 
         private void EnableFileOutputControls(bool enable)
         {
-            labelOutput.Enabled = enable;
-            textBoxOutFile.Enabled = enable;
-            buttonBrowseOutput.Enabled = enable;
+            labelOutputFilename.Enabled = enable;
+            textBoxOutputFilename.Enabled = enable;
             checkBoxOverwrite.Enabled = enable;
         }
 
         private void EnableRatioControls(bool enable)
         {
             labelRatio.Enabled = enable;
-            textBoxRatioA.Enabled = enable;
+            numericUpDownRatioA.Enabled = enable;
             labelRatioDash.Enabled = enable;
-            textBoxRatioB.Enabled = enable;
+            numericUpDownRatioB.Enabled = enable;
         }
 
         private void EnableLayoutControls(bool enable)
@@ -554,48 +455,42 @@ namespace FFmpegCatapult
             labelHoriz.Enabled = enable;
             labelVert.Enabled = enable;
             textBoxLayoutColour.Enabled = enable;
-            textBoxLayoutHeight.Enabled = enable;
-            textBoxLayoutHoriz.Enabled = enable;
-            textBoxLayoutVert.Enabled = enable;
-            textBoxLayoutWidth.Enabled = enable;
+            numericUpDownLayoutHeight.Enabled = enable;
+            numericUpDownLayoutWidth.Enabled = enable;
+            numericUpDownLayoutHoriz.Enabled = enable;
+            numericUpDownLayoutVert.Enabled = enable;
         }
 
         private void EnableResControls(bool enable)
         {
-            textBoxHeight.Enabled = enable;
-            textBoxWidth.Enabled = enable;
-            groupBoxScalingMethods.Enabled = enable;
+            numericUpDownHeight.Enabled = enable;
+            numericUpDownWidth.Enabled = enable;
+            comboBoxScalingMethods.Enabled = enable;
         }
 
         private void EnableCRFControls(bool enable)
         {
             if (enable == true)
             {
-                comboBoxBits.Enabled = false;
-                labelVideoBitrate.Enabled = false;
-                labelMaxBits.Enabled = false;
-                labelMaxBitrate.Enabled = false;
-                labelMinBits.Enabled = false;
-                labelMinBitrate.Enabled = false;
                 labelCRF.Enabled = true;
-                textBoxVideoBitrate.Enabled = false;
-                textBoxMaxBitrate.Enabled = false;
-                textBoxMinBitrate.Enabled = false;
-                textBoxCRF.Enabled = true;
+                numericUpDownCRF.Enabled = true;
+                labelVideoBitrate.Enabled = false;
+                labelMaxBitrate.Enabled = false;
+                labelMinBitrate.Enabled = false;                
+                numericUpDownVideoBitrate.Enabled = false;
+                numericUpDownVideoMaxBitrate.Enabled = false;
+                numericUpDownVideoMinBitrate.Enabled = false;
             }
             else
             {
-                comboBoxBits.Enabled = true;
                 labelVideoBitrate.Enabled = true;
-                labelMaxBits.Enabled = true;
                 labelMaxBitrate.Enabled = true;
-                labelMinBits.Enabled = true;
-                labelMinBitrate.Enabled = true;
+                labelMinBitrate.Enabled = true;                
+                numericUpDownVideoBitrate.Enabled = true;
+                numericUpDownVideoMaxBitrate.Enabled = true;
+                numericUpDownVideoMinBitrate.Enabled = true;
                 labelCRF.Enabled = false;
-                textBoxVideoBitrate.Enabled = true;
-                textBoxMaxBitrate.Enabled = true;
-                textBoxMinBitrate.Enabled = true;
-                textBoxCRF.Enabled = false;
+                numericUpDownCRF.Enabled = false;
             }
         }
 
@@ -603,12 +498,12 @@ namespace FFmpegCatapult
         {
             checkBoxTwoPassEncoding.Enabled = enable;
             groupBoxVideoBitrate.Enabled = enable;
-            groupBoxVideoEncoder.Enabled = enable;
+            groupBoxVideoEncoding.Enabled = enable;
         }
 
         private void EnableAudioControls(bool enable)
         {
-            if (enable == true && Audio.Codec == "copy" || Audio.Codec == "pcm")
+            if (enable == true && audio.Codec == "copy" || audio.Codec == "pcm")
             {
                 groupBoxAudioBitrate.Enabled = false;
             }
@@ -617,7 +512,8 @@ namespace FFmpegCatapult
                 groupBoxAudioBitrate.Enabled = enable;
             }
 
-            groupBoxAudioEncoder.Enabled = enable;
+            labelAudioEncoder.Enabled = enable;
+            comboBoxAudioEncoders.Enabled = enable;
             groupBoxAudioOutput.Enabled = enable;
         }
 
@@ -754,6 +650,19 @@ namespace FFmpegCatapult
             textBoxLog.Enabled = enable;
         }
 
+        private int GetSelectionIndex(string value, string[,] values)
+        {
+            for (int i = 0; i < values.GetLength(0); i++)
+            {
+                if (value == values[i, 1])
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
         private void ClearMetadataFields()
         {
             textBoxAlbum.Text = "";
@@ -797,39 +706,63 @@ namespace FFmpegCatapult
             }
         }
 
+        private void NewOutputFileName()
+        {
+            if (string.IsNullOrEmpty(textBoxOutputFilename.Text) && !string.IsNullOrEmpty(textBoxTargetFolder.Text))
+            {
+                string inFile = Path.GetFileName(textBoxOutputFilename.Text);
+                textBoxOutputFilename.Text = Path.ChangeExtension(inFile, file.Format);
+            }
+        }
+
+        private void UpdateOutputFilename()
+        {
+            if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
+            {
+                textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
+            }
+        }
+
+        private void UpdateOutputFilePath()
+        {
+            if (!string.IsNullOrEmpty(textBoxTargetFolder.Text) && !string.IsNullOrEmpty(textBoxOutputFilename.Text))
+            {
+                paths.Output = Path.Combine(textBoxTargetFolder.Text, textBoxOutputFilename.Text);
+                buttonRun.Enabled = !string.IsNullOrEmpty(textBoxInFile.Text);
+            }
+            else
+            {
+                paths.Output = null;
+                buttonRun.Enabled = false;
+            }
+        }
+
         //
         // Event handlers
         //
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             Icon = Properties.Resources.FFmpegCatapult;
             InitTabs();
 
             // Main tab
-            if (File.Input != null)
-            {
-                textBoxInFile.Text = File.Input;
-                buttonBrowseInput.Enabled = true;
-            }
+            //if (paths.Source != null)
+            //{
+            //    textBoxInFile.Text = paths.Source;
+            //    buttonBrowseInput.Enabled = true;
+            //}
             textBoxInFile.DragDrop += new DragEventHandler(TextBoxInFile_DragDrop);
             textBoxInFile.DragEnter += new DragEventHandler(TextBoxInFile_DragEnter);
             textBoxInFile.TextChanged += new EventHandler(TextBoxInFile_TextChanged);
             buttonBrowseInput.Click += new EventHandler(ButtonBrowseInput_Click);
 
-            if (File.Output != null)
-            {
-                textBoxOutFile.Text = File.Output;
-            }
-            textBoxOutFile.TextChanged += new EventHandler(TextBoxOutFile_TextChanged);
-            buttonBrowseOutput.Click += new EventHandler(ButtonBrowseOutput_Click);
-
-            for (int i = 0; i < File.Formats.GetLength(0); i++)
-            {
-                comboBoxContainers.Items.Add(new Methods.ListComboContent(File.Formats[i, 0], File.Formats[i, 1]));
-            }
-
-            comboBoxPresets.Items.Add(new Methods.ListComboContent("Default", null));
+            //if (paths.Output != null)
+            //{
+            //    textBoxOutFile.Text = paths.Output;
+            //}
+            textBoxTargetFolder.TextChanged += new EventHandler(TextBoxTargetFolder_TextChanged);
+            buttonBrowseOutput.Click += new EventHandler(ButtonBrowseTargetFolder_Click);
+            comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, file.Formats, file.Format);
 
             // Populate combobox with parsed XML files and preset names
             string path = Directory.GetCurrentDirectory();
@@ -848,7 +781,7 @@ namespace FFmpegCatapult
                         if (node.Attributes["name"] != null)
                         {
                             string title = node.Attributes["name"].Value;
-                            comboBoxPresets.Items.Add(new Methods.ListComboContent(title, file));
+                            comboBoxPresets.Items.Add(new WinFormsHelper.ListComboContent(title, file));
                         }
                     }
                 }
@@ -862,27 +795,9 @@ namespace FFmpegCatapult
                 }
             }
 
-            // Set selected preset
-            int x = 0;
-            for (int i = 0; i < comboBoxPresets.Items.Count; i++)
-            {
-                Methods.ListComboContent preset = (Methods.ListComboContent)comboBoxPresets.Items[i];
-                if (preset.Name == Session.Preset)
-                {
-                    x = i;
-                    break;
-                }
-            }
-            comboBoxPresets.SelectedIndex = x;
             comboBoxPresets.SelectedIndexChanged += new EventHandler(ComboBoxPresets_SelectedIndexChanged);
 
-            comboBoxThreads.Items.Add(new Methods.ListComboContent("Auto", 0));
-            for (int i = 1; i <= Session.MaxThreads; i++)
-            {
-                comboBoxThreads.Items.Add(new Methods.ListComboContent(Convert.ToString(i), i));
-            }
-
-            if (Session.KeepValues == true)
+            if (settings.KeepValues == true)
             {
                 radioButtonKeep.Checked = true;
             }
@@ -895,7 +810,7 @@ namespace FFmpegCatapult
 
             InitMain();
 
-            checkBoxOverwrite.Checked = Session.Overwrite;
+            checkBoxOverwrite.Checked = paths.Overwrite;
             checkBoxOverwrite.CheckedChanged += new EventHandler(CheckBoxOverwrite_CheckedChanged);
 
             this.FormClosing += MainForm_Closing;
@@ -907,33 +822,22 @@ namespace FFmpegCatapult
             buttonBrowseAudioStream.Click += new EventHandler(ButtonBrowseAudioStream_Click);
 
             // Picture tab
-            for (int i = 0; i < Screen.ScalingMethods.GetLength(0); i++)
-            {
-                comboBoxScalingMethods.Items.Add(new Methods.ListComboContent(Screen.ScalingMethods[i, 0], Screen.ScalingMethods[i, 1]));
-            }
+            comboBoxScalingMethods.SelectedIndexChanged -= new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
+            comboBoxScalingMethods = WinFormsHelper.AddMultiArrayToComboBox(comboBoxScalingMethods, picture.ScalingMethods, picture.ScalingMethod);
+            comboBoxScalingMethods.SelectedIndexChanged += new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
 
             InitPicture();
 
             // Video tab
-            comboBoxBits.Items.Add(new Methods.ListComboContent("Kbps", "k"));
-            comboBoxBits.Items.Add(new Methods.ListComboContent("Mbps", "M"));
-            comboBoxBytes.Items.Add(new Methods.ListComboContent("KB", "k"));
-            comboBoxBytes.Items.Add(new Methods.ListComboContent("MB", "M"));
-            comboBoxBytes.Items.Add(new Methods.ListComboContent("GB", "G"));
-
-            buttonVideoCodecProperties.Click += new EventHandler(buttonVideoCodecProperties_Clicked);
-
             InitVideo();
 
             // Audio tab
-            buttonAudioCodecProperties.Click += new EventHandler(ButtonAudioCodecProperties_Clicked);
-
             InitAudio();
 
             // Options           
-            if (Bin.FFmpegBin != null)
+            if (settings.FFmpegPath != null)
             {
-                textBoxFFmpegBin.Text = Bin.FFmpegBin;
+                textBoxFFmpegBin.Text = settings.FFmpegPath;
                 EnableBinArgsControls(true);
                 EnableTermArgsControls(true);
             }
@@ -945,9 +849,9 @@ namespace FFmpegCatapult
             textBoxFFmpegBin.TextChanged += new EventHandler(TextBoxFFmpegBin_TextChanged);
             buttonBrowseFFmpegBin.Click += new EventHandler(ButtonBrowseFFmpegBin_Click);
 
-            if (Bin.TermBin != null)
+            if (settings.TerminalPath != null)
             {
-                textBoxTermBin.Text = Bin.TermBin;
+                textBoxTermBin.Text = settings.TerminalPath;
                 EnableTermArgsControls(true);
             }
             else
@@ -957,25 +861,23 @@ namespace FFmpegCatapult
             textBoxTermBin.TextChanged += new EventHandler(TextBoxTermBin_TextChanged);
             buttonBrowseTermBin.Click += new EventHandler(ButtonBrowseTermBin_Click);
 
-            if (Bin.BinArgs != null)
+            if (settings.TerminalArguments != null)
             {
-                textBoxBinArgs.Text = Bin.BinArgs;
+                //textBoxBinArgs.Text = ffmpeg.;
             }
             textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
 
-            if (Bin.TermArgs != null)
+            if (settings.TerminalArguments != null)
             {
-                textBoxTermArgs.Text = Bin.TermArgs;
+                textBoxTermArgs.Text = settings.TerminalArguments;
             }
             textBoxTermArgs.TextChanged += new EventHandler(TextBoxTermArgs_TextChanged);
 
-            checkBoxWriteLog.Checked = Session.WriteLog;
+            checkBoxWriteLog.Checked = settings.WriteLog;
             checkBoxWriteLog.CheckedChanged += new EventHandler(CheckBoxWriteLog_CheckedChanged);
-            EnableLogFileTextBox(Session.WriteLog);
-            textBoxLog.Text = File.Log;
+            EnableLogFileTextBox(settings.WriteLog);
+            textBoxLog.Text = settings.LogFilename;
             textBoxLog.TextChanged += new EventHandler(TextBoxLog_TextChanged);
-            checkBoxSaveSettings.Checked = Session.SaveProperties;
-            checkBoxSaveSettings.CheckedChanged += new EventHandler(CheckBoxSaveSettings_CheckedChanged);
 
             // Metadata tab
             textBoxAlbum.TextChanged += new EventHandler(TextBoxAlbum_TextChanged);
@@ -1006,14 +908,14 @@ namespace FFmpegCatapult
 
         void ButtonRun_Click(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists(Bin.FFmpegBin) | Methods.EnvironmentPathExists(Bin.FFmpegBin))
+            if (System.IO.File.Exists(settings.FFmpegPath))
             {
-                Bin.Run();
+                ffmpegBin.Run(file, audio, video, picture, tags, paths, settings);
 
-                if (Session.KeepValues == false)
+                if (settings.KeepValues == false)
                 {
                     textBoxInFile.Text = "";
-                    textBoxOutFile.Text = "";
+                    textBoxTargetFolder.Text = "";
                     ClearMetadataFields();
                 }
             }
@@ -1037,7 +939,7 @@ namespace FFmpegCatapult
         {
             if (!char.IsNumber(e.KeyChar))
             {
-                if (e.KeyChar != '.' | Video.Bits == "k")
+                if (e.KeyChar != '.')
                 {
                     e.Handled = e.KeyChar != (char)Keys.Back;
                 }
@@ -1067,62 +969,31 @@ namespace FFmpegCatapult
         {
             if (!char.IsNumber(e.KeyChar))
             {
-                if (e.KeyChar != '.' | Video.Bytes == "k")
+                if (e.KeyChar != '.')
                 {
                     e.Handled = e.KeyChar != (char)Keys.Back;
                 }
             }
         }
 
+        //
         // Main tab event handlers
+        //
         private void TextBoxInFile_TextChanged(object sender, EventArgs e)
         {
-            File.Input = textBoxInFile.Text;
-
-            if (!string.IsNullOrEmpty(textBoxInFile.Text))
-            {
-                EnableFileOutputControls(true);
-                File.Output = textBoxInFile.Text;
-                textBoxOutFile.TextChanged -= this.TextBoxOutFile_TextChanged;
-                textBoxOutFile.Text = File.Output;
-                textBoxOutFile.TextChanged += this.TextBoxOutFile_TextChanged;
-            }
-            else
-            {
-                EnableFileOutputControls(false);
-                textBoxOutFile.Text = "";
-            }
-
-            if (System.IO.File.Exists(File.Input) && !string.IsNullOrEmpty(textBoxOutFile.Text))
-            {
-                buttonRun.Enabled = true;
-            }
-            else
-            {
-                buttonRun.Enabled = false;
-            }
+            paths.Source = textBoxInFile.Text;
+            NewOutputFileName();
+            EnableFileOutputControls(!string.IsNullOrEmpty(textBoxInFile.Text));
         }
 
-        private void TextBoxOutFile_TextChanged(object sender, EventArgs e)
+        private void TextBoxTargetFolder_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxOutFile.Text != "")
-            {
-                File.Output = textBoxOutFile.Text;
-                textBoxOutFile.Text = File.Output;
-            }
-            else
-            {
-                File.Output = "";
-            }
+            UpdateOutputFilePath();
+        }
 
-            if (textBoxInFile.Text != "" && textBoxOutFile.Text != "")
-            {
-                buttonRun.Enabled = true;
-            }
-            else
-            {
-                buttonRun.Enabled = false;
-            }
+        private void TextBoxOutputFilename_TextChanged(object sender, EventArgs e)
+        {
+            UpdateOutputFilePath();
         }
 
         private void ButtonBrowseInput_Click(object sender, EventArgs e)
@@ -1137,23 +1008,30 @@ namespace FFmpegCatapult
             }
         }
 
-        private void ButtonBrowseOutput_Click(object sender, EventArgs e)
+        void ButtonBrowseAudioStream_Click(object sender, EventArgs e)
         {
-            SaveFileDialog outFile = new SaveFileDialog();
-            outFile.FileName = Path.GetFileName(File.Output);
-            if (fileExtension == "custom")
-            {
-                outFile.Filter = "Any file *.* | *.*";
-            }
-            else
-            {
-                outFile.Filter = String.Format("{0} (*.{1}) | *.{1}", fileContainer, fileExtension);
-            }
-            outFile.ShowDialog();
+            OpenFileDialog audioFile = new OpenFileDialog();
+            audioFile.ShowDialog();
 
-            if (outFile.FileName != "")
+            if (audioFile.FileName != "")
             {
-                textBoxOutFile.Text = outFile.FileName;
+                textBoxAudioStream.Text = audioFile.FileName;
+            }
+        }
+
+        void TextBoxAudioStream_TextChanged(object sender, EventArgs e)
+        {
+            paths.Audio = textBoxAudioStream.Text;
+        }
+
+        private void ButtonBrowseTargetFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog targetDir = new FolderBrowserDialog();
+            targetDir.ShowDialog();
+
+            if (!string.IsNullOrEmpty(targetDir.SelectedPath))
+            {
+                textBoxTargetFolder.Text = targetDir.SelectedPath;
             }
         }
 
@@ -1175,70 +1053,79 @@ namespace FFmpegCatapult
             if (file != null && file.Length != 0)
             {
                 textBoxInFile.Text = file[0];
-                textBoxOutFile.Text = file[0];
+                textBoxTargetFolder.Text = file[0];
             }
         }
 
         void CheckBoxOverwrite_CheckedChanged(object sender, EventArgs e)
         {
-            Session.Overwrite = checkBoxOverwrite.Checked;
-        }
-
-        void CheckBoxMultiThreading_CheckedChanged(object sender, EventArgs e)
-        {
-            Session.MultiThreading = checkBoxMultiThreading.Checked;
-            comboBoxThreads.Enabled = Session.MultiThreading;
+            paths.Overwrite = checkBoxOverwrite.Checked;
         }
 
         void ComboBoxContainers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent format = (Methods.ListComboContent)comboBoxContainers.SelectedItem;
+            WinFormsHelper.ListComboContent format = (WinFormsHelper.ListComboContent)comboBoxContainers.SelectedItem;
 
-            if (format.Value != File.Format)
+            if (format.Value != file.Format)
             {
-                File.Format = format.Value;
-                fileContainer = format.Name;
-                fileExtension = format.Value;
+                file.Format = format.Value;
 
-                if (textBoxOutFile.Text != "" && File.Format != "custom")
+                if (!file.IsCodecSupported(audio))
                 {
-                    textBoxOutFile.TextChanged -= new EventHandler(TextBoxOutFile_TextChanged);
-                    File.Output = textBoxOutFile.Text;
-                    textBoxOutFile.Text = File.Output;
-                    textBoxOutFile.TextChanged += new EventHandler(TextBoxOutFile_TextChanged);
+                    audio.Codec = file.SupportedAudioCodecs[0, 1];
                 }
-            }
 
-            InitTabs();
-            InitAudio();
-            InitVideo();
-            InitMetadata();
+                if (!file.IsCodecSupported(video))
+                {
+                    video.Codec = file.SupportedVideoCodecs[0, 1];
+                }
+
+                if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
+                {
+                    textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
+                }
+
+                InitTabs();
+                InitAudio();
+                InitVideo();
+                InitMetadata();
+            }
         }
 
         void ComboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent preset = (Methods.ListComboContent)comboBoxPresets.SelectedItem;
-            Session.Preset = preset.Name;
-            Preset.InitPreset(preset.Name, preset.Value);
+            WinFormsHelper.ListComboContent preset = (WinFormsHelper.ListComboContent)comboBoxPresets.SelectedItem;
+            settings.Preset = preset.Name;
+            InitPreset(preset.Name, preset.Value);
             InitTabs();
             InitMain();
             InitPicture();
             InitVideo();
             InitAudio();
             InitMetadata();
+            UpdateOutputFilename();
         }
 
-        void ComboBoxThreads_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxAudioVBRModes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent threads = (Methods.ListComboContent)comboBoxThreads.SelectedItem;
-            Session.Threads = threads.X;
+            audio.Quality = Convert.ToInt32(comboBoxAudioVBRModes.Text);
+        }
+
+        private void NumericUpDownThreads_ValueChanged(object sender, EventArgs e)
+        {
+            settings.Threads = (int)numericUpDownThreads.Value;
+        }
+
+        private void NumericUpDownProcessors_ValueChanged(object sender, EventArgs e)
+        {
+            settings.Processors = (int)numericUpDownProcessors.Value;
         }
 
         void RadioButtonKeep_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonKeep.Checked == true)
             {
-                Session.KeepValues = true;
+                settings.KeepValues = true;
             }
         }
 
@@ -1246,16 +1133,237 @@ namespace FFmpegCatapult
         {
             if (radioButtonRefresh.Checked == true)
             {
-                Session.KeepValues = false;
+                settings.KeepValues = false;
+            }
+        }
+    
+        //
+        // Video tab events
+        //
+        void ComboBoxVideoCodecs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent codec = (WinFormsHelper.ListComboContent)comboBoxVideoCodecs.SelectedItem;
+            if (codec.Value != video.Codec)
+            {
+                video.Codec = codec.Value;
+                InitTabs();
+                InitVideo();
             }
         }
 
+        void ComboBoxVideoEncoders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.Encoder = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxVideoEncoders);
+            InitVideoEncoderSettings();
+        }
+
+        private void ComboBoxVCodecProfile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.Profile = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxVCodecProfile);
+        }
+
+        private void ComboBoxVideoEncoderPresets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.EncoderPreset = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxVideoEncoderPresets);
+        }
+
+        private void ComboBoxVideoCodecLevels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.CodecLevel = Convert.ToDouble(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxVideoCodecLevels));
+        }
+
+        private void ComboBoxMEMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.MEMethod = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMEMethod);
+        }
+
+        private void ComboBoxMECmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.CMP = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMECmp));
+        }
+
+        private void ComboBoxMESubcmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.SubCMP = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMESubcmp));
+        }
+
+        private void ComboBoxBFStrat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.BFStrategy = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxBFStrat));
+        }
+
+        private void ComboBoxPixelFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            video.PixelFormat = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxPixelFormat);
+        }
+
+        void CheckBoxTwoPassEncoding_CheckedChanged(object sender, EventArgs e)
+        {
+            video.TwoPassEncoding = checkBoxTwoPassEncoding.Checked;
+            if (video.TwoPassEncoding)
+            {
+                checkBoxUseCRF.Enabled = false;
+                EnableCRFControls(false);
+            }
+            else
+            {
+                checkBoxUseCRF.Enabled = true;
+                EnableCRFControls(video.UseCRF);
+            }
+        }
+
+        void CheckBoxUseCRF_CheckedChanged(object sender, EventArgs e)
+        {
+            video.UseCRF = checkBoxUseCRF.Checked;
+            EnableCRFControls(video.UseCRF);
+        }
+
+        private void NumericUpDownVideoBitrate_ValueChanged(object sender, EventArgs e)
+        {
+            video.Bitrate = (int)numericUpDownVideoBitrate.Value;
+        }
+
+        private void NumericUpDownVideoMaxBitrate_ValueChanged(object sender, EventArgs e)
+        {
+            video.MaxBitrate = (int)numericUpDownVideoMaxBitrate.Value;
+        }
+
+        private void NumericUpDownVideoMinBitrate_ValueChanged(object sender, EventArgs e)
+        {
+            video.MinBitrate = (int)numericUpDownVideoMinBitrate.Value;
+        }
+
+        private void NumericUpDownCRF_ValueChanged(object sender, EventArgs e)
+        {
+            video.Quality = (int)numericUpDownCRF.Value;
+        }
+
+        private void NumericUpDownQMin_ValueChanged(object sender, EventArgs e)
+        {
+            video.QMin = (int)numericUpDownQMin.Value;
+        }
+
+        private void NumericUpDownQMax_ValueChanged(object sender, EventArgs e)
+        {
+            video.QMax = (int)numericUpDownQMax.Value;
+        }
+
+        private void NumericUpDownBufferSize_ValueChanged(object sender, EventArgs e)
+        {
+            video.BufferSize = (int)numericUpDownBufferSize.Value;
+        }
+
+        private void NumericUpDownTargetSize_ValueChanged(object sender, EventArgs e)
+        {
+            video.TargetSize = (int)numericUpDownTargetSize.Value;
+        }
+
+        private void NumericUpDownGOPSize_ValueChanged(object sender, EventArgs e)
+        {
+            video.GOPSize = (int)numericUpDownGOPSize.Value;
+        }
+
+        private void NumericUpDownDiaSize_ValueChanged(object sender, EventArgs e)
+        {
+            video.DiaSize = (int)numericUpDownDiaSize.Value;
+        }
+
+        private void NumericUpDownBFrames_ValueChanged(object sender, EventArgs e)
+        {
+            video.BFrames = (int)numericUpDownBFrames.Value;
+        }
+
+        private void NumericUpDownTileRows_ValueChanged(object sender, EventArgs e)
+        {
+            video.TileRows = (int)numericUpDownTileRows.Value;
+        }
+
+        private void NumericUpDownTileColumns_ValueChanged(object sender, EventArgs e)
+        {
+            video.TileColumns = (int)numericUpDownTileColumns.Value;
+        }
+
+        private void NumericUpDownTrellis_ValueChanged(object sender, EventArgs e)
+        {
+            video.Trellis = (int)numericUpDownTrellis.Value;
+        }
+
+        //
+        // Audio tab events
+        //
+        void ComboBoxAudioCodecs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent codec = (WinFormsHelper.ListComboContent)comboBoxAudioCodecs.SelectedItem;
+            if (codec.Value != audio.Codec)
+            {
+                audio.Codec = codec.Value;
+                InitAudio();
+            }
+        }
+
+        private void ComboBoxAudioCodecProfile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            audio.Profile = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxAudioCodecProfile);
+        }
+
+        void ComboBoxAudioEncoders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent encoder = (WinFormsHelper.ListComboContent)comboBoxAudioEncoders.SelectedItem;
+            if (encoder.Value != audio.Encoder)
+            {
+                audio.Encoder = encoder.Value;
+                InitAudioProfiles();
+                InitAudioBitrates();
+            }
+        }
+
+        void ComboBoxSampleRates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent sampleRate = (WinFormsHelper.ListComboContent)comboBoxSampleRates.SelectedItem;
+            if (sampleRate.X != audio.SampleRate)
+            {
+                audio.SampleRate = sampleRate.X;
+                InitAudioBitrates();
+            }
+        }
+
+        void ComboBoxChannels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent channels = (WinFormsHelper.ListComboContent)comboBoxChannels.SelectedItem;
+            if (channels.X != audio.Channels)
+            {
+                audio.Channels = channels.X;
+            }
+        }
+
+        void CheckBoxUseAudioVBR_CheckedChanged(object sender, EventArgs e)
+        {
+            audio.UseVBR = checkBoxUseAudioVBR.Checked;
+            InitAudioBitrates();
+        }
+
+        void ComboBoxAudioBitrates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WinFormsHelper.ListComboContent bitrate = (WinFormsHelper.ListComboContent)comboBoxAudioBitrates.SelectedItem;
+
+            if (audio.UseVBR == true)
+            {
+                audio.Quality = bitrate.X;
+            }
+            else
+            {
+                audio.Bitrate = bitrate.X;
+            }
+        }
+
+        //
         // Picture tab events
+        //
         void RadioButtonKeepRes_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonKeepRes.Checked == true)
             {
-                Screen.ScaleOption = 0;
+                picture.ScaleOption = 0;
                 EnableResControls(false);
             }
         }
@@ -1264,7 +1372,7 @@ namespace FFmpegCatapult
         {
             if (radioButtonCustomRes.Checked == true)
             {
-                Screen.ScaleOption = 1;
+                picture.ScaleOption = 1;
                 EnableResControls(true);
             }
         }
@@ -1273,364 +1381,184 @@ namespace FFmpegCatapult
         {
             if (radioButtonHalfRes.Checked == true)
             {
-                Screen.ScaleOption = 2;
+                picture.ScaleOption = 2;
                 EnableResControls(false);
             }
         }
 
         void CheckBoxAspectRatio_CheckedChanged(object sender, EventArgs e)
         {
-            Screen.AspectRatio = checkBoxAspectRatio.Checked;
-            EnableRatioControls(Screen.AspectRatio);
+            picture.AspectRatio = checkBoxAspectRatio.Checked;
+            EnableRatioControls(picture.AspectRatio);
         }
 
         void CheckBoxCrop_CheckedChanged(object sender, EventArgs e)
         {
-            Screen.CropVideo = checkBoxCrop.Checked;
-            EnableLayoutControls(Screen.CropVideo);
+            picture.Crop = checkBoxCrop.Checked;
+            EnableLayoutControls(picture.Crop);
         }
 
         void CheckBoxDeinterlace_CheckedChanged(object sender, EventArgs e)
         {
-            Screen.Deinterlace = checkBoxDeinterlace.Checked;
+            picture.Deinterlace = checkBoxDeinterlace.Checked;
         }
 
         void CheckBoxPad_CheckedChanged(object sender, EventArgs e)
         {
-            Screen.PadVideo = checkBoxPad.Checked;
-            EnableLayoutControls(Screen.PadVideo);
-        }
-
-        void TextBoxWidth_TextChanged(object sender, EventArgs e)
-        {
-            Screen.Width = Methods.TextToInt(textBoxWidth.Text);
-        }
-
-        void TextBoxHeight_TextChanged(object sender, EventArgs e)
-        {
-            Screen.Height = Methods.TextToInt(textBoxHeight.Text);
-        }
-
-        void TextBoxRatioA_TextChanged(object sender, EventArgs e)
-        {
-            Screen.RatioA = Methods.TextToInt(textBoxRatioA.Text);
-        }
-
-        void TextBoxRatioB_TextChanged(object sender, EventArgs e)
-        {
-            Screen.RatioB = Methods.TextToInt(textBoxRatioB.Text);
-        }
-
-        void TextBoxFPS_TextChanged(object sender, EventArgs e)
-        {
-            Screen.FPS = Methods.TextToInt(textBoxFPS.Text);
-        }
-
-        void TextBoxLayoutWidth_TextChanged(object sender, EventArgs e)
-        {
-            Screen.WinWidth = Methods.TextToInt(textBoxLayoutWidth.Text);
-        }
-
-        void TextBoxLayoutHeight_TextChanged(object sender, EventArgs e)
-        {
-            Screen.WinHeight = Methods.TextToInt(textBoxLayoutHeight.Text);
-        }
-
-        void TextBoxLayoutVert_TextChanged(object sender, EventArgs e)
-        {
-            Screen.X = Methods.TextToInt(textBoxLayoutVert.Text);
-        }
-
-        void TextBoxLayoutHoriz_TextChanged(object sender, EventArgs e)
-        {
-            Screen.Y = Methods.TextToInt(textBoxLayoutHoriz.Text);
+            picture.Pad = checkBoxPad.Checked;
+            EnableLayoutControls(picture.Pad);
         }
 
         void ComboBoxScalingMethods_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent scalingMethod = (Methods.ListComboContent)comboBoxScalingMethods.SelectedItem;
-            Screen.ScalingMethod = scalingMethod.Value;
+            WinFormsHelper.ListComboContent scalingMethod = (WinFormsHelper.ListComboContent)comboBoxScalingMethods.SelectedItem;
+            picture.ScalingMethod = scalingMethod.Value;
         }
 
-        // Video tab events
-        void buttonVideoCodecProperties_Clicked(object sender, EventArgs e)
+        private void NumericUpDownWidth_ValueChanged(object sender, EventArgs e)
         {
-            VideoSettingsForm videoProperties = new VideoSettingsForm();
-            videoProperties.StartPosition = FormStartPosition.CenterParent;
-            videoProperties.ShowDialog(this);
+            picture.Width = (int)numericUpDownWidth.Value;
         }
 
-        void ComboBoxVideoCodecs_SelectedIndexChanged(object sender, EventArgs e)
+        private void NumericUpDownHeight_ValueChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent codec = (Methods.ListComboContent)comboBoxVideoCodecs.SelectedItem;
-            if (codec.Value != Video.Codec)
-            {
-                Video.Codec = codec.Value;
-                InitTabs();
-                InitVideo();
-            }
+            picture.Height = (int)numericUpDownHeight.Value;
         }
 
-        void ComboBoxVideoEncoders_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDownFPS_ValueChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent encoder = (Methods.ListComboContent)comboBoxVideoEncoders.SelectedItem;
-            Video.Encoder = encoder.Value;
+            picture.FPS = (int)numericUpDownFPS.Value;
         }
 
-        void ComboBoxBits_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDownLayoutWidth_ValueChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent bits = (Methods.ListComboContent)comboBoxBits.SelectedItem;
-            Video.Bits = bits.Value;
-            labelMaxBits.Text = bits.Name;
-            labelMinBits.Text = bits.Name;
+            picture.WinWidth = (int)numericUpDownLayoutWidth.Value;
         }
 
-        void ComboBoxBytes_SelectedIndexChanged(object sender, EventArgs e)
+        private void numericUpDownLayoutHeight_ValueChanged(object sender, EventArgs e)
         {
-            Methods.ListComboContent bytes = (Methods.ListComboContent)comboBoxBytes.SelectedItem;
-            Video.Bytes = bytes.Value;
+            picture.WinHeight = (int)numericUpDownLayoutHeight.Value;
         }
 
-        void CheckBoxTwoPassEncoding_CheckedChanged(object sender, EventArgs e)
+        private void numericUpDownLayoutVert_ValueChanged(object sender, EventArgs e)
         {
-            Session.TwoPassEncoding = checkBoxTwoPassEncoding.Checked;
-            if (Session.TwoPassEncoding)
-            {
-                checkBoxUseCRF.Enabled = false;
-                EnableCRFControls(false);
-            }
-            else
-            {
-                checkBoxUseCRF.Enabled = true;
-                EnableCRFControls(Video.UseCRF);
-            }
+            picture.X = (int)numericUpDownLayoutVert.Value;
         }
 
-        void CheckBoxUseCRF_CheckedChanged(object sender, EventArgs e)
+        private void numericUpDownLayoutHoriz_ValueChanged(object sender, EventArgs e)
         {
-            Video.UseCRF = checkBoxUseCRF.Checked;
-            EnableCRFControls(Video.UseCRF);
+            picture.Y = (int)numericUpDownLayoutHoriz.Value;
         }
 
-        void TextBoxVideoBitrate_TextChanged(object sender, EventArgs e)
+        private void NumericUpDownRatio_ValueChanged(object sender, EventArgs e)
         {
-            Video.Bitrate = Methods.TextToDouble(textBoxVideoBitrate.Text);
+            picture.Ratio = string.Format("{0}:{1}", numericUpDownRatioA.Value, numericUpDownRatioB.Value);
         }
 
-        void TextBoxMinBitrate_TextChanged(object sender, EventArgs e)
-        {
-            Video.MinBitrate = Methods.TextToDouble(textBoxMinBitrate.Text);
-        }
-
-        void TextBoxMaxBitrate_TextChanged(object sender, EventArgs e)
-        {
-            Video.MaxBitrate = Methods.TextToDouble(textBoxMaxBitrate.Text);
-        }
-
-        void TextBoxBufferSize_TextChanged(object sender, EventArgs e)
-        {
-            Video.BufferSize = Methods.TextToDouble(textBoxBufferSize.Text);
-        }
-
-        void TextBoxCRF_TextChanged(object sender, EventArgs e)
-        {
-            Video.CRF = Methods.TextToInt(textBoxCRF.Text);
-        }
-
-        void TextBoxQmax_TextChanged(object sender, EventArgs e)
-        {
-            Video.Qmax = Methods.TextToInt(textBoxQmax.Text);
-        }
-
-        void TextBoxQmin_TextChanged(object sender, EventArgs e)
-        {
-            Video.Qmin = Methods.TextToInt(textBoxQmin.Text);
-        }
-
-        // Audio tab events
-        void ButtonAudioCodecProperties_Clicked(object sender, EventArgs e)
-        {
-            AudioSettingsForm audioProperties = new AudioSettingsForm();
-            audioProperties.StartPosition = FormStartPosition.CenterParent;
-            audioProperties.ShowDialog(this);
-        }
-
-        void ComboBoxAudioCodecs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Methods.ListComboContent codec = (Methods.ListComboContent)comboBoxAudioCodecs.SelectedItem;
-            if (codec.Value != Audio.Codec)
-            {
-                Audio.Codec = codec.Value;
-                InitAudio();
-            }
-        }
-
-        void ComboBoxAudioEncoders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Methods.ListComboContent encoder = (Methods.ListComboContent)comboBoxAudioEncoders.SelectedItem;
-            if (encoder.Value != Audio.Encoder)
-            {
-                Audio.Encoder = encoder.Value;
-                InitAudioEncPropertiesButton();
-                InitAudioBitrates();
-            }
-        }
-
-        void ComboBoxSampleRates_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Methods.ListComboContent sampleRate = (Methods.ListComboContent)comboBoxSampleRates.SelectedItem;
-            if (sampleRate.X != Audio.SampleRate)
-            {
-                Audio.SampleRate = sampleRate.X;
-                InitAudioBitrates();
-            }
-        }
-
-        void ComboBoxChannels_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Methods.ListComboContent channels = (Methods.ListComboContent)comboBoxChannels.SelectedItem;
-            if (channels.X != Audio.Channels)
-            {
-                Audio.Channels = channels.X;
-            }
-        }
-
-        void CheckBoxUseAudioVBR_CheckedChanged(object sender, EventArgs e)
-        {
-            Audio.UseVBR = checkBoxUseAudioVBR.Checked;
-            InitAudioBitrates();
-        }
-
-        void ComboBoxAudioBitrates_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Methods.ListComboContent bitrate = (Methods.ListComboContent)comboBoxAudioBitrates.SelectedItem;
-
-            if (Audio.UseVBR == true)
-            {
-                Audio.Quality = bitrate.X;
-            }
-            else
-            {
-                Audio.Bitrate = bitrate.X;
-            }
-        }
-
-        void ButtonBrowseAudioStream_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog audioFile = new OpenFileDialog();
-            audioFile.ShowDialog();
-
-            if (audioFile.FileName != "")
-            {
-                textBoxAudioStream.Text = audioFile.FileName;
-            }
-        }
-
-        void TextBoxAudioStream_TextChanged(object sender, EventArgs e)
-        {
-            File.AudioStream = textBoxAudioStream.Text;
-        }
-
+        //
         // Tagging tab events
+        //
         void TextBoxAlbum_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Album = textBoxAlbum.Text;
+            tags.Album = textBoxAlbum.Text;
         }
 
         void TextBoxAlbumArtist_TextChanged(object sender, EventArgs e)
         {
-            Metadata.AlbumArtist = textBoxAlbumArtist.Text;
+            tags.AlbumArtist = textBoxAlbumArtist.Text;
         }
 
         void TextBoxArtist_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Artist = textBoxArtist.Text;
+            tags.Artist = textBoxArtist.Text;
         }
 
         void TextBoxComment_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Comment = textBoxComment.Text;
+            tags.Comment = textBoxComment.Text;
         }
 
         void TextBoxDisc_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Disc = Methods.TextToInt(textBoxDisc.Text);
+            //tags.Disc = WinFormsHelper.TextToInt(textBoxDisc.Text);
         }
 
         void TextBoxGenre_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Genre = textBoxGenre.Text;
+            tags.Genre = textBoxGenre.Text;
         }
 
         void TextBoxTitle_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Title = textBoxTitle.Text;
+            tags.Title = textBoxTitle.Text;
         }
 
         void TextBoxTotalDiscs_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Disc = Methods.TextToInt(textBoxDisc.Text);
+            //tags.Disc = WinFormsHelper.TextToInt(textBoxDisc.Text);
         }
 
         void TextBoxTotalTracks_TextChanged(object sender, EventArgs e)
         {
-            Metadata.TotalTracks = Methods.TextToInt(textBoxTotalTracks.Text);
+            //tags.TotalTracks = WinFormsHelper.TextToInt(textBoxTotalTracks.Text);
         }
 
         void TextBoxTrack_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Track = Methods.TextToInt(textBoxTrack.Text);
+            //tags.Track = WinFormsHelper.TextToInt(textBoxTrack.Text);
         }
 
         void TextBoxYear_TextChanged(object sender, EventArgs e)
         {
-            Metadata.Year = Methods.TextToInt(textBoxYear.Text);
+            //tags.Year = WinFormsHelper.TextToInt(textBoxYear.Text);
         }
 
+        //
         // Options tab events
+        //
         void TextBoxFFmpegBin_TextChanged(object sender, EventArgs e)
         {
-            Bin.FFmpegBin = textBoxFFmpegBin.Text;
+            settings.FFmpegPath = textBoxFFmpegBin.Text;
             EnableBinArgsControls(!string.IsNullOrEmpty(textBoxFFmpegBin.Text));
+            settings.SaveSettings = true;
         }
 
         void TextBoxTermBin_TextChanged(object sender, EventArgs e)
         {
-            Bin.TermBin = textBoxTermBin.Text;
+            settings.TerminalPath = textBoxTermBin.Text;
             EnableTermArgsControls(!string.IsNullOrEmpty(textBoxTermBin.Text));
+            settings.SaveSettings = true;
         }
 
         void TextBoxBinArgs_TextChanged(object sender, EventArgs e)
         {
-            Bin.BinArgs = textBoxBinArgs.Text;
+            //Bin.BinArgs = textBoxBinArgs.Text;
+            settings.SaveSettings = true;
         }
 
         void TextBoxTermArgs_TextChanged(object sender, EventArgs e)
         {
-            Bin.TermArgs = textBoxTermArgs.Text;
+            settings.TerminalArguments = textBoxTermArgs.Text;
+            settings.SaveSettings = true;
         }
 
         void TextBoxLog_TextChanged(object sender, EventArgs e)
         {
-            File.Log = textBoxLog.Text;
+            settings.LogFilename = textBoxLog.Text;
+            settings.SaveSettings = true;
         }
 
         void ButtonBrowseFFmpegBin_Click(object sender, EventArgs e)
         {
+            settings.SaveSettings = true;
             BrowseFFmpegBin();
         }
 
         void CheckBoxWriteLog_CheckedChanged(object sender, EventArgs e)
         {
-            Session.WriteLog = checkBoxWriteLog.Checked;
-            EnableLogFileTextBox(Session.WriteLog);
-        }
-
-        void CheckBoxSaveSettings_CheckedChanged(object sender, EventArgs e)
-        {
-            Session.SaveProperties = checkBoxSaveSettings.Checked;
-            Properties.Settings.Default.SaveSettings = Session.SaveProperties;
-            Properties.Settings.Default.Save();
+            settings.WriteLog = checkBoxWriteLog.Checked;
+            EnableLogFileTextBox(settings.WriteLog);
+            settings.SaveSettings = true;
         }
 
         void ButtonBrowseTermBin_Click(object sender, EventArgs e)

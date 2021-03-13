@@ -1,4 +1,4 @@
-﻿// ISettings is part of FFmpeg Catapult.
+﻿// ICodec is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,18 +16,11 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface ISettings
+    interface IOutput
     {
-        bool PreferNonfreeEncoders { get; set; }
-        bool WriteLog { get; set; }
-        bool MultiThreading { get; set; }
-        int Threads { get; set; }
-        int Processors { get; set; }
-        int MaxThreads { get; }
-        string FFmpegBinPath { get; set; }
-        string TerminalPath { get; set; }
-        string TerminalArgs { get; set; }
-        string NullPath { get; }
-        string Preset { get; set; }
+        int Bitrate { get; set; }
+        int Quality { get; set; }
+        string Codec { get; set; }
+        string Profile { get; set; }
     }
 }

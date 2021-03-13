@@ -19,130 +19,54 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
+    interface IPicture
+    {
+        bool AspectRatio { get; set; }
+        bool Crop { get; set; }
+        bool Pad { get; set; }
+        bool Deinterlace { get; set; }
+        int FPS { get; set; }
+        int Width { get; set; }
+        int Height { get; set; }
+        int WinWidth { get; set; }
+        int WinHeight { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
+        int ScaleOption { get; set; }
+        string Ratio { get; set; }
+        string ScalingMethod { get; set; }
+        string VideoFilterColour { get; set; }
+    }
+
     class Picture : IPicture
     {
-        private bool aspectRatio = false;
-        private bool crop = false;
-        private bool pad = false;
-        private bool deinterlace = false;
-        private int fps;
-        private int width;
-        private int height;
-        private int winWidth;
-        private int winHeight;
-        private int scaleOption;
-        private int x;
-        private int y;
-        private string ratio;
-        private string scalingMethod = "lanczos";
-        private string vfColour;
         private string[,] scalingMethods = new string[,] {
             {"Bicubic", "bicubic"}, {"Bilinear", "bilinear"},
             {"Gaussian", "gauss"}, {"Lanczos", "lanczos"},
             {"Sinc", "sinc"}, {"Spline", "spline"}
         };
 
-        public bool AspectRatio
-        {
-            get { return aspectRatio; }
-            set { aspectRatio = value; }
-        }
-
-        public bool Crop
-        {
-            get { return crop; }
-            set { crop = value; }
-        }
-
-        public bool Pad
-        {
-            get { return pad; }
-            set { pad = value; }
-        }
-
-        public bool Deinterlace
-        {
-            get { return deinterlace; }
-            set { deinterlace = value; }
-        }
-
-        public int FPS
-        {
-            get { return fps; }
-            set { fps = value; }
-        }
-
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
-
-        public int WinWidth
-        {
-            get { return winWidth; }
-            set { winWidth = value; }
-        }
-
-        public int WinHeight
-        {
-            get { return winHeight; }
-            set { winHeight = value; }
-        }
-
-        public int ScaleOption
-        {
-            get { return scaleOption; }
-            set { scaleOption = value; }
-        }
-
-        public int X
-        {
-            get { return x; }
-            set { x = value; }
-        }
-
-        public int Y
-        {
-            get { return y; }
-            set { y = value; }
-        }
-
-        public string Ratio
-        {
-            get { return ratio; }
-            set { ratio = value; }
-        }
-
-        public string ScalingMethod
-        {
-            get { return scalingMethod; }
-            set { scalingMethod = value; }
-        }
-
-        public string VideoFilterColour
-        {
-            get { return vfColour; }
-            set { vfColour = value; }
-        }
-
+        public bool AspectRatio { get; set; }
+        public bool Crop { get; set; }
+        public bool Pad { get; set; }
+        public bool Deinterlace { get; set; }
+        public int FPS { get; set; }
+        public int Width { get; set; } = 512;
+        public int Height { get; set; } = 0;
+        public int WinWidth { get; set; }
+        public int WinHeight { get; set; }
+        public int ScaleOption { get; set; } = 1;
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Ratio { get; set; } = "16:9";
+        public string ScalingMethod { get; set; } = "lanczos";
+        public string VideoFilterColour { get; set; }
         public string[,] ScalingMethods
         {
             get { return scalingMethods; }
         }
 
-        public Picture()
-        {
-            Width = 512;
-            Height = 0;
-            ScaleOption = 1;
-        }
+        public Picture() {}
 
         public Picture(string xmlPath, string presetName)
         {

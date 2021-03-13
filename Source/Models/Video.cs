@@ -1,4 +1,4 @@
-﻿﻿// Video is part of FFmpeg Catapult.
+﻿// Video is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -14,279 +14,261 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-namespace FFmpegCatapult
+using System;
+using System.Xml;
+
+namespace FFmpegCatapult.Models
 {
-    class Video
+    interface IVideo : IOutput, IEncoder
     {
-        // Variables
-        private static bool autoAltRef;
-        private static bool frameParallel;
-        private static bool useCRF = false;
-        private static double bitrate;
-        private static double bufferSize;
-        private static double codecLevel;
-        private static double maxBitrate;
-        private static double minBitrate;
-        private static int bFrames;
-        private static int bFStrat;
-        private static int cmp;
-        private static int crf;
-        private static int diaSize;
-        private static int gopSize;
-        private static int lagInFrames;
-        private static int qmax;
-        private static int qmin;
-        private static int speed;
-        private static int subcmp;
-        private static int tileColumns;
-        private static int trellis;
-        private static string bits;
-        private static string bytes;
-        private static string codec;
-        private static string[,] codecs;
-        private static string codecProfile;
-        private static string[,] codecProfiles;
-        private static string encoder;
-        private static string[,] encoders;
-        private static string encoderPreset;
-        private static string[,] encoderPresets;
-        private static string[] cmpFuncs = new string[] {
+        bool AutoAltRef { get; set; }
+        bool FrameParallel { get; set; }
+        bool TwoPassEncoding { get; set; }
+        bool UseCRF { get; set; }
+        double CodecLevel { get; set; }
+        int BufferSize { get; set; }
+        int MaxBitrate { get; set; }
+        int MinBitrate { get; set; }
+        int BFrames { get; set; }
+        int BFStrategy { get; set; }
+        int CMP { get; set; }
+        int DiaSize { get; set; }
+        int GOPSize { get; set; }
+        int LagInFrames { get; set; }
+        int Speed { get; set; }
+        int SubCMP { get; set; }
+        int TargetSize { get; set; }
+        int TileColumns { get; set; }
+        int TileRows { get; set; }
+        int Trellis { get; set; }
+        int QMin { get; set; }
+        int QMax { get; set; }
+        string EncoderPreset { get; set; }
+        string PixelFormat { get; set; }
+        string MEMethod { get; set; }
+        string[,] EncoderPresets { get; }
+        string[,] PixelFormats { get; }
+        string[,] MEMethods { get; }
+    }
+
+    class Video : IVideo
+    {
+        private string codec;
+        private string encoder;
+        private string[] cmpFuncs = new string[] {
             "sad", "sse", "satd", "dct", "psnr", "bit", "rd", "zero", "vsad",
             "vsse", "nsse", "w53", "w97", "dctmax", "chroma", "Default"
-        };
-        private static string meMethod;
-        private static string[,] meMethods = new string[,] {
+        };        
+        private string[,] meMethods = new string[,] {
             {"Zero", "zero"}, {"Full", "full"}, {"EPZS", "epzs"}, {"Esa", "esa"},
             {"Tesa", "tesa"}, {"Dia", "dia"}, {"Log", "log"}, {"Phods", "phods"},
             {"X1", "x1"}, {"Hex", "hex"}, {"Umh", "umh"}, {"Iter", "iter"},
             {"Default", ""}
-        };
-        private static string pictureFormat = "";
-        private static string[,] pictureFormats = new string[,] {
+        };        
+        private string[,] pixelFormats = new string[,] {
             {"YUV 4:2:0", "yuv420p"}, {"YUYV 4:2:2", "yuyv422"}, {"RGB 24", "rgb24"},
             {"BGR 24","bgr24"}, {"YUV 4:2:2", "yuv422p"}, {"YUV 4:4:4", "yuv44p"},
             {"YUV 4:1:0", "yuv410p"}, {"YUV 4:1:1", "yuv411p"}, {"Gray", "gray"},
             {"Default", ""}
         };
 
-        // Property methods
-        public static bool AutoAltRef
-        {
-            get { return autoAltRef; }
-            set { autoAltRef = value; }
-        }
-
-        public static double Bitrate
-        {
-            get { return bitrate; }
-            set { bitrate = value; }
-        }
-
-        public static int BFrames
-        {
-            get { return bFrames; }
-            set { bFrames = value; }
-        }
-
-        public static int BFStrategy
-        {
-            get { return bFStrat; }
-            set { bFStrat = value; }
-        }
-
-        public static string Bits
-        {
-            get { return bits; }
-            set { bits = value; }
-        }
-
-        public static double BufferSize
-        {
-            get { return bufferSize; }
-            set { bufferSize = value; }
-        }
-
-        public static string Bytes
-        {
-            get { return bytes; }
-            set { bytes = value; }
-        }
-
-        public static int CMP
-        {
-            get { return cmp; }
-            set { cmp = value; }
-        }
-
-        public static string[] CMPFuncs
-        {
-            get { return cmpFuncs; }
-        }
-
+        public bool AutoAltRef { get; set; }
+        public bool FrameParallel { get; set; }
+        public bool UseCRF { get; set; } = false;
+        public bool TwoPassEncoding { get; set; } = false;
+        public bool PreferNonfreeEncoder { get; set; } = false;
+        public double CodecLevel { get; set; }
+        public double[] CodecLevels { get; private set; }
+        public int Bitrate { get; set; }
+        public int BFrames { get; set; }
+        public int BFStrategy { get; set; }
+        public int BufferSize { get; set; }
+        public int Quality { get; set; }
+        public int CMP { get; set; }
+        public int DiaSize { get; set; }
+        public int QMax { get; set; }
+        public int QMin { get; set; }
+        public int Speed { get; set; }
+        public int SubCMP { get; set; }
+        public int TargetSize { get; set; } = 0;
+        public int TileColumns { get; set; }
+        public int TileRows { get; set; }
+        public int Trellis { get; set; }
+        public int GOPSize { get; set; }
+        public int LagInFrames { get; set; }
+        public int MaxBitrate { get; set; }
+        public int MinBitrate { get; set; }
+        public string EncoderPreset { get; set; }
+        public string MEMethod { get; set; }
+        public string PixelFormat { get; set; }
+        public string Profile { get; set; }
+        public string[,] Encoders { get; private set; }
+        public string[,] EncoderPresets { get; private set; }
+        public string[,] Profiles { get; private set; }
+        
         /// <summary>
         /// Stores video codec value and determines supported video encoders for
         /// FFmpeg to use. Also all codec settings are set to default when codec
         /// value is changed.
         /// </summary>
-        public static string Codec
+        public string Codec
         {
             get { return codec; }
             set
             {
                 codec = value;
 
-                codecProfiles = new string[,] { { null, null } };
-                encoderPresets = new string[,] { { null, null } };
-
                 // Reset to default values
-                codecProfile = "";
-                crf = 0;
-                useCRF = false;
-                bits = "k";
-                bytes = "M";
-                bFrames = 0;
-                bFStrat = 3;
-                bufferSize = 0;
-                cmp = 15;
-                diaSize = 0;
-                gopSize = 0;
-                maxBitrate = 0;
-                meMethod = "";
-                minBitrate = 0;
-                qmax = 0;
-                qmin = 0;
-                subcmp = 15;
-                trellis = 3;
+                Profile = "";
+                Quality = 0;
+                UseCRF = false;
+                BFrames = 0;
+                BFStrategy = 3;
+                BufferSize = 0;
+                CMP = 15;
+                DiaSize = 0;
+                GOPSize = 0;
+                MaxBitrate = 0;
+                MEMethod = "";
+                MinBitrate = 0;
+                QMax = 0;
+                QMin = 0;
+                SubCMP = 15;
+                Trellis = 3;
 
-                // Init codec values
                 switch (codec)
                 {
                     case "av1":
-                        bitrate = 768;
-                        crf = 30;
-                        encoders = new string[,] {
+                        Bitrate = 768;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
+                        Quality = 30;
+                        Encoder = "libaom-av1";
+                        Encoders = new string[,] {
                             {"libaom", "libaom-av1"}
                         };
-                        Encoder = "libaom-av1";
                         break;
                     case "h264":
-                        bitrate = 1000;
-                        codecLevel = 3.1;
-                        codecProfiles = new string[,] {
-                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
-                        };
-                        codecProfile = "main";
-                        encoders = new string[,] {
+                        Bitrate = 1000;
+                        CodecLevel = 3.1;
+                        Profile = "main";
+                        Encoder = "libx264";
+                        Encoders = new string[,] {
                             {"x264", "libx264"}, {"Nvidia NVENC", "nvenc_h264"}
                         };
-                        Encoder = "libx264";
+                        Profiles = new string[,] {
+                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                        };
+                        CodecLevels = new double[] {
+                            1.0, 1.1, 1.2, 1.3, 2.0, 2.1, 2.2, 3.0, 3.1, 3.2, 4.0,
+                            4.2, 5.0, 5.1, 5.2
+                        };
                         break;
                     case "h265":
-                        bitrate = 768;
-                        crf = 28;
-                        useCRF = true;
-                        encoders = new string[,] {
+                        Bitrate = 768;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
+                        Quality = 28;
+                        UseCRF = true;
+                        Encoder = "libx265";
+                        Encoders = new string[,] {
                             {"x265", "libx265"}, {"Nvidia NVENC", "nvenc_hevc"}
                         };
-                        Encoder = "libx265";
                         break;
                     case "mpeg2":
-                        bitrate = 4000;
-                        encoders = new string[,] {
-                            {"MPEG-2 Video", "mpeg2video"}
-                        };
+                        Bitrate = 4000;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = "mpeg2video";
+                        Encoders = new string[,] {
+                            {"MPEG-2 Video", "mpeg2video"}
+                        };                       
                         break;
                     case "mpeg4":
-                        bitrate = 1500;
-                        encoders = new string[,] {
-                            {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
-                        };
+                        Bitrate = 1500;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = "libxvid";
+                        Encoders = new string[,] {
+                            {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
+                        };                     
                         break;
                     case "theora":
-                        bitrate = 1800;
-                        encoders = new string[,] {
-                            {"Theora", "libtheora"}
-                        };
+                        Bitrate = 1800;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = "libtheora";
+                        Encoders = new string[,] {
+                            {"Theora", "libtheora"}
+                        };                        
                         break;
                     case "vp8":
-                        bitrate = 1500;
-                        encoders = new string[,] {
-                            {"VPX", "libvpx"}
-                        };
+                        Bitrate = 1500;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = "libvpx";
+                        Encoders = new string[,] {
+                            {"VPX", "libvpx"}
+                        };                       
                         break;
                     case "vp9":
-                        bitrate = 1000;
-                        encoders = new string[,] {
+                        Bitrate = 1000;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
+                        Speed = 1;
+                        TileColumns = 6;
+                        LagInFrames = 25;
+                        FrameParallel = true;
+                        AutoAltRef = true;
+                        Encoder = "libvpx-vp9";
+                        Encoders = new string[,] {
                             {"VPX", "libvpx-vp9"}
                         };
-                        Encoder = "libvpx-vp9";
-                        speed = 1;
-                        tileColumns = 6;
-                        lagInFrames = 25;
-                        frameParallel = true;
-                        autoAltRef = true;
                         break;
                     case "wmv":
-                        bitrate = 1500;
-                        encoders = new string[,] {
-                            {"WMV 7 (wmv1)", "wmv1"}, {"WMV 8 (wmv2)", "wmv2"}
-                        };
+                        Bitrate = 1500;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = "wmv2";
+                        Encoders = new string[,] {
+                            {"WMV 7 (wmv1)", "wmv1"}, {"WMV 8 (wmv2)", "wmv2"}
+                        };                   
                         break;
                     default:
-                        bitrate = 1500;
-                        encoders = new string[,] {
-                            {codec, codec}
-                        };
+                        Bitrate = 1500;
+                        CodecLevel = 0;
+                        CodecLevels = null;
+                        Profile = null;
+                        Profiles = null;
                         Encoder = codec;
+                        Encoders = new string[,] {
+                            {codec, codec}
+                        };                       
                         break;
                 }
             }
         }
 
-        public static string[,] Codecs
-        {
-            get { return codecs; }
-            set { codecs = value; }
-        }
-
-        public static double CodecLevel
-        {
-            get { return codecLevel; }
-            set { codecLevel = value; }
-        }
-
-        public static string CodecProfile
-        {
-            get { return codecProfile; }
-            set { codecProfile = value; }
-        }
-
-        public static string[,] CodecProfiles
-        {
-            get { return codecProfiles; }
-        }
-
-        public static int CRF
-        {
-            get { return crf; }
-            set { crf = value; }
-        }
-
-        public static int DiaSize
-        {
-            get { return diaSize; }
-            set { diaSize = value; }
-        }
-
         /// <summary>
         /// Stores video encoder value and determines encoder settings and presets.
         /// </summary>
-        public static string Encoder
+        public string Encoder
         {
             get { return encoder; }
             set
@@ -296,9 +278,9 @@ namespace FFmpegCatapult
                 switch (encoder)
                 {
                     case "libx264":
-                    case "libx265":
-                        encoderPreset = "medium";
-                        encoderPresets = new string[,] {
+                    case "libx265":                       
+                        EncoderPreset = "medium";
+                        EncoderPresets = new string[,] {
                             {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
                             {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
                             {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
@@ -307,139 +289,201 @@ namespace FFmpegCatapult
                         break;
                     case "nvenc_h264":
                     case "nvenc_hevc":
-                        encoderPreset = "slow";
-                        encoderPresets = new string[,] {
+                        EncoderPreset = "slow";
+                        EncoderPresets = new string[,] {
                             {"Slow", "slow"}, {"Medium", "medium"}, {"Fast", "fast"},
                             {"High Quality", "hq"}, {"Low Latency", "ll"}, {"Low Latency HQ", "llhq"},
                             {"Low Latency HP", "llhp"}, {"Lossless", "lossless"}, {"Lossless HP", "losslesshp"}
                         };
                         break;
                     default:
-                        codecProfile = "";
-                        encoderPreset = "";
+                        EncoderPreset = null;
+                        EncoderPresets = null;
                         break;
                 }
             }
         }
 
-        public static string[,] Encoders
+        public string[] CMPFuncs
         {
-            get { return encoders; }
+            get { return cmpFuncs; }
         }
 
-        public static string EncoderPreset
-        {
-            get { return encoderPreset; }
-            set { encoderPreset = value; }
-        }
-
-        public static string[,] EncoderPresets
-        {
-            get { return encoderPresets; }
-        }
-
-        public static bool FrameParallel
-        {
-            get { return frameParallel; }
-            set { frameParallel = value; }
-        }
-
-        public static int GOPSize
-        {
-            get { return gopSize; }
-            set { gopSize = value; }
-        }
-
-        public static int LagInFrames
-        {
-            get { return lagInFrames; }
-            set { lagInFrames = value; }
-        }
-
-        public static double MaxBitrate
-        {
-            get { return maxBitrate; }
-            set { maxBitrate = value; }
-        }
-
-        public static string MEMethod
-        {
-            get { return meMethod; }
-            set { meMethod = value; }
-        }
-
-        public static string[,] MEMethods
+        public string[,] MEMethods
         {
             get { return meMethods; }
         }
 
-        public static double MinBitrate
+        public string[,] PixelFormats
         {
-            get { return minBitrate; }
-            set { minBitrate = value; }
+            get { return pixelFormats; }
         }
 
-        public static string PictureFormat
+        public Video()
         {
-            get { return pictureFormat; }
-            set { pictureFormat = value; }
+            Codec = "mpeg4";
+            Bitrate = 1000;
+            MaxBitrate = 1500;
+            BufferSize = 2048;
+            BFStrategy = 2;
+            BFrames = 2;
+            GOPSize = 300;
+            Trellis = 2;
         }
 
-        public static string[,] PictureFormats
+        public Video(string xmlPath, string presetName)
         {
-            get { return pictureFormats; }
-        }
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlPath);
+            string path = @"/presets/preset[@name='" + presetName + @"']";
+            XmlNodeList nodes = doc.SelectNodes(path);
 
-        public static int Qmax
-        {
-            get { return qmax; }
-            set { qmax = value; }
-        }
-
-        public static int Qmin
-        {
-            get { return qmin; }
-            set { qmin = value; }
-        }
-
-        public static int Speed
-        {
-            get { return speed; }
-            set { speed = value; }
-        }
-
-        public static int SubCMP
-        {
-            get { return subcmp; }
-            set { subcmp = value; }
-        }
-
-        public static int TileColumns
-        {
-            get { return tileColumns; }
-            set { tileColumns = value; }
-        }
-
-        public static int Trellis
-        {
-            get { return trellis; }
-            set { trellis = value; }
-        }
-
-        public static bool UseCRF
-        {
-            get
+            foreach (XmlNode node in nodes)
             {
-                if (Session.TwoPassEncoding)
+                if (node != null)
                 {
-                    return false;
-                }
-                else
-                {
-                    return useCRF;
+                    if (node["autoaltref"] != null)
+                    {
+                        AutoAltRef = Convert.ToBoolean(node["autoaltref"].InnerText);
+                    }
+
+                    if (node["frameparallel"] != null)
+                    {
+                        FrameParallel = Convert.ToBoolean(node["frameparallel"].InnerText);
+                    }
+
+                    if (node["nonfree"] != null)
+                    {
+                        PreferNonfreeEncoder = Convert.ToBoolean(node["nonfree"].InnerText);
+                    }
+
+                    if (node["twopass"] != null)
+                    {
+                        TwoPassEncoding = Convert.ToBoolean(node["twopass"].InnerText);
+                    }
+
+                    if (node["vcodec"] != null)
+                    {
+                        Codec = node["vcodec"].InnerText;
+                    }
+                    else
+                    {
+                        Codec = "none";
+                    }
+
+                    if (node["vencoder"] != null)
+                    {
+                        Encoder = node["vencoder"].InnerText;
+                    }
+
+                    if (node["vprofile"] != null)
+                    {
+                        Profile = node["vprofile"].InnerText;
+                    }
+
+                    if (node["level"] != null)
+                    {
+                        CodecLevel = Convert.ToDouble(node["level"].InnerText);
+                    }
+
+                    if (node["vpreset"] != null)
+                    {
+                        EncoderPreset = node["vpreset"].InnerText;
+                    }
+
+                    if (node["vb"] != null)
+                    {
+                        UseCRF = false;
+                        Bitrate = Convert.ToInt32(node["vb"].InnerText);
+                    }
+
+                    if (node["maxvb"] != null)
+                    {
+                        MaxBitrate = Convert.ToInt32(node["maxvb"].InnerText);
+                    }
+
+                    if (node["buffersize"] != null)
+                    {
+                        BufferSize = Convert.ToInt32(node["buffersize"].InnerText);
+                    }
+
+                    if (node["bframes"] != null)
+                    {
+                        BFrames = Convert.ToInt16(node["bframes"].InnerText);
+                    }
+
+                    if (node["bfstrategy"] != null)
+                    {
+                        BFStrategy = Convert.ToInt16(node["bfstrategy"].InnerText);
+                    }
+
+                    if (node["cmp"] != null)
+                    {
+                        CMP = Convert.ToInt16(node["cmp"].InnerText);
+                    }
+
+                    if (node["crf"] != null)
+                    {
+                        UseCRF = true;
+                        Quality = Convert.ToInt32(node["crf"].InnerText);
+                    }
+
+                    if (node["diasize"] != null)
+                    {
+                        DiaSize = Convert.ToInt16(node["diasize"].InnerText);
+                    }
+
+                    if (node["gopsize"] != null)
+                    {
+                        GOPSize = Convert.ToInt16(node["gopsize"].InnerText);
+                    }
+
+                    if (node["laginframes"] != null)
+                    {
+                        LagInFrames = Convert.ToInt16(node["laginframes"].InnerText);
+                    }
+
+                    if (node["memethod"] != null)
+                    {
+                        MEMethod = node["memethod"].InnerText;
+                    }
+
+                    if (node["pixformat"] !=null)
+                    {
+                        PixelFormat = node["pixformat"].InnerText;
+                    }
+
+                    if (node["qmin"] != null)
+                    {
+                        QMin = Convert.ToInt16(node["qmin"].InnerText);
+                    }
+
+                    if (node["qmax"] != null)
+                    {
+                        QMax = Convert.ToInt16(node["qmax"].InnerText);
+                    }
+
+                    if (node["subcmp"] != null)
+                    {
+                        SubCMP = Convert.ToInt16(node["subcmp"].InnerText);
+                    }
+
+                    if (node["tilecolumns"] != null)
+                    {
+                        TileColumns = Convert.ToInt16(node["tilecolumns"].InnerText);
+                    }
+
+                    if (node["tilerows"] != null)
+                    {
+                        TileRows = Convert.ToInt16(node["tilerows"].InnerText);
+                    }
+
+                    if (node["trellis"] != null)
+                    {
+                        Trellis = Convert.ToInt16(node["trellis"].InnerText);
+                    }
                 }
             }
-            set { useCRF = value; }
         }
     }
 }

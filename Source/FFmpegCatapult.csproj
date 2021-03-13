@@ -67,29 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FFmpegBin\AudioArgs.cs" />
-    <Compile Include="FFmpegBin\FFmpegBin.cs" />
-    <Compile Include="FFmpegBin\PictureArgs.cs" />
-    <Compile Include="FFmpegBin\TaggingArgs.cs" />
-    <Compile Include="FFmpegBin\VideoArgs.cs" />
+    <Compile Include="Core\AudioArgs.cs" />
+    <Compile Include="Core\FFmpegBin.cs" />
+    <Compile Include="Core\PictureArgs.cs" />
+    <Compile Include="Core\TaggingArgs.cs" />
+    <Compile Include="Core\VideoArgs.cs" />
     <Compile Include="Models\Audio.cs" />
-    <Compile Include="Forms\AudioSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AudioSettingsForm.Designer.cs">
-      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Bin.cs" />
     <Compile Include="Models\FileFormat.cs" />
     <Compile Include="Models\FilePaths.cs" />
-    <Compile Include="Models\IAudio.cs" />
-    <Compile Include="Models\ICodec.cs" />
-    <Compile Include="Models\IFileFormat.cs" />
-    <Compile Include="Models\IFilePaths.cs" />
-    <Compile Include="Models\IPicture.cs" />
-    <Compile Include="Models\ISettings.cs" />
-    <Compile Include="Models\ITags.cs" />
-    <Compile Include="Models\IVideo.cs" />
+    <Compile Include="Models\IEncoder.cs" />
+    <Compile Include="Models\IOutput.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Tags.cs" />
@@ -100,23 +87,9 @@
     <Compile Include="Forms\MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\File.cs" />
-    <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Preset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Screen.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="Methods.cs" />
+    <Compile Include="Helpers\WinFormsHelper.cs" />
     <Compile Include="Models\Video.cs" />
-    <Compile Include="Forms\VideoSettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\VideoSettingsForm.Designer.cs">
-      <DependentUpon>VideoSettingsForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Forms\AudioSettingsForm.resx">
-      <DependentUpon>AudioSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -131,9 +104,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\VideoSettingsForm.resx">
-      <DependentUpon>VideoSettingsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

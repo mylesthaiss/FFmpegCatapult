@@ -14,62 +14,61 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using System;
+using System.IO;
 
 namespace FFmpegCatapult.Models
 {
+    interface IFilePaths
+    {
+        bool Overwrite { get; set; }
+        string Source { get; set; }
+        string Output { get; set; }
+        string Audio { get; set; }
+    }
+
     class FilePaths : IFilePaths
     {
         private bool overwrite;
-        private string source;
         private string output;
-        private string audio;
-        private string log;
+
+        public string Audio { get; set; }
+        public string Source { get; set; }
 
         public bool Overwrite
         {
-            get { return overwrite; }
-            set
+            get
             {
-                if (source != output)
+                if (Source != Output)
                 {
-                    overwrite = value;
+                    return overwrite;
                 }                    
                 else
                 {
-                    overwrite = false;
+                    return false;
                 }                    
             }
-        }
-
-        public string Source
-        {
-            get { return source; }
-            set { source = value; }
+            set { overwrite = value; }
         }
 
         public string Output
         {
             get { return output; }
-            set { output = value; }
-        }
-
-        public string Audio
-        {
-            get { return audio; }
-            set { audio = value; }
-        }
-
-        public string Log
-        {
-            get { return log; }
-            set { log = value; }
+            set
+            {
+                if (value == Source)
+                {
+                    output = string.Format("{0}_output{1}", Path.ChangeExtension(value, null), Path.GetExtension(value));
+                }        
+                else
+                {
+                    output = value;
+                }                    
+            }
         }
 
         public FilePaths()
         {
-            log = "FFmpegCatapult.txt";
-            overwrite = false;
+            Overwrite = false;
         }
     }
 }

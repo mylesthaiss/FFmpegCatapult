@@ -16,7 +16,7 @@
 
 using FFmpegCatapult.Models;
 
-namespace FFmpegCatapult.FFmpegBin
+namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
@@ -30,7 +30,7 @@ namespace FFmpegCatapult.FFmpegBin
 
                 if (audio.Codec != "copy")
                 {
-                    if (audio.Profile != null | audio.Profile != "default")
+                    if (audio.Profile != null)
                     {
                         audioArgs += string.Format("-profile:a {0} ", audio.Profile);
                     }
@@ -41,7 +41,7 @@ namespace FFmpegCatapult.FFmpegBin
                     }
                     else if (audio.UseVBR)
                     {
-                        audioArgs += string.Format("-q:a {0} ", audio.VBRMode);
+                        audioArgs += string.Format("-q:a {0} ", audio.Quality);
                     }
 
                     if (audio.Channels > 0)
@@ -57,10 +57,10 @@ namespace FFmpegCatapult.FFmpegBin
             }
             else
             {
-                audioArgs = "-an ";
+                audioArgs = "-an";
             }
 
-            return audioArgs;
+            return audioArgs.Trim();
         }
     }
 }
