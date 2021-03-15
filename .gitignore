@@ -5,6 +5,16 @@ x86/
 bin/
 obj/
 
+# Visual Studio user files
+*.suo
+*.user
+*.csproj.user
+*.sln.docstates
+
 # Files on parent repo
 .DS_Store
 Thumbs.db
+Desktop.ini
+
+# Recycle bin
+$RECYCLE.BIN/
