@@ -1,0 +1,10 @@
+# Visual Studio folders and build output
+.vs/
+x64/
+x86/
+bin/
+obj/
+
+# Files on parent repo
+.DS_Store
+Thumbs.db
