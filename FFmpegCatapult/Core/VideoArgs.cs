@@ -26,7 +26,7 @@ namespace FFmpegCatapult.Core
 
             if (video.Codec != "none")
             {
-                videoArgs = string.Format("-vcodec {0} ", video.Codec);
+                videoArgs = string.Format("-vcodec {0} ", video.Encoder);
 
                 if (video.Codec != "copy")
                 {

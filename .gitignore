@@ -1,9 +1,12 @@
-# Visual Studio folders and build output
+# Visual Studio and build output folders
 .vs/
-x64/
-x86/
-bin/
-obj/
+*/x64/
+*/x86/
+*/bin/
+*/obj/
+
+# Packages
+packages/
 
 # Visual Studio user files
 *.suo

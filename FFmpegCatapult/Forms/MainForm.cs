@@ -849,9 +849,9 @@ namespace FFmpegCatapult
             textBoxFFmpegBin.TextChanged += new EventHandler(TextBoxFFmpegBin_TextChanged);
             buttonBrowseFFmpegBin.Click += new EventHandler(ButtonBrowseFFmpegBin_Click);
 
-            textBoxBinArgs -= new EventHandler(TextBoxBinArgs_TextChanged);
+            textBoxBinArgs.TextChanged -= new EventHandler(TextBoxBinArgs_TextChanged);
             textBoxBinArgs.Text = settings.FFmpegArguments;
-            textBoxBinArgs += new EventHandler(TextBoxBinArgs_TextChanged);
+            textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
 
             if (settings.TerminalPath != null)
             {
@@ -1099,7 +1099,6 @@ namespace FFmpegCatapult
         void ComboBoxPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             WinFormsHelper.ListComboContent preset = (WinFormsHelper.ListComboContent)comboBoxPresets.SelectedItem;
-            settings.Preset = preset.Name;
             InitPreset(preset.Name, preset.Value);
             InitTabs();
             InitMain();
