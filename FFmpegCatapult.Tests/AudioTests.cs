@@ -50,5 +50,99 @@ namespace FFmpegCatapult.Tests
 
             Assert.AreEqual("-acodec copy", arguments);
         }
+
+        [TestMethod]
+        public void Default_MP3_Audio_Stream_Argument_String_Is_Valid()
+        {
+            audio.Codec = "mp3";
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libmp3lame -ab 128k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Quality_MP3_Audio_Stream_Argument_String_Is_Valid()
+        {
+            audio.Codec = "mp3";
+            audio.UseVBR = true;
+            audio.Quality = 1;
+            audio.Channels = 2;
+            audio.SampleRate = 44100;
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libmp3lame -q:a 1 -ac 2 -ar 44100", arguments);
+        }
+
+        [TestMethod]
+        public void Default_AAC_Audio_Stream_Argument_String_Is_Valid()
+        {
+            audio.Codec = "aac"
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec aac -ab 128k", arguments);
+        }
+
+        [TestMethod]
+        public void Multi_Channel_AAC_Audio_Stream_Argument_String_Is_Valid()
+        {
+            audio.Codec = "aac";
+            audio.Bitrate = 320;
+            audio.Channels = 5;
+            audio.SampleRate = 48000;
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec aac -ab 320k -ac 5 -ar 48000", arguments);
+        }
+
+        [TestMethod]
+        public void Nonfree_AAC_Audio_Stream_Argument_String_Is_Valid()
+        {
+            audio.PreferNonfreeEncoder = true;
+            audio.Codec = "aac";
+            audio.UseVBR = true;
+            audio.Quality = 3;
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libfdk_aac -q:a 3", arguments);
+        }
+
+        [TestMethod]
+        public void Default_Vorbis_Audio_Stream_Argument_Is_Valid()
+        {
+            audio.Codec = "vorbis";
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libvorbis -ab 128k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Quality_Vorbis_Audio_Stream_Argument_Is_Valid()
+        {
+            audio.Codec = "vorbis";
+            audio.Bitrate = 224;
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libvorbis -ab 224k", arguments);
+        }
+
+        [TestMethod]
+        public void Default_Opus_Audio_Stream_Argument_Is_Valid()
+        {
+            audio.Codec = "opus";
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+
+            Assert.AreEqual("-acodec libopus -ab 96kb", arguments);
+        }
+
+        [TestMethod]
+        public void High_Quality_Opus_Audio_Stream_Argument_Is_Valid()
+        {
+            audio.Codec = "opus";
+            audio.Bitrate = 192;
+            audio.SampleRate = 48000;
+            string arguments = ffmpegBin.GetAudioArgs(audio);
+            
+            Assert.AreEqual("-acodec libopus -ab 192 -ar 48000");
+        }
     }
 }

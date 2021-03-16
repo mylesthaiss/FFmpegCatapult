@@ -79,5 +79,92 @@ namespace FFmpegCatapult.Tests
 
             Assert.AreEqual("-vcodec libx264 -profile:v high -preset medium -level 4.0 -crf 22", arguments);
         }
+
+        [TestMethod]
+        public void Standard_Definition_MPEG4_Argument_String_Is_Valid()
+        {
+            video.Codec = "mpeg4";
+            string arguments = ffmpegBin.GetVideoArgs(video);
+
+            Assert.AreEqual("-vcodec libxvid -b:v 15000k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Definition_MPEG4_Argument_String_Is_Valid()
+        {
+            video.Codec = "mpeg4";
+            video.Bitrate = 8000;
+            string arguments = ffmpegBin.GetVideoArgs(video);
+
+            Assert.AreEqual("-vcodec libxvid -b:v 8000k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Definintion_H265_Argument_String_Is_Valid()
+        {
+            video.Codec = "h265";
+            string arguments = ffmpegBin.GetVideoArgs(video);
+
+            Assert.AreEqual("-vcodec libx265 -crf 22");
+        }
+
+        [TestMethod]
+        public void Low_Bitrate_H265_Argument_String_Is_Valid()
+        {
+            video.Codec = "h265";
+            video.UseCRF = false;
+            video.Bitrate = 500;
+            string arguments = ffmpegBin.GetVideoArgs(video);
+
+            Assert.AreEqual("-vcodec libx265 -b:v 500k");
+        }
+
+        [TestMethod]
+        public void Standard_Definintion_VP9_Argument_String_Is_Valid()
+        {
+            video.Codec = "vp9";
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-vcodec libvpx-vp9 -b:v 1000k -tilecolumns 6 -speed 1", arguments);
+        }
+
+        [TestMethod]
+        public void Standard_Definintion_AV1_Argument_String_Is_Valid()
+        {
+            video.Codec = "av1";
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-vcodec libaom-av1 -b:v 768k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Definintion_AV1_Argument_String_Is_Valid()
+        {
+            video.Codec = "av1";
+            video.UseCRF = true;
+            video.Quality = 30;
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-vcodec libaom-av1 -crf 30", arguments);
+        }
+
+        [TestMethod]
+        public void Standard_Definintion_MPEG2_Argument_String_Is_Valid()
+        {
+            video.Codec = "mpeg2";
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-vcodec mpeg2 -b:v 4500k", arguments);
+        }
+
+        [TestMethod]
+        public void High_Definintion_MPEG2_Argument_String_Is_Valid()
+        {
+            video.Codec = "mpeg2";
+            video.Bitrate = 120000;
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-vcodec mpeg2 -b:v 120000k");
+        }
     }
 }
