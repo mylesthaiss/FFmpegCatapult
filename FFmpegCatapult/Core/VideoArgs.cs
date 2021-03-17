@@ -48,14 +48,7 @@ namespace FFmpegCatapult.Core
                     // Video bitrates and quality settings
                     if (video.UseCRF == true)
                     {
-                        if (video.Encoder == "libx265")
-                        {
-                            videoArgs += string.Format("-x265-params crf={0} ", video.Quality);
-                        }
-                        else
-                        {
-                            videoArgs += string.Format("-crf {0} ", video.Quality);
-                        }
+                        videoArgs += string.Format("-crf {0} ", video.Quality);
                     }
                     else
                     {

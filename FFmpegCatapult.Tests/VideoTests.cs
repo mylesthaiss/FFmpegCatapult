@@ -84,7 +84,7 @@ namespace FFmpegCatapult.Tests
         public void Standard_Definition_MPEG4_Argument_String_Is_Valid()
         {
             video.Codec = "mpeg4";
-            string arguments = ffmpegBin.GetVideoArgs(video);
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
             Assert.AreEqual("-vcodec libxvid -b:v 15000k", arguments);
         }
@@ -94,7 +94,7 @@ namespace FFmpegCatapult.Tests
         {
             video.Codec = "mpeg4";
             video.Bitrate = 8000;
-            string arguments = ffmpegBin.GetVideoArgs(video);
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
             Assert.AreEqual("-vcodec libxvid -b:v 8000k", arguments);
         }
@@ -103,9 +103,10 @@ namespace FFmpegCatapult.Tests
         public void High_Definintion_H265_Argument_String_Is_Valid()
         {
             video.Codec = "h265";
-            string arguments = ffmpegBin.GetVideoArgs(video);
+            video.Quality = 22;
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx265 -crf 22");
+            Assert.AreEqual("-vcodec libx265 -preset medium -crf 22", arguments);
         }
 
         [TestMethod]
@@ -114,9 +115,9 @@ namespace FFmpegCatapult.Tests
             video.Codec = "h265";
             video.UseCRF = false;
             video.Bitrate = 500;
-            string arguments = ffmpegBin.GetVideoArgs(video);
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx265 -b:v 500k");
+            Assert.AreEqual("-vcodec libx265 -preset medium -b:v 500k", arguments);
         }
 
         [TestMethod]
@@ -154,7 +155,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "mpeg2";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec mpeg2 -b:v 4500k", arguments);
+            Assert.AreEqual("-vcodec mpeg2video -b:v 4000k", arguments);
         }
 
         [TestMethod]
@@ -164,7 +165,7 @@ namespace FFmpegCatapult.Tests
             video.Bitrate = 120000;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec mpeg2 -b:v 120000k");
+            Assert.AreEqual("-vcodec mpeg2video -b:v 120000k", arguments);
         }
     }
 }

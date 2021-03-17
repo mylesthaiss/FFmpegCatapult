@@ -76,7 +76,7 @@ namespace FFmpegCatapult.Tests
         [TestMethod]
         public void Default_AAC_Audio_Stream_Argument_String_Is_Valid()
         {
-            audio.Codec = "aac"
+            audio.Codec = "aac";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
             Assert.AreEqual("-acodec aac -ab 128k", arguments);
@@ -131,7 +131,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "opus";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libopus -ab 96kb", arguments);
+            Assert.AreEqual("-acodec libopus -ab 96k", arguments);
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 48000;
             string arguments = ffmpegBin.GetAudioArgs(audio);
             
-            Assert.AreEqual("-acodec libopus -ab 192 -ar 48000");
+            Assert.AreEqual("-acodec libopus -ab 192k -ar 48000", arguments);
         }
     }
 }
