@@ -50,7 +50,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "copy";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec copy", arguments);
+            Assert.AreEqual("-c:v copy", arguments);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace FFmpegCatapult.Tests
             video.EncoderPreset = "medium";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx264 -profile:v main -preset medium -level 3.0 -b:v 1000k", arguments);
+            Assert.AreEqual("-c:v libx264 -profile:v main -level 3.0 -preset medium -b:v 1000k", arguments);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace FFmpegCatapult.Tests
             video.UseCRF = true;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx264 -profile:v high -preset medium -level 4.0 -crf 22", arguments);
+            Assert.AreEqual("-c:v libx264 -profile:v high -level 4.0 -preset medium -crf 22", arguments);
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "mpeg4";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libxvid -b:v 15000k", arguments);
+            Assert.AreEqual("-c:v libxvid -b:v 15000k", arguments);
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@ namespace FFmpegCatapult.Tests
             video.Bitrate = 8000;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libxvid -b:v 8000k", arguments);
+            Assert.AreEqual("-c:v libxvid -b:v 8000k", arguments);
         }
 
         [TestMethod]
@@ -106,7 +106,7 @@ namespace FFmpegCatapult.Tests
             video.Quality = 22;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx265 -preset medium -crf 22", arguments);
+            Assert.AreEqual("-c:v libx265 -preset medium -crf 22", arguments);
         }
 
         [TestMethod]
@@ -117,7 +117,7 @@ namespace FFmpegCatapult.Tests
             video.Bitrate = 500;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libx265 -preset medium -b:v 500k", arguments);
+            Assert.AreEqual("-c:v libx265 -preset medium -b:v 500k", arguments);
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "vp9";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libvpx-vp9 -b:v 1000k -tilecolumns 6 -speed 1", arguments);
+            Assert.AreEqual("-c:v libvpx-vp9 -b:v 1000k -tilecolumns 6 -speed 1", arguments);
         }
 
         [TestMethod]
@@ -135,7 +135,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "av1";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libaom-av1 -b:v 768k", arguments);
+            Assert.AreEqual("-c:v libaom-av1 -b:v 768k", arguments);
         }
 
         [TestMethod]
@@ -146,7 +146,7 @@ namespace FFmpegCatapult.Tests
             video.Quality = 30;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec libaom-av1 -crf 30", arguments);
+            Assert.AreEqual("-c:v libaom-av1 -crf 30", arguments);
         }
 
         [TestMethod]
@@ -155,7 +155,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "mpeg2";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec mpeg2video -b:v 4000k", arguments);
+            Assert.AreEqual("-c:v mpeg2video -b:v 4000k", arguments);
         }
 
         [TestMethod]
@@ -165,7 +165,7 @@ namespace FFmpegCatapult.Tests
             video.Bitrate = 120000;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-vcodec mpeg2video -b:v 120000k", arguments);
+            Assert.AreEqual("-c:v mpeg2video -b:v 120000k", arguments);
         }
     }
 }

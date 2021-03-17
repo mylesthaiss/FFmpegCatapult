@@ -26,7 +26,7 @@ namespace FFmpegCatapult.Core
 
             if (audio.Codec != "none")
             {
-                audioArgs = string.Format("-acodec {0} ", audio.Encoder);
+                audioArgs = string.Format("-c:a {0} ", audio.Encoder);
 
                 if (audio.Codec != "copy")
                 {
@@ -37,11 +37,18 @@ namespace FFmpegCatapult.Core
 
                     if (audio.Bitrate > 0 && !audio.UseVBR)
                     {
-                        audioArgs += string.Format("-ab {0}k ", audio.Bitrate);
+                        audioArgs += string.Format("-b:a {0}k ", audio.Bitrate);
                     }
                     else if (audio.UseVBR)
                     {
-                        audioArgs += string.Format("-q:a {0} ", audio.Quality);
+                        if (audio.Encoder == "libfdk_aac")
+                        {
+                            audioArgs += string.Format("-vbr {0}", audio.Quality);
+                        }
+                        else
+                        {
+                            audioArgs += string.Format("-q:a {0} ", audio.Quality);
+                        }
                     }
 
                     if (audio.Channels > 0)

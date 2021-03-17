@@ -26,7 +26,7 @@ namespace FFmpegCatapult.Core
 
             if (video.Codec != "none")
             {
-                videoArgs = string.Format("-vcodec {0} ", video.Encoder);
+                videoArgs = string.Format("-c:v {0} ", video.Encoder);
 
                 if (video.Codec != "copy")
                 {
@@ -35,14 +35,14 @@ namespace FFmpegCatapult.Core
                         videoArgs += string.Format("-profile:v {0} ", video.Profile);
                     }
 
+                    if (video.CodecLevel > 0 && video.Encoder == "libx264")
+                    {
+                        videoArgs += string.Format("-level {0:0.0} ", video.CodecLevel);
+                    }
+
                     if (!string.IsNullOrEmpty(video.EncoderPreset))
                     {
                         videoArgs += string.Format("-preset {0} ", video.EncoderPreset);
-                    }
-
-                    if (video.CodecLevel > 0 && video.Encoder == "libx264")
-                    {
-                        videoArgs += string.Format("-level {0} ", video.CodecLevel);
                     }
 
                     // Video bitrates and quality settings

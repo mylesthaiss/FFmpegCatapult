@@ -48,7 +48,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "copy";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec copy", arguments);
+            Assert.AreEqual("-c:a copy", arguments);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "mp3";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libmp3lame -ab 128k", arguments);
+            Assert.AreEqual("-c:a libmp3lame -b:a 128k", arguments);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 44100;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libmp3lame -q:a 1 -ac 2 -ar 44100", arguments);
+            Assert.AreEqual("-c:a libmp3lame -q:a 1 -ac 2 -ar 44100", arguments);
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "aac";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec aac -ab 128k", arguments);
+            Assert.AreEqual("-c:a aac -b:a 128k", arguments);
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 48000;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec aac -ab 320k -ac 5 -ar 48000", arguments);
+            Assert.AreEqual("-c:a aac -b:a 320k -ac 5 -ar 48000", arguments);
         }
 
         [TestMethod]
@@ -103,7 +103,7 @@ namespace FFmpegCatapult.Tests
             audio.Quality = 3;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libfdk_aac -q:a 3", arguments);
+            Assert.AreEqual("-c:a libfdk_aac -vbr 3", arguments);
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "vorbis";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libvorbis -ab 128k", arguments);
+            Assert.AreEqual("-c:a libvorbis -b:a 128k", arguments);
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace FFmpegCatapult.Tests
             audio.Bitrate = 224;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libvorbis -ab 224k", arguments);
+            Assert.AreEqual("-c:a libvorbis -b:a 224k", arguments);
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace FFmpegCatapult.Tests
             audio.Codec = "opus";
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-acodec libopus -ab 96k", arguments);
+            Assert.AreEqual("-c:a libopus -b:a 96k", arguments);
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 48000;
             string arguments = ffmpegBin.GetAudioArgs(audio);
             
-            Assert.AreEqual("-acodec libopus -ab 192k -ar 48000", arguments);
+            Assert.AreEqual("-c:a libopus -b:a 192k -ar 48000", arguments);
         }
     }
 }
