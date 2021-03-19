@@ -39,13 +39,9 @@ namespace FFmpegCatapult.Models
             get
             {
                 if (Source != Output)
-                {
-                    return overwrite;
-                }                    
+                    return overwrite;                 
                 else
-                {
-                    return false;
-                }                    
+                    return false;              
             }
             set { overwrite = value; }
         }
@@ -56,13 +52,9 @@ namespace FFmpegCatapult.Models
             set
             {
                 if (value == Source)
-                {
-                    output = string.Format("{0}_output{1}", Path.ChangeExtension(value, null), Path.GetExtension(value));
-                }        
+                    output = string.Format("{0}_output{1}", Path.ChangeExtension(value, null), Path.GetExtension(value));    
                 else
-                {
-                    output = value;
-                }                    
+                    output = value;                 
             }
         }
 

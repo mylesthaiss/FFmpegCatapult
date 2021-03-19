@@ -196,14 +196,10 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["format"] != null)
-                    {
                         Format = node["format"].InnerText;
-                    }
 
                     if (node["faststart"] != null)
-                    {
-                        FastStartTagging = Convert.ToBoolean(node["faststart"].InnerText);
-                    }                        
+                        FastStartTagging = Convert.ToBoolean(node["faststart"].InnerText);                     
                 }
             }
         }
@@ -216,9 +212,7 @@ namespace FFmpegCatapult.Models
             {
                 // Vorbis in a AVI container is possible, but not recommended.
                 if (format == "avi" && stream.Codec == "vorbis")
-                {
                     return false;
-                }
 
                 codecs = SupportedAudioCodecs;
             }
@@ -230,9 +224,7 @@ namespace FFmpegCatapult.Models
             foreach (var codec in codecs)
             {
                 if (codec.Contains(stream.Codec))
-                {
                     return true;
-                }
             }
 
             return false;

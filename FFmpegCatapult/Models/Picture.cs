@@ -80,79 +80,49 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["aspect"] != null)
-                    {
                         AspectRatio = Convert.ToBoolean(node["aspect"].InnerText);
-                    }
                    
                     if (node["pad"] != null)
-                    {
                         Pad = Convert.ToBoolean(node["pad"].InnerText);
-                    }
                         
                     if (node["crop"] != null)
-                    {
-                        Crop = Convert.ToBoolean(node["crop"].InnerText);
-                    }                        
+                        Crop = Convert.ToBoolean(node["crop"].InnerText);                  
 
                     if (node["deinterlace"] != null)
-                    {
-                        Deinterlace = Convert.ToBoolean(node["deinterlace"].InnerText);
-                    }                        
+                        Deinterlace = Convert.ToBoolean(node["deinterlace"].InnerText);                
 
                     if (node["scale"] != null)
-                    {
-                        ScaleOption = Convert.ToInt16(node["scale"].InnerText);
-                    }                        
+                        ScaleOption = Convert.ToInt16(node["scale"].InnerText); 
 
                     if (node["width"] != null)
-                    {
-                        Width = Convert.ToInt16(node["width"].InnerText);
-                    }                        
+                        Width = Convert.ToInt16(node["width"].InnerText);                     
 
                     if (node["height"] != null)
-                    {
                         Height = Convert.ToInt16(node["height"].InnerText);
-                    }
 
                     if (node["winwidth"] != null)
-                    {
                         WinWidth = Convert.ToInt16(node["winwidth"].InnerText);
-                    }
                     
                     if (node["winheight"] != null)
-                    {
                         WinHeight = Convert.ToInt16(node["winheight"].InnerText);
-                    }
 
                     if (node["x"] != null)
-                    {
                         X = Convert.ToInt16(node["x"].InnerText);
-                    }
 
                     if (node["y"] != null)
-                    {
                         Y = Convert.ToInt16(node["y"].InnerText);
-                    }
 
                     if (node["fps"] != null)
-                    {
-                        FPS = Convert.ToInt16(node["fps"].InnerText);
-                    }                        
+                        FPS = Convert.ToInt16(node["fps"].InnerText);                   
 
                     if (node["ratio"] != null)
-                    {
-                        Ratio = node["ratio"].InnerText;
-                    }                        
+                        Ratio = node["ratio"].InnerText;                      
 
                     if (node["scalemethod"] != null)
-                    {
                         ScalingMethod = node["scalemethod"].InnerText;
-                    }
                     
                     if (node["vfcolour"] != null)
-                    {
                         VideoFilterColour = node["vfcolour"].InnerText;
-                    }
                 }
             }
         }

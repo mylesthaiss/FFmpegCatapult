@@ -421,38 +421,24 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["nonfree"] != null)
-                    {
                         PreferNonfreeEncoder = Convert.ToBoolean(node["nonfree"].InnerText);
-                    }
 
                     if (node["acodec"] != null)
-                    {
                         Codec = node["acodec"].InnerText;
-                    }
                     else
-                    {
                         Codec = "none";
-                    }
 
                     if (node["aencoder"] != null)
-                    {
                         Encoder = node["aencoder"].InnerText;
-                    }
 
                     if (node["ab"] != null)
-                    {
                         Bitrate = Convert.ToInt32(node["ab"].InnerText);
-                    }
 
                     if (node["channels"] != null)
-                    {
                         Channels = Convert.ToInt32(node["channels"].InnerText);
-                    }
 
                     if (node["samplerate"] != null)
-                    {
                         SampleRate = Convert.ToInt32(node["samplerate"].InnerText);
-                    }
                 }
             }
         }

@@ -343,53 +343,33 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["autoaltref"] != null)
-                    {
                         AutoAltRef = Convert.ToBoolean(node["autoaltref"].InnerText);
-                    }
 
                     if (node["frameparallel"] != null)
-                    {
                         FrameParallel = Convert.ToBoolean(node["frameparallel"].InnerText);
-                    }
 
                     if (node["nonfree"] != null)
-                    {
                         PreferNonfreeEncoder = Convert.ToBoolean(node["nonfree"].InnerText);
-                    }
 
                     if (node["twopass"] != null)
-                    {
                         TwoPassEncoding = Convert.ToBoolean(node["twopass"].InnerText);
-                    }
 
                     if (node["vcodec"] != null)
-                    {
                         Codec = node["vcodec"].InnerText;
-                    }
                     else
-                    {
                         Codec = "none";
-                    }
 
                     if (node["vencoder"] != null)
-                    {
                         Encoder = node["vencoder"].InnerText;
-                    }
 
                     if (node["vprofile"] != null)
-                    {
                         Profile = node["vprofile"].InnerText;
-                    }
 
                     if (node["level"] != null)
-                    {
                         CodecLevel = Convert.ToDouble(node["level"].InnerText);
-                    }
 
                     if (node["vpreset"] != null)
-                    {
                         EncoderPreset = node["vpreset"].InnerText;
-                    }
 
                     if (node["vb"] != null)
                     {
@@ -398,29 +378,19 @@ namespace FFmpegCatapult.Models
                     }
 
                     if (node["maxvb"] != null)
-                    {
                         MaxBitrate = Convert.ToInt32(node["maxvb"].InnerText);
-                    }
 
                     if (node["buffersize"] != null)
-                    {
                         BufferSize = Convert.ToInt32(node["buffersize"].InnerText);
-                    }
 
                     if (node["bframes"] != null)
-                    {
                         BFrames = Convert.ToInt16(node["bframes"].InnerText);
-                    }
 
                     if (node["bfstrategy"] != null)
-                    {
                         BFStrategy = Convert.ToInt16(node["bfstrategy"].InnerText);
-                    }
 
                     if (node["cmp"] != null)
-                    {
                         CMP = Convert.ToInt16(node["cmp"].InnerText);
-                    }
 
                     if (node["crf"] != null)
                     {
@@ -429,59 +399,37 @@ namespace FFmpegCatapult.Models
                     }
 
                     if (node["diasize"] != null)
-                    {
                         DiaSize = Convert.ToInt16(node["diasize"].InnerText);
-                    }
 
                     if (node["gopsize"] != null)
-                    {
                         GOPSize = Convert.ToInt16(node["gopsize"].InnerText);
-                    }
 
                     if (node["laginframes"] != null)
-                    {
                         LagInFrames = Convert.ToInt16(node["laginframes"].InnerText);
-                    }
 
                     if (node["memethod"] != null)
-                    {
                         MEMethod = node["memethod"].InnerText;
-                    }
 
                     if (node["pixformat"] !=null)
-                    {
                         PixelFormat = node["pixformat"].InnerText;
-                    }
 
                     if (node["qmin"] != null)
-                    {
                         QMin = Convert.ToInt16(node["qmin"].InnerText);
-                    }
 
                     if (node["qmax"] != null)
-                    {
                         QMax = Convert.ToInt16(node["qmax"].InnerText);
-                    }
 
                     if (node["subcmp"] != null)
-                    {
                         SubCMP = Convert.ToInt16(node["subcmp"].InnerText);
-                    }
 
                     if (node["tilecolumns"] != null)
-                    {
                         TileColumns = Convert.ToInt16(node["tilecolumns"].InnerText);
-                    }
 
                     if (node["tilerows"] != null)
-                    {
                         TileRows = Convert.ToInt16(node["tilerows"].InnerText);
-                    }
 
                     if (node["trellis"] != null)
-                    {
                         Trellis = Convert.ToInt16(node["trellis"].InnerText);
-                    }
                 }
             }
         }
