@@ -25,19 +25,13 @@ namespace FFmpegCatapult.Core
             string pictureArgs = null;
 
             if (video.Encoder == "copy" | video.Codec == "none")
-            {
                 return pictureArgs;
-            }
 
             if (picture.Deinterlace == true)
-            {
                 pictureArgs += "yadif=0:-1:0 ";
-            }
 
             if (picture.AspectRatio == true)
-            {
                 pictureArgs += string.Format("setdar={0} ", picture.Ratio);
-            }
 
             if (picture.ScaleOption == 1)
             {
@@ -60,34 +54,24 @@ namespace FFmpegCatapult.Core
             }
 
             if (picture.Pad == true && picture.Crop == false)
-            {
                 pictureArgs += string.Format("pad={0}:{1}:{2}:{3}:{4} ", picture.WinWidth, picture.WinHeight, picture.X, picture.Y, picture.VideoFilterColour);
-            }
 
             if (picture.Crop == true && picture.Pad == false)
-            {
                 pictureArgs += string.Format("crop={0}:{1}:{2}:{3} ", picture.WinWidth, picture.WinHeight, picture.X, picture.Y);
-            }
 
             if (pictureArgs.Length > 0)
             {
                 pictureArgs = string.Format("-vf {0} ", pictureArgs.Trim());
 
                 if (picture.ScaleOption > 0)
-                {
                     pictureArgs += string.Format("-sws_flags {0} ", picture.ScalingMethod);
-                }
             }
 
             if (!string.IsNullOrEmpty(video.PixelFormat))
-            {
                 pictureArgs += string.Format("-pix_fmt {0} ", video.PixelFormat);
-            }
 
             if (picture.FPS != 0)
-            {
                 pictureArgs += string.Format("-r {0} ", picture.FPS);
-            }
 
             return string.IsNullOrEmpty(pictureArgs) ? null : pictureArgs.Trim();
         }

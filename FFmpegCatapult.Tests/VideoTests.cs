@@ -86,7 +86,7 @@ namespace FFmpegCatapult.Tests
             video.Codec = "mpeg4";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-c:v libxvid -b:v 15000k", arguments);
+            Assert.AreEqual("-c:v libxvid -b:v 1500k", arguments);
         }
 
         [TestMethod]
@@ -126,12 +126,14 @@ namespace FFmpegCatapult.Tests
             video.Codec = "vp9";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-c:v libvpx-vp9 -b:v 1000k -tilecolumns 6 -speed 1", arguments);
+            Assert.AreEqual("-c:v libvpx-vp9 -b:v 1000k -tile-columns 6 -speed 1", arguments);
         }
 
         [TestMethod]
         public void Standard_Definintion_AV1_Argument_String_Is_Valid()
         {
+            settings.Processors = 1;
+            settings.Threads = 0;
             video.Codec = "av1";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
@@ -139,14 +141,31 @@ namespace FFmpegCatapult.Tests
         }
 
         [TestMethod]
-        public void High_Definintion_AV1_Argument_String_Is_Valid()
+        public void Default_High_Definintion_AV1_Argument_String_Is_Valid()
         {
+            settings.Processors = 1;
+            settings.Threads = 0;
             video.Codec = "av1";
             video.UseCRF = true;
             video.Quality = 30;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
             Assert.AreEqual("-c:v libaom-av1 -crf 30", arguments);
+        }
+
+        [TestMethod]
+        public void Multi_Threaded_High_Definintion_AV1_Argument_String_Is_Valid()
+        {
+            settings.Processors = 8;
+            settings.Threads = 16;
+            video.Codec = "av1";
+            video.UseCRF = true;
+            video.Quality = 30;
+            video.TileColumns = 1;
+            video.TileRows = 1;
+            string arguments = ffmpegBin.GetVideoArgs(video, settings);
+
+            Assert.AreEqual("-c:v libaom-av1 -crf 30 -tile-columns 1 -tile-rows 1 -row-mt 1 -cpu-used 8", arguments);
         }
 
         [TestMethod]

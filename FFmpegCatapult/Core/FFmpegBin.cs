@@ -100,13 +100,9 @@ namespace FFmpegCatapult.Core
                 StreamWriter logFile;
 
                 if (!System.IO.File.Exists(logPath))
-                {
                     logFile = new StreamWriter(logPath);
-                }
                 else
-                {
                     logFile = System.IO.File.AppendText(logPath);
-                }
 
                 logFile.WriteLine("Date:        {0}", DateTime.Now);
                 logFile.WriteLine("Input file:  {0}", paths.Source);
