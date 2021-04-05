@@ -38,10 +38,10 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                if (Source != Output)
-                    return overwrite;                 
+                if (Source == Output)
+                    return false;                 
                 else
-                    return false;              
+                    return overwrite;              
             }
             set { overwrite = value; }
         }
