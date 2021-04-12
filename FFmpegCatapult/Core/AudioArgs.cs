@@ -23,6 +23,7 @@ namespace FFmpegCatapult.Core
         public string GetAudioArgs(IAudio audio)
         {
             string audioArgs;
+            string filterArgs;
 
             if (audio.Codec != "none")
             {
@@ -49,7 +50,28 @@ namespace FFmpegCatapult.Core
                         audioArgs += string.Format("-ac {0} ", audio.Channels);
 
                     if (audio.SampleRate > 0)
-                        audioArgs += string.Format("-ar {0} ", audio.SampleRate);     
+                        audioArgs += string.Format("-ar {0} ", audio.SampleRate);
+
+                    // Audio filter arguments
+                    if (audio.SampleRate > 0)
+                    {
+                        filterArgs = string.Format("aresample=resampler={0}", audio.Resampler);
+
+                        if (audio.Resampler == "soxr")
+                        {
+                            if (audio.ResamplerPrecision > 0)
+                                filterArgs += string.Format(":precision={0}", audio.ResamplerPrecision);
+
+                            if (audio.DitherMethod != null)
+                                filterArgs += string.Format(":dither_method={0}", audio.DitherMethod);
+                        }
+
+                        if (audio.VolumeBoost != 0)
+                            filterArgs += string.Format(",volume={0}dB", audio.VolumeBoost);
+                    }
+
+                    if (!string.IsNullOrEmpty(filterArgs))
+                        audioArgs += string.Format("-af {0}", filterArgs);
                 }
             }
             else

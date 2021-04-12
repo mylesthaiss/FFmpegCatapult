@@ -28,6 +28,10 @@ namespace FFmpegCatapult.Models
         int[] SampleRates { get; }
         int Channels { get; set; }
         int MaxChannels { get; }
+        int ResamplerPrecision { get; set; }
+        int VolumeBoost { get; set; }
+        string DitherMethod { get; set; }
+        string Resampler { get; set; }
     }
 
     class Audio : IAudio
@@ -35,6 +39,15 @@ namespace FFmpegCatapult.Models
         private int[] bitrates;
         private string codec;       
         private string encoder;
+        private string[,] ditherMethods = new string[,] {
+            {"Rectangular", "rectangular"}, {"Triangular", "triangular"}, {"High-pass Triangular", "triangular_hp"},
+            {"Lipshitz", "lipshitz"}, {"Shibata", "shibata"}, {"Low Shibata", "low_shibta"},
+            {"High Shibata", "high_shibata"}, {"F-weighted", "f_weighted"}, {"Modified e-weighted", "modified_e_weighted"},
+            {"Improved e-weighted", "improved_e_weighted"}
+        };
+        private string[,] resamplers = new string[,] {
+            {"SW", "swr"}, {"SoX", "soxr"}
+        };
 
         public bool IsVBRSupported { get; private set; }
         public bool UseVBR { get; set; }
@@ -44,9 +57,12 @@ namespace FFmpegCatapult.Models
         public int MaxChannels { get; private set; }
         public int Quality { get; set; }
         public int SampleRate { get; set; }
+        public int VolumeBoost { get; set; } = 0;
         public int[] SampleRates { get; private set; }
         public int[] VBRModes { get; private set; }
+        public string DitherMethod { get; set; } = 0;
         public string Profile { get; set; }
+        public string Resampler { get; set; } = "soxr";
         public string[,] Encoders { get; private set; }
         public string[,] Profiles { get; private set; }
 
@@ -402,6 +418,16 @@ namespace FFmpegCatapult.Models
             }
         }
 
+        public string[,] DitherMethods
+        {
+            get { return ditherMethods; }
+        }
+
+        public string[,] Resamplers
+        {
+            get { return resamplers; }
+        }
+
         public Audio()
         {
             Codec = "mp3";
@@ -439,6 +465,9 @@ namespace FFmpegCatapult.Models
 
                     if (node["samplerate"] != null)
                         SampleRate = Convert.ToInt32(node["samplerate"].InnerText);
+
+                    if (node["volume"] != null)
+                        VolumeBoost = Convert.ToInt32(node["volume"].InnerText);
                 }
             }
         }
