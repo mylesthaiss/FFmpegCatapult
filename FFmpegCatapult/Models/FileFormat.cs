@@ -199,7 +199,7 @@ namespace FFmpegCatapult.Models
                         Format = node["format"].InnerText;
 
                     if (node["faststart"] != null)
-                        FastStartTagging = Convert.ToBoolean(node["faststart"].InnerText);                     
+                        FastStartTagging = Boolean.TryParse(node["faststart"], out bool fStart) ? fStart : false;                  
                 }
             }
         }

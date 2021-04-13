@@ -447,7 +447,7 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["nonfree"] != null)
-                        PreferNonfreeEncoder = Convert.ToBoolean(node["nonfree"].InnerText);
+                        PreferNonfreeEncoder = Boolean.TryParse(node["nonfree"].InnerText, out bool nonfree) ? nonfree : false;
 
                     if (node["acodec"] != null)
                         Codec = node["acodec"].InnerText;
@@ -458,16 +458,22 @@ namespace FFmpegCatapult.Models
                         Encoder = node["aencoder"].InnerText;
 
                     if (node["ab"] != null)
-                        Bitrate = Convert.ToInt32(node["ab"].InnerText);
+                        Bitrate = int.TryParse(node["ab"].InnerText, out int ab) ? ab : 0;
+
+                    if (node["vbr"] != null)
+                    {
+                        UseVBR = true;
+                        Quality = int.TryParse(node["vbr"].InnerText, out int vbr) ? vbr : 0;
+                    }
 
                     if (node["channels"] != null)
-                        Channels = Convert.ToInt32(node["channels"].InnerText);
+                        Channels = int.TryParse(node["channels"].InnerText, out int ch) ? ch : 0;
 
                     if (node["samplerate"] != null)
-                        SampleRate = Convert.ToInt32(node["samplerate"].InnerText);
+                        SampleRate = int.TryParse(node["samplerate"].InnerText, out int ar) ? ar : 0;
 
                     if (node["volume"] != null)
-                        VolumeBoost = Convert.ToInt32(node["volume"].InnerText);
+                        VolumeBoost = int.TryParse(node["volume"].InnerText, out int vol) ? vol : 0;
                 }
             }
         }

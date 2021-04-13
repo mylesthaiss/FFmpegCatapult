@@ -343,16 +343,16 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["autoaltref"] != null)
-                        AutoAltRef = Convert.ToBoolean(node["autoaltref"].InnerText);
+                        AutoAltRef = Boolean.TryParse(node["autoaltref"].InnerText, out bool autoAltRef) ? autoAltRef : false;
 
                     if (node["frameparallel"] != null)
-                        FrameParallel = Convert.ToBoolean(node["frameparallel"].InnerText);
+                        FrameParallel = Boolean.TryParse(node["frameparallel"].InnerText, out bool fParallel) ? fParallel : false;
 
                     if (node["nonfree"] != null)
-                        PreferNonfreeEncoder = Convert.ToBoolean(node["nonfree"].InnerText);
+                        PreferNonfreeEncoder = Boolean.TryParse(node["nonfree"].InnerText, out bool nonfree) ? nonfree : false;
 
                     if (node["twopass"] != null)
-                        TwoPassEncoding = Convert.ToBoolean(node["twopass"].InnerText);
+                        TwoPassEncoding = Boolean.TryParse(node["twopass"].InnerText, out bool twopass) ? twopass : false;
 
                     if (node["vcodec"] != null)
                         Codec = node["vcodec"].InnerText;
@@ -366,7 +366,7 @@ namespace FFmpegCatapult.Models
                         Profile = node["vprofile"].InnerText;
 
                     if (node["level"] != null)
-                        CodecLevel = Convert.ToDouble(node["level"].InnerText);
+                        CodecLevel = Double.TryParse(node["level"].InnerText, out double level) ? level : 0;
 
                     if (node["vpreset"] != null)
                         EncoderPreset = node["vpreset"].InnerText;
@@ -374,38 +374,38 @@ namespace FFmpegCatapult.Models
                     if (node["vb"] != null)
                     {
                         UseCRF = false;
-                        Bitrate = Convert.ToInt32(node["vb"].InnerText);
+                        Bitrate = int.TryParse(node["vb"].InnerText, out int vb) ? vb : 500;
                     }
 
                     if (node["maxvb"] != null)
-                        MaxBitrate = Convert.ToInt32(node["maxvb"].InnerText);
+                        MaxBitrate = int.TryParse(node["maxvb"].InnerText, out int maxVb) ? maxVb : 0;
 
                     if (node["buffersize"] != null)
-                        BufferSize = Convert.ToInt32(node["buffersize"].InnerText);
+                        BufferSize = int.TryParse(node["buffersize"].InnerText, out int bSize) ? bSize : 0;
 
                     if (node["bframes"] != null)
-                        BFrames = Convert.ToInt16(node["bframes"].InnerText);
+                        BFrames = int.TryParse(node["bframes"].InnerText, out int bFrames) ? bFrames : 0;
 
                     if (node["bfstrategy"] != null)
-                        BFStrategy = Convert.ToInt16(node["bfstrategy"].InnerText);
+                        BFStrategy = int.TryParse(node["bfstrategy"].InnerText, out int bfStrat) ? bfStrat : 0;
 
                     if (node["cmp"] != null)
-                        CMP = Convert.ToInt16(node["cmp"].InnerText);
+                        CMP = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
 
                     if (node["crf"] != null)
                     {
                         UseCRF = true;
-                        Quality = Convert.ToInt32(node["crf"].InnerText);
+                        Quality = int.TryParse(node["quality"].InnerText, out int crf) ? crf : 20;
                     }
 
                     if (node["diasize"] != null)
-                        DiaSize = Convert.ToInt16(node["diasize"].InnerText);
+                        DiaSize = int.TryParse(node["diasize"].InnerText, out int diaSize) ? diaSize : 0;
 
                     if (node["gopsize"] != null)
-                        GOPSize = Convert.ToInt16(node["gopsize"].InnerText);
+                        GOPSize = int.TryParse(node["gopsize"].InnerText, out int gopSize) ? gopSize : 0;
 
                     if (node["laginframes"] != null)
-                        LagInFrames = Convert.ToInt16(node["laginframes"].InnerText);
+                        LagInFrames = int.TryParse(node["laginframes"].InnerText, out int lagInFrames) ? lagInFrames : 0;
 
                     if (node["memethod"] != null)
                         MEMethod = node["memethod"].InnerText;
@@ -414,22 +414,22 @@ namespace FFmpegCatapult.Models
                         PixelFormat = node["pixformat"].InnerText;
 
                     if (node["qmin"] != null)
-                        QMin = Convert.ToInt16(node["qmin"].InnerText);
+                        QMin = int.TryParse(node["qmin"].InnerText, out int qMin) ? qMin : 0;
 
                     if (node["qmax"] != null)
-                        QMax = Convert.ToInt16(node["qmax"].InnerText);
+                        QMax = int.TryParse(node["qmax"].InnerText, out int qMax) ? qMax : 0;
 
                     if (node["subcmp"] != null)
-                        SubCMP = Convert.ToInt16(node["subcmp"].InnerText);
+                        SubCMP = int.TryParse(node["subcmp"].InnerText, out int subCmp) ? subCmp : 0;
 
                     if (node["tilecolumns"] != null)
-                        TileColumns = Convert.ToInt16(node["tilecolumns"].InnerText);
+                        TileColumns = int.TryParse(node["tilecolumns"].InnerText, out int tileCols) ? tileCols : 0;
 
                     if (node["tilerows"] != null)
-                        TileRows = Convert.ToInt16(node["tilerows"].InnerText);
+                        TileRows = int.TryParse(node["tilerows"].InnerText, out int tileRows) ? tileRows : 0;
 
                     if (node["trellis"] != null)
-                        Trellis = Convert.ToInt16(node["trellis"].InnerText);
+                        Trellis = int.TryParse(node["trellis"].InnerText, out int trellis) ? trellis : 0;
                 }
             }
         }

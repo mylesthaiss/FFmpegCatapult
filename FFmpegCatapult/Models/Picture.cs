@@ -80,40 +80,40 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["aspect"] != null)
-                        AspectRatio = Convert.ToBoolean(node["aspect"].InnerText);
+                        AspectRatio = Boolean.TryParse(node["aspect"].InnerText, out bool aspect) ? aspect : false;
                    
                     if (node["pad"] != null)
-                        Pad = Convert.ToBoolean(node["pad"].InnerText);
+                        Pad = Boolean.TryParse(node["pad"].InnerText, out bool pad) ? pad : false;
                         
                     if (node["crop"] != null)
-                        Crop = Convert.ToBoolean(node["crop"].InnerText);                  
+                        Crop = Boolean.TryParse(node["crop"].InnerText, out bool crop) ? crop : false;                 
 
                     if (node["deinterlace"] != null)
-                        Deinterlace = Convert.ToBoolean(node["deinterlace"].InnerText);                
+                        Deinterlace = Boolean.TryParse(node["deinterlace"].InnerText, out bool deinterlace) ? deinterlace : false;           
 
                     if (node["scale"] != null)
-                        ScaleOption = Convert.ToInt16(node["scale"].InnerText); 
+                        ScaleOption = int.TryParse(node["scale"].InnerText, out int scale) ? scale : 0;
 
                     if (node["width"] != null)
-                        Width = Convert.ToInt16(node["width"].InnerText);                     
+                        Width = int.TryParse(node["width"].InnerText, out int width) ? width : 0;                    
 
                     if (node["height"] != null)
-                        Height = Convert.ToInt16(node["height"].InnerText);
+                        Height = int.TryParse(node["height"].InnerText, out int height) ? height : 0;
 
                     if (node["winwidth"] != null)
-                        WinWidth = Convert.ToInt16(node["winwidth"].InnerText);
+                        WinWidth = int.TryParse(node["winwidth"].InnerText, out int wWidth) ? wWidth : 0;
                     
                     if (node["winheight"] != null)
-                        WinHeight = Convert.ToInt16(node["winheight"].InnerText);
+                        WinHeight = int.TryParse(node["winheight"].InnerText, out int wHeight) ? wHeight : 0;
 
                     if (node["x"] != null)
-                        X = Convert.ToInt16(node["x"].InnerText);
-
+                        X = int.TryParse(node["x"].InnerText, out int x) ? x : 0;
+                        
                     if (node["y"] != null)
-                        Y = Convert.ToInt16(node["y"].InnerText);
+                        Y = int.TryParse(node["y"].InnerText, out int y) ? y : 0;
 
                     if (node["fps"] != null)
-                        FPS = Convert.ToInt16(node["fps"].InnerText);                   
+                        FPS = int.TryParse(node["fps"].InnerText, out int fps) ? fps : 0;        
 
                     if (node["ratio"] != null)
                         Ratio = node["ratio"].InnerText;                      
