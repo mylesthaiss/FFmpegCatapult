@@ -343,16 +343,16 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["autoaltref"] != null)
-                        AutoAltRef = Boolean.TryParse(node["autoaltref"].InnerText, out bool autoAltRef) ? autoAltRef : false;
+                        AutoAltRef = bool.TryParse(node["autoaltref"].InnerText, out bool autoAltRef) && autoAltRef;
 
                     if (node["frameparallel"] != null)
-                        FrameParallel = Boolean.TryParse(node["frameparallel"].InnerText, out bool fParallel) ? fParallel : false;
+                        FrameParallel = bool.TryParse(node["frameparallel"].InnerText, out bool fParallel) && fParallel;
 
                     if (node["nonfree"] != null)
-                        PreferNonfreeEncoder = Boolean.TryParse(node["nonfree"].InnerText, out bool nonfree) ? nonfree : false;
+                        PreferNonfreeEncoder = bool.TryParse(node["nonfree"].InnerText, out bool nonfree) && nonfree;
 
                     if (node["twopass"] != null)
-                        TwoPassEncoding = Boolean.TryParse(node["twopass"].InnerText, out bool twopass) ? twopass : false;
+                        TwoPassEncoding = bool.TryParse(node["twopass"].InnerText, out bool twopass) && twopass;
 
                     if (node["vcodec"] != null)
                         Codec = node["vcodec"].InnerText;

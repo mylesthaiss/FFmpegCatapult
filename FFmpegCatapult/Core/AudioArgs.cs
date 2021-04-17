@@ -23,7 +23,7 @@ namespace FFmpegCatapult.Core
         public string GetAudioArgs(IAudio audio)
         {
             string audioArgs;
-            string filterArgs;
+            string filterArgs = null;
 
             if (audio.Codec != "none")
             {

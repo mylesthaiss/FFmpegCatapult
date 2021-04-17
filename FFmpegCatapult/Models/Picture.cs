@@ -14,7 +14,6 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using System;
 using System.Xml;
 
 namespace FFmpegCatapult.Models
@@ -80,16 +79,16 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["aspect"] != null)
-                        AspectRatio = Boolean.TryParse(node["aspect"].InnerText, out bool aspect) ? aspect : false;
+                        AspectRatio = bool.TryParse(node["aspect"].InnerText, out bool aspect) && aspect;
                    
                     if (node["pad"] != null)
-                        Pad = Boolean.TryParse(node["pad"].InnerText, out bool pad) ? pad : false;
+                        Pad = bool.TryParse(node["pad"].InnerText, out bool pad) && pad;
                         
                     if (node["crop"] != null)
-                        Crop = Boolean.TryParse(node["crop"].InnerText, out bool crop) ? crop : false;                 
+                        Crop = bool.TryParse(node["crop"].InnerText, out bool crop) && crop;            
 
                     if (node["deinterlace"] != null)
-                        Deinterlace = Boolean.TryParse(node["deinterlace"].InnerText, out bool deinterlace) ? deinterlace : false;           
+                        Deinterlace = bool.TryParse(node["deinterlace"].InnerText, out bool deinterlace) && deinterlace;           
 
                     if (node["scale"] != null)
                         ScaleOption = int.TryParse(node["scale"].InnerText, out int scale) ? scale : 0;

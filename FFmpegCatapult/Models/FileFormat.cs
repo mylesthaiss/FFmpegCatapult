@@ -14,7 +14,6 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using System;
 using System.Xml;
 
 namespace FFmpegCatapult.Models
@@ -199,7 +198,7 @@ namespace FFmpegCatapult.Models
                         Format = node["format"].InnerText;
 
                     if (node["faststart"] != null)
-                        FastStartTagging = Boolean.TryParse(node["faststart"], out bool fStart) ? fStart : false;                  
+                        FastStartTagging = bool.TryParse(node["faststart"].InnerText, out bool fStart) && fStart;                  
                 }
             }
         }

@@ -14,7 +14,6 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using System;
 using System.Xml;
 
 namespace FFmpegCatapult.Models
@@ -56,11 +55,12 @@ namespace FFmpegCatapult.Models
         public int Channels { get; set; }
         public int MaxChannels { get; private set; }
         public int Quality { get; set; }
+        public int ResamplerPrecision { get; set; }
         public int SampleRate { get; set; }
         public int VolumeBoost { get; set; } = 0;
         public int[] SampleRates { get; private set; }
         public int[] VBRModes { get; private set; }
-        public string DitherMethod { get; set; } = 0;
+        public string DitherMethod { get; set; }
         public string Profile { get; set; }
         public string Resampler { get; set; } = "soxr";
         public string[,] Encoders { get; private set; }
@@ -447,7 +447,7 @@ namespace FFmpegCatapult.Models
                 if (node != null)
                 {
                     if (node["nonfree"] != null)
-                        PreferNonfreeEncoder = Boolean.TryParse(node["nonfree"].InnerText, out bool nonfree) ? nonfree : false;
+                        PreferNonfreeEncoder = bool.TryParse(node["nonfree"].InnerText, out bool nonfree) && nonfree;
 
                     if (node["acodec"] != null)
                         Codec = node["acodec"].InnerText;

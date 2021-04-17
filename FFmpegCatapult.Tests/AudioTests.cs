@@ -70,7 +70,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 44100;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-c:a libmp3lame -q:a 1 -ac 2 -ar 44100", arguments);
+            Assert.AreEqual("-c:a libmp3lame -q:a 1 -ac 2 -ar 44100 -af aresample=resampler=soxr", arguments);
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 48000;
             string arguments = ffmpegBin.GetAudioArgs(audio);
 
-            Assert.AreEqual("-c:a aac -b:a 320k -ac 5 -ar 48000", arguments);
+            Assert.AreEqual("-c:a aac -b:a 320k -ac 5 -ar 48000 -af aresample=resampler=soxr", arguments);
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace FFmpegCatapult.Tests
             audio.SampleRate = 48000;
             string arguments = ffmpegBin.GetAudioArgs(audio);
             
-            Assert.AreEqual("-c:a libopus -b:a 192k -ar 48000", arguments);
+            Assert.AreEqual("-c:a libopus -b:a 192k -ar 48000 -af aresample=resampler=soxr", arguments);
         }
     }
 }
