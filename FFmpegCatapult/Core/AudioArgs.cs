@@ -15,6 +15,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using FFmpegCatapult.Models;
+using System.Collections.Generic;
 
 namespace FFmpegCatapult.Core
 {
@@ -22,8 +23,8 @@ namespace FFmpegCatapult.Core
     {
         public string GetAudioArgs(IAudio audio)
         {
+            List<string> filterArgs = new List<string>();
             string audioArgs;
-            string filterArgs = null;
 
             if (audio.Codec != "none")
             {
@@ -52,26 +53,36 @@ namespace FFmpegCatapult.Core
                     if (audio.SampleRate > 0)
                         audioArgs += string.Format("-ar {0} ", audio.SampleRate);
 
+                    //
                     // Audio filter arguments
+                    //
                     if (audio.SampleRate > 0)
                     {
-                        filterArgs = string.Format("aresample=resampler={0}", audio.Resampler);
+                        string resampleArgs = string.Format("aresample=resampler={0}", audio.Resampler);
 
                         if (audio.Resampler == "soxr")
                         {
                             if (audio.ResamplerPrecision > 0)
-                                filterArgs += string.Format(":precision={0}", audio.ResamplerPrecision);
+                                resampleArgs += string.Format(":precision={0}", audio.ResamplerPrecision);
 
                             if (audio.DitherMethod != null)
-                                filterArgs += string.Format(":dither_method={0}", audio.DitherMethod);
+                                resampleArgs += string.Format(":dither_method={0}", audio.DitherMethod);
                         }
 
                         if (audio.VolumeBoost != 0)
-                            filterArgs += string.Format(",volume={0}dB", audio.VolumeBoost);
+                            resampleArgs += string.Format(",volume={0}dB", audio.VolumeBoost);
+
+                        filterArgs.Add(resampleArgs);
                     }
 
-                    if (!string.IsNullOrEmpty(filterArgs))
-                        audioArgs += string.Format("-af {0}", filterArgs);
+                    if (audio.HighPass != 0)
+                        filterArgs.Add(string.Format("highpass=f={0}", audio.HighPass));
+
+                    if (audio.LowPass != 0)
+                        filterArgs.Add(string.Format("lowpass=f={0}", audio.LowPass));
+
+                    if (filterArgs.Count != 0)
+                        audioArgs += string.Format("-af {0}", string.Join(",", filterArgs));
                 }
             }
             else

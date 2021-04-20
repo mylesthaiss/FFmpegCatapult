@@ -91,6 +91,16 @@ namespace FFmpegCatapult
             this.labelTitle = new System.Windows.Forms.Label();
             this.tabAudio = new System.Windows.Forms.TabPage();
             this.groupBoxAudioFiltering = new System.Windows.Forms.GroupBox();
+            this.numericUpDownHighPass = new System.Windows.Forms.NumericUpDown();
+            this.labelHighPass = new System.Windows.Forms.Label();
+            this.numericUpDownLowPass = new System.Windows.Forms.NumericUpDown();
+            this.labelLowPass = new System.Windows.Forms.Label();
+            this.numericUpDownResamplePrecision = new System.Windows.Forms.NumericUpDown();
+            this.labelResamplePrecision = new System.Windows.Forms.Label();
+            this.comboBoxResampleDitherMethod = new System.Windows.Forms.ComboBox();
+            this.labelDitherMethod = new System.Windows.Forms.Label();
+            this.comboBoxResampler = new System.Windows.Forms.ComboBox();
+            this.labelResampler = new System.Windows.Forms.Label();
             this.groupBoxAudioBitrate = new System.Windows.Forms.GroupBox();
             this.labelVBRMode = new System.Windows.Forms.Label();
             this.comboBoxAudioVBRModes = new System.Windows.Forms.ComboBox();
@@ -99,6 +109,8 @@ namespace FFmpegCatapult
             this.comboBoxAudioBitrates = new System.Windows.Forms.ComboBox();
             this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
             this.comboBoxChannels = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownVolumeBoost = new System.Windows.Forms.NumericUpDown();
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
@@ -233,8 +245,13 @@ namespace FFmpegCatapult
             this.groupBoxTrackTags.SuspendLayout();
             this.groupBoxGeneralTags.SuspendLayout();
             this.tabAudio.SuspendLayout();
+            this.groupBoxAudioFiltering.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHighPass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLowPass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResamplePrecision)).BeginInit();
             this.groupBoxAudioBitrate.SuspendLayout();
             this.groupBoxAudioOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolumeBoost)).BeginInit();
             this.groupBoxAudioCodec.SuspendLayout();
             this.tabVideo.SuspendLayout();
             this.groupBoxVideoSize.SuspendLayout();
@@ -719,12 +736,131 @@ namespace FFmpegCatapult
             // 
             // groupBoxAudioFiltering
             // 
+            this.groupBoxAudioFiltering.Controls.Add(this.numericUpDownHighPass);
+            this.groupBoxAudioFiltering.Controls.Add(this.labelHighPass);
+            this.groupBoxAudioFiltering.Controls.Add(this.numericUpDownLowPass);
+            this.groupBoxAudioFiltering.Controls.Add(this.labelLowPass);
+            this.groupBoxAudioFiltering.Controls.Add(this.numericUpDownResamplePrecision);
+            this.groupBoxAudioFiltering.Controls.Add(this.labelResamplePrecision);
+            this.groupBoxAudioFiltering.Controls.Add(this.comboBoxResampleDitherMethod);
+            this.groupBoxAudioFiltering.Controls.Add(this.labelDitherMethod);
+            this.groupBoxAudioFiltering.Controls.Add(this.comboBoxResampler);
+            this.groupBoxAudioFiltering.Controls.Add(this.labelResampler);
             this.groupBoxAudioFiltering.Location = new System.Drawing.Point(6, 210);
             this.groupBoxAudioFiltering.Name = "groupBoxAudioFiltering";
             this.groupBoxAudioFiltering.Size = new System.Drawing.Size(555, 80);
             this.groupBoxAudioFiltering.TabIndex = 4;
             this.groupBoxAudioFiltering.TabStop = false;
             this.groupBoxAudioFiltering.Text = "Filtering";
+            // 
+            // numericUpDownHighPass
+            // 
+            this.numericUpDownHighPass.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDownHighPass.Location = new System.Drawing.Point(260, 23);
+            this.numericUpDownHighPass.Maximum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            0});
+            this.numericUpDownHighPass.Name = "numericUpDownHighPass";
+            this.numericUpDownHighPass.Size = new System.Drawing.Size(86, 20);
+            this.numericUpDownHighPass.TabIndex = 11;
+            this.numericUpDownHighPass.ValueChanged += new System.EventHandler(this.NumericUpDownHighPass_ValueChanged);
+            // 
+            // labelHighPass
+            // 
+            this.labelHighPass.AutoSize = true;
+            this.labelHighPass.Location = new System.Drawing.Point(197, 25);
+            this.labelHighPass.Name = "labelHighPass";
+            this.labelHighPass.Size = new System.Drawing.Size(57, 13);
+            this.labelHighPass.TabIndex = 10;
+            this.labelHighPass.Text = "High-pass:";
+            // 
+            // numericUpDownLowPass
+            // 
+            this.numericUpDownLowPass.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numericUpDownLowPass.Location = new System.Drawing.Point(72, 23);
+            this.numericUpDownLowPass.Maximum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            0});
+            this.numericUpDownLowPass.Name = "numericUpDownLowPass";
+            this.numericUpDownLowPass.Size = new System.Drawing.Size(86, 20);
+            this.numericUpDownLowPass.TabIndex = 9;
+            this.numericUpDownLowPass.ValueChanged += new System.EventHandler(this.NumericUpDownLowPass_ValueChanged);
+            // 
+            // labelLowPass
+            // 
+            this.labelLowPass.AutoSize = true;
+            this.labelLowPass.Location = new System.Drawing.Point(11, 25);
+            this.labelLowPass.Name = "labelLowPass";
+            this.labelLowPass.Size = new System.Drawing.Size(55, 13);
+            this.labelLowPass.TabIndex = 8;
+            this.labelLowPass.Text = "Low-pass:";
+            // 
+            // numericUpDownResamplePrecision
+            // 
+            this.numericUpDownResamplePrecision.Location = new System.Drawing.Point(503, 47);
+            this.numericUpDownResamplePrecision.Name = "numericUpDownResamplePrecision";
+            this.numericUpDownResamplePrecision.Size = new System.Drawing.Size(46, 20);
+            this.numericUpDownResamplePrecision.TabIndex = 7;
+            this.numericUpDownResamplePrecision.ValueChanged += new System.EventHandler(this.NumericUpDownResamplePrecision_ValueChanged);
+            // 
+            // labelResamplePrecision
+            // 
+            this.labelResamplePrecision.AutoSize = true;
+            this.labelResamplePrecision.Location = new System.Drawing.Point(392, 50);
+            this.labelResamplePrecision.Name = "labelResamplePrecision";
+            this.labelResamplePrecision.Size = new System.Drawing.Size(105, 13);
+            this.labelResamplePrecision.TabIndex = 4;
+            this.labelResamplePrecision.Text = "Resampler precision:";
+            // 
+            // comboBoxResampleDitherMethod
+            // 
+            this.comboBoxResampleDitherMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxResampleDitherMethod.FormattingEnabled = true;
+            this.comboBoxResampleDitherMethod.Location = new System.Drawing.Point(260, 47);
+            this.comboBoxResampleDitherMethod.Name = "comboBoxResampleDitherMethod";
+            this.comboBoxResampleDitherMethod.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxResampleDitherMethod.TabIndex = 3;
+            this.comboBoxResampleDitherMethod.SelectedIndexChanged += new System.EventHandler(this.ComboBoxResampleDitherMethod_SelectedIndexChanged);
+            // 
+            // labelDitherMethod
+            // 
+            this.labelDitherMethod.AutoSize = true;
+            this.labelDitherMethod.Location = new System.Drawing.Point(178, 50);
+            this.labelDitherMethod.Name = "labelDitherMethod";
+            this.labelDitherMethod.Size = new System.Drawing.Size(76, 13);
+            this.labelDitherMethod.TabIndex = 2;
+            this.labelDitherMethod.Text = "Dither method:";
+            // 
+            // comboBoxResampler
+            // 
+            this.comboBoxResampler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxResampler.FormattingEnabled = true;
+            this.comboBoxResampler.Location = new System.Drawing.Point(72, 46);
+            this.comboBoxResampler.Name = "comboBoxResampler";
+            this.comboBoxResampler.Size = new System.Drawing.Size(86, 21);
+            this.comboBoxResampler.TabIndex = 1;
+            this.comboBoxResampler.SelectedIndexChanged += new System.EventHandler(this.ComboBoxResampler_SelectedIndexChanged);
+            // 
+            // labelResampler
+            // 
+            this.labelResampler.AutoSize = true;
+            this.labelResampler.Location = new System.Drawing.Point(6, 50);
+            this.labelResampler.Name = "labelResampler";
+            this.labelResampler.Size = new System.Drawing.Size(60, 13);
+            this.labelResampler.TabIndex = 0;
+            this.labelResampler.Text = "Resampler:";
             // 
             // groupBoxAudioBitrate
             // 
@@ -790,6 +926,8 @@ namespace FFmpegCatapult
             // groupBoxAudioOutput
             // 
             this.groupBoxAudioOutput.Controls.Add(this.comboBoxChannels);
+            this.groupBoxAudioOutput.Controls.Add(this.label8);
+            this.groupBoxAudioOutput.Controls.Add(this.numericUpDownVolumeBoost);
             this.groupBoxAudioOutput.Controls.Add(this.labelChannels);
             this.groupBoxAudioOutput.Controls.Add(this.comboBoxSampleRates);
             this.groupBoxAudioOutput.Controls.Add(this.labelSampleRate);
@@ -804,15 +942,37 @@ namespace FFmpegCatapult
             // 
             this.comboBoxChannels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxChannels.FormattingEnabled = true;
-            this.comboBoxChannels.Location = new System.Drawing.Point(66, 46);
+            this.comboBoxChannels.Location = new System.Drawing.Point(86, 36);
             this.comboBoxChannels.Name = "comboBoxChannels";
             this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
             this.comboBoxChannels.TabIndex = 3;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 67);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Volume boost:";
+            // 
+            // numericUpDownVolumeBoost
+            // 
+            this.numericUpDownVolumeBoost.Location = new System.Drawing.Point(86, 63);
+            this.numericUpDownVolumeBoost.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDownVolumeBoost.Name = "numericUpDownVolumeBoost";
+            this.numericUpDownVolumeBoost.Size = new System.Drawing.Size(56, 20);
+            this.numericUpDownVolumeBoost.TabIndex = 6;
+            this.numericUpDownVolumeBoost.ValueChanged += new System.EventHandler(this.NumericUpDownVolumeBoost_ValueChanged);
+            // 
             // labelChannels
             // 
             this.labelChannels.AutoSize = true;
-            this.labelChannels.Location = new System.Drawing.Point(6, 49);
+            this.labelChannels.Location = new System.Drawing.Point(26, 39);
             this.labelChannels.Name = "labelChannels";
             this.labelChannels.Size = new System.Drawing.Size(54, 13);
             this.labelChannels.TabIndex = 1;
@@ -822,7 +982,7 @@ namespace FFmpegCatapult
             // 
             this.comboBoxSampleRates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSampleRates.FormattingEnabled = true;
-            this.comboBoxSampleRates.Location = new System.Drawing.Point(306, 46);
+            this.comboBoxSampleRates.Location = new System.Drawing.Point(306, 34);
             this.comboBoxSampleRates.Name = "comboBoxSampleRates";
             this.comboBoxSampleRates.Size = new System.Drawing.Size(85, 21);
             this.comboBoxSampleRates.TabIndex = 2;
@@ -830,7 +990,7 @@ namespace FFmpegCatapult
             // labelSampleRate
             // 
             this.labelSampleRate.AutoSize = true;
-            this.labelSampleRate.Location = new System.Drawing.Point(234, 49);
+            this.labelSampleRate.Location = new System.Drawing.Point(234, 37);
             this.labelSampleRate.Name = "labelSampleRate";
             this.labelSampleRate.Size = new System.Drawing.Size(66, 13);
             this.labelSampleRate.TabIndex = 0;
@@ -2149,10 +2309,16 @@ namespace FFmpegCatapult
             this.groupBoxGeneralTags.ResumeLayout(false);
             this.groupBoxGeneralTags.PerformLayout();
             this.tabAudio.ResumeLayout(false);
+            this.groupBoxAudioFiltering.ResumeLayout(false);
+            this.groupBoxAudioFiltering.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHighPass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLowPass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownResamplePrecision)).EndInit();
             this.groupBoxAudioBitrate.ResumeLayout(false);
             this.groupBoxAudioBitrate.PerformLayout();
             this.groupBoxAudioOutput.ResumeLayout(false);
             this.groupBoxAudioOutput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolumeBoost)).EndInit();
             this.groupBoxAudioCodec.ResumeLayout(false);
             this.groupBoxAudioCodec.PerformLayout();
             this.tabVideo.ResumeLayout(false);
@@ -2395,6 +2561,18 @@ namespace FFmpegCatapult
         private System.Windows.Forms.NumericUpDown numericUpDownFPS;
         private System.Windows.Forms.NumericUpDown numericUpDownHeight;
         private System.Windows.Forms.NumericUpDown numericUpDownWidth;
+        private System.Windows.Forms.Label labelResamplePrecision;
+        private System.Windows.Forms.ComboBox comboBoxResampleDitherMethod;
+        private System.Windows.Forms.Label labelDitherMethod;
+        private System.Windows.Forms.ComboBox comboBoxResampler;
+        private System.Windows.Forms.Label labelResampler;
+        private System.Windows.Forms.NumericUpDown numericUpDownResamplePrecision;
+        private System.Windows.Forms.NumericUpDown numericUpDownVolumeBoost;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numericUpDownHighPass;
+        private System.Windows.Forms.Label labelHighPass;
+        private System.Windows.Forms.NumericUpDown numericUpDownLowPass;
+        private System.Windows.Forms.Label labelLowPass;
     }
 }
 

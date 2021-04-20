@@ -26,6 +26,8 @@ namespace FFmpegCatapult.Models
         int SampleRate { get; set; }
         int[] SampleRates { get; }
         int Channels { get; set; }
+        int LowPass { get; set; }
+        int HighPass { get; set; }
         int MaxChannels { get; }
         int ResamplerPrecision { get; set; }
         int VolumeBoost { get; set; }
@@ -53,6 +55,8 @@ namespace FFmpegCatapult.Models
         public bool PreferNonfreeEncoder { get; set; }
         public int Bitrate { get; set; }
         public int Channels { get; set; }
+        public int LowPass { get; set; } = 0;
+        public int HighPass { get; set; } = 0;
         public int MaxChannels { get; private set; }
         public int Quality { get; set; }
         public int ResamplerPrecision { get; set; }

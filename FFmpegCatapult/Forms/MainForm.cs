@@ -292,9 +292,14 @@ namespace FFmpegCatapult
             }
             comboBoxChannels.SelectedIndexChanged += new EventHandler(ComboBoxChannels_SelectedIndexChanged);
 
+            numericUpDownVolumeBoost.ValueChanged -= new EventHandler(NumericUpDownVolumeBoost_ValueChanged);
+            numericUpDownVolumeBoost.Value = audio.VolumeBoost;
+            numericUpDownVolumeBoost.ValueChanged += new EventHandler(NumericUpDownVolumeBoost_ValueChanged);
+
             // Other items
             InitAudioProfiles();
             InitAudioBitrates();
+            InitAudioFilterSettings();
         }
 
         private void InitAudioBitrates()
@@ -334,6 +339,34 @@ namespace FFmpegCatapult
                 labelAudioBitrate.Enabled = true;
                 comboBoxAudioBitrates.Enabled = true;
             }
+        }
+
+        private void InitAudioFilterSettings()
+        {
+            numericUpDownHighPass.ValueChanged -= new EventHandler(NumericUpDownHighPass_ValueChanged);
+            numericUpDownHighPass.Value = audio.HighPass;
+            numericUpDownHighPass.ValueChanged += new EventHandler(NumericUpDownHighPass_ValueChanged);
+
+            numericUpDownLowPass.ValueChanged -= new EventHandler(NumericUpDownLowPass_ValueChanged);
+            numericUpDownLowPass.Value = audio.LowPass;
+            numericUpDownLowPass.ValueChanged += new EventHandler(NumericUpDownLowPass_ValueChanged);
+
+            comboBoxResampler.SelectedIndexChanged -= new EventHandler(ComboBoxResampler_SelectedIndexChanged);
+            comboBoxResampler = WinFormsHelper.AddMultiArrayToComboBox(comboBoxResampler, audio.Resamplers, audio.Resampler);
+            comboBoxResampler.SelectedIndexChanged += new EventHandler(ComboBoxResampler_SelectedIndexChanged);
+
+            comboBoxResampleDitherMethod.SelectedIndexChanged -= new EventHandler(ComboBoxResampleDitherMethod_SelectedIndexChanged);
+            comboBoxResampleDitherMethod = WinFormsHelper.AddMultiArrayToComboBox(comboBoxResampleDitherMethod, audio.DitherMethods, audio.DitherMethod);
+            comboBoxResampleDitherMethod.SelectedIndexChanged += new EventHandler(ComboBoxResampleDitherMethod_SelectedIndexChanged);
+
+            numericUpDownResamplePrecision.ValueChanged -= new EventHandler(NumericUpDownResamplePrecision_ValueChanged);
+            numericUpDownResamplePrecision.Value = audio.ResamplerPrecision;
+            numericUpDownResamplePrecision.ValueChanged += new EventHandler(NumericUpDownResamplePrecision_ValueChanged);
+
+            if (audio.Resampler == "soxr")
+                EnableSoxSettings(true);
+            else
+                EnableSoxSettings(false);
         }
 
         private void InitAudioProfiles()
@@ -648,6 +681,14 @@ namespace FFmpegCatapult
         private void EnableLogFileTextBox(bool enable)
         {
             textBoxLog.Enabled = enable;
+        }
+
+        private void EnableSoxSettings(bool enable)
+        {
+            labelResamplePrecision.Enabled = enable;
+            labelDitherMethod.Enabled = enable;
+            comboBoxResampleDitherMethod.Enabled = enable;
+            numericUpDownResamplePrecision.Enabled = enable;
         }
 
         private int GetSelectionIndex(string value, string[,] values)
@@ -1357,6 +1398,37 @@ namespace FFmpegCatapult
             {
                 audio.Bitrate = bitrate.X;
             }
+        }
+
+        private void NumericUpDownVolumeBoost_ValueChanged(object sender, EventArgs e)
+        {
+            audio.VolumeBoost = (int)numericUpDownVolumeBoost.Value;
+        }
+
+        private void NumericUpDownHighPass_ValueChanged(object sender, EventArgs e)
+        {
+            audio.HighPass = (int)numericUpDownHighPass.Value;
+        }
+
+        private void NumericUpDownLowPass_ValueChanged(object sender, EventArgs e)
+        {
+            audio.LowPass = (int)numericUpDownLowPass.Value;
+        }
+
+        private void NumericUpDownResamplePrecision_ValueChanged(object sender, EventArgs e)
+        {
+            audio.ResamplerPrecision = (int)numericUpDownResamplePrecision.Value;
+        }
+
+        private void ComboBoxResampler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            audio.Resampler = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxResampler);
+            InitAudioFilterSettings();
+        }
+
+        private void ComboBoxResampleDitherMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            audio.DitherMethod = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxResampleDitherMethod);
         }
 
         //
