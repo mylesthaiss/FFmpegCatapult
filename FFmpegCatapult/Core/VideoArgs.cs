@@ -15,6 +15,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using FFmpegCatapult.Models;
+using System.Collections.Generic;
 
 namespace FFmpegCatapult.Core
 {
@@ -22,71 +23,71 @@ namespace FFmpegCatapult.Core
     {
         public string GetVideoArgs(IVideo video, ISettings settings)
         {
-            string videoArgs;
+            List<string> videoArgs = new List<string>();
 
             if (video.Codec != "none")
             {
-                videoArgs = string.Format("-c:v {0} ", video.Encoder);
+                videoArgs.Add(string.Format("-c:v {0}", video.Encoder));
 
                 if (video.Codec != "copy")
                 {
                     if (!string.IsNullOrEmpty(video.Profile))
-                        videoArgs += string.Format("-profile:v {0} ", video.Profile);
+                        videoArgs.Add(string.Format("-profile:v {0}", video.Profile));
 
                     if (video.CodecLevel > 0 && video.Encoder == "libx264")
-                        videoArgs += string.Format("-level {0:0.0} ", video.CodecLevel);
+                        videoArgs.Add(string.Format("-level {0:0.0}", video.CodecLevel));
 
                     if (!string.IsNullOrEmpty(video.EncoderPreset))
-                        videoArgs += string.Format("-preset {0} ", video.EncoderPreset);
+                        videoArgs.Add(string.Format("-preset {0}", video.EncoderPreset));
 
                     // Video bitrates and quality settings
                     if (video.UseCRF == true)
                     {
-                        videoArgs += string.Format("-crf {0} ", video.Quality);
+                        videoArgs.Add(string.Format("-crf {0}", video.Quality));
                     }
                     else
                     {
-                        videoArgs += string.Format("-b:v {0}k ", video.Bitrate);
+                        videoArgs.Add(string.Format("-b:v {0}k", video.Bitrate));
 
                         if (video.MinBitrate != 0)
-                            videoArgs += string.Format("-minrate {0}k ", video.MinBitrate);
+                            videoArgs.Add(string.Format("-minrate {0}k", video.MinBitrate));
 
                         if (video.MaxBitrate != 0)
-                            videoArgs += string.Format("-maxrate {0}k ", video.MaxBitrate);
+                            videoArgs.Add(string.Format("-maxrate {0}k", video.MaxBitrate));
                     }
 
                     if (video.QMin != video.QMax)
-                        videoArgs += string.Format("-qmin {0} ", video.QMin);
+                        videoArgs.Add(string.Format("-qmin {0}", video.QMin));
 
                     if (video.QMax != 0)
-                        videoArgs += string.Format("-qmax {0} ", video.QMax);
+                        videoArgs.Add(string.Format("-qmax {0}", video.QMax));
 
                     if (video.BufferSize != 0)
-                        videoArgs += string.Format("-bufsize {0}k ", video.BufferSize);
+                        videoArgs.Add(string.Format("-bufsize {0}k", video.BufferSize));
 
                     if (video.GOPSize != 0)
-                        videoArgs += string.Format("-g {0} ", video.GOPSize);
+                        videoArgs.Add(string.Format("-g {0}", video.GOPSize));
 
                     if (video.BFrames != 0)
-                        videoArgs += string.Format("-bf {0} ", video.BFrames);
+                        videoArgs.Add(string.Format("-bf {0}", video.BFrames));
 
                     if (video.BFStrategy < 3)
-                        videoArgs += string.Format("-b_strategy {0} ", video.BFStrategy);
+                        videoArgs.Add(string.Format("-b_strategy {0}", video.BFStrategy));
 
                     if (video.MEMethod != "")
-                        videoArgs += string.Format("-me_method {0} ", video.MEMethod);
+                        videoArgs.Add(string.Format("-me_method {0}", video.MEMethod));
 
                     if (video.DiaSize != 0)
-                        videoArgs += string.Format("-dia_size {0} ", video.DiaSize);
+                        videoArgs.Add(string.Format("-dia_size {0}", video.DiaSize));
 
                     if (video.CMP != 15)
-                        videoArgs += string.Format("-cmp {0} ", video.CMP);
+                        videoArgs.Add(string.Format("-cmp {0}", video.CMP));
 
                     if (video.SubCMP != 15)
-                        videoArgs += string.Format("-subcmp {0} ", video.SubCMP);
+                        videoArgs.Add(string.Format("-subcmp {0}", video.SubCMP));
 
                     if (video.Trellis != 3)
-                        videoArgs += string.Format("-trellis {0} ", video.Trellis);
+                        videoArgs.Add(string.Format("-trellis {0}", video.Trellis));
 
                     // VP8, VP9 and AV1 settings
                     switch (video.Codec)
@@ -95,19 +96,19 @@ namespace FFmpegCatapult.Core
                         case "vp9":
                         case "av1":
                             if (video.TileColumns > 0)
-                                videoArgs += string.Format("-tile-columns {0} ", video.TileColumns);
+                                videoArgs.Add(string.Format("-tile-columns {0}", video.TileColumns));
 
                             if (video.TileRows > 0)
-                                videoArgs += string.Format("-tile-rows {0} ", video.TileRows);
+                                videoArgs.Add(string.Format("-tile-rows {0}", video.TileRows));
 
                             if (video.Speed > 0)
-                                videoArgs += string.Format("-speed {0} ", video.Speed);
+                                videoArgs.Add(string.Format("-speed {0}", video.Speed));
 
                             if (settings.Threads > 0)
-                                videoArgs += "-row-mt 1 ";
+                                videoArgs.Add("-row-mt 1");
 
                             if (settings.Processors > 1 && video.Encoder == "libaom-av1")
-                                videoArgs += string.Format("-cpu-used {0} ", settings.Processors);
+                                videoArgs.Add(string.Format("-cpu-used {0}", settings.Processors));
                             break;
                         default:
                             break;
@@ -116,10 +117,10 @@ namespace FFmpegCatapult.Core
             }
             else
             {
-                videoArgs = "-vn ";
+                videoArgs.Add("-vn");
             }
 
-            return videoArgs.Trim();
+            return string.Join(" ", videoArgs);
         }
     }
 }

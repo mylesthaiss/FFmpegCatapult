@@ -15,6 +15,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using FFmpegCatapult.Models;
+using System.Collections.Generic;
 
 namespace FFmpegCatapult.Core
 {
@@ -22,58 +23,58 @@ namespace FFmpegCatapult.Core
     {
         public string GetTaggingArgs(ITags tags, IFileFormat format)
         {
-            string taggingArgs = null;
+            List<string> taggingArgs = new List<string>();
 
             if (format.Tagging)
             {
                 if (!string.IsNullOrEmpty(tags.Title))
-                    taggingArgs += string.Format("-metadata title=\"{0}\" ", tags.Title);
+                    taggingArgs.Add(string.Format("-metadata title=\"{0}\"", tags.Title));
 
                 if (!string.IsNullOrEmpty(tags.Album))
-                    taggingArgs += string.Format("-metadata album=\"{0}\" ", tags.Album);
+                    taggingArgs.Add(string.Format("-metadata album=\"{0}\"", tags.Album));
 
                 if (!string.IsNullOrEmpty(tags.AlbumArtist))
-                    taggingArgs += string.Format("-metadata album_artist=\"{0}\" ", tags.AlbumArtist);
+                    taggingArgs.Add(string.Format("-metadata album_artist=\"{0}\"", tags.AlbumArtist));
 
                 if (!string.IsNullOrEmpty(tags.Artist))
-                    taggingArgs += string.Format("-metadata artist=\"{0}\" ", tags.Artist);
+                    taggingArgs.Add(string.Format("-metadata artist=\"{0}\"", tags.Artist));
 
                 if (!string.IsNullOrEmpty(tags.Comment))
-                    taggingArgs += string.Format("-metadata comment=\"{0}\" ", tags.Comment);
+                    taggingArgs.Add(string.Format("-metadata comment=\"{0}\"", tags.Comment));
 
                 if (!string.IsNullOrEmpty(tags.Genre))
-                    taggingArgs += string.Format("-metadata genre=\"{0}\" ", tags.Genre);
+                    taggingArgs.Add(string.Format("-metadata genre=\"{0}\"", tags.Genre));
 
                 if (tags.Disc > 0)
                 {
                     if (tags.TotalDiscs > 0)
-                        taggingArgs += string.Format("-metadata disc={0}/{1} ", tags.Disc, tags.TotalDiscs);
+                        taggingArgs.Add(string.Format("-metadata disc={0}/{1}", tags.Disc, tags.TotalDiscs));
                     else
-                        taggingArgs += string.Format("-metadata disc={0} ", tags.Disc);
+                        taggingArgs.Add(string.Format("-metadata disc={0}", tags.Disc));
                 }
 
                 if (tags.Track > 0)
                 {
                     if (tags.TotalTracks > 0)
-                        taggingArgs += string.Format("-metadata track={0}/{1} ", tags.Track, tags.TotalTracks);
+                        taggingArgs.Add(string.Format("-metadata track={0}/{1}", tags.Track, tags.TotalTracks));
                     else
-                        taggingArgs += string.Format("-metadata track={0} ", tags.Track);
+                        taggingArgs.Add(string.Format("-metadata track={0}", tags.Track));
                 }
 
                 if (!string.IsNullOrEmpty(tags.Publisher))
-                    taggingArgs += string.Format("-metadata publisher=\"{0}\" ", tags.Publisher);
+                    taggingArgs.Add(string.Format("-metadata publisher=\"{0}\"", tags.Publisher));
 
                 if (tags.Year > 0)
-                    taggingArgs += string.Format("-metadata date={0} ", tags.Year);
+                    taggingArgs.Add(string.Format("-metadata date={0}", tags.Year));
 
                 if (format.Format == "mp3")
-                    taggingArgs += "-id3v2_version 3 -write_id3v1 1 ";
+                    taggingArgs.Add("-id3v2_version 3 -write_id3v1 1");
 
                 if (format.FastStartTagging)
-                    taggingArgs += "-movflags +faststart ";
+                    taggingArgs.Add("-movflags +faststart");
             }
 
-            return string.IsNullOrEmpty(taggingArgs) ? null : taggingArgs.Trim();
+            return string.Join(" ", taggingArgs);
         }
     }
 }

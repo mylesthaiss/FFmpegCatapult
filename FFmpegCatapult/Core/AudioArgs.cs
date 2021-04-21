@@ -24,34 +24,34 @@ namespace FFmpegCatapult.Core
         public string GetAudioArgs(IAudio audio)
         {
             List<string> filterArgs = new List<string>();
-            string audioArgs;
+            List<string> audioArgs = new List<string>();
 
             if (audio.Codec != "none")
             {
-                audioArgs = string.Format("-c:a {0} ", audio.Encoder);
+                audioArgs.Add(string.Format("-c:a {0}", audio.Encoder));
 
                 if (audio.Codec != "copy")
                 {
                     if (audio.Profile != null)
-                        audioArgs += string.Format("-profile:a {0} ", audio.Profile);
+                        audioArgs.Add(string.Format("-profile:a {0}", audio.Profile));
 
                     if (audio.Bitrate > 0 && !audio.UseVBR)
                     {
-                        audioArgs += string.Format("-b:a {0}k ", audio.Bitrate);
+                        audioArgs.Add(string.Format("-b:a {0}k", audio.Bitrate));
                     }
                     else if (audio.UseVBR)
                     {
                         if (audio.Encoder == "libfdk_aac")
-                            audioArgs += string.Format("-vbr {0}", audio.Quality);
+                            audioArgs.Add(string.Format("-vbr {0}", audio.Quality));
                         else
-                            audioArgs += string.Format("-q:a {0} ", audio.Quality);
+                            audioArgs.Add(string.Format("-q:a {0}", audio.Quality));
                     }
 
                     if (audio.Channels > 0)
-                        audioArgs += string.Format("-ac {0} ", audio.Channels);
+                        audioArgs.Add(string.Format("-ac {0}", audio.Channels));
 
                     if (audio.SampleRate > 0)
-                        audioArgs += string.Format("-ar {0} ", audio.SampleRate);
+                        audioArgs.Add(string.Format("-ar {0}", audio.SampleRate));
 
                     //
                     // Audio filter arguments
@@ -69,11 +69,11 @@ namespace FFmpegCatapult.Core
                                 resampleArgs += string.Format(":dither_method={0}", audio.DitherMethod);
                         }
 
-                        if (audio.VolumeBoost != 0)
-                            resampleArgs += string.Format(",volume={0}dB", audio.VolumeBoost);
-
                         filterArgs.Add(resampleArgs);
                     }
+
+                    if (audio.VolumeBoost != 0)
+                        filterArgs.Add(string.Format("volume={0}dB", audio.VolumeBoost));
 
                     if (audio.HighPass != 0)
                         filterArgs.Add(string.Format("highpass=f={0}", audio.HighPass));
@@ -82,15 +82,15 @@ namespace FFmpegCatapult.Core
                         filterArgs.Add(string.Format("lowpass=f={0}", audio.LowPass));
 
                     if (filterArgs.Count != 0)
-                        audioArgs += string.Format("-af {0}", string.Join(",", filterArgs));
+                        audioArgs.Add(string.Format("-af {0}", string.Join(",", filterArgs)));
                 }
             }
             else
             {
-                audioArgs = "-an";
+                audioArgs.Add("-an");
             }
 
-            return audioArgs.Trim();
+            return string.Join(" ", audioArgs);
         }
     }
 }
