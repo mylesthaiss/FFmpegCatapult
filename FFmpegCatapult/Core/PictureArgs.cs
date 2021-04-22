@@ -63,7 +63,7 @@ namespace FFmpegCatapult.Core
 
             if (filterArgs.Count  != 0)
             {
-                pictureArgs.Add(string.Join(",", filterArgs));
+                pictureArgs.Add(string.Format("-vf {0}", string.Join(",", filterArgs)));
 
                 if (picture.ScaleOption > 0)
                     pictureArgs.Add(string.Format("-sws_flags {0}", picture.ScalingMethod));
