@@ -23,7 +23,8 @@ namespace FFmpegCatapult.Models
         bool WriteLog { get; set; }
         int Threads { get; set; }
         int Processors { get; set; }
-        string DefaultOutputPath { get; set; }
+        string DefaultOutputFolder { get; set; }
+        string DefaultSourceFolder { get; set; }
         string FFmpegPath { get; set; }
         string FFmpegArguments { get; set; }
         string LogFilename { get; set; }
@@ -41,7 +42,8 @@ namespace FFmpegCatapult.Models
         public int Processors { get; set; }
         public int MaxThreads { get; private set; }
         public int MaxProcessors { get; private set; }
-        public string DefaultOutputPath { get; set; }
+        public string DefaultOutputFolder { get; set; }
+        public string DefaultSourceFolder { get; set; }
         public string FFmpegPath { get; set; }
         public string FFmpegArguments { get; set; }
         public string LogFilename { get; set; }
@@ -80,12 +82,35 @@ namespace FFmpegCatapult.Models
 
         public void Load()
         {
-            // TODO: Load and set properties from local configuration file
+            WriteLog = Properties.Settings.Default.WriteLog;
+            DefaultOutputFolder = Properties.Settings.Default.OutputFolder;
+            DefaultSourceFolder = Properties.Settings.Default.SourceFolder;
+            FFmpegArguments = Properties.Settings.Default.FFmpegArguments;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.LogFilename))
+                LogFilename = Properties.Settings.Default.LogFilename;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FFmegPath))
+                FFmpegPath = Properties.Settings.Default.FFmegPath;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.TerminalPath))
+                TerminalPath = Properties.Settings.Default.TerminalPath;
+
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.TerminalArguments))
+                TerminalArguments = Properties.Settings.Default.TerminalArguments;
         }
 
         public void Save()
         {
-            // TODO: Save property values onto local configuration file
+            Properties.Settings.Default.WriteLog = WriteLog;
+            Properties.Settings.Default.LogFilename = LogFilename;
+            Properties.Settings.Default.OutputFolder = DefaultOutputFolder;
+            Properties.Settings.Default.SourceFolder = DefaultSourceFolder;
+            Properties.Settings.Default.FFmegPath = FFmpegPath;
+            Properties.Settings.Default.FFmpegArguments = FFmpegArguments;
+            Properties.Settings.Default.TerminalPath = TerminalPath;
+            Properties.Settings.Default.TerminalArguments = TerminalArguments;
+            Properties.Settings.Default.Save();
         }
     }
 }
