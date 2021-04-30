@@ -34,11 +34,11 @@ namespace FFmpegCatapult.Models
 
     class Tags : ITags
     {
-        public int Disc { get; set; }
-        public int Track { get; set; }
-        public int TotalDiscs { get; set; }
-        public int TotalTracks { get; set; }
-        public int Year { get; set; }
+        public int Disc { get; set; } = 0;
+        public int Track { get; set; } = 0;
+        public int TotalDiscs { get; set; } = 0;
+        public int TotalTracks { get; set; } = 0;
+        public int Year { get; set; } = 0;
         public string Album { get; set; }
         public string AlbumArtist { get; set; }
         public string Artist { get; set; }

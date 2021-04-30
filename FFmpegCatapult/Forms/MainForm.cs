@@ -136,14 +136,10 @@ namespace FFmpegCatapult
 
         private void InitVideo()
         {
-            if (video.Codec == "copy" | video.Codec == "none")
-            {
-                EnableVideoControls(false);
-            }
-            else
-            {
+            if (video.Codec != "copy" & video.Codec != "none")
                 EnableVideoControls(true);
-            }
+            else
+                EnableVideoControls(false);
 
             // Combo boxes
             comboBoxVideoCodecs.SelectedIndexChanged -= new EventHandler(ComboBoxVideoCodecs_SelectedIndexChanged);
@@ -255,14 +251,10 @@ namespace FFmpegCatapult
 
         private void InitAudio()
         {
-            if (audio.Codec == "copy" | audio.Codec == "none")
-            {
-                EnableAudioControls(false);
-            }
-            else
-            {
+            if (audio.Codec != "copy" & audio.Codec != "none")
                 EnableAudioControls(true);
-            }
+            else
+                EnableAudioControls(false);
 
             // Combo boxes
             comboBoxAudioCodecs.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCodecs_SelectedIndexChanged);
@@ -287,9 +279,8 @@ namespace FFmpegCatapult
             comboBoxChannels.Items.Add(new WinFormsHelper.ListComboContent("", 0));
 
             if (audio.Channels != 0)
-            {
                 comboBoxChannels.SelectedIndex = audio.Channels - 1;
-            }
+
             comboBoxChannels.SelectedIndexChanged += new EventHandler(ComboBoxChannels_SelectedIndexChanged);
 
             numericUpDownVolumeBoost.ValueChanged -= new EventHandler(NumericUpDownVolumeBoost_ValueChanged);
@@ -397,6 +388,18 @@ namespace FFmpegCatapult
             {
                 EnableTaggingControls(true);
 
+                textBoxAlbum.Text = tags.Album;
+                textBoxAlbumArtist.Text = tags.AlbumArtist;
+                textBoxArtist.Text = tags.Artist;
+                textBoxComment.Text = tags.Comment;
+                textBoxDisc.Text = tags.Disc;
+                textBoxGenre.Text = tags.Genre;
+                textBoxTitle.Text = tags.Title;
+                textBoxTotalDiscs.Text = tags.TotalDiscs;
+                textBoxTotalTracks.Text = tags.TotalTracks;
+                textBoxTrack.Text = tags.Track;
+                textBoxYear.Text = tags.Year;
+
                 switch (file.Format)
                 {
                     case "avi":
@@ -457,10 +460,8 @@ namespace FFmpegCatapult
         //
         private void ExitFFmpegCatapult()
         {
-            if (settings.SaveSettings == true)
-            {
+            if (settings.SaveSettings)
                 settings.Save();
-            }
 
             System.Environment.Exit(0);
         }
@@ -503,7 +504,7 @@ namespace FFmpegCatapult
 
         private void EnableCRFControls(bool enable)
         {
-            if (enable == true)
+            if (enable)
             {
                 labelCRF.Enabled = true;
                 numericUpDownCRF.Enabled = true;
@@ -537,13 +538,9 @@ namespace FFmpegCatapult
         private void EnableAudioControls(bool enable)
         {
             if (enable == true && audio.Codec == "copy" || audio.Codec == "pcm")
-            {
                 groupBoxAudioBitrate.Enabled = false;
-            }
             else
-            {
                 groupBoxAudioBitrate.Enabled = enable;
-            }
 
             labelAudioEncoder.Enabled = enable;
             comboBoxAudioEncoders.Enabled = enable;
@@ -556,10 +553,8 @@ namespace FFmpegCatapult
             groupBoxTrackTags.Enabled = enable;
             groupBoxMiscTags.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 ClearMetadataFields();
-            }
         }
 
         private void EnableAlbumTagging(bool enable)
@@ -567,10 +562,8 @@ namespace FFmpegCatapult
             labelAlbum.Enabled = enable;
             textBoxAlbum.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxAlbum.Text = "";
-            }
         }
 
         private void EnableAlbumArtistTagging(bool enable)
@@ -578,10 +571,8 @@ namespace FFmpegCatapult
             labelAlbumArtist.Enabled = enable;
             textBoxAlbumArtist.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxAlbumArtist.Text = "";
-            }
         }
 
         private void EnableArtistTagging(bool enable)
@@ -589,10 +580,8 @@ namespace FFmpegCatapult
             labelArtist.Enabled = enable;
             textBoxArtist.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxArtist.Text = "";
-            }
         }
 
         private void EnableCommentTagging(bool enable)
@@ -600,10 +589,8 @@ namespace FFmpegCatapult
             labelComment.Enabled = enable;
             textBoxComment.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxComment.Text = "";
-            }
         }
 
         private void EnableDiscTagging(bool enable)
@@ -613,7 +600,7 @@ namespace FFmpegCatapult
             textBoxDisc.Enabled = enable;
             textBoxTotalDiscs.Enabled = enable;
 
-            if (enable == false)
+            if (!enable)
             {
                 textBoxDisc.Text = "";
                 textBoxTotalDiscs.Text = "";
@@ -625,10 +612,8 @@ namespace FFmpegCatapult
             labelGenre.Enabled = enable;
             textBoxGenre.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxGenre.Text = "";
-            }
         }
 
         private void EnablePublisherTagging(bool enable)
@@ -636,10 +621,8 @@ namespace FFmpegCatapult
             labelPublisher.Enabled = enable;
             textBoxPublisher.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxPublisher.Text = "";
-            }
         }
 
         private void EnableTitleTagging(bool enable)
@@ -647,10 +630,8 @@ namespace FFmpegCatapult
             labelTitle.Enabled = enable;
             textBoxTitle.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxTitle.Text = "";
-            }
         }
 
         private void EnableTrackTagging(bool enable)
@@ -660,7 +641,7 @@ namespace FFmpegCatapult
             textBoxTrack.Enabled = enable;
             textBoxTotalTracks.Enabled = enable;
 
-            if (enable == false)
+            if (!enable)
             {
                 textBoxTrack.Text = "";
                 textBoxTotalTracks.Text = "";
@@ -672,10 +653,8 @@ namespace FFmpegCatapult
             labelYear.Enabled = enable;
             textBoxYear.Enabled = enable;
 
-            if (enable == false)
-            {
+            if (!enable)
                 textBoxYear.Text = "";
-            }
         }
 
         private void EnableLogFileTextBox(bool enable)
@@ -696,9 +675,7 @@ namespace FFmpegCatapult
             for (int i = 0; i < values.GetLength(0); i++)
             {
                 if (value == values[i, 1])
-                {
                     return i;
-                }
             }
 
             return 0;
@@ -706,18 +683,8 @@ namespace FFmpegCatapult
 
         private void ClearMetadataFields()
         {
-            textBoxAlbum.Text = "";
-            textBoxAlbumArtist.Text = "";
-            textBoxArtist.Text = "";
-            textBoxComment.Text = "";
-            textBoxDisc.Text = "";
-            textBoxGenre.Text = "";
-            textBoxPublisher.Text = "";
-            textBoxTitle.Text = "";
-            textBoxTotalDiscs.Text = "";
-            textBoxTotalTracks.Text = "";
-            textBoxTrack.Text = "";
-            textBoxYear.Text = "";
+            tags = new Tags();
+            InitMetadata();
         }
 
         private void EnableBinArgsControls(bool enable)
@@ -741,10 +708,8 @@ namespace FFmpegCatapult
             binFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
             binFile.ShowDialog();
 
-            if (binFile.FileName != "")
-            {
+            if (!string.IsNullOrEmpty(binFile.FileName))
                 textBoxFFmpegBin.Text = binFile.FileName;
-            }
         }
 
         private void NewOutputFileName()
@@ -906,9 +871,9 @@ namespace FFmpegCatapult
             textBoxTermBin.TextChanged += new EventHandler(TextBoxTermBin_TextChanged);
             buttonBrowseTermBin.Click += new EventHandler(ButtonBrowseTermBin_Click);
 
-            if (settings.TerminalArguments != null)
+            if (settings.FFmpegArguments != null)
             {
-                //textBoxBinArgs.Text = ffmpeg.;
+                textBoxBinArgs.Text = settings.FFmpegArguments;
             }
             textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
 
@@ -957,7 +922,7 @@ namespace FFmpegCatapult
             {
                 ffmpegBin.Run(file, audio, video, picture, tags, paths, settings);
 
-                if (settings.KeepValues == false)
+                if (!settings.KeepValues)
                 {
                     textBoxInFile.Text = "";
                     textBoxTargetFolder.Text = "";
@@ -1015,9 +980,7 @@ namespace FFmpegCatapult
             if (!char.IsNumber(e.KeyChar))
             {
                 if (e.KeyChar != '.')
-                {
                     e.Handled = e.KeyChar != (char)Keys.Back;
-                }
             }
         }
 
@@ -1047,10 +1010,8 @@ namespace FFmpegCatapult
             inFile.ShowDialog();
             inFile.Filter = "Any file (*.*) | *.*";
 
-            if (inFile.FileName != "")
-            {
+            if (!string.IsNullOrEmpty(inFile.FileName))
                 textBoxInFile.Text = inFile.FileName;
-            }
         }
 
         void ButtonBrowseAudioStream_Click(object sender, EventArgs e)
@@ -1058,10 +1019,8 @@ namespace FFmpegCatapult
             OpenFileDialog audioFile = new OpenFileDialog();
             audioFile.ShowDialog();
 
-            if (audioFile.FileName != "")
-            {
+            if (!string.IsNullOrEmpty(audioFile.FileName))
                 textBoxAudioStream.Text = audioFile.FileName;
-            }
         }
 
         void TextBoxAudioStream_TextChanged(object sender, EventArgs e)
@@ -1075,21 +1034,15 @@ namespace FFmpegCatapult
             targetDir.ShowDialog();
 
             if (!string.IsNullOrEmpty(targetDir.SelectedPath))
-            {
                 textBoxTargetFolder.Text = targetDir.SelectedPath;
-            }
         }
 
         void TextBoxInFile_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
                 e.Effect = DragDropEffects.Copy;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
         }
 
         void TextBoxInFile_DragDrop(object sender, DragEventArgs e)
@@ -1116,19 +1069,13 @@ namespace FFmpegCatapult
                 file.Format = format.Value;
 
                 if (!file.IsCodecSupported(audio))
-                {
                     audio.Codec = file.SupportedAudioCodecs[0, 1];
-                }
 
                 if (!file.IsCodecSupported(video))
-                {
                     video.Codec = file.SupportedVideoCodecs[0, 1];
-                }
 
                 if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
-                {
                     textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
-                }
 
                 InitTabs();
                 InitAudio();
@@ -1167,18 +1114,13 @@ namespace FFmpegCatapult
 
         void RadioButtonKeep_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonKeep.Checked == true)
-            {
-                settings.KeepValues = true;
-            }
+            settings.KeepValues = radioButtonKeep.Checked;
         }
 
         void RadioButtonRefresh_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonRefresh.Checked == true)
-            {
+            if (radioButtonRefresh.Checked)
                 settings.KeepValues = false;
-            }
         }
     
         //
@@ -1555,7 +1497,7 @@ namespace FFmpegCatapult
 
         void TextBoxDisc_TextChanged(object sender, EventArgs e)
         {
-            //tags.Disc = WinFormsHelper.TextToInt(textBoxDisc.Text);
+            tags.Disc = int.TryParse(textBoxDisc.Text, out int disc) ? disc : 0;
         }
 
         void TextBoxGenre_TextChanged(object sender, EventArgs e)
@@ -1570,22 +1512,22 @@ namespace FFmpegCatapult
 
         void TextBoxTotalDiscs_TextChanged(object sender, EventArgs e)
         {
-            //tags.Disc = WinFormsHelper.TextToInt(textBoxDisc.Text);
+            tags.Disc = int.TryParse(textBoxTotalDiscs.Text, out int totalDiscs) ? totalDiscs : 0;
         }
 
         void TextBoxTotalTracks_TextChanged(object sender, EventArgs e)
         {
-            //tags.TotalTracks = WinFormsHelper.TextToInt(textBoxTotalTracks.Text);
+            tags.TotalTracks = int.TryParse(textBoxTotalTracks.Text, out int totalTracks) ? totalTracks : 0;
         }
 
         void TextBoxTrack_TextChanged(object sender, EventArgs e)
         {
-            //tags.Track = WinFormsHelper.TextToInt(textBoxTrack.Text);
+            tags.Track = int.TryParse(textBoxTrack.Text, out int track) ? track : 0;
         }
 
         void TextBoxYear_TextChanged(object sender, EventArgs e)
         {
-            //tags.Year = WinFormsHelper.TextToInt(textBoxYear.Text);
+            tags.Year = int.TryParse(textBoxYear.Text, out int year) ? year : 0;
         }
 
         //
