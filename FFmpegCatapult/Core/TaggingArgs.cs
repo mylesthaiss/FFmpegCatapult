@@ -42,8 +42,29 @@ namespace FFmpegCatapult.Core
                 if (!string.IsNullOrEmpty(tags.Comment))
                     taggingArgs.Add(string.Format("-metadata comment=\"{0}\"", tags.Comment));
 
+                if (tags.Compilation && format.Format == "mp3")
+                    taggingArgs.Add("-metadata compilation=1");
+
+                if (!string.IsNullOrEmpty(tags.Copyright))
+                    taggingArgs.Add(string.Format("-metadata copyright=\"{0}\"", tags.Copyright));
+
+                if (!string.IsNullOrEmpty(tags.Description))
+                    taggingArgs.Add(string.Format("-metadata description=\"{0}\"", tags.Description));
+
+                if (!string.IsNullOrEmpty(tags.EpisodeId))
+                    taggingArgs.Add(string.Format("-metadata episode_id=\"{0}\"", tags.EpisodeId));
+
                 if (!string.IsNullOrEmpty(tags.Genre))
                     taggingArgs.Add(string.Format("-metadata genre=\"{0}\"", tags.Genre));
+
+                if (!string.IsNullOrEmpty(tags.Network))
+                    taggingArgs.Add(string.Format("-metadata network=\"{0}\"", tags.Network));
+
+                if (!string.IsNullOrEmpty(tags.Show))
+                    taggingArgs.Add(string.Format("-metadata show=\"{0}\"", tags.Show));
+
+                if (!string.IsNullOrEmpty(tags.Synopsis))
+                    taggingArgs.Add(string.Format("-metadata synopsis=\"{0}\"", tags.Synopsis));
 
                 if (tags.Disc > 0)
                 {

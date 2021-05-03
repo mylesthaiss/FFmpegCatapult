@@ -18,6 +18,7 @@ namespace FFmpegCatapult.Models
 {
     interface ITags
     {
+        bool Compilation { get; set; }
         int Disc { get; set; }
         int Track { get; set; }
         int TotalDiscs { get; set; }
@@ -27,13 +28,20 @@ namespace FFmpegCatapult.Models
         string AlbumArtist { get; set; }
         string Artist { get; set; }
         string Comment { get; set; }
+        string Copyright { get; set; }
+        string Description { get; set; }
+        string EpisodeId { get; set; }
         string Genre { get; set; }
+        string Network { get; set; }
         string Publisher { get; set; }
+        string Show { get; set; }
+        string Synopsis { get; set; }
         string Title { get; set; }
     }
 
     class Tags : ITags
     {
+        public bool Compilation { get; set; } = false;
         public int Disc { get; set; } = 0;
         public int Track { get; set; } = 0;
         public int TotalDiscs { get; set; } = 0;
@@ -43,8 +51,14 @@ namespace FFmpegCatapult.Models
         public string AlbumArtist { get; set; }
         public string Artist { get; set; }
         public string Comment { get; set; }
+        public string Copyright { get; set; }
+        public string Description { get; set; }
+        public string EpisodeId { get; set; }
         public string Genre { get; set; }
+        public string Network { get; set; }
         public string Publisher { get; set; }
+        public string Show { get; set; }
+        public string Synopsis { get; set; }
         public string Title { get; set; }
     }
 }

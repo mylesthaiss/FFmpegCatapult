@@ -388,18 +388,6 @@ namespace FFmpegCatapult
             {
                 EnableTaggingControls(true);
 
-                textBoxAlbum.Text = tags.Album;
-                textBoxAlbumArtist.Text = tags.AlbumArtist;
-                textBoxArtist.Text = tags.Artist;
-                textBoxComment.Text = tags.Comment;
-                textBoxDisc.Text = tags.Disc;
-                textBoxGenre.Text = tags.Genre;
-                textBoxTitle.Text = tags.Title;
-                textBoxTotalDiscs.Text = tags.TotalDiscs;
-                textBoxTotalTracks.Text = tags.TotalTracks;
-                textBoxTrack.Text = tags.Track;
-                textBoxYear.Text = tags.Year;
-
                 switch (file.Format)
                 {
                     case "avi":
@@ -413,8 +401,8 @@ namespace FFmpegCatapult
                         EnableTitleTagging(true);
                         EnableTrackTagging(true);
                         EnableYearTagging(false);
+                        EnableBroadcastTagging(false);
                         break;
-                    case "mkv":
                     case "ts":
                         EnableAlbumTagging(false);
                         EnableAlbumArtistTagging(false);
@@ -426,6 +414,7 @@ namespace FFmpegCatapult
                         EnableTitleTagging(true);
                         EnableTrackTagging(false);
                         EnableYearTagging(false);
+                        EnableBroadcastTagging(false);
                         break;
                     case "wmv":
                         EnableAlbumTagging(false);
@@ -438,8 +427,11 @@ namespace FFmpegCatapult
                         EnableTitleTagging(true);
                         EnableTrackTagging(false);
                         EnableYearTagging(false);
+                        EnableBroadcastTagging(false);
                         break;
-                    default:
+                    case "mp3":
+                    case "m4v":
+                    case "flac":
                         EnableAlbumTagging(true);
                         EnableAlbumArtistTagging(true);
                         EnableArtistTagging(true);
@@ -450,6 +442,20 @@ namespace FFmpegCatapult
                         EnableTitleTagging(true);
                         EnableTrackTagging(true);
                         EnableYearTagging(true);
+                        EnableBroadcastTagging(false);
+                        break;
+                    default:
+                        EnableAlbumTagging(true);
+                        EnableAlbumArtistTagging(false);
+                        EnableArtistTagging(true);
+                        EnableCommentTagging(true);
+                        EnableDiscTagging(false);
+                        EnableGenreTaggin(true);
+                        EnablePublisherTagging(true);
+                        EnableTitleTagging(true);
+                        EnableTrackTagging(false);
+                        EnableYearTagging(true);
+                        EnableBroadcastTagging(true);
                         break;
                 }
             }
@@ -550,8 +556,7 @@ namespace FFmpegCatapult
         private void EnableTaggingControls(bool enable)
         {
             groupBoxGeneralTags.Enabled = enable;
-            groupBoxTrackTags.Enabled = enable;
-            groupBoxMiscTags.Enabled = enable;
+            groupBoxBroadcast.Enabled = enable;
 
             if (!enable)
                 ClearMetadataFields();
@@ -570,9 +575,13 @@ namespace FFmpegCatapult
         {
             labelAlbumArtist.Enabled = enable;
             textBoxAlbumArtist.Enabled = enable;
+            checkBoxCompilation.Enabled = enable;
 
             if (!enable)
+            {
                 textBoxAlbumArtist.Text = "";
+                checkBoxCompilation.Checked = false;
+            }                
         }
 
         private void EnableArtistTagging(bool enable)
@@ -657,6 +666,20 @@ namespace FFmpegCatapult
                 textBoxYear.Text = "";
         }
 
+        private void EnableBroadcastTagging(bool enable)
+        {
+            groupBoxBroadcast.Enabled = enable;
+
+            if (!enable)
+            {
+                textBoxShow.Text = "";
+                textBoxDescription.Text = "";
+                textBoxEpisodeId.Text = "";
+                textBoxSynopsis.Text = "";
+                textBoxNetwork.Text = "";
+            }
+        }
+
         private void EnableLogFileTextBox(bool enable)
         {
             textBoxLog.Enabled = enable;
@@ -683,8 +706,25 @@ namespace FFmpegCatapult
 
         private void ClearMetadataFields()
         {
-            tags = new Tags();
-            InitMetadata();
+            checkBoxCompilation.Checked = false;
+            textBoxAlbum.Text = "";
+            textBoxAlbumArtist.Text = "";
+            textBoxArtist.Text = "";
+            textBoxComment.Text = "";
+            textBoxDisc.Text = "";
+            textBoxGenre.Text = "";
+            textBoxTitle.Text = "";
+            textBoxTotalDiscs.Text = "";
+            textBoxTotalTracks.Text = "";
+            textBoxTrack.Text = "";
+            textBoxYear.Text = "";
+            textBoxPublisher.Text = "";
+            textBoxCopyright.Text = "";
+            textBoxDescription.Text = "";
+            textBoxSynopsis.Text = "";
+            textBoxShow.Text = "";
+            textBoxEpisodeId.Text ="";
+            textBoxNetwork.Text = "";
         }
 
         private void EnableBinArgsControls(bool enable)
@@ -1442,27 +1482,27 @@ namespace FFmpegCatapult
             picture.Height = (int)numericUpDownHeight.Value;
         }
 
-        private void numericUpDownFPS_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownFPS_ValueChanged(object sender, EventArgs e)
         {
             picture.FPS = (int)numericUpDownFPS.Value;
         }
 
-        private void numericUpDownLayoutWidth_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownLayoutWidth_ValueChanged(object sender, EventArgs e)
         {
             picture.WinWidth = (int)numericUpDownLayoutWidth.Value;
         }
 
-        private void numericUpDownLayoutHeight_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownLayoutHeight_ValueChanged(object sender, EventArgs e)
         {
             picture.WinHeight = (int)numericUpDownLayoutHeight.Value;
         }
 
-        private void numericUpDownLayoutVert_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownLayoutVert_ValueChanged(object sender, EventArgs e)
         {
             picture.X = (int)numericUpDownLayoutVert.Value;
         }
 
-        private void numericUpDownLayoutHoriz_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDownLayoutHoriz_ValueChanged(object sender, EventArgs e)
         {
             picture.Y = (int)numericUpDownLayoutHoriz.Value;
         }
@@ -1530,6 +1570,46 @@ namespace FFmpegCatapult
             tags.Year = int.TryParse(textBoxYear.Text, out int year) ? year : 0;
         }
 
+        private void CheckBoxCompilation_CheckedChanged(object sender, EventArgs e)
+        {
+            tags.Compilation = checkBoxCompilation.Checked;
+        }
+
+        private void TextBoxPublisher_TextChanged(object sender, EventArgs e)
+        {
+            tags.Publisher = textBoxPublisher.Text;
+        }
+
+        private void TextBoxCopyright_TextChanged(object sender, EventArgs e)
+        {
+            tags.Copyright = textBoxCopyright.Text;
+        }
+
+        private void TextBoxShow_TextChanged(object sender, EventArgs e)
+        {
+            tags.Show = textBoxShow.Text;
+        }
+
+        private void TextBoxEpisodeId_TextChanged(object sender, EventArgs e)
+        {
+            tags.EpisodeId = textBoxEpisodeId.Text;
+        }
+
+        private void TextBoxNetwork_TextChanged(object sender, EventArgs e)
+        {
+            tags.Network = textBoxNetwork.Text;
+        }
+
+        private void TextBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+            tags.Description = textBoxDescription.Text;
+        }
+
+        private void TextBoxSynopsis_TextChanged(object sender, EventArgs e)
+        {
+            tags.Synopsis = textBoxSynopsis.Text;
+        }
+
         //
         // Options tab events
         //
@@ -1585,10 +1665,8 @@ namespace FFmpegCatapult
             termBinFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
             termBinFile.ShowDialog();
 
-            if (termBinFile.FileName != "")
-            {
+            if (!string.IsNullOrEmpty(termBinFile.FileName))
                 textBoxTermBin.Text = termBinFile.FileName;
-            }
         }
     }
 }

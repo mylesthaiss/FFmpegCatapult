@@ -62,28 +62,40 @@ namespace FFmpegCatapult
             this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
             this.labelFFmpegBin = new System.Windows.Forms.Label();
             this.tabTagging = new System.Windows.Forms.TabPage();
-            this.groupBoxMiscTags = new System.Windows.Forms.GroupBox();
-            this.textBoxPublisher = new System.Windows.Forms.TextBox();
-            this.textBoxComment = new System.Windows.Forms.TextBox();
-            this.labelComment = new System.Windows.Forms.Label();
-            this.labelPublisher = new System.Windows.Forms.Label();
-            this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
-            this.labelAlbumArtist = new System.Windows.Forms.Label();
-            this.groupBoxTrackTags = new System.Windows.Forms.GroupBox();
-            this.textBoxTotalDiscs = new System.Windows.Forms.TextBox();
-            this.labelOfDiscs = new System.Windows.Forms.Label();
-            this.textBoxDisc = new System.Windows.Forms.TextBox();
-            this.labelDisc = new System.Windows.Forms.Label();
-            this.textBoxTotalTracks = new System.Windows.Forms.TextBox();
-            this.labelOfTrack = new System.Windows.Forms.Label();
-            this.textBoxTrack = new System.Windows.Forms.TextBox();
-            this.labelTrack = new System.Windows.Forms.Label();
+            this.textBoxSynopsis = new System.Windows.Forms.TextBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.labelSynopsis = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.groupBoxBroadcast = new System.Windows.Forms.GroupBox();
+            this.textBoxNetwork = new System.Windows.Forms.TextBox();
+            this.textBoxEpisodeId = new System.Windows.Forms.TextBox();
+            this.textBoxShow = new System.Windows.Forms.TextBox();
+            this.labelNetwork = new System.Windows.Forms.Label();
+            this.labelEpisodeId = new System.Windows.Forms.Label();
+            this.labelShow = new System.Windows.Forms.Label();
             this.groupBoxGeneralTags = new System.Windows.Forms.GroupBox();
+            this.checkBoxCompilation = new System.Windows.Forms.CheckBox();
+            this.textBoxCopyright = new System.Windows.Forms.TextBox();
+            this.labelCopyright = new System.Windows.Forms.Label();
+            this.labelOfDiscs = new System.Windows.Forms.Label();
+            this.textBoxTotalDiscs = new System.Windows.Forms.TextBox();
+            this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.textBoxPublisher = new System.Windows.Forms.TextBox();
+            this.textBoxDisc = new System.Windows.Forms.TextBox();
+            this.labelComment = new System.Windows.Forms.Label();
+            this.labelDisc = new System.Windows.Forms.Label();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.labelOfTrack = new System.Windows.Forms.Label();
+            this.textBoxTotalTracks = new System.Windows.Forms.TextBox();
             this.labelGenre = new System.Windows.Forms.Label();
             this.textBoxArtist = new System.Windows.Forms.TextBox();
+            this.textBoxTrack = new System.Windows.Forms.TextBox();
+            this.labelPublisher = new System.Windows.Forms.Label();
+            this.labelTrack = new System.Windows.Forms.Label();
             this.labelArtist = new System.Windows.Forms.Label();
+            this.textBoxAlbumArtist = new System.Windows.Forms.TextBox();
             this.textBoxAlbum = new System.Windows.Forms.TextBox();
+            this.labelAlbumArtist = new System.Windows.Forms.Label();
             this.labelAlbum = new System.Windows.Forms.Label();
             this.labelYear = new System.Windows.Forms.Label();
             this.textBoxYear = new System.Windows.Forms.TextBox();
@@ -109,7 +121,7 @@ namespace FFmpegCatapult
             this.comboBoxAudioBitrates = new System.Windows.Forms.ComboBox();
             this.groupBoxAudioOutput = new System.Windows.Forms.GroupBox();
             this.comboBoxChannels = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labelVolBoost = new System.Windows.Forms.Label();
             this.numericUpDownVolumeBoost = new System.Windows.Forms.NumericUpDown();
             this.labelChannels = new System.Windows.Forms.Label();
             this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
@@ -125,7 +137,7 @@ namespace FFmpegCatapult
             this.groupBoxVideoSize = new System.Windows.Forms.GroupBox();
             this.numericUpDownTargetSize = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBufferSize = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTargetSize = new System.Windows.Forms.Label();
             this.labelBuffer = new System.Windows.Forms.Label();
             this.groupBoxVideoEncoding = new System.Windows.Forms.GroupBox();
             this.numericUpDownTileRows = new System.Windows.Forms.NumericUpDown();
@@ -135,14 +147,14 @@ namespace FFmpegCatapult
             this.numericUpDownTrellis = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGOPSize = new System.Windows.Forms.NumericUpDown();
             this.comboBoxMESubcmp = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelMESubCmp = new System.Windows.Forms.Label();
             this.comboBoxMECmp = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelMECmp = new System.Windows.Forms.Label();
             this.comboBoxMEMethod = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelMEMethod = new System.Windows.Forms.Label();
             this.comboBoxBFStrat = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelBFStrat = new System.Windows.Forms.Label();
+            this.labelTileCols = new System.Windows.Forms.Label();
             this.labelTileRows = new System.Windows.Forms.Label();
             this.labelTrellis = new System.Windows.Forms.Label();
             this.labelDiaSize = new System.Windows.Forms.Label();
@@ -210,7 +222,7 @@ namespace FFmpegCatapult
             this.radioButtonHalfRes = new System.Windows.Forms.RadioButton();
             this.radioButtonKeepRes = new System.Windows.Forms.RadioButton();
             this.tabMain = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxFileOutput = new System.Windows.Forms.GroupBox();
             this.textBoxOutputFilename = new System.Windows.Forms.TextBox();
             this.labelOutputFilename = new System.Windows.Forms.Label();
             this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
@@ -223,7 +235,7 @@ namespace FFmpegCatapult
             this.groupBoxEncoding = new System.Windows.Forms.GroupBox();
             this.numericUpDownProcessors = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownThreads = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelProcessors = new System.Windows.Forms.Label();
             this.labelThreads = new System.Windows.Forms.Label();
             this.comboBoxContainers = new System.Windows.Forms.ComboBox();
             this.labelFormat = new System.Windows.Forms.Label();
@@ -241,8 +253,7 @@ namespace FFmpegCatapult
             this.groupBoxSessionOptions.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
             this.tabTagging.SuspendLayout();
-            this.groupBoxMiscTags.SuspendLayout();
-            this.groupBoxTrackTags.SuspendLayout();
+            this.groupBoxBroadcast.SuspendLayout();
             this.groupBoxGeneralTags.SuspendLayout();
             this.tabAudio.SuspendLayout();
             this.groupBoxAudioFiltering.SuspendLayout();
@@ -287,7 +298,7 @@ namespace FFmpegCatapult
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
             this.tabMain.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxFileOutput.SuspendLayout();
             this.groupBoxSession.SuspendLayout();
             this.groupBoxEncoding.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownProcessors)).BeginInit();
@@ -460,8 +471,7 @@ namespace FFmpegCatapult
             // 
             // tabTagging
             // 
-            this.tabTagging.Controls.Add(this.groupBoxMiscTags);
-            this.tabTagging.Controls.Add(this.groupBoxTrackTags);
+            this.tabTagging.Controls.Add(this.groupBoxBroadcast);
             this.tabTagging.Controls.Add(this.groupBoxGeneralTags);
             this.tabTagging.Location = new System.Drawing.Point(4, 22);
             this.tabTagging.Name = "tabTagging";
@@ -471,162 +481,136 @@ namespace FFmpegCatapult
             this.tabTagging.Text = "Tagging";
             this.tabTagging.UseVisualStyleBackColor = true;
             // 
-            // groupBoxMiscTags
+            // textBoxSynopsis
             // 
-            this.groupBoxMiscTags.Controls.Add(this.textBoxPublisher);
-            this.groupBoxMiscTags.Controls.Add(this.textBoxComment);
-            this.groupBoxMiscTags.Controls.Add(this.labelComment);
-            this.groupBoxMiscTags.Controls.Add(this.labelPublisher);
-            this.groupBoxMiscTags.Controls.Add(this.textBoxAlbumArtist);
-            this.groupBoxMiscTags.Controls.Add(this.labelAlbumArtist);
-            this.groupBoxMiscTags.Location = new System.Drawing.Point(148, 107);
-            this.groupBoxMiscTags.Name = "groupBoxMiscTags";
-            this.groupBoxMiscTags.Size = new System.Drawing.Size(413, 78);
-            this.groupBoxMiscTags.TabIndex = 2;
-            this.groupBoxMiscTags.TabStop = false;
-            this.groupBoxMiscTags.Text = "Misc";
+            this.textBoxSynopsis.Location = new System.Drawing.Point(307, 45);
+            this.textBoxSynopsis.Multiline = true;
+            this.textBoxSynopsis.Name = "textBoxSynopsis";
+            this.textBoxSynopsis.Size = new System.Drawing.Size(245, 47);
+            this.textBoxSynopsis.TabIndex = 3;
+            this.textBoxSynopsis.TextChanged += new System.EventHandler(this.TextBoxSynopsis_TextChanged);
             // 
-            // textBoxPublisher
+            // textBoxDescription
             // 
-            this.textBoxPublisher.Location = new System.Drawing.Point(211, 19);
-            this.textBoxPublisher.Name = "textBoxPublisher";
-            this.textBoxPublisher.Size = new System.Drawing.Size(196, 20);
-            this.textBoxPublisher.TabIndex = 5;
+            this.textBoxDescription.Location = new System.Drawing.Point(307, 19);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(245, 20);
+            this.textBoxDescription.TabIndex = 2;
+            this.textBoxDescription.TextChanged += new System.EventHandler(this.TextBoxDescription_TextChanged);
             // 
-            // textBoxComment
+            // labelSynopsis
             // 
-            this.textBoxComment.Location = new System.Drawing.Point(66, 45);
-            this.textBoxComment.Name = "textBoxComment";
-            this.textBoxComment.Size = new System.Drawing.Size(341, 20);
-            this.textBoxComment.TabIndex = 4;
+            this.labelSynopsis.AutoSize = true;
+            this.labelSynopsis.Location = new System.Drawing.Point(249, 48);
+            this.labelSynopsis.Name = "labelSynopsis";
+            this.labelSynopsis.Size = new System.Drawing.Size(52, 13);
+            this.labelSynopsis.TabIndex = 1;
+            this.labelSynopsis.Text = "Synopsis:";
             // 
-            // labelComment
+            // labelDescription
             // 
-            this.labelComment.AutoSize = true;
-            this.labelComment.Location = new System.Drawing.Point(6, 48);
-            this.labelComment.Name = "labelComment";
-            this.labelComment.Size = new System.Drawing.Size(54, 13);
-            this.labelComment.TabIndex = 3;
-            this.labelComment.Text = "Comment:";
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(238, 22);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(63, 13);
+            this.labelDescription.TabIndex = 0;
+            this.labelDescription.Text = "Description:";
             // 
-            // labelPublisher
+            // groupBoxBroadcast
             // 
-            this.labelPublisher.AutoSize = true;
-            this.labelPublisher.Location = new System.Drawing.Point(153, 22);
-            this.labelPublisher.Name = "labelPublisher";
-            this.labelPublisher.Size = new System.Drawing.Size(53, 13);
-            this.labelPublisher.TabIndex = 2;
-            this.labelPublisher.Text = "Publisher:";
+            this.groupBoxBroadcast.Controls.Add(this.labelSynopsis);
+            this.groupBoxBroadcast.Controls.Add(this.textBoxDescription);
+            this.groupBoxBroadcast.Controls.Add(this.textBoxNetwork);
+            this.groupBoxBroadcast.Controls.Add(this.labelDescription);
+            this.groupBoxBroadcast.Controls.Add(this.textBoxSynopsis);
+            this.groupBoxBroadcast.Controls.Add(this.textBoxEpisodeId);
+            this.groupBoxBroadcast.Controls.Add(this.textBoxShow);
+            this.groupBoxBroadcast.Controls.Add(this.labelNetwork);
+            this.groupBoxBroadcast.Controls.Add(this.labelEpisodeId);
+            this.groupBoxBroadcast.Controls.Add(this.labelShow);
+            this.groupBoxBroadcast.Location = new System.Drawing.Point(3, 187);
+            this.groupBoxBroadcast.Name = "groupBoxBroadcast";
+            this.groupBoxBroadcast.Size = new System.Drawing.Size(558, 103);
+            this.groupBoxBroadcast.TabIndex = 1;
+            this.groupBoxBroadcast.TabStop = false;
+            this.groupBoxBroadcast.Text = "Broadcast";
             // 
-            // textBoxAlbumArtist
+            // textBoxNetwork
             // 
-            this.textBoxAlbumArtist.Location = new System.Drawing.Point(47, 19);
-            this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
-            this.textBoxAlbumArtist.Size = new System.Drawing.Size(100, 20);
-            this.textBoxAlbumArtist.TabIndex = 1;
+            this.textBoxNetwork.Location = new System.Drawing.Point(72, 72);
+            this.textBoxNetwork.Name = "textBoxNetwork";
+            this.textBoxNetwork.Size = new System.Drawing.Size(148, 20);
+            this.textBoxNetwork.TabIndex = 0;
+            this.textBoxNetwork.TextChanged += new System.EventHandler(this.TextBoxNetwork_TextChanged);
             // 
-            // labelAlbumArtist
+            // textBoxEpisodeId
             // 
-            this.labelAlbumArtist.AutoSize = true;
-            this.labelAlbumArtist.Location = new System.Drawing.Point(6, 22);
-            this.labelAlbumArtist.Name = "labelAlbumArtist";
-            this.labelAlbumArtist.Size = new System.Drawing.Size(35, 13);
-            this.labelAlbumArtist.TabIndex = 0;
-            this.labelAlbumArtist.Text = "Band:";
+            this.textBoxEpisodeId.Location = new System.Drawing.Point(72, 45);
+            this.textBoxEpisodeId.Name = "textBoxEpisodeId";
+            this.textBoxEpisodeId.Size = new System.Drawing.Size(148, 20);
+            this.textBoxEpisodeId.TabIndex = 0;
+            this.textBoxEpisodeId.TextChanged += new System.EventHandler(this.TextBoxEpisodeId_TextChanged);
             // 
-            // groupBoxTrackTags
+            // textBoxShow
             // 
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalDiscs);
-            this.groupBoxTrackTags.Controls.Add(this.labelOfDiscs);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxDisc);
-            this.groupBoxTrackTags.Controls.Add(this.labelDisc);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTotalTracks);
-            this.groupBoxTrackTags.Controls.Add(this.labelOfTrack);
-            this.groupBoxTrackTags.Controls.Add(this.textBoxTrack);
-            this.groupBoxTrackTags.Controls.Add(this.labelTrack);
-            this.groupBoxTrackTags.Location = new System.Drawing.Point(6, 107);
-            this.groupBoxTrackTags.Name = "groupBoxTrackTags";
-            this.groupBoxTrackTags.Size = new System.Drawing.Size(136, 78);
-            this.groupBoxTrackTags.TabIndex = 1;
-            this.groupBoxTrackTags.TabStop = false;
-            this.groupBoxTrackTags.Text = "Track";
+            this.textBoxShow.Location = new System.Drawing.Point(72, 19);
+            this.textBoxShow.Name = "textBoxShow";
+            this.textBoxShow.Size = new System.Drawing.Size(148, 20);
+            this.textBoxShow.TabIndex = 0;
+            this.textBoxShow.TextChanged += new System.EventHandler(this.TextBoxShow_TextChanged);
             // 
-            // textBoxTotalDiscs
+            // labelNetwork
             // 
-            this.textBoxTotalDiscs.Location = new System.Drawing.Point(100, 45);
-            this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
-            this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTotalDiscs.TabIndex = 2;
-            this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            this.labelNetwork.AutoSize = true;
+            this.labelNetwork.Location = new System.Drawing.Point(16, 75);
+            this.labelNetwork.Name = "labelNetwork";
+            this.labelNetwork.Size = new System.Drawing.Size(50, 13);
+            this.labelNetwork.TabIndex = 0;
+            this.labelNetwork.Text = "Network:";
             // 
-            // labelOfDiscs
+            // labelEpisodeId
             // 
-            this.labelOfDiscs.AutoSize = true;
-            this.labelOfDiscs.Location = new System.Drawing.Point(82, 48);
-            this.labelOfDiscs.Name = "labelOfDiscs";
-            this.labelOfDiscs.Size = new System.Drawing.Size(12, 13);
-            this.labelOfDiscs.TabIndex = 2;
-            this.labelOfDiscs.Text = "/";
+            this.labelEpisodeId.AutoSize = true;
+            this.labelEpisodeId.Location = new System.Drawing.Point(6, 48);
+            this.labelEpisodeId.Name = "labelEpisodeId";
+            this.labelEpisodeId.Size = new System.Drawing.Size(60, 13);
+            this.labelEpisodeId.TabIndex = 0;
+            this.labelEpisodeId.Text = "Episode Id:";
             // 
-            // textBoxDisc
+            // labelShow
             // 
-            this.textBoxDisc.Location = new System.Drawing.Point(51, 45);
-            this.textBoxDisc.Name = "textBoxDisc";
-            this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
-            this.textBoxDisc.TabIndex = 2;
-            this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            // 
-            // labelDisc
-            // 
-            this.labelDisc.AutoSize = true;
-            this.labelDisc.Location = new System.Drawing.Point(6, 47);
-            this.labelDisc.Name = "labelDisc";
-            this.labelDisc.Size = new System.Drawing.Size(31, 13);
-            this.labelDisc.TabIndex = 2;
-            this.labelDisc.Text = "Disc:";
-            // 
-            // textBoxTotalTracks
-            // 
-            this.textBoxTotalTracks.Location = new System.Drawing.Point(100, 19);
-            this.textBoxTotalTracks.Name = "textBoxTotalTracks";
-            this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTotalTracks.TabIndex = 2;
-            this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            // 
-            // labelOfTrack
-            // 
-            this.labelOfTrack.AutoSize = true;
-            this.labelOfTrack.Location = new System.Drawing.Point(82, 22);
-            this.labelOfTrack.Name = "labelOfTrack";
-            this.labelOfTrack.Size = new System.Drawing.Size(12, 13);
-            this.labelOfTrack.TabIndex = 2;
-            this.labelOfTrack.Text = "/";
-            // 
-            // textBoxTrack
-            // 
-            this.textBoxTrack.Location = new System.Drawing.Point(51, 19);
-            this.textBoxTrack.Name = "textBoxTrack";
-            this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
-            this.textBoxTrack.TabIndex = 2;
-            this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
-            // 
-            // labelTrack
-            // 
-            this.labelTrack.AutoSize = true;
-            this.labelTrack.Location = new System.Drawing.Point(6, 22);
-            this.labelTrack.Name = "labelTrack";
-            this.labelTrack.Size = new System.Drawing.Size(38, 13);
-            this.labelTrack.TabIndex = 2;
-            this.labelTrack.Text = "Track:";
+            this.labelShow.AutoSize = true;
+            this.labelShow.Location = new System.Drawing.Point(29, 22);
+            this.labelShow.Name = "labelShow";
+            this.labelShow.Size = new System.Drawing.Size(37, 13);
+            this.labelShow.TabIndex = 0;
+            this.labelShow.Text = "Show:";
             // 
             // groupBoxGeneralTags
             // 
             this.groupBoxGeneralTags.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.groupBoxGeneralTags.Controls.Add(this.checkBoxCompilation);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxCopyright);
+            this.groupBoxGeneralTags.Controls.Add(this.labelCopyright);
+            this.groupBoxGeneralTags.Controls.Add(this.labelOfDiscs);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxTotalDiscs);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxComment);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxPublisher);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxDisc);
+            this.groupBoxGeneralTags.Controls.Add(this.labelComment);
+            this.groupBoxGeneralTags.Controls.Add(this.labelDisc);
             this.groupBoxGeneralTags.Controls.Add(this.textBoxGenre);
+            this.groupBoxGeneralTags.Controls.Add(this.labelOfTrack);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxTotalTracks);
             this.groupBoxGeneralTags.Controls.Add(this.labelGenre);
             this.groupBoxGeneralTags.Controls.Add(this.textBoxArtist);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxTrack);
+            this.groupBoxGeneralTags.Controls.Add(this.labelPublisher);
+            this.groupBoxGeneralTags.Controls.Add(this.labelTrack);
             this.groupBoxGeneralTags.Controls.Add(this.labelArtist);
+            this.groupBoxGeneralTags.Controls.Add(this.textBoxAlbumArtist);
             this.groupBoxGeneralTags.Controls.Add(this.textBoxAlbum);
+            this.groupBoxGeneralTags.Controls.Add(this.labelAlbumArtist);
             this.groupBoxGeneralTags.Controls.Add(this.labelAlbum);
             this.groupBoxGeneralTags.Controls.Add(this.labelYear);
             this.groupBoxGeneralTags.Controls.Add(this.textBoxYear);
@@ -634,10 +618,96 @@ namespace FFmpegCatapult
             this.groupBoxGeneralTags.Controls.Add(this.labelTitle);
             this.groupBoxGeneralTags.Location = new System.Drawing.Point(6, 6);
             this.groupBoxGeneralTags.Name = "groupBoxGeneralTags";
-            this.groupBoxGeneralTags.Size = new System.Drawing.Size(555, 95);
+            this.groupBoxGeneralTags.Size = new System.Drawing.Size(555, 175);
             this.groupBoxGeneralTags.TabIndex = 0;
             this.groupBoxGeneralTags.TabStop = false;
             this.groupBoxGeneralTags.Text = "General";
+            // 
+            // checkBoxCompilation
+            // 
+            this.checkBoxCompilation.AutoSize = true;
+            this.checkBoxCompilation.Location = new System.Drawing.Point(436, 147);
+            this.checkBoxCompilation.Name = "checkBoxCompilation";
+            this.checkBoxCompilation.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxCompilation.TabIndex = 12;
+            this.checkBoxCompilation.Text = "Part of compilation";
+            this.checkBoxCompilation.UseVisualStyleBackColor = true;
+            this.checkBoxCompilation.CheckedChanged += new System.EventHandler(this.CheckBoxCompilation_CheckedChanged);
+            // 
+            // textBoxCopyright
+            // 
+            this.textBoxCopyright.Location = new System.Drawing.Point(394, 118);
+            this.textBoxCopyright.Name = "textBoxCopyright";
+            this.textBoxCopyright.Size = new System.Drawing.Size(155, 20);
+            this.textBoxCopyright.TabIndex = 11;
+            this.textBoxCopyright.TextChanged += new System.EventHandler(this.TextBoxCopyright_TextChanged);
+            // 
+            // labelCopyright
+            // 
+            this.labelCopyright.AutoSize = true;
+            this.labelCopyright.Location = new System.Drawing.Point(336, 122);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(54, 13);
+            this.labelCopyright.TabIndex = 10;
+            this.labelCopyright.Text = "Copyright:";
+            // 
+            // labelOfDiscs
+            // 
+            this.labelOfDiscs.AutoSize = true;
+            this.labelOfDiscs.Location = new System.Drawing.Point(281, 149);
+            this.labelOfDiscs.Name = "labelOfDiscs";
+            this.labelOfDiscs.Size = new System.Drawing.Size(12, 13);
+            this.labelOfDiscs.TabIndex = 2;
+            this.labelOfDiscs.Text = "/";
+            // 
+            // textBoxTotalDiscs
+            // 
+            this.textBoxTotalDiscs.Location = new System.Drawing.Point(299, 145);
+            this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
+            this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalDiscs.TabIndex = 2;
+            this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            // 
+            // textBoxComment
+            // 
+            this.textBoxComment.Location = new System.Drawing.Point(77, 119);
+            this.textBoxComment.Name = "textBoxComment";
+            this.textBoxComment.Size = new System.Drawing.Size(247, 20);
+            this.textBoxComment.TabIndex = 4;
+            // 
+            // textBoxPublisher
+            // 
+            this.textBoxPublisher.Location = new System.Drawing.Point(394, 92);
+            this.textBoxPublisher.Name = "textBoxPublisher";
+            this.textBoxPublisher.Size = new System.Drawing.Size(155, 20);
+            this.textBoxPublisher.TabIndex = 5;
+            this.textBoxPublisher.TextChanged += new System.EventHandler(this.TextBoxPublisher_TextChanged);
+            // 
+            // textBoxDisc
+            // 
+            this.textBoxDisc.Location = new System.Drawing.Point(250, 145);
+            this.textBoxDisc.Name = "textBoxDisc";
+            this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
+            this.textBoxDisc.TabIndex = 2;
+            this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            // 
+            // labelComment
+            // 
+            this.labelComment.AutoSize = true;
+            this.labelComment.Location = new System.Drawing.Point(17, 122);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(54, 13);
+            this.labelComment.TabIndex = 3;
+            this.labelComment.Text = "Comment:";
+            // 
+            // labelDisc
+            // 
+            this.labelDisc.AutoSize = true;
+            this.labelDisc.Location = new System.Drawing.Point(213, 148);
+            this.labelDisc.Name = "labelDisc";
+            this.labelDisc.Size = new System.Drawing.Size(31, 13);
+            this.labelDisc.TabIndex = 2;
+            this.labelDisc.Text = "Disc:";
             // 
             // textBoxGenre
             // 
@@ -645,6 +715,23 @@ namespace FFmpegCatapult
             this.textBoxGenre.Name = "textBoxGenre";
             this.textBoxGenre.Size = new System.Drawing.Size(155, 20);
             this.textBoxGenre.TabIndex = 9;
+            // 
+            // labelOfTrack
+            // 
+            this.labelOfTrack.AutoSize = true;
+            this.labelOfTrack.Location = new System.Drawing.Point(110, 148);
+            this.labelOfTrack.Name = "labelOfTrack";
+            this.labelOfTrack.Size = new System.Drawing.Size(12, 13);
+            this.labelOfTrack.TabIndex = 2;
+            this.labelOfTrack.Text = "/";
+            // 
+            // textBoxTotalTracks
+            // 
+            this.textBoxTotalTracks.Location = new System.Drawing.Point(128, 145);
+            this.textBoxTotalTracks.Name = "textBoxTotalTracks";
+            this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTotalTracks.TabIndex = 2;
+            this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // labelGenre
             // 
@@ -657,31 +744,73 @@ namespace FFmpegCatapult
             // 
             // textBoxArtist
             // 
-            this.textBoxArtist.Location = new System.Drawing.Point(51, 66);
+            this.textBoxArtist.Location = new System.Drawing.Point(77, 66);
             this.textBoxArtist.Name = "textBoxArtist";
-            this.textBoxArtist.Size = new System.Drawing.Size(293, 20);
+            this.textBoxArtist.Size = new System.Drawing.Size(247, 20);
             this.textBoxArtist.TabIndex = 7;
+            // 
+            // textBoxTrack
+            // 
+            this.textBoxTrack.Location = new System.Drawing.Point(77, 145);
+            this.textBoxTrack.Name = "textBoxTrack";
+            this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
+            this.textBoxTrack.TabIndex = 2;
+            this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
+            // 
+            // labelPublisher
+            // 
+            this.labelPublisher.AutoSize = true;
+            this.labelPublisher.Location = new System.Drawing.Point(336, 96);
+            this.labelPublisher.Name = "labelPublisher";
+            this.labelPublisher.Size = new System.Drawing.Size(53, 13);
+            this.labelPublisher.TabIndex = 2;
+            this.labelPublisher.Text = "Publisher:";
+            // 
+            // labelTrack
+            // 
+            this.labelTrack.AutoSize = true;
+            this.labelTrack.Location = new System.Drawing.Point(33, 149);
+            this.labelTrack.Name = "labelTrack";
+            this.labelTrack.Size = new System.Drawing.Size(38, 13);
+            this.labelTrack.TabIndex = 2;
+            this.labelTrack.Text = "Track:";
             // 
             // labelArtist
             // 
             this.labelArtist.AutoSize = true;
-            this.labelArtist.Location = new System.Drawing.Point(6, 69);
+            this.labelArtist.Location = new System.Drawing.Point(38, 69);
             this.labelArtist.Name = "labelArtist";
-            this.labelArtist.Size = new System.Drawing.Size(30, 13);
+            this.labelArtist.Size = new System.Drawing.Size(33, 13);
             this.labelArtist.TabIndex = 6;
-            this.labelArtist.Text = "Artist";
+            this.labelArtist.Text = "Artist:";
+            // 
+            // textBoxAlbumArtist
+            // 
+            this.textBoxAlbumArtist.Location = new System.Drawing.Point(77, 93);
+            this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
+            this.textBoxAlbumArtist.Size = new System.Drawing.Size(247, 20);
+            this.textBoxAlbumArtist.TabIndex = 1;
             // 
             // textBoxAlbum
             // 
-            this.textBoxAlbum.Location = new System.Drawing.Point(51, 41);
+            this.textBoxAlbum.Location = new System.Drawing.Point(77, 41);
             this.textBoxAlbum.Name = "textBoxAlbum";
-            this.textBoxAlbum.Size = new System.Drawing.Size(390, 20);
+            this.textBoxAlbum.Size = new System.Drawing.Size(364, 20);
             this.textBoxAlbum.TabIndex = 5;
+            // 
+            // labelAlbumArtist
+            // 
+            this.labelAlbumArtist.AutoSize = true;
+            this.labelAlbumArtist.Location = new System.Drawing.Point(6, 96);
+            this.labelAlbumArtist.Name = "labelAlbumArtist";
+            this.labelAlbumArtist.Size = new System.Drawing.Size(65, 13);
+            this.labelAlbumArtist.TabIndex = 0;
+            this.labelAlbumArtist.Text = "Album Artist:";
             // 
             // labelAlbum
             // 
             this.labelAlbum.AutoSize = true;
-            this.labelAlbum.Location = new System.Drawing.Point(6, 44);
+            this.labelAlbum.Location = new System.Drawing.Point(32, 44);
             this.labelAlbum.Name = "labelAlbum";
             this.labelAlbum.Size = new System.Drawing.Size(39, 13);
             this.labelAlbum.TabIndex = 4;
@@ -706,15 +835,15 @@ namespace FFmpegCatapult
             // 
             // textBoxTitle
             // 
-            this.textBoxTitle.Location = new System.Drawing.Point(51, 16);
+            this.textBoxTitle.Location = new System.Drawing.Point(77, 16);
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(498, 20);
+            this.textBoxTitle.Size = new System.Drawing.Size(472, 20);
             this.textBoxTitle.TabIndex = 1;
             // 
             // labelTitle
             // 
             this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(6, 19);
+            this.labelTitle.Location = new System.Drawing.Point(41, 19);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(30, 13);
             this.labelTitle.TabIndex = 0;
@@ -926,7 +1055,7 @@ namespace FFmpegCatapult
             // groupBoxAudioOutput
             // 
             this.groupBoxAudioOutput.Controls.Add(this.comboBoxChannels);
-            this.groupBoxAudioOutput.Controls.Add(this.label8);
+            this.groupBoxAudioOutput.Controls.Add(this.labelVolBoost);
             this.groupBoxAudioOutput.Controls.Add(this.numericUpDownVolumeBoost);
             this.groupBoxAudioOutput.Controls.Add(this.labelChannels);
             this.groupBoxAudioOutput.Controls.Add(this.comboBoxSampleRates);
@@ -947,14 +1076,14 @@ namespace FFmpegCatapult
             this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
             this.comboBoxChannels.TabIndex = 3;
             // 
-            // label8
+            // labelVolBoost
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Volume boost:";
+            this.labelVolBoost.AutoSize = true;
+            this.labelVolBoost.Location = new System.Drawing.Point(6, 67);
+            this.labelVolBoost.Name = "labelVolBoost";
+            this.labelVolBoost.Size = new System.Drawing.Size(74, 13);
+            this.labelVolBoost.TabIndex = 5;
+            this.labelVolBoost.Text = "Volume boost:";
             // 
             // numericUpDownVolumeBoost
             // 
@@ -1084,7 +1213,7 @@ namespace FFmpegCatapult
             // 
             this.groupBoxVideoSize.Controls.Add(this.numericUpDownTargetSize);
             this.groupBoxVideoSize.Controls.Add(this.numericUpDownBufferSize);
-            this.groupBoxVideoSize.Controls.Add(this.label1);
+            this.groupBoxVideoSize.Controls.Add(this.labelTargetSize);
             this.groupBoxVideoSize.Controls.Add(this.labelBuffer);
             this.groupBoxVideoSize.Location = new System.Drawing.Point(7, 228);
             this.groupBoxVideoSize.Name = "groupBoxVideoSize";
@@ -1119,14 +1248,14 @@ namespace FFmpegCatapult
             this.numericUpDownBufferSize.TabIndex = 29;
             this.numericUpDownBufferSize.ValueChanged += new System.EventHandler(this.NumericUpDownBufferSize_ValueChanged);
             // 
-            // label1
+            // labelTargetSize
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Target:";
+            this.labelTargetSize.AutoSize = true;
+            this.labelTargetSize.Location = new System.Drawing.Point(139, 24);
+            this.labelTargetSize.Name = "labelTargetSize";
+            this.labelTargetSize.Size = new System.Drawing.Size(41, 13);
+            this.labelTargetSize.TabIndex = 17;
+            this.labelTargetSize.Text = "Target:";
             // 
             // labelBuffer
             // 
@@ -1146,14 +1275,14 @@ namespace FFmpegCatapult
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownTrellis);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownGOPSize);
             this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMESubcmp);
-            this.groupBoxVideoEncoding.Controls.Add(this.label6);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelMESubCmp);
             this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMECmp);
-            this.groupBoxVideoEncoding.Controls.Add(this.label5);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelMECmp);
             this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMEMethod);
-            this.groupBoxVideoEncoding.Controls.Add(this.label4);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelMEMethod);
             this.groupBoxVideoEncoding.Controls.Add(this.comboBoxBFStrat);
-            this.groupBoxVideoEncoding.Controls.Add(this.label3);
-            this.groupBoxVideoEncoding.Controls.Add(this.label2);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelBFStrat);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelTileCols);
             this.groupBoxVideoEncoding.Controls.Add(this.labelTileRows);
             this.groupBoxVideoEncoding.Controls.Add(this.labelTrellis);
             this.groupBoxVideoEncoding.Controls.Add(this.labelDiaSize);
@@ -1226,14 +1355,14 @@ namespace FFmpegCatapult
             this.comboBoxMESubcmp.TabIndex = 25;
             this.comboBoxMESubcmp.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMESubcmp_SelectedIndexChanged);
             // 
-            // label6
+            // labelMESubCmp
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(153, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "ME subcmp:";
+            this.labelMESubCmp.AutoSize = true;
+            this.labelMESubCmp.Location = new System.Drawing.Point(153, 74);
+            this.labelMESubCmp.Name = "labelMESubCmp";
+            this.labelMESubCmp.Size = new System.Drawing.Size(66, 13);
+            this.labelMESubCmp.TabIndex = 24;
+            this.labelMESubCmp.Text = "ME subcmp:";
             // 
             // comboBoxMECmp
             // 
@@ -1245,14 +1374,14 @@ namespace FFmpegCatapult
             this.comboBoxMECmp.TabIndex = 23;
             this.comboBoxMECmp.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMECmp_SelectedIndexChanged);
             // 
-            // label5
+            // labelMECmp
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "ME cmp:";
+            this.labelMECmp.AutoSize = true;
+            this.labelMECmp.Location = new System.Drawing.Point(22, 73);
+            this.labelMECmp.Name = "labelMECmp";
+            this.labelMECmp.Size = new System.Drawing.Size(49, 13);
+            this.labelMECmp.TabIndex = 22;
+            this.labelMECmp.Text = "ME cmp:";
             // 
             // comboBoxMEMethod
             // 
@@ -1264,14 +1393,14 @@ namespace FFmpegCatapult
             this.comboBoxMEMethod.TabIndex = 21;
             this.comboBoxMEMethod.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMEMethod_SelectedIndexChanged);
             // 
-            // label4
+            // labelMEMethod
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(155, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "ME method:";
+            this.labelMEMethod.AutoSize = true;
+            this.labelMEMethod.Location = new System.Drawing.Point(155, 48);
+            this.labelMEMethod.Name = "labelMEMethod";
+            this.labelMEMethod.Size = new System.Drawing.Size(64, 13);
+            this.labelMEMethod.TabIndex = 20;
+            this.labelMEMethod.Text = "ME method:";
             // 
             // comboBoxBFStrat
             // 
@@ -1282,23 +1411,23 @@ namespace FFmpegCatapult
             this.comboBoxBFStrat.TabIndex = 17;
             this.comboBoxBFStrat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBFStrat_SelectedIndexChanged);
             // 
-            // label3
+            // labelBFStrat
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(190, 104);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "BF strategy:";
+            this.labelBFStrat.AutoSize = true;
+            this.labelBFStrat.Location = new System.Drawing.Point(190, 104);
+            this.labelBFStrat.Name = "labelBFStrat";
+            this.labelBFStrat.Size = new System.Drawing.Size(63, 13);
+            this.labelBFStrat.TabIndex = 13;
+            this.labelBFStrat.Text = "BF strategy:";
             // 
-            // label2
+            // labelTileCols
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 128);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Tile Columns:";
+            this.labelTileCols.AutoSize = true;
+            this.labelTileCols.Location = new System.Drawing.Point(183, 128);
+            this.labelTileCols.Name = "labelTileCols";
+            this.labelTileCols.Size = new System.Drawing.Size(70, 13);
+            this.labelTileCols.TabIndex = 11;
+            this.labelTileCols.Text = "Tile Columns:";
             // 
             // labelTileRows
             // 
@@ -1730,7 +1859,7 @@ namespace FFmpegCatapult
             this.numericUpDownLayoutHoriz.Name = "numericUpDownLayoutHoriz";
             this.numericUpDownLayoutHoriz.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutHoriz.TabIndex = 21;
-            this.numericUpDownLayoutHoriz.ValueChanged += new System.EventHandler(this.numericUpDownLayoutHoriz_ValueChanged);
+            this.numericUpDownLayoutHoriz.ValueChanged += new System.EventHandler(this.NumericUpDownLayoutHoriz_ValueChanged);
             // 
             // numericUpDownLayoutVert
             // 
@@ -1738,7 +1867,7 @@ namespace FFmpegCatapult
             this.numericUpDownLayoutVert.Name = "numericUpDownLayoutVert";
             this.numericUpDownLayoutVert.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutVert.TabIndex = 20;
-            this.numericUpDownLayoutVert.ValueChanged += new System.EventHandler(this.numericUpDownLayoutVert_ValueChanged);
+            this.numericUpDownLayoutVert.ValueChanged += new System.EventHandler(this.NumericUpDownLayoutVert_ValueChanged);
             // 
             // numericUpDownLayoutHeight
             // 
@@ -1746,7 +1875,7 @@ namespace FFmpegCatapult
             this.numericUpDownLayoutHeight.Name = "numericUpDownLayoutHeight";
             this.numericUpDownLayoutHeight.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutHeight.TabIndex = 19;
-            this.numericUpDownLayoutHeight.ValueChanged += new System.EventHandler(this.numericUpDownLayoutHeight_ValueChanged);
+            this.numericUpDownLayoutHeight.ValueChanged += new System.EventHandler(this.NumericUpDownLayoutHeight_ValueChanged);
             // 
             // numericUpDownLayoutWidth
             // 
@@ -1754,7 +1883,7 @@ namespace FFmpegCatapult
             this.numericUpDownLayoutWidth.Name = "numericUpDownLayoutWidth";
             this.numericUpDownLayoutWidth.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutWidth.TabIndex = 18;
-            this.numericUpDownLayoutWidth.ValueChanged += new System.EventHandler(this.numericUpDownLayoutWidth_ValueChanged);
+            this.numericUpDownLayoutWidth.ValueChanged += new System.EventHandler(this.NumericUpDownLayoutWidth_ValueChanged);
             // 
             // labelHoriz
             // 
@@ -1838,7 +1967,7 @@ namespace FFmpegCatapult
             this.numericUpDownFPS.Name = "numericUpDownFPS";
             this.numericUpDownFPS.Size = new System.Drawing.Size(40, 20);
             this.numericUpDownFPS.TabIndex = 12;
-            this.numericUpDownFPS.ValueChanged += new System.EventHandler(this.numericUpDownFPS_ValueChanged);
+            this.numericUpDownFPS.ValueChanged += new System.EventHandler(this.NumericUpDownFPS_ValueChanged);
             // 
             // numericUpDownRatioB
             // 
@@ -1989,7 +2118,7 @@ namespace FFmpegCatapult
             // 
             // tabMain
             // 
-            this.tabMain.Controls.Add(this.groupBox1);
+            this.tabMain.Controls.Add(this.groupBoxFileOutput);
             this.tabMain.Controls.Add(this.groupBoxSession);
             this.tabMain.Controls.Add(this.groupBoxEncoding);
             this.tabMain.Controls.Add(this.groupBoxFiles);
@@ -2001,20 +2130,20 @@ namespace FFmpegCatapult
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // groupBoxFileOutput
             // 
-            this.groupBox1.Controls.Add(this.textBoxOutputFilename);
-            this.groupBox1.Controls.Add(this.labelOutputFilename);
-            this.groupBox1.Controls.Add(this.checkBoxOverwrite);
-            this.groupBox1.Controls.Add(this.labelOutput);
-            this.groupBox1.Controls.Add(this.buttonBrowseOutput);
-            this.groupBox1.Controls.Add(this.textBoxTargetFolder);
-            this.groupBox1.Location = new System.Drawing.Point(6, 92);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(555, 112);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Output";
+            this.groupBoxFileOutput.Controls.Add(this.textBoxOutputFilename);
+            this.groupBoxFileOutput.Controls.Add(this.labelOutputFilename);
+            this.groupBoxFileOutput.Controls.Add(this.checkBoxOverwrite);
+            this.groupBoxFileOutput.Controls.Add(this.labelOutput);
+            this.groupBoxFileOutput.Controls.Add(this.buttonBrowseOutput);
+            this.groupBoxFileOutput.Controls.Add(this.textBoxTargetFolder);
+            this.groupBoxFileOutput.Location = new System.Drawing.Point(6, 92);
+            this.groupBoxFileOutput.Name = "groupBoxFileOutput";
+            this.groupBoxFileOutput.Size = new System.Drawing.Size(555, 112);
+            this.groupBoxFileOutput.TabIndex = 3;
+            this.groupBoxFileOutput.TabStop = false;
+            this.groupBoxFileOutput.Text = "Output";
             // 
             // textBoxOutputFilename
             // 
@@ -2109,7 +2238,7 @@ namespace FFmpegCatapult
             // 
             this.groupBoxEncoding.Controls.Add(this.numericUpDownProcessors);
             this.groupBoxEncoding.Controls.Add(this.numericUpDownThreads);
-            this.groupBoxEncoding.Controls.Add(this.label7);
+            this.groupBoxEncoding.Controls.Add(this.labelProcessors);
             this.groupBoxEncoding.Controls.Add(this.labelThreads);
             this.groupBoxEncoding.Controls.Add(this.comboBoxContainers);
             this.groupBoxEncoding.Controls.Add(this.labelFormat);
@@ -2148,14 +2277,14 @@ namespace FFmpegCatapult
             this.numericUpDownThreads.TabIndex = 8;
             this.numericUpDownThreads.ValueChanged += new System.EventHandler(this.NumericUpDownThreads_ValueChanged);
             // 
-            // label7
+            // labelProcessors
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(346, 49);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Processors:";
+            this.labelProcessors.AutoSize = true;
+            this.labelProcessors.Location = new System.Drawing.Point(346, 49);
+            this.labelProcessors.Name = "labelProcessors";
+            this.labelProcessors.Size = new System.Drawing.Size(62, 13);
+            this.labelProcessors.TabIndex = 7;
+            this.labelProcessors.Text = "Processors:";
             // 
             // labelThreads
             // 
@@ -2302,10 +2431,8 @@ namespace FFmpegCatapult
             this.groupBoxBinaries.ResumeLayout(false);
             this.groupBoxBinaries.PerformLayout();
             this.tabTagging.ResumeLayout(false);
-            this.groupBoxMiscTags.ResumeLayout(false);
-            this.groupBoxMiscTags.PerformLayout();
-            this.groupBoxTrackTags.ResumeLayout(false);
-            this.groupBoxTrackTags.PerformLayout();
+            this.groupBoxBroadcast.ResumeLayout(false);
+            this.groupBoxBroadcast.PerformLayout();
             this.groupBoxGeneralTags.ResumeLayout(false);
             this.groupBoxGeneralTags.PerformLayout();
             this.tabAudio.ResumeLayout(false);
@@ -2363,8 +2490,8 @@ namespace FFmpegCatapult
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             this.tabMain.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxFileOutput.ResumeLayout(false);
+            this.groupBoxFileOutput.PerformLayout();
             this.groupBoxSession.ResumeLayout(false);
             this.groupBoxSession.PerformLayout();
             this.groupBoxEncoding.ResumeLayout(false);
@@ -2393,14 +2520,13 @@ namespace FFmpegCatapult
         private System.Windows.Forms.TextBox textBoxFFmpegBin;
         private System.Windows.Forms.Label labelFFmpegBin;
         private System.Windows.Forms.TabPage tabTagging;
-        private System.Windows.Forms.GroupBox groupBoxMiscTags;
         private System.Windows.Forms.TextBox textBoxPublisher;
         private System.Windows.Forms.TextBox textBoxComment;
         private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.Label labelPublisher;
         private System.Windows.Forms.TextBox textBoxAlbumArtist;
         private System.Windows.Forms.Label labelAlbumArtist;
-        private System.Windows.Forms.GroupBox groupBoxTrackTags;
+        private System.Windows.Forms.GroupBox groupBoxBroadcast;
         private System.Windows.Forms.TextBox textBoxTotalDiscs;
         private System.Windows.Forms.Label labelOfDiscs;
         private System.Windows.Forms.TextBox textBoxDisc;
@@ -2507,30 +2633,30 @@ namespace FFmpegCatapult
         private System.Windows.Forms.GroupBox groupBoxVideoEncoding;
         private System.Windows.Forms.ComboBox comboBoxVideoCodecLevels;
         private System.Windows.Forms.GroupBox groupBoxVideoSize;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTargetSize;
         private System.Windows.Forms.Label labelDiaSize;
         private System.Windows.Forms.Label labelGopSize;
         private System.Windows.Forms.Label labelBFrames;
         private System.Windows.Forms.Label labelTrellis;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelTileCols;
         private System.Windows.Forms.Label labelTileRows;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelBFStrat;
         private System.Windows.Forms.ComboBox comboBoxBFStrat;
         private System.Windows.Forms.ComboBox comboBoxMEMethod;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelMEMethod;
         private System.Windows.Forms.ComboBox comboBoxMESubcmp;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelMESubCmp;
         private System.Windows.Forms.ComboBox comboBoxMECmp;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelMECmp;
         private System.Windows.Forms.ComboBox comboBoxAudioCodecProfile;
         private System.Windows.Forms.Label labelAudioCodecProfile;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxFileOutput;
         private System.Windows.Forms.Label labelOutputFilename;
         private System.Windows.Forms.Button buttonBrowseAudioStream;
         private System.Windows.Forms.Label labelAudioStream;
         private System.Windows.Forms.TextBox textBoxAudioStream;
         private System.Windows.Forms.TextBox textBoxOutputFilename;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelProcessors;
         private System.Windows.Forms.Label labelThreads;
         private System.Windows.Forms.ComboBox comboBoxAudioVBRModes;
         private System.Windows.Forms.Label labelVBRMode;
@@ -2568,11 +2694,24 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelResampler;
         private System.Windows.Forms.NumericUpDown numericUpDownResamplePrecision;
         private System.Windows.Forms.NumericUpDown numericUpDownVolumeBoost;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelVolBoost;
         private System.Windows.Forms.NumericUpDown numericUpDownHighPass;
         private System.Windows.Forms.Label labelHighPass;
         private System.Windows.Forms.NumericUpDown numericUpDownLowPass;
         private System.Windows.Forms.Label labelLowPass;
+        private System.Windows.Forms.TextBox textBoxCopyright;
+        private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.CheckBox checkBoxCompilation;
+        private System.Windows.Forms.TextBox textBoxNetwork;
+        private System.Windows.Forms.TextBox textBoxEpisodeId;
+        private System.Windows.Forms.TextBox textBoxShow;
+        private System.Windows.Forms.Label labelNetwork;
+        private System.Windows.Forms.Label labelEpisodeId;
+        private System.Windows.Forms.Label labelShow;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.TextBox textBoxSynopsis;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Label labelSynopsis;
     }
 }
 
