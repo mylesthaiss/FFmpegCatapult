@@ -50,13 +50,13 @@ namespace FFmpegCatapult.Models
         public bool Pad { get; set; }
         public bool Deinterlace { get; set; }
         public int FPS { get; set; }
-        public int Width { get; set; } = 512;
+        public int Width { get; set; } = 0;
         public int Height { get; set; } = 0;
-        public int WinWidth { get; set; }
-        public int WinHeight { get; set; }
-        public int ScaleOption { get; set; } = 1;
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int WinWidth { get; set; } = 0;
+        public int WinHeight { get; set; } = 0;
+        public int ScaleOption { get; set; } = 0;
+        public int X { get; set; } = 0;
+        public int Y { get; set; } = 0;
         public string Ratio { get; set; } = "16:9";
         public string ScalingMethod { get; set; } = "lanczos";
         public string VideoFilterColour { get; set; }

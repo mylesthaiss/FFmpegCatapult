@@ -180,7 +180,7 @@ namespace FFmpegCatapult.Models
 
         public FileFormat()
         {
-            Format = "avi";
+            Format = "mp4";
         }
 
         public FileFormat(string xmlPath, string presetName)

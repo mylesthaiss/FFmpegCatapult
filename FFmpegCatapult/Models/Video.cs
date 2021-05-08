@@ -321,14 +321,7 @@ namespace FFmpegCatapult.Models
 
         public Video()
         {
-            Codec = "mpeg4";
-            Bitrate = 1000;
-            MaxBitrate = 1500;
-            BufferSize = 2048;
-            BFStrategy = 2;
-            BFrames = 2;
-            GOPSize = 300;
-            Trellis = 2;
+            Codec = "h264";
         }
 
         public Video(string xmlPath, string presetName)
@@ -392,7 +385,7 @@ namespace FFmpegCatapult.Models
                     if (node["cmp"] != null)
                         CMP = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
 
-                    if (node["crf"] != null)
+                    if (node["quality"] != null)
                     {
                         UseCRF = true;
                         Quality = int.TryParse(node["quality"].InnerText, out int crf) ? crf : 20;

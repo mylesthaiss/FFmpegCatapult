@@ -434,9 +434,7 @@ namespace FFmpegCatapult.Models
 
         public Audio()
         {
-            Codec = "mp3";
-            Channels = 2;
-            SampleRate = 44100;
+            Codec = "aac";
         }
 
         public Audio(string xmlPath, string presetName)
