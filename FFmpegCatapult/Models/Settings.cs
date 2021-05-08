@@ -20,9 +20,11 @@ namespace FFmpegCatapult.Models
 {
     interface ISettings
     {
+        bool UrlFileNames { get; set; }
         bool WriteLog { get; set; }
         int Threads { get; set; }
         int Processors { get; set; }
+        string DefaultFileName { get; set; }
         string DefaultOutputFolder { get; set; }
         string DefaultSourceFolder { get; set; }
         string FFmpegPath { get; set; }
@@ -35,6 +37,7 @@ namespace FFmpegCatapult.Models
 
     class Settings : ISettings
     {
+        public bool UrlFileNames { get; set; } = false;
         public bool KeepValues { get; set; }
         public bool SaveSettings { get; set; }
         public bool WriteLog { get; set; }
@@ -42,6 +45,7 @@ namespace FFmpegCatapult.Models
         public int Processors { get; set; }
         public int MaxThreads { get; private set; }
         public int MaxProcessors { get; private set; }
+        public string DefaultFileName { get; set; }
         public string DefaultOutputFolder { get; set; }
         public string DefaultSourceFolder { get; set; }
         public string FFmpegPath { get; set; }
@@ -82,6 +86,7 @@ namespace FFmpegCatapult.Models
 
         public void Load()
         {
+            UrlFileNames = Properties.Settings.Default.UrlFilenames;
             WriteLog = Properties.Settings.Default.WriteLog;
             DefaultOutputFolder = Properties.Settings.Default.OutputFolder;
             DefaultSourceFolder = Properties.Settings.Default.SourceFolder;
@@ -102,6 +107,7 @@ namespace FFmpegCatapult.Models
 
         public void Save()
         {
+            Properties.Settings.Default.UrlFilenames = UrlFileNames;
             Properties.Settings.Default.WriteLog = WriteLog;
             Properties.Settings.Default.LogFilename = LogFilename;
             Properties.Settings.Default.OutputFolder = DefaultOutputFolder;

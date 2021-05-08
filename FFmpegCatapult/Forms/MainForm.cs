@@ -70,11 +70,10 @@ namespace FFmpegCatapult
             comboBoxContainers.SelectedIndexChanged += new EventHandler(ComboBoxContainers_SelectedIndexChanged);
 
             // Text boxes
-            if (textBoxTargetFolder.Text != "")
+            if (string.IsNullOrEmpty(textBoxTargetFolder.Text))
             {
                 textBoxTargetFolder.TextChanged -= new EventHandler(TextBoxTargetFolder_TextChanged);
-                paths.Output = textBoxTargetFolder.Text;
-                textBoxTargetFolder.Text = paths.Output;
+                textBoxTargetFolder.Text = settings.DefaultOutputFolder;
                 textBoxTargetFolder.TextChanged += new EventHandler(TextBoxTargetFolder_TextChanged);
             }
         }
@@ -461,6 +460,45 @@ namespace FFmpegCatapult
             }
         }
 
+        private void InitOptionsTab()
+        {
+            textBoxFFmpegBin.TextChanged -= new EventHandler(TextBoxFFmpegBin_TextChanged);
+            textBoxFFmpegBin.Text = settings.FFmpegPath;
+            textBoxFFmpegBin.TextChanged += new EventHandler(TextBoxFFmpegBin_TextChanged);
+
+            textBoxTermBin.TextChanged -= new EventHandler(TextBoxTermBin_TextChanged);
+            textBoxTermBin.Text = settings.TerminalPath;
+            textBoxTermBin.TextChanged += new EventHandler(TextBoxTermBin_TextChanged);
+
+            textBoxTermArgs.TextChanged -= new EventHandler(TextBoxTermArgs_TextChanged);
+            textBoxTermArgs.Text = settings.TerminalArguments;
+            textBoxTermArgs.TextChanged += new EventHandler(TextBoxTermArgs_TextChanged);
+
+            textBoxBinArgs.TextChanged -= new EventHandler(TextBoxBinArgs_TextChanged);
+            textBoxBinArgs.Text = settings.FFmpegArguments;
+            textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
+
+            textBoxDefaultSourceFolder.TextChanged -= new EventHandler(TextBoxDefaultSourceFolder_TextChanged);
+            textBoxDefaultSourceFolder.Text = settings.DefaultSourceFolder;
+            textBoxDefaultSourceFolder.TextChanged += new EventHandler(TextBoxDefaultSourceFolder_TextChanged);
+
+            textBoxDefaultOutputFolder.TextChanged -= new EventHandler(TextBoxDefaultOutputFolder_TextChanged);
+            textBoxDefaultOutputFolder.Text = settings.DefaultOutputFolder;
+            textBoxDefaultOutputFolder.TextChanged += new EventHandler(TextBoxDefaultOutputFolder_TextChanged);
+
+            checkBoxUrlFilenames.CheckedChanged -= new EventHandler(CheckBoxUrlFilenames_CheckedChanged);
+            checkBoxUrlFilenames.Checked = settings.UrlFileNames;
+            checkBoxUrlFilenames.CheckedChanged += new EventHandler(CheckBoxUrlFilenames_CheckedChanged);
+
+            checkBoxWriteLog.CheckedChanged -= new EventHandler(CheckBoxWriteLog_CheckedChanged);
+            checkBoxWriteLog.Checked = settings.WriteLog;
+            checkBoxWriteLog.CheckedChanged += new EventHandler(CheckBoxWriteLog_CheckedChanged);
+            textBoxLog.TextChanged -= new EventHandler(TextBoxLog_TextChanged);
+            textBoxLog.Text = settings.LogFilename;
+            textBoxLog.TextChanged += new EventHandler(TextBoxLog_TextChanged);
+            EnableLogFileTextBox(settings.WriteLog);
+        }
+
         //
         // Misc methods
         //
@@ -756,7 +794,11 @@ namespace FFmpegCatapult
         {
             if (string.IsNullOrEmpty(textBoxOutputFilename.Text) && !string.IsNullOrEmpty(textBoxTargetFolder.Text))
             {
-                string inFile = Path.GetFileName(textBoxOutputFilename.Text);
+                string inFile = Path.GetFileName(textBoxInFile.Text);
+
+                if (settings.UrlFileNames)
+                    inFile = inFile.ToLower().Replace(" ", "_");
+
                 textBoxOutputFilename.Text = Path.ChangeExtension(inFile, file.Format);
             }
         }
@@ -799,15 +841,13 @@ namespace FFmpegCatapult
             //}
             textBoxInFile.DragDrop += new DragEventHandler(TextBoxInFile_DragDrop);
             textBoxInFile.DragEnter += new DragEventHandler(TextBoxInFile_DragEnter);
-            textBoxInFile.TextChanged += new EventHandler(TextBoxInFile_TextChanged);
-            buttonBrowseInput.Click += new EventHandler(ButtonBrowseInput_Click);
 
             //if (paths.Output != null)
             //{
             //    textBoxOutFile.Text = paths.Output;
             //}
+            textBoxTargetFolder.Text = settings.DefaultOutputFolder;
             textBoxTargetFolder.TextChanged += new EventHandler(TextBoxTargetFolder_TextChanged);
-            buttonBrowseOutput.Click += new EventHandler(ButtonBrowseTargetFolder_Click);
             comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, file.Formats, file.Format);
 
             // Populate combobox with parsed XML files and preset names
@@ -881,53 +921,7 @@ namespace FFmpegCatapult
             InitAudio();
 
             // Options           
-            if (settings.FFmpegPath != null)
-            {
-                textBoxFFmpegBin.Text = settings.FFmpegPath;
-                EnableBinArgsControls(true);
-                EnableTermArgsControls(true);
-            }
-            else
-            {
-                EnableBinArgsControls(false);
-                EnableTermArgsControls(false);
-            }
-            textBoxFFmpegBin.TextChanged += new EventHandler(TextBoxFFmpegBin_TextChanged);
-            buttonBrowseFFmpegBin.Click += new EventHandler(ButtonBrowseFFmpegBin_Click);
-
-            textBoxBinArgs.TextChanged -= new EventHandler(TextBoxBinArgs_TextChanged);
-            textBoxBinArgs.Text = settings.FFmpegArguments;
-            textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
-
-            if (settings.TerminalPath != null)
-            {
-                textBoxTermBin.Text = settings.TerminalPath;
-                EnableTermArgsControls(true);
-            }
-            else
-            {
-                EnableTermArgsControls(false);
-            }
-            textBoxTermBin.TextChanged += new EventHandler(TextBoxTermBin_TextChanged);
-            buttonBrowseTermBin.Click += new EventHandler(ButtonBrowseTermBin_Click);
-
-            if (settings.FFmpegArguments != null)
-            {
-                textBoxBinArgs.Text = settings.FFmpegArguments;
-            }
-            textBoxBinArgs.TextChanged += new EventHandler(TextBoxBinArgs_TextChanged);
-
-            if (settings.TerminalArguments != null)
-            {
-                textBoxTermArgs.Text = settings.TerminalArguments;
-            }
-            textBoxTermArgs.TextChanged += new EventHandler(TextBoxTermArgs_TextChanged);
-
-            checkBoxWriteLog.Checked = settings.WriteLog;
-            checkBoxWriteLog.CheckedChanged += new EventHandler(CheckBoxWriteLog_CheckedChanged);
-            EnableLogFileTextBox(settings.WriteLog);
-            textBoxLog.Text = settings.LogFilename;
-            textBoxLog.TextChanged += new EventHandler(TextBoxLog_TextChanged);
+            InitOptionsTab();
 
             // Metadata tab
             textBoxAlbum.TextChanged += new EventHandler(TextBoxAlbum_TextChanged);
@@ -1047,10 +1041,13 @@ namespace FFmpegCatapult
         private void ButtonBrowseInput_Click(object sender, EventArgs e)
         {
             OpenFileDialog inFile = new OpenFileDialog();
-            inFile.ShowDialog();
             inFile.Filter = "Any file (*.*) | *.*";
+            if (string.IsNullOrEmpty(settings.DefaultSourceFolder))
+                inFile.InitialDirectory = settings.DefaultSourceFolder;
+            
+            DialogResult result = inFile.ShowDialog();
 
-            if (!string.IsNullOrEmpty(inFile.FileName))
+            if (result == DialogResult.OK && !string.IsNullOrEmpty(inFile.FileName))
                 textBoxInFile.Text = inFile.FileName;
         }
 
@@ -1667,6 +1664,42 @@ namespace FFmpegCatapult
 
             if (!string.IsNullOrEmpty(termBinFile.FileName))
                 textBoxTermBin.Text = termBinFile.FileName;
+        }
+
+        private void TextBoxDefaultSourceFolder_TextChanged(object sender, EventArgs e)
+        {
+            settings.DefaultSourceFolder = textBoxDefaultSourceFolder.Text;
+            settings.SaveSettings = true;
+        }
+
+        private void TextBoxDefaultOutputFolder_TextChanged(object sender, EventArgs e)
+        {
+            settings.DefaultOutputFolder = textBoxDefaultOutputFolder.Text;
+            settings.SaveSettings = true;
+        }
+
+        private void CheckBoxUrlFilenames_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.UrlFileNames = checkBoxUrlFilenames.Checked;
+            settings.SaveSettings = true;
+        }
+
+        private void ButtonBrowseDefaultInputPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog sourceFolderDialog = new FolderBrowserDialog();
+            DialogResult result = sourceFolderDialog.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrEmpty(sourceFolderDialog.SelectedPath))
+                textBoxDefaultSourceFolder.Text = sourceFolderDialog.SelectedPath;
+        }
+
+        private void ButtonBrowseDefaultOutputPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog outputFolderDialog = new FolderBrowserDialog();
+            DialogResult result = outputFolderDialog.ShowDialog();
+
+            if (result == DialogResult.OK && !string.IsNullOrEmpty(outputFolderDialog.SelectedPath))
+                textBoxDefaultOutputFolder.Text = outputFolderDialog.SelectedPath;
         }
     }
 }

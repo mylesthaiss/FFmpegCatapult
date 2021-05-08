@@ -47,6 +47,14 @@ namespace FFmpegCatapult
             this.buttonRun = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.groupBoxDefaultPaths = new System.Windows.Forms.GroupBox();
+            this.checkBoxUrlFilenames = new System.Windows.Forms.CheckBox();
+            this.buttonBrowseDefaultOutputPath = new System.Windows.Forms.Button();
+            this.textBoxDefaultOutputFolder = new System.Windows.Forms.TextBox();
+            this.buttonBrowseDefaultInputPath = new System.Windows.Forms.Button();
+            this.textBoxDefaultSourceFolder = new System.Windows.Forms.TextBox();
+            this.labelDefaultOutputPath = new System.Windows.Forms.Label();
+            this.labelDefaultInputPath = new System.Windows.Forms.Label();
             this.groupBoxSessionOptions = new System.Windows.Forms.GroupBox();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.checkBoxWriteLog = new System.Windows.Forms.CheckBox();
@@ -62,12 +70,12 @@ namespace FFmpegCatapult
             this.textBoxFFmpegBin = new System.Windows.Forms.TextBox();
             this.labelFFmpegBin = new System.Windows.Forms.Label();
             this.tabTagging = new System.Windows.Forms.TabPage();
-            this.textBoxSynopsis = new System.Windows.Forms.TextBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.labelSynopsis = new System.Windows.Forms.Label();
-            this.labelDescription = new System.Windows.Forms.Label();
             this.groupBoxBroadcast = new System.Windows.Forms.GroupBox();
+            this.labelSynopsis = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.textBoxNetwork = new System.Windows.Forms.TextBox();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.textBoxSynopsis = new System.Windows.Forms.TextBox();
             this.textBoxEpisodeId = new System.Windows.Forms.TextBox();
             this.textBoxShow = new System.Windows.Forms.TextBox();
             this.labelNetwork = new System.Windows.Forms.Label();
@@ -250,6 +258,7 @@ namespace FFmpegCatapult
             this.labelSourceInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabOptions.SuspendLayout();
+            this.groupBoxDefaultPaths.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
             this.groupBoxBinaries.SuspendLayout();
             this.tabTagging.SuspendLayout();
@@ -328,6 +337,7 @@ namespace FFmpegCatapult
             // 
             // tabOptions
             // 
+            this.tabOptions.Controls.Add(this.groupBoxDefaultPaths);
             this.tabOptions.Controls.Add(this.groupBoxSessionOptions);
             this.tabOptions.Controls.Add(this.groupBoxBinaries);
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
@@ -337,6 +347,87 @@ namespace FFmpegCatapult
             this.tabOptions.TabIndex = 4;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxDefaultPaths
+            // 
+            this.groupBoxDefaultPaths.Controls.Add(this.checkBoxUrlFilenames);
+            this.groupBoxDefaultPaths.Controls.Add(this.buttonBrowseDefaultOutputPath);
+            this.groupBoxDefaultPaths.Controls.Add(this.textBoxDefaultOutputFolder);
+            this.groupBoxDefaultPaths.Controls.Add(this.buttonBrowseDefaultInputPath);
+            this.groupBoxDefaultPaths.Controls.Add(this.textBoxDefaultSourceFolder);
+            this.groupBoxDefaultPaths.Controls.Add(this.labelDefaultOutputPath);
+            this.groupBoxDefaultPaths.Controls.Add(this.labelDefaultInputPath);
+            this.groupBoxDefaultPaths.Location = new System.Drawing.Point(6, 133);
+            this.groupBoxDefaultPaths.Name = "groupBoxDefaultPaths";
+            this.groupBoxDefaultPaths.Size = new System.Drawing.Size(555, 99);
+            this.groupBoxDefaultPaths.TabIndex = 2;
+            this.groupBoxDefaultPaths.TabStop = false;
+            this.groupBoxDefaultPaths.Text = "Default Paths";
+            // 
+            // checkBoxUrlFilenames
+            // 
+            this.checkBoxUrlFilenames.AutoSize = true;
+            this.checkBoxUrlFilenames.Location = new System.Drawing.Point(9, 71);
+            this.checkBoxUrlFilenames.Name = "checkBoxUrlFilenames";
+            this.checkBoxUrlFilenames.Size = new System.Drawing.Size(165, 17);
+            this.checkBoxUrlFilenames.TabIndex = 13;
+            this.checkBoxUrlFilenames.Text = "Create URL friendly filenames";
+            this.checkBoxUrlFilenames.UseVisualStyleBackColor = true;
+            this.checkBoxUrlFilenames.CheckedChanged += new System.EventHandler(this.CheckBoxUrlFilenames_CheckedChanged);
+            // 
+            // buttonBrowseDefaultOutputPath
+            // 
+            this.buttonBrowseDefaultOutputPath.Location = new System.Drawing.Point(474, 42);
+            this.buttonBrowseDefaultOutputPath.Name = "buttonBrowseDefaultOutputPath";
+            this.buttonBrowseDefaultOutputPath.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseDefaultOutputPath.TabIndex = 12;
+            this.buttonBrowseDefaultOutputPath.Text = "Browse...";
+            this.buttonBrowseDefaultOutputPath.UseVisualStyleBackColor = true;
+            this.buttonBrowseDefaultOutputPath.Click += new System.EventHandler(this.ButtonBrowseDefaultOutputPath_Click);
+            // 
+            // textBoxDefaultOutputFolder
+            // 
+            this.textBoxDefaultOutputFolder.Location = new System.Drawing.Point(85, 45);
+            this.textBoxDefaultOutputFolder.Name = "textBoxDefaultOutputFolder";
+            this.textBoxDefaultOutputFolder.Size = new System.Drawing.Size(383, 20);
+            this.textBoxDefaultOutputFolder.TabIndex = 11;
+            this.textBoxDefaultOutputFolder.TextChanged += new System.EventHandler(this.TextBoxDefaultOutputFolder_TextChanged);
+            // 
+            // buttonBrowseDefaultInputPath
+            // 
+            this.buttonBrowseDefaultInputPath.Location = new System.Drawing.Point(474, 17);
+            this.buttonBrowseDefaultInputPath.Name = "buttonBrowseDefaultInputPath";
+            this.buttonBrowseDefaultInputPath.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowseDefaultInputPath.TabIndex = 10;
+            this.buttonBrowseDefaultInputPath.Text = "Browse...";
+            this.buttonBrowseDefaultInputPath.UseVisualStyleBackColor = true;
+            this.buttonBrowseDefaultInputPath.Click += new System.EventHandler(this.ButtonBrowseDefaultInputPath_Click);
+            // 
+            // textBoxDefaultSourceFolder
+            // 
+            this.textBoxDefaultSourceFolder.Location = new System.Drawing.Point(85, 19);
+            this.textBoxDefaultSourceFolder.Name = "textBoxDefaultSourceFolder";
+            this.textBoxDefaultSourceFolder.Size = new System.Drawing.Size(383, 20);
+            this.textBoxDefaultSourceFolder.TabIndex = 2;
+            this.textBoxDefaultSourceFolder.TextChanged += new System.EventHandler(this.TextBoxDefaultSourceFolder_TextChanged);
+            // 
+            // labelDefaultOutputPath
+            // 
+            this.labelDefaultOutputPath.AutoSize = true;
+            this.labelDefaultOutputPath.Location = new System.Drawing.Point(8, 48);
+            this.labelDefaultOutputPath.Name = "labelDefaultOutputPath";
+            this.labelDefaultOutputPath.Size = new System.Drawing.Size(71, 13);
+            this.labelDefaultOutputPath.TabIndex = 1;
+            this.labelDefaultOutputPath.Text = "Output folder:";
+            // 
+            // labelDefaultInputPath
+            // 
+            this.labelDefaultInputPath.AutoSize = true;
+            this.labelDefaultInputPath.Location = new System.Drawing.Point(6, 22);
+            this.labelDefaultInputPath.Name = "labelDefaultInputPath";
+            this.labelDefaultInputPath.Size = new System.Drawing.Size(73, 13);
+            this.labelDefaultInputPath.TabIndex = 0;
+            this.labelDefaultInputPath.Text = "Source folder:";
             // 
             // groupBoxSessionOptions
             // 
@@ -481,41 +572,6 @@ namespace FFmpegCatapult
             this.tabTagging.Text = "Tagging";
             this.tabTagging.UseVisualStyleBackColor = true;
             // 
-            // textBoxSynopsis
-            // 
-            this.textBoxSynopsis.Location = new System.Drawing.Point(307, 45);
-            this.textBoxSynopsis.Multiline = true;
-            this.textBoxSynopsis.Name = "textBoxSynopsis";
-            this.textBoxSynopsis.Size = new System.Drawing.Size(245, 47);
-            this.textBoxSynopsis.TabIndex = 3;
-            this.textBoxSynopsis.TextChanged += new System.EventHandler(this.TextBoxSynopsis_TextChanged);
-            // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(307, 19);
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(245, 20);
-            this.textBoxDescription.TabIndex = 2;
-            this.textBoxDescription.TextChanged += new System.EventHandler(this.TextBoxDescription_TextChanged);
-            // 
-            // labelSynopsis
-            // 
-            this.labelSynopsis.AutoSize = true;
-            this.labelSynopsis.Location = new System.Drawing.Point(249, 48);
-            this.labelSynopsis.Name = "labelSynopsis";
-            this.labelSynopsis.Size = new System.Drawing.Size(52, 13);
-            this.labelSynopsis.TabIndex = 1;
-            this.labelSynopsis.Text = "Synopsis:";
-            // 
-            // labelDescription
-            // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(238, 22);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(63, 13);
-            this.labelDescription.TabIndex = 0;
-            this.labelDescription.Text = "Description:";
-            // 
             // groupBoxBroadcast
             // 
             this.groupBoxBroadcast.Controls.Add(this.labelSynopsis);
@@ -535,6 +591,23 @@ namespace FFmpegCatapult
             this.groupBoxBroadcast.TabStop = false;
             this.groupBoxBroadcast.Text = "Broadcast";
             // 
+            // labelSynopsis
+            // 
+            this.labelSynopsis.AutoSize = true;
+            this.labelSynopsis.Location = new System.Drawing.Point(249, 48);
+            this.labelSynopsis.Name = "labelSynopsis";
+            this.labelSynopsis.Size = new System.Drawing.Size(52, 13);
+            this.labelSynopsis.TabIndex = 1;
+            this.labelSynopsis.Text = "Synopsis:";
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(307, 19);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(245, 20);
+            this.textBoxDescription.TabIndex = 2;
+            this.textBoxDescription.TextChanged += new System.EventHandler(this.TextBoxDescription_TextChanged);
+            // 
             // textBoxNetwork
             // 
             this.textBoxNetwork.Location = new System.Drawing.Point(72, 72);
@@ -542,6 +615,24 @@ namespace FFmpegCatapult
             this.textBoxNetwork.Size = new System.Drawing.Size(148, 20);
             this.textBoxNetwork.TabIndex = 0;
             this.textBoxNetwork.TextChanged += new System.EventHandler(this.TextBoxNetwork_TextChanged);
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(238, 22);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(63, 13);
+            this.labelDescription.TabIndex = 0;
+            this.labelDescription.Text = "Description:";
+            // 
+            // textBoxSynopsis
+            // 
+            this.textBoxSynopsis.Location = new System.Drawing.Point(307, 45);
+            this.textBoxSynopsis.Multiline = true;
+            this.textBoxSynopsis.Name = "textBoxSynopsis";
+            this.textBoxSynopsis.Size = new System.Drawing.Size(245, 47);
+            this.textBoxSynopsis.TabIndex = 3;
+            this.textBoxSynopsis.TextChanged += new System.EventHandler(this.TextBoxSynopsis_TextChanged);
             // 
             // textBoxEpisodeId
             // 
@@ -2192,6 +2283,7 @@ namespace FFmpegCatapult
             this.buttonBrowseOutput.TabIndex = 5;
             this.buttonBrowseOutput.Text = "Browse...";
             this.buttonBrowseOutput.UseVisualStyleBackColor = true;
+            this.buttonBrowseOutput.Click += new System.EventHandler(this.ButtonBrowseTargetFolder_Click);
             // 
             // textBoxTargetFolder
             // 
@@ -2354,6 +2446,7 @@ namespace FFmpegCatapult
             this.buttonBrowseAudioStream.TabIndex = 7;
             this.buttonBrowseAudioStream.Text = "Browse...";
             this.buttonBrowseAudioStream.UseVisualStyleBackColor = true;
+            this.buttonBrowseAudioStream.Click += new System.EventHandler(this.ButtonBrowseAudioStream_Click);
             // 
             // labelAudioStream
             // 
@@ -2379,6 +2472,7 @@ namespace FFmpegCatapult
             this.buttonBrowseInput.TabIndex = 4;
             this.buttonBrowseInput.Text = "Browse...";
             this.buttonBrowseInput.UseVisualStyleBackColor = true;
+            this.buttonBrowseInput.Click += new System.EventHandler(this.ButtonBrowseInput_Click);
             // 
             // textBoxInFile
             // 
@@ -2387,6 +2481,7 @@ namespace FFmpegCatapult
             this.textBoxInFile.Name = "textBoxInFile";
             this.textBoxInFile.Size = new System.Drawing.Size(386, 20);
             this.textBoxInFile.TabIndex = 2;
+            this.textBoxInFile.TextChanged += new System.EventHandler(this.TextBoxInFile_TextChanged);
             this.textBoxInFile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress_FSFilter);
             // 
             // labelSourceInput
@@ -2426,6 +2521,8 @@ namespace FFmpegCatapult
             this.Text = "FFmpeg Catapult";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabOptions.ResumeLayout(false);
+            this.groupBoxDefaultPaths.ResumeLayout(false);
+            this.groupBoxDefaultPaths.PerformLayout();
             this.groupBoxSessionOptions.ResumeLayout(false);
             this.groupBoxSessionOptions.PerformLayout();
             this.groupBoxBinaries.ResumeLayout(false);
@@ -2712,6 +2809,14 @@ namespace FFmpegCatapult
         private System.Windows.Forms.TextBox textBoxSynopsis;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelSynopsis;
+        private System.Windows.Forms.GroupBox groupBoxDefaultPaths;
+        private System.Windows.Forms.Button buttonBrowseDefaultOutputPath;
+        private System.Windows.Forms.TextBox textBoxDefaultOutputFolder;
+        private System.Windows.Forms.Button buttonBrowseDefaultInputPath;
+        private System.Windows.Forms.TextBox textBoxDefaultSourceFolder;
+        private System.Windows.Forms.Label labelDefaultOutputPath;
+        private System.Windows.Forms.Label labelDefaultInputPath;
+        private System.Windows.Forms.CheckBox checkBoxUrlFilenames;
     }
 }
 

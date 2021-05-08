@@ -118,5 +118,17 @@ namespace FFmpegCatapult.Properties {
                 this["LogFilename"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UrlFilenames {
+            get {
+                return ((bool)(this["UrlFilenames"]));
+            }
+            set {
+                this["UrlFilenames"] = value;
+            }
+        }
     }
 }
