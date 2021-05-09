@@ -97,7 +97,7 @@ namespace FFmpegCatapult.Helpers
 
             for (int i = 0; i < values.GetLength(0); i++)
             {
-                comboBox.Items.Add(Convert.ToString(values[i]));
+                comboBox.Items.Add(string.Format("{0:0.0}", values[i]));
             }
 
             if (selectedValue != 0)

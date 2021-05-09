@@ -834,20 +834,7 @@ namespace FFmpegCatapult
             InitTabs();
 
             // Main tab
-            //if (paths.Source != null)
-            //{
-            //    textBoxInFile.Text = paths.Source;
-            //    buttonBrowseInput.Enabled = true;
-            //}
-            textBoxInFile.DragDrop += new DragEventHandler(TextBoxInFile_DragDrop);
-            textBoxInFile.DragEnter += new DragEventHandler(TextBoxInFile_DragEnter);
-
-            //if (paths.Output != null)
-            //{
-            //    textBoxOutFile.Text = paths.Output;
-            //}
             textBoxTargetFolder.Text = settings.DefaultOutputFolder;
-            textBoxTargetFolder.TextChanged += new EventHandler(TextBoxTargetFolder_TextChanged);
             comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, file.Formats, file.Format);
 
             // Populate combobox with parsed XML files and preset names
@@ -881,31 +868,24 @@ namespace FFmpegCatapult
                 }
             }
 
-            comboBoxPresets.SelectedIndexChanged += new EventHandler(ComboBoxPresets_SelectedIndexChanged);
-
             if (settings.KeepValues == true)
             {
+                radioButtonKeep.CheckedChanged -= new EventHandler(RadioButtonKeep_CheckedChanged);
                 radioButtonKeep.Checked = true;
+                radioButtonKeep.CheckedChanged += new EventHandler(RadioButtonKeep_CheckedChanged);
             }
             else
             {
+                radioButtonRefresh.CheckedChanged -= new EventHandler(RadioButtonRefresh_CheckedChanged);
                 radioButtonRefresh.Checked = true;
+                radioButtonRefresh.CheckedChanged += new EventHandler(RadioButtonRefresh_CheckedChanged);
             }
-            radioButtonKeep.CheckedChanged += new EventHandler(RadioButtonKeep_CheckedChanged);
-            radioButtonRefresh.CheckedChanged += new EventHandler(RadioButtonRefresh_CheckedChanged);
 
-            InitMain();
-
+            checkBoxOverwrite.CheckedChanged -= new EventHandler(CheckBoxOverwrite_CheckedChanged);
             checkBoxOverwrite.Checked = paths.Overwrite;
             checkBoxOverwrite.CheckedChanged += new EventHandler(CheckBoxOverwrite_CheckedChanged);
 
-            this.FormClosing += MainForm_Closing;
-            buttonExit.Click += new EventHandler(ButtonExit_Click);
-            buttonRun.Click += new EventHandler(ButtonRun_Click);
-
-            // Streams
-            textBoxAudioStream.TextChanged += new EventHandler(TextBoxAudioStream_TextChanged);
-            buttonBrowseAudioStream.Click += new EventHandler(ButtonBrowseAudioStream_Click);
+            InitMain();
 
             // Picture tab
             comboBoxScalingMethods.SelectedIndexChanged -= new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
@@ -924,19 +904,6 @@ namespace FFmpegCatapult
             InitOptionsTab();
 
             // Metadata tab
-            textBoxAlbum.TextChanged += new EventHandler(TextBoxAlbum_TextChanged);
-            textBoxAlbumArtist.TextChanged += new EventHandler(TextBoxAlbumArtist_TextChanged);
-            textBoxArtist.TextChanged += new EventHandler(TextBoxArtist_TextChanged);
-            textBoxComment.TextChanged += new EventHandler(TextBoxComment_TextChanged);
-            textBoxDisc.TextChanged += new EventHandler(TextBoxDisc_TextChanged);
-            textBoxGenre.TextChanged += new EventHandler(TextBoxGenre_TextChanged);
-            textBoxTitle.TextChanged += new EventHandler(TextBoxTitle_TextChanged);
-            textBoxTotalDiscs.TextChanged += new EventHandler(TextBoxTotalDiscs_TextChanged);
-            textBoxTotalTracks.TextChanged += new EventHandler(TextBoxTotalTracks_TextChanged);
-            textBoxTrack.TextChanged += new EventHandler(TextBoxTrack_TextChanged);
-            textBoxTrack.TextChanged += new EventHandler(TextBoxTrack_TextChanged);
-            textBoxYear.TextChanged += new EventHandler(TextBoxYear_TextChanged);
-
             InitMetadata();
         }
 
@@ -979,17 +946,6 @@ namespace FFmpegCatapult
             }
         }
 
-        private void TextBoxBitrate_KeyPressDecimal(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar))
-            {
-                if (e.KeyChar != '.')
-                {
-                    e.Handled = e.KeyChar != (char)Keys.Back;
-                }
-            }
-        }
-
         // Key press event handler to filter invalid chars
         private void TextBox_KeyPress_FSFilter(object sender, KeyPressEventArgs e)
         {
@@ -1006,15 +962,6 @@ namespace FFmpegCatapult
                     break;
                 default:
                     break;
-            }
-        }
-
-        private void TextBoxBufferSize_KeyPressDecimal(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar))
-            {
-                if (e.KeyChar != '.')
-                    e.Handled = e.KeyChar != (char)Keys.Back;
             }
         }
 
@@ -1192,7 +1139,8 @@ namespace FFmpegCatapult
 
         private void ComboBoxVideoCodecLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            video.CodecLevel = Convert.ToDouble(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxVideoCodecLevels));
+            string selected = Convert.ToString(comboBoxVideoCodecLevels.SelectedItem);
+            video.CodecLevel = double.TryParse(selected, out double level) ? level : 1.0;
         }
 
         private void ComboBoxMEMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -1507,6 +1455,11 @@ namespace FFmpegCatapult
         private void NumericUpDownRatio_ValueChanged(object sender, EventArgs e)
         {
             picture.Ratio = string.Format("{0}:{1}", numericUpDownRatioA.Value, numericUpDownRatioB.Value);
+        }
+
+        private void TextBoxLayoutColour_TextChanged(object sender, EventArgs e)
+        {
+            picture.VideoFilterColour = textBoxLayoutColour.Text;
         }
 
         //
