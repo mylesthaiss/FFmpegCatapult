@@ -325,6 +325,7 @@ namespace FFmpegCatapult
             this.buttonRun.TabIndex = 0;
             this.buttonRun.Text = "Run";
             this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.ButtonRun_Click);
             // 
             // buttonExit
             // 
@@ -334,6 +335,7 @@ namespace FFmpegCatapult
             this.buttonExit.TabIndex = 1;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // tabOptions
             // 
@@ -446,6 +448,7 @@ namespace FFmpegCatapult
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.Size = new System.Drawing.Size(453, 20);
             this.textBoxLog.TabIndex = 3;
+            this.textBoxLog.TextChanged += new System.EventHandler(this.TextBoxLog_TextChanged);
             // 
             // checkBoxWriteLog
             // 
@@ -456,6 +459,7 @@ namespace FFmpegCatapult
             this.checkBoxWriteLog.TabIndex = 0;
             this.checkBoxWriteLog.Text = "Write log file:";
             this.checkBoxWriteLog.UseVisualStyleBackColor = true;
+            this.checkBoxWriteLog.CheckedChanged += new System.EventHandler(this.CheckBoxWriteLog_CheckedChanged);
             // 
             // groupBoxBinaries
             // 
@@ -482,6 +486,7 @@ namespace FFmpegCatapult
             this.textBoxBinArgs.Name = "textBoxBinArgs";
             this.textBoxBinArgs.Size = new System.Drawing.Size(437, 20);
             this.textBoxBinArgs.TabIndex = 9;
+            this.textBoxBinArgs.TextChanged += new System.EventHandler(this.TextBoxBinArgs_TextChanged);
             // 
             // labelBinArgs
             // 
@@ -498,6 +503,7 @@ namespace FFmpegCatapult
             this.textBoxTermArgs.Name = "textBoxTermArgs";
             this.textBoxTermArgs.Size = new System.Drawing.Size(437, 20);
             this.textBoxTermArgs.TabIndex = 7;
+            this.textBoxTermArgs.TextChanged += new System.EventHandler(this.TextBoxTermArgs_TextChanged);
             // 
             // labelTermArgs
             // 
@@ -514,6 +520,7 @@ namespace FFmpegCatapult
             this.textBoxTermBin.Name = "textBoxTermBin";
             this.textBoxTermBin.Size = new System.Drawing.Size(356, 20);
             this.textBoxTermBin.TabIndex = 5;
+            this.textBoxTermBin.TextChanged += new System.EventHandler(this.TextBoxTermBin_TextChanged);
             this.textBoxTermBin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress_FSFilter);
             // 
             // labelTermBin
@@ -533,6 +540,7 @@ namespace FFmpegCatapult
             this.buttonBrowseTermBin.TabIndex = 3;
             this.buttonBrowseTermBin.Text = "Browse...";
             this.buttonBrowseTermBin.UseVisualStyleBackColor = true;
+            this.buttonBrowseTermBin.Click += new System.EventHandler(this.ButtonBrowseTermBin_Click);
             // 
             // buttonBrowseFFmpegBin
             // 
@@ -542,6 +550,7 @@ namespace FFmpegCatapult
             this.buttonBrowseFFmpegBin.TabIndex = 2;
             this.buttonBrowseFFmpegBin.Text = "Browse...";
             this.buttonBrowseFFmpegBin.UseVisualStyleBackColor = true;
+            this.buttonBrowseFFmpegBin.Click += new System.EventHandler(this.ButtonBrowseFFmpegBin_Click);
             // 
             // textBoxFFmpegBin
             // 
@@ -549,6 +558,7 @@ namespace FFmpegCatapult
             this.textBoxFFmpegBin.Name = "textBoxFFmpegBin";
             this.textBoxFFmpegBin.Size = new System.Drawing.Size(356, 20);
             this.textBoxFFmpegBin.TabIndex = 1;
+            this.textBoxFFmpegBin.TextChanged += new System.EventHandler(this.TextBoxFFmpegBin_TextChanged);
             this.textBoxFFmpegBin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress_FSFilter);
             // 
             // labelFFmpegBin
@@ -757,6 +767,7 @@ namespace FFmpegCatapult
             this.textBoxTotalDiscs.Name = "textBoxTotalDiscs";
             this.textBoxTotalDiscs.Size = new System.Drawing.Size(25, 20);
             this.textBoxTotalDiscs.TabIndex = 2;
+            this.textBoxTotalDiscs.TextChanged += new System.EventHandler(this.TextBoxTotalDiscs_TextChanged);
             this.textBoxTotalDiscs.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // textBoxComment
@@ -765,6 +776,7 @@ namespace FFmpegCatapult
             this.textBoxComment.Name = "textBoxComment";
             this.textBoxComment.Size = new System.Drawing.Size(247, 20);
             this.textBoxComment.TabIndex = 4;
+            this.textBoxComment.TextChanged += new System.EventHandler(this.TextBoxComment_TextChanged);
             // 
             // textBoxPublisher
             // 
@@ -780,6 +792,7 @@ namespace FFmpegCatapult
             this.textBoxDisc.Name = "textBoxDisc";
             this.textBoxDisc.Size = new System.Drawing.Size(25, 20);
             this.textBoxDisc.TabIndex = 2;
+            this.textBoxDisc.TextChanged += new System.EventHandler(this.TextBoxDisc_TextChanged);
             this.textBoxDisc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // labelComment
@@ -806,6 +819,7 @@ namespace FFmpegCatapult
             this.textBoxGenre.Name = "textBoxGenre";
             this.textBoxGenre.Size = new System.Drawing.Size(155, 20);
             this.textBoxGenre.TabIndex = 9;
+            this.textBoxGenre.TextChanged += new System.EventHandler(this.TextBoxGenre_TextChanged);
             // 
             // labelOfTrack
             // 
@@ -822,6 +836,7 @@ namespace FFmpegCatapult
             this.textBoxTotalTracks.Name = "textBoxTotalTracks";
             this.textBoxTotalTracks.Size = new System.Drawing.Size(25, 20);
             this.textBoxTotalTracks.TabIndex = 2;
+            this.textBoxTotalTracks.TextChanged += new System.EventHandler(this.TextBoxTotalTracks_TextChanged);
             this.textBoxTotalTracks.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // labelGenre
@@ -839,6 +854,7 @@ namespace FFmpegCatapult
             this.textBoxArtist.Name = "textBoxArtist";
             this.textBoxArtist.Size = new System.Drawing.Size(247, 20);
             this.textBoxArtist.TabIndex = 7;
+            this.textBoxArtist.TextChanged += new System.EventHandler(this.TextBoxArtist_TextChanged);
             // 
             // textBoxTrack
             // 
@@ -846,6 +862,7 @@ namespace FFmpegCatapult
             this.textBoxTrack.Name = "textBoxTrack";
             this.textBoxTrack.Size = new System.Drawing.Size(25, 20);
             this.textBoxTrack.TabIndex = 2;
+            this.textBoxTrack.TextChanged += new System.EventHandler(this.TextBoxTrack_TextChanged);
             this.textBoxTrack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // labelPublisher
@@ -881,6 +898,7 @@ namespace FFmpegCatapult
             this.textBoxAlbumArtist.Name = "textBoxAlbumArtist";
             this.textBoxAlbumArtist.Size = new System.Drawing.Size(247, 20);
             this.textBoxAlbumArtist.TabIndex = 1;
+            this.textBoxAlbumArtist.TextChanged += new System.EventHandler(this.TextBoxAlbumArtist_TextChanged);
             // 
             // textBoxAlbum
             // 
@@ -888,6 +906,7 @@ namespace FFmpegCatapult
             this.textBoxAlbum.Name = "textBoxAlbum";
             this.textBoxAlbum.Size = new System.Drawing.Size(364, 20);
             this.textBoxAlbum.TabIndex = 5;
+            this.textBoxAlbum.TextChanged += new System.EventHandler(this.TextBoxAlbum_TextChanged);
             // 
             // labelAlbumArtist
             // 
@@ -922,6 +941,7 @@ namespace FFmpegCatapult
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(56, 20);
             this.textBoxYear.TabIndex = 2;
+            this.textBoxYear.TextChanged += new System.EventHandler(this.TextBoxYear_TextChanged);
             this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // textBoxTitle
@@ -930,6 +950,7 @@ namespace FFmpegCatapult
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(472, 20);
             this.textBoxTitle.TabIndex = 1;
+            this.textBoxTitle.TextChanged += new System.EventHandler(this.TextBoxTitle_TextChanged);
             // 
             // labelTitle
             // 
@@ -1133,6 +1154,7 @@ namespace FFmpegCatapult
             this.checkBoxUseAudioVBR.TabIndex = 2;
             this.checkBoxUseAudioVBR.Text = "Use VBR";
             this.checkBoxUseAudioVBR.UseVisualStyleBackColor = true;
+            this.checkBoxUseAudioVBR.CheckedChanged += new System.EventHandler(this.CheckBoxUseAudioVBR_CheckedChanged);
             // 
             // comboBoxAudioBitrates
             // 
@@ -1142,6 +1164,7 @@ namespace FFmpegCatapult
             this.comboBoxAudioBitrates.Name = "comboBoxAudioBitrates";
             this.comboBoxAudioBitrates.Size = new System.Drawing.Size(75, 21);
             this.comboBoxAudioBitrates.TabIndex = 1;
+            this.comboBoxAudioBitrates.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAudioBitrates_SelectedIndexChanged);
             // 
             // groupBoxAudioOutput
             // 
@@ -1166,6 +1189,7 @@ namespace FFmpegCatapult
             this.comboBoxChannels.Name = "comboBoxChannels";
             this.comboBoxChannels.Size = new System.Drawing.Size(39, 21);
             this.comboBoxChannels.TabIndex = 3;
+            this.comboBoxChannels.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChannels_SelectedIndexChanged);
             // 
             // labelVolBoost
             // 
@@ -1206,6 +1230,7 @@ namespace FFmpegCatapult
             this.comboBoxSampleRates.Name = "comboBoxSampleRates";
             this.comboBoxSampleRates.Size = new System.Drawing.Size(85, 21);
             this.comboBoxSampleRates.TabIndex = 2;
+            this.comboBoxSampleRates.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSampleRates_SelectedIndexChanged);
             // 
             // labelSampleRate
             // 
@@ -1258,6 +1283,7 @@ namespace FFmpegCatapult
             this.comboBoxAudioEncoders.Name = "comboBoxAudioEncoders";
             this.comboBoxAudioEncoders.Size = new System.Drawing.Size(128, 21);
             this.comboBoxAudioEncoders.TabIndex = 1;
+            this.comboBoxAudioEncoders.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAudioEncoders_SelectedIndexChanged);
             // 
             // comboBoxAudioCodecs
             // 
@@ -1267,6 +1293,7 @@ namespace FFmpegCatapult
             this.comboBoxAudioCodecs.Name = "comboBoxAudioCodecs";
             this.comboBoxAudioCodecs.Size = new System.Drawing.Size(128, 21);
             this.comboBoxAudioCodecs.TabIndex = 1;
+            this.comboBoxAudioCodecs.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAudioCodecs_SelectedIndexChanged);
             // 
             // labelAudioEncoder
             // 
@@ -1703,6 +1730,7 @@ namespace FFmpegCatapult
             this.checkBoxTwoPassEncoding.TabIndex = 2;
             this.checkBoxTwoPassEncoding.Text = "Two-pass encoding";
             this.checkBoxTwoPassEncoding.UseVisualStyleBackColor = true;
+            this.checkBoxTwoPassEncoding.CheckedChanged += new System.EventHandler(this.CheckBoxTwoPassEncoding_CheckedChanged);
             // 
             // labelQmin
             // 
@@ -1731,6 +1759,7 @@ namespace FFmpegCatapult
             this.checkBoxUseCRF.TabIndex = 11;
             this.checkBoxUseCRF.Text = "Use CRF";
             this.checkBoxUseCRF.UseVisualStyleBackColor = true;
+            this.checkBoxUseCRF.CheckedChanged += new System.EventHandler(this.CheckBoxUseCRF_CheckedChanged);
             // 
             // labelMaxBitrate
             // 
@@ -1805,6 +1834,7 @@ namespace FFmpegCatapult
             this.comboBoxVideoEncoders.Name = "comboBoxVideoEncoders";
             this.comboBoxVideoEncoders.Size = new System.Drawing.Size(128, 21);
             this.comboBoxVideoEncoders.TabIndex = 1;
+            this.comboBoxVideoEncoders.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVideoEncoders_SelectedIndexChanged);
             // 
             // comboBoxVideoEncoderPresets
             // 
@@ -1852,6 +1882,7 @@ namespace FFmpegCatapult
             this.comboBoxVideoCodecs.Name = "comboBoxVideoCodecs";
             this.comboBoxVideoCodecs.Size = new System.Drawing.Size(128, 21);
             this.comboBoxVideoCodecs.TabIndex = 1;
+            this.comboBoxVideoCodecs.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVideoCodecs_SelectedIndexChanged);
             // 
             // labelVideoCodec
             // 
@@ -1906,6 +1937,7 @@ namespace FFmpegCatapult
             this.checkBoxDeinterlace.TabIndex = 1;
             this.checkBoxDeinterlace.Text = "Deinterlace";
             this.checkBoxDeinterlace.UseVisualStyleBackColor = true;
+            this.checkBoxDeinterlace.CheckedChanged += new System.EventHandler(this.CheckBoxDeinterlace_CheckedChanged);
             // 
             // labelLayoutColour
             // 
@@ -1924,6 +1956,7 @@ namespace FFmpegCatapult
             this.textBoxLayoutColour.Name = "textBoxLayoutColour";
             this.textBoxLayoutColour.Size = new System.Drawing.Size(100, 20);
             this.textBoxLayoutColour.TabIndex = 11;
+            this.textBoxLayoutColour.TextChanged += new System.EventHandler(this.TextBoxLayoutColour_TextChanged);
             // 
             // groupBoxLayout
             // 
@@ -2025,6 +2058,7 @@ namespace FFmpegCatapult
             this.checkBoxPad.TabIndex = 1;
             this.checkBoxPad.Text = "Pad";
             this.checkBoxPad.UseVisualStyleBackColor = true;
+            this.checkBoxPad.CheckedChanged += new System.EventHandler(this.CheckBoxPad_CheckedChanged);
             // 
             // checkBoxCrop
             // 
@@ -2035,6 +2069,7 @@ namespace FFmpegCatapult
             this.checkBoxCrop.TabIndex = 0;
             this.checkBoxCrop.Text = "Crop";
             this.checkBoxCrop.UseVisualStyleBackColor = true;
+            this.checkBoxCrop.CheckedChanged += new System.EventHandler(this.CheckBoxCrop_CheckedChanged);
             // 
             // groupBoxScreen
             // 
@@ -2066,6 +2101,7 @@ namespace FFmpegCatapult
             this.numericUpDownRatioB.Name = "numericUpDownRatioB";
             this.numericUpDownRatioB.Size = new System.Drawing.Size(40, 20);
             this.numericUpDownRatioB.TabIndex = 12;
+            this.numericUpDownRatioB.ValueChanged += new System.EventHandler(this.NumericUpDownRatio_ValueChanged);
             // 
             // numericUpDownRatioA
             // 
@@ -2113,6 +2149,7 @@ namespace FFmpegCatapult
             this.checkBoxAspectRatio.TabIndex = 0;
             this.checkBoxAspectRatio.Text = "Aspect ratio";
             this.checkBoxAspectRatio.UseVisualStyleBackColor = true;
+            this.checkBoxAspectRatio.CheckedChanged += new System.EventHandler(this.CheckBoxAspectRatio_CheckedChanged);
             // 
             // groupBoxResolution
             // 
@@ -2155,6 +2192,7 @@ namespace FFmpegCatapult
             this.comboBoxScalingMethods.Name = "comboBoxScalingMethods";
             this.comboBoxScalingMethods.Size = new System.Drawing.Size(159, 21);
             this.comboBoxScalingMethods.TabIndex = 1;
+            this.comboBoxScalingMethods.SelectedIndexChanged += new System.EventHandler(this.ComboBoxScalingMethods_SelectedIndexChanged);
             // 
             // labelMethod
             // 
@@ -2184,6 +2222,7 @@ namespace FFmpegCatapult
             this.radioButtonCustomRes.TabStop = true;
             this.radioButtonCustomRes.Text = "Width:";
             this.radioButtonCustomRes.UseVisualStyleBackColor = true;
+            this.radioButtonCustomRes.CheckedChanged += new System.EventHandler(this.RadioButtonCustomRes_CheckedChanged);
             // 
             // radioButtonHalfRes
             // 
@@ -2195,6 +2234,7 @@ namespace FFmpegCatapult
             this.radioButtonHalfRes.TabStop = true;
             this.radioButtonHalfRes.Text = "Half resolution";
             this.radioButtonHalfRes.UseVisualStyleBackColor = true;
+            this.radioButtonHalfRes.CheckedChanged += new System.EventHandler(this.RadioButtonHalfRes_CheckedChanged);
             // 
             // radioButtonKeepRes
             // 
@@ -2206,6 +2246,7 @@ namespace FFmpegCatapult
             this.radioButtonKeepRes.TabStop = true;
             this.radioButtonKeepRes.Text = "Keep original resolution";
             this.radioButtonKeepRes.UseVisualStyleBackColor = true;
+            this.radioButtonKeepRes.CheckedChanged += new System.EventHandler(this.RadioButtonKeepRes_CheckedChanged);
             // 
             // tabMain
             // 
@@ -2265,6 +2306,7 @@ namespace FFmpegCatapult
             this.checkBoxOverwrite.TabIndex = 6;
             this.checkBoxOverwrite.Text = "Overwrite existing file";
             this.checkBoxOverwrite.UseVisualStyleBackColor = true;
+            this.checkBoxOverwrite.CheckedChanged += new System.EventHandler(this.CheckBoxOverwrite_CheckedChanged);
             // 
             // labelOutput
             // 
@@ -2291,6 +2333,7 @@ namespace FFmpegCatapult
             this.textBoxTargetFolder.Name = "textBoxTargetFolder";
             this.textBoxTargetFolder.Size = new System.Drawing.Size(385, 20);
             this.textBoxTargetFolder.TabIndex = 3;
+            this.textBoxTargetFolder.TextChanged += new System.EventHandler(this.TextBoxTargetFolder_TextChanged);
             this.textBoxTargetFolder.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress_FSFilter);
             // 
             // groupBoxSession
@@ -2314,6 +2357,7 @@ namespace FFmpegCatapult
             this.radioButtonRefresh.TabStop = true;
             this.radioButtonRefresh.Text = "Refresh";
             this.radioButtonRefresh.UseVisualStyleBackColor = true;
+            this.radioButtonRefresh.CheckedChanged += new System.EventHandler(this.RadioButtonRefresh_CheckedChanged);
             // 
             // radioButtonKeep
             // 
@@ -2325,6 +2369,7 @@ namespace FFmpegCatapult
             this.radioButtonKeep.TabStop = true;
             this.radioButtonKeep.Text = "Keep";
             this.radioButtonKeep.UseVisualStyleBackColor = true;
+            this.radioButtonKeep.CheckedChanged += new System.EventHandler(this.RadioButtonKeep_CheckedChanged);
             // 
             // groupBoxEncoding
             // 
@@ -2395,6 +2440,7 @@ namespace FFmpegCatapult
             this.comboBoxContainers.Name = "comboBoxContainers";
             this.comboBoxContainers.Size = new System.Drawing.Size(160, 21);
             this.comboBoxContainers.TabIndex = 3;
+            this.comboBoxContainers.SelectedIndexChanged += new System.EventHandler(this.ComboBoxContainers_SelectedIndexChanged);
             // 
             // labelFormat
             // 
@@ -2413,6 +2459,7 @@ namespace FFmpegCatapult
             this.comboBoxPresets.Name = "comboBoxPresets";
             this.comboBoxPresets.Size = new System.Drawing.Size(408, 21);
             this.comboBoxPresets.TabIndex = 1;
+            this.comboBoxPresets.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPresets_SelectedIndexChanged);
             // 
             // labelPreset
             // 
@@ -2463,6 +2510,7 @@ namespace FFmpegCatapult
             this.textBoxAudioStream.Name = "textBoxAudioStream";
             this.textBoxAudioStream.Size = new System.Drawing.Size(385, 20);
             this.textBoxAudioStream.TabIndex = 5;
+            this.textBoxAudioStream.TextChanged += new System.EventHandler(this.TextBoxAudioStream_TextChanged);
             // 
             // buttonBrowseInput
             // 
@@ -2482,6 +2530,8 @@ namespace FFmpegCatapult
             this.textBoxInFile.Size = new System.Drawing.Size(386, 20);
             this.textBoxInFile.TabIndex = 2;
             this.textBoxInFile.TextChanged += new System.EventHandler(this.TextBoxInFile_TextChanged);
+            this.textBoxInFile.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextBoxInFile_DragDrop);
+            this.textBoxInFile.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxInFile_DragEnter);
             this.textBoxInFile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress_FSFilter);
             // 
             // labelSourceInput
@@ -2519,6 +2569,7 @@ namespace FFmpegCatapult
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "FFmpeg Catapult";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_Closing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabOptions.ResumeLayout(false);
             this.groupBoxDefaultPaths.ResumeLayout(false);
