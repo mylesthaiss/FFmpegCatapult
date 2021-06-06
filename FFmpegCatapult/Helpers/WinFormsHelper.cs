@@ -106,7 +106,7 @@ namespace FFmpegCatapult.Helpers
 
                 for (int i = 0; i < values.GetLength(0); i++)
                 {
-                    if (selectedValue == string.Format("{0:0.0}", values[i]))
+                    if (selectedValue == values[i])
                     {
                         x = i;
                         break;
