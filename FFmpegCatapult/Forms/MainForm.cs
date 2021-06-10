@@ -783,7 +783,7 @@ namespace FFmpegCatapult
         {
             OpenFileDialog binFile = new OpenFileDialog();
             binFile.Title = "Locate FFmpeg";
-            binFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
+            binFile.Filter = "Executable (*.exe)|*.exe|Any file (*.*)| *.*";
             binFile.ShowDialog();
 
             if (!string.IsNullOrEmpty(binFile.FileName))
@@ -988,7 +988,10 @@ namespace FFmpegCatapult
         private void ButtonBrowseInput_Click(object sender, EventArgs e)
         {
             OpenFileDialog inFile = new OpenFileDialog();
-            inFile.Filter = "Any file (*.*) | *.*";
+            inFile.Filter = "Video files|*.asf;*.avi;*.flv;*.m4v;*.mkv;*.mp4;*.mpeg;*.mpg;*.mov;*.ogv;*.webm;*.wmv;*.y4m|"
+                          + "Audio files|*.aac;*.ape;*.flac;*.m4a;*.mp3;*.mpc;*.ogg;*.wav;*.wma;*.wv|"
+                          + "Any file (*.*)|*.*";
+
             if (string.IsNullOrEmpty(settings.DefaultSourceFolder))
                 inFile.InitialDirectory = settings.DefaultSourceFolder;
             
@@ -1612,7 +1615,7 @@ namespace FFmpegCatapult
         {
             OpenFileDialog termBinFile = new OpenFileDialog();
             termBinFile.Title = "Locate Terminal Emulator";
-            termBinFile.Filter = "Executable (*.exe) | *.exe | Any file (*.*) | *.*";
+            termBinFile.Filter = "Executable (*.exe)|*.exe|Any file (*.*)|*.*";
             termBinFile.ShowDialog();
 
             if (!string.IsNullOrEmpty(termBinFile.FileName))
