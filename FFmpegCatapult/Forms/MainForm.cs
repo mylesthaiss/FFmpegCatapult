@@ -783,7 +783,7 @@ namespace FFmpegCatapult
         {
             OpenFileDialog binFile = new OpenFileDialog();
             binFile.Title = "Locate FFmpeg";
-            binFile.Filter = "Executable (*.exe)|*.exe|Any file (*.*)| *.*";
+            binFile.Filter = "Executable (*.exe)|*.exe|Any file (*.*)|*.*";
             binFile.ShowDialog();
 
             if (!string.IsNullOrEmpty(binFile.FileName))
@@ -988,8 +988,9 @@ namespace FFmpegCatapult
         private void ButtonBrowseInput_Click(object sender, EventArgs e)
         {
             OpenFileDialog inFile = new OpenFileDialog();
+            inFile.Title = "Locate Main Input File";
             inFile.Filter = "Video files|*.asf;*.avi;*.flv;*.m4v;*.mkv;*.mp4;*.mpeg;*.mpg;*.mov;*.ogv;*.webm;*.wmv;*.y4m|"
-                          + "Audio files|*.aac;*.ape;*.flac;*.m4a;*.mp3;*.mpc;*.ogg;*.wav;*.wma;*.wv|"
+                          + "Audio files|*.aac;*.ac3;*.adts;*.ape;*.flac;*.m4a;*.mp3;*.mpc;*.ogg;*.snd;*.vox;*.w64;*.wav;*.wma;*.wv|"
                           + "Any file (*.*)|*.*";
 
             if (string.IsNullOrEmpty(settings.DefaultSourceFolder))
@@ -1004,6 +1005,10 @@ namespace FFmpegCatapult
         void ButtonBrowseAudioStream_Click(object sender, EventArgs e)
         {
             OpenFileDialog audioFile = new OpenFileDialog();
+            audioFile.Title = "Locate Audio Stream File";
+            audioFile.Filter = "Audio files|*.aac;*.ac3;*.adts;*.ape;*.flac;*.m4a;*.mp3;*.mpc;*.ogg;*.snd;*.vox;*.w64;*.wav;*.wma;*.wv|"
+                             + "Any file (*.*)|*.*";
+            
             audioFile.ShowDialog();
 
             if (!string.IsNullOrEmpty(audioFile.FileName))
