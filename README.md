@@ -1,21 +1,21 @@
 FFmpeg Catapult
 ===============
 
-A clean and simple graphical launcher for FFmpeg:
+A clean and simple graphical launcher for FFmpeg.
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Main.png)
+![FFmpeg Catapult](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Logo.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Picture.png)
+![FFmpeg Catapult Screenshot - Main Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Main.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Video.png)
+![FFmpeg Catapult Screenshot - Picture Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Picture.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/VideoSettings.png)
+![FFmpeg Catapult Screenshot - Video Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Video.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Audio.png)
+![FFmpeg Catapult Screenshot - Audio Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Audio.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Tagging.png)
+![FFmpeg Catapult Screenshot - Tagging Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Tagging.png)
 
-![Screenshot](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Screenshots/Options.png)
+![FFmpeg Catapult Screenshot - Options Tab](https://raw.github.com/mylesthaiss/FFmpegCatapult/master/Images/Screenshots/Options.png)
 
 Requirements
 ============
@@ -36,7 +36,3 @@ Install
 After extracting the FFCatapult_xx.zip file, copy the ffcatapult.exe and presets.xml 
 files onto your FFmpeg binary folder or place the FFmpeg binary onto the folder where 
 the FFmpeg Catapult executable is.
-
-
-
-
