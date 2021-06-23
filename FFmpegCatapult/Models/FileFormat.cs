@@ -161,21 +161,8 @@ namespace FFmpegCatapult.Models
 
         public bool FastStartTagging
         {
-            get { return fastStart; }
-            set
-            {
-                switch (format)
-                {
-                    case "mp4":
-                    case "m4a":
-                    case "mov":
-                        fastStart = value;
-                        break;
-                    default:
-                        fastStart = false;
-                        break;
-                }
-            }
+            get { return IsFastStartSupported ? fastStart : false; }
+            set { falseStart = value; }
         }
 
         public FileFormat()
@@ -227,6 +214,19 @@ namespace FFmpegCatapult.Models
             }
 
             return false;
+        }
+
+        public bool IsFastStartSupported() 
+        {
+            switch (format)
+            {
+                case "mp4":
+                case "m4a":
+                case "mov":
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

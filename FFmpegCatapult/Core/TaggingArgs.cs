@@ -92,7 +92,7 @@ namespace FFmpegCatapult.Core
                     taggingArgs.Add("-id3v2_version 3 -write_id3v1 1");
 
                 if (format.FastStartTagging)
-                    taggingArgs.Add("-movflags +faststart");
+                    taggingArgs.Add("-movflags faststart");
             }
 
             return string.Join(" ", taggingArgs);

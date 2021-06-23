@@ -24,6 +24,7 @@
 	</preset>
 	<preset name="Apple iPod (5th Gen), 240p">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -44,6 +45,7 @@
 	</preset>
 	<preset name="Apple iPod (5th Gen), 480p">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -64,6 +66,7 @@
 	</preset>
 	<preset name="Sony PSP">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -84,6 +87,7 @@
 	</preset>
 	<preset name="Sony PSP, 480p">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -123,6 +127,7 @@
 	</preset>
 	<preset name="H.264, Standard Definition">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -139,6 +144,7 @@
 	</preset>
 	<preset name="H.264, High Definition">
 		<format>mp4</format>
+		<faststart>false</faststart>
 		<vcodec>h264</vcodec>
 		<vencoder>libx264</vencoder>
 		<vpreset>medium</vpreset>
@@ -154,6 +160,7 @@
 	</preset>
 	<preset name="H.265, Standard Definition">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>h265</vcodec>
 		<vpreset>medium</vpreset>
 		<quality>22</quality>
@@ -166,6 +173,7 @@
 	</preset>
 	<preset name="H.265, High Definition">
 		<format>mp4</format>
+		<faststart>false</faststart>
 		<vcodec>h265</vcodec>
 		<vpreset>medium</vpreset>
 		<quality>20</quality>
@@ -203,6 +211,7 @@
 	</preset>
 	<preset name="MPEG-4, Standard Definition">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>mpeg4</vcodec>
 		<vb>2500</vb>
 		<maxvb>4000</maxvb>
@@ -215,6 +224,7 @@
 	</preset>
 	<preset name="MPEG-4, High Definition">
 		<format>mp4</format>
+		<faststart>false</faststart>
 		<vcodec>mpeg4</vcodec>
 		<vb>15000</vb>
 		<maxvb>20000</maxvb>
@@ -269,6 +279,7 @@
 	</preset>
 	<preset name="Copy audio and video to MP4">
 		<format>mp4</format>
+		<faststart>true</faststart>
 		<vcodec>copy</vcodec>
 		<acodec>copy</acodec>
 	</preset>
