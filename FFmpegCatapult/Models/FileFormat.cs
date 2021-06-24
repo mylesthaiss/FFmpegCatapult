@@ -161,8 +161,8 @@ namespace FFmpegCatapult.Models
 
         public bool FastStartTagging
         {
-            get { return IsFastStartSupported ? fastStart : false; }
-            set { falseStart = value; }
+            get { return !IsFastStartSupported() ? false : fastStart; }
+            set { fastStart = value; }
         }
 
         public FileFormat()

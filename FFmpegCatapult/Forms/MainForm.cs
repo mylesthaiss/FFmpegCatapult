@@ -78,6 +78,15 @@ namespace FFmpegCatapult
             }
         }
 
+        private void InitOutput()
+        {
+            checkBoxFastStartTagging.Enabled = file.IsFastStartSupported();
+
+            checkBoxFastStartTagging.EnabledChanged -= new EventHandler(CheckBoxFastStartTagging_CheckedChanged);
+            checkBoxFastStartTagging.Checked = file.FastStartTagging;
+            checkBoxFastStartTagging.EnabledChanged += new EventHandler(CheckBoxFastStartTagging_CheckedChanged);
+        }
+
         private void InitPicture()
         {
             // Resolution radio buttons
@@ -886,6 +895,7 @@ namespace FFmpegCatapult
             checkBoxOverwrite.CheckedChanged += new EventHandler(CheckBoxOverwrite_CheckedChanged);
 
             InitMain();
+            InitOutput();
 
             // Picture tab
             comboBoxScalingMethods.SelectedIndexChanged -= new EventHandler(ComboBoxScalingMethods_SelectedIndexChanged);
@@ -1052,6 +1062,11 @@ namespace FFmpegCatapult
             paths.Overwrite = checkBoxOverwrite.Checked;
         }
 
+        private void CheckBoxFastStartTagging_CheckedChanged(object sender, EventArgs e)
+        {
+            file.FastStartTagging = checkBoxFastStartTagging.Checked;
+        }
+
         void ComboBoxContainers_SelectedIndexChanged(object sender, EventArgs e)
         {
             WinFormsHelper.ListComboContent format = (WinFormsHelper.ListComboContent)comboBoxContainers.SelectedItem;
@@ -1070,6 +1085,7 @@ namespace FFmpegCatapult
                     textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
 
                 InitTabs();
+                InitOutput();
                 InitAudio();
                 InitVideo();
                 InitMetadata();
@@ -1081,6 +1097,7 @@ namespace FFmpegCatapult
             WinFormsHelper.ListComboContent preset = (WinFormsHelper.ListComboContent)comboBoxPresets.SelectedItem;
             InitPreset(preset.Name, preset.Value);
             InitTabs();
+            InitOutput();
             InitMain();
             InitPicture();
             InitVideo();

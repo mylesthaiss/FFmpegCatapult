@@ -257,6 +257,7 @@ namespace FFmpegCatapult
             this.textBoxInFile = new System.Windows.Forms.TextBox();
             this.labelSourceInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.checkBoxFastStartTagging = new System.Windows.Forms.CheckBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxDefaultPaths.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
@@ -2264,6 +2265,7 @@ namespace FFmpegCatapult
             // 
             // groupBoxFileOutput
             // 
+            this.groupBoxFileOutput.Controls.Add(this.checkBoxFastStartTagging);
             this.groupBoxFileOutput.Controls.Add(this.textBoxOutputFilename);
             this.groupBoxFileOutput.Controls.Add(this.labelOutputFilename);
             this.groupBoxFileOutput.Controls.Add(this.checkBoxOverwrite);
@@ -2556,6 +2558,17 @@ namespace FFmpegCatapult
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(575, 322);
             this.tabControl.TabIndex = 2;
+            // 
+            // checkBoxFastStartTagging
+            // 
+            this.checkBoxFastStartTagging.AutoSize = true;
+            this.checkBoxFastStartTagging.Location = new System.Drawing.Point(377, 89);
+            this.checkBoxFastStartTagging.Name = "checkBoxFastStartTagging";
+            this.checkBoxFastStartTagging.Size = new System.Drawing.Size(178, 17);
+            this.checkBoxFastStartTagging.TabIndex = 9;
+            this.checkBoxFastStartTagging.Text = "Move tag data at begining of file";
+            this.checkBoxFastStartTagging.UseVisualStyleBackColor = true;
+            this.checkBoxFastStartTagging.CheckedChanged += new System.EventHandler(this.CheckBoxFastStartTagging_CheckedChanged);
             // 
             // MainForm
             // 
@@ -2868,6 +2881,7 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelDefaultOutputPath;
         private System.Windows.Forms.Label labelDefaultInputPath;
         private System.Windows.Forms.CheckBox checkBoxUrlFilenames;
+        private System.Windows.Forms.CheckBox checkBoxFastStartTagging;
     }
 }
 
