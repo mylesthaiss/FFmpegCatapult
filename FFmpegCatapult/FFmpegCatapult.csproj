@@ -75,8 +75,10 @@
     <Compile Include="Models\Audio.cs" />
     <Compile Include="Models\FileFormat.cs" />
     <Compile Include="Models\FilePaths.cs" />
+    <Compile Include="Models\IAudio.cs" />
     <Compile Include="Models\IEncoder.cs" />
     <Compile Include="Models\IOutput.cs" />
+    <Compile Include="Models\IVideo.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Tags.cs" />

@@ -18,23 +18,6 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
-    interface IAudio : IOutput, IEncoder
-    {
-        bool IsVBRSupported { get; }
-        bool UseVBR { get; set; }
-        int[] Bitrates { get; }
-        int SampleRate { get; set; }
-        int[] SampleRates { get; }
-        int Channels { get; set; }
-        int LowPass { get; set; }
-        int HighPass { get; set; }
-        int MaxChannels { get; }
-        int ResamplerPrecision { get; set; }
-        int VolumeBoost { get; set; }
-        string DitherMethod { get; set; }
-        string Resampler { get; set; }
-    }
-
     class Audio : IAudio
     {
         private int[] bitrates;

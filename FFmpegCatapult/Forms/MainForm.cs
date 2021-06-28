@@ -1175,12 +1175,12 @@ namespace FFmpegCatapult
 
         private void ComboBoxMECmp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            video.CMP = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMECmp));
+            video.CmpFunc = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMECmp));
         }
 
         private void ComboBoxMESubcmp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            video.SubCMP = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMESubcmp));
+            video.SubCmp = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMESubcmp));
         }
 
         private void ComboBoxBFStrat_SelectedIndexChanged(object sender, EventArgs e)

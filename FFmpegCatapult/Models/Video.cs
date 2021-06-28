@@ -19,38 +19,6 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
-    interface IVideo : IOutput, IEncoder
-    {
-        bool AutoAltRef { get; set; }
-        bool FrameParallel { get; set; }
-        bool TwoPassEncoding { get; set; }
-        bool UseCRF { get; set; }
-        double CodecLevel { get; set; }
-        int BufferSize { get; set; }
-        int MaxBitrate { get; set; }
-        int MinBitrate { get; set; }
-        int BFrames { get; set; }
-        int BFStrategy { get; set; }
-        int CMP { get; set; }
-        int DiaSize { get; set; }
-        int GOPSize { get; set; }
-        int LagInFrames { get; set; }
-        int Speed { get; set; }
-        int SubCMP { get; set; }
-        int TargetSize { get; set; }
-        int TileColumns { get; set; }
-        int TileRows { get; set; }
-        int Trellis { get; set; }
-        int QMin { get; set; }
-        int QMax { get; set; }
-        string EncoderPreset { get; set; }
-        string PixelFormat { get; set; }
-        string MEMethod { get; set; }
-        string[,] EncoderPresets { get; }
-        string[,] PixelFormats { get; }
-        string[,] MEMethods { get; }
-    }
-
     class Video : IVideo
     {
         private string codec;
@@ -83,13 +51,15 @@ namespace FFmpegCatapult.Models
         public int BFrames { get; set; }
         public int BFStrategy { get; set; }
         public int BufferSize { get; set; }
+        public int PreCmp { get; set; } = 0;
+        public int MBCmp { get; set; } = 0;
         public int Quality { get; set; }
-        public int CMP { get; set; }
+        public int CmpFunc { get; set; } = 0;
         public int DiaSize { get; set; }
         public int QMax { get; set; }
         public int QMin { get; set; }
         public int Speed { get; set; }
-        public int SubCMP { get; set; }
+        public int SubCmp { get; set; } = 0;
         public int TargetSize { get; set; } = 0;
         public int TileColumns { get; set; }
         public int TileRows { get; set; }
@@ -125,7 +95,6 @@ namespace FFmpegCatapult.Models
                 BFrames = 0;
                 BFStrategy = 3;
                 BufferSize = 0;
-                CMP = 15;
                 DiaSize = 0;
                 GOPSize = 0;
                 MaxBitrate = 0;
@@ -133,7 +102,6 @@ namespace FFmpegCatapult.Models
                 MinBitrate = 0;
                 QMax = 0;
                 QMin = 0;
-                SubCMP = 15;
                 Trellis = 3;
 
                 switch (codec)
@@ -383,7 +351,7 @@ namespace FFmpegCatapult.Models
                         BFStrategy = int.TryParse(node["bfstrategy"].InnerText, out int bfStrat) ? bfStrat : 0;
 
                     if (node["cmp"] != null)
-                        CMP = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
+                        CmpFunc = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
 
                     if (node["quality"] != null)
                     {
@@ -413,7 +381,7 @@ namespace FFmpegCatapult.Models
                         QMax = int.TryParse(node["qmax"].InnerText, out int qMax) ? qMax : 0;
 
                     if (node["subcmp"] != null)
-                        SubCMP = int.TryParse(node["subcmp"].InnerText, out int subCmp) ? subCmp : 0;
+                        SubCmp = int.TryParse(node["subcmp"].InnerText, out int subCmp) ? subCmp : 0;
 
                     if (node["tilecolumns"] != null)
                         TileColumns = int.TryParse(node["tilecolumns"].InnerText, out int tileCols) ? tileCols : 0;
@@ -423,6 +391,12 @@ namespace FFmpegCatapult.Models
 
                     if (node["trellis"] != null)
                         Trellis = int.TryParse(node["trellis"].InnerText, out int trellis) ? trellis : 0;
+
+                    if (node["precmp"] != null)
+                        PreCmp = int.TryParse(node["precmp"].InnerText, out int preCmp) ? preCmp : 0;
+
+                    if (node["mbcmp"] != null)
+                        MBCmp = int.TryParse(node["mbcmp"].InnerText, out int mbCmp) ? mbCmp : 0;
                 }
             }
         }

@@ -80,11 +80,17 @@ namespace FFmpegCatapult.Core
                     if (video.DiaSize != 0)
                         videoArgs.Add(string.Format("-dia_size {0}", video.DiaSize));
 
-                    if (video.CMP != 15)
-                        videoArgs.Add(string.Format("-cmp {0}", video.CMP));
+                    if (video.CmpFunc != 0)
+                        videoArgs.Add(string.Format("-cmp {0}", video.CmpFunc));
 
-                    if (video.SubCMP != 15)
-                        videoArgs.Add(string.Format("-subcmp {0}", video.SubCMP));
+                    if (video.SubCmp != 0)
+                        videoArgs.Add(string.Format("-subcmp {0}", video.SubCmp));
+
+                    if (video.PreCmp != 0)
+                        videoArgs.Add(string.Format("-precmp {0}", video.PreCmp));
+
+                    if (video.MBCmp != 0)
+                        videoArgs.Add(string.Format("-mbcmp {0}", video.MBCmp));
 
                     if (video.Trellis != 3)
                         videoArgs.Add(string.Format("-trellis {0}", video.Trellis));
