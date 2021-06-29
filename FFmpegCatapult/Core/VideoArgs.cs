@@ -74,23 +74,23 @@ namespace FFmpegCatapult.Core
                     if (video.BFStrategy < 3)
                         videoArgs.Add(string.Format("-b_strategy {0}", video.BFStrategy));
 
-                    if (video.MEMethod != "")
-                        videoArgs.Add(string.Format("-me_method {0}", video.MEMethod));
+                    if (video.MotionEstimateMethod != "")
+                        videoArgs.Add(string.Format("-me_method {0}", video.MotionEstimateMethod));
 
                     if (video.DiaSize != 0)
                         videoArgs.Add(string.Format("-dia_size {0}", video.DiaSize));
 
-                    if (video.CmpFunc != 0)
-                        videoArgs.Add(string.Format("-cmp {0}", video.CmpFunc));
+                    if (video.MotionEstimateCompare != 0)
+                        videoArgs.Add(string.Format("-cmp {0}", video.MotionEstimateCompare));
 
-                    if (video.SubCmp != 0)
-                        videoArgs.Add(string.Format("-subcmp {0}", video.SubCmp));
+                    if (video.MotionEstimateSubCompare != 0)
+                        videoArgs.Add(string.Format("-subcmp {0}", video.MotionEstimateSubCompare));
 
-                    if (video.PreCmp != 0)
-                        videoArgs.Add(string.Format("-precmp {0}", video.PreCmp));
+                    if (video.MotionEstimatePreCompare != 0)
+                        videoArgs.Add(string.Format("-precmp {0}", video.MotionEstimatePreCompare));
 
-                    if (video.MBCmp != 0)
-                        videoArgs.Add(string.Format("-mbcmp {0}", video.MBCmp));
+                    if (video.MacroBlockingCompare != 0)
+                        videoArgs.Add(string.Format("-mbcmp {0}", video.MacroBlockingCompare));
 
                     if (video.Trellis != 3)
                         videoArgs.Add(string.Format("-trellis {0}", video.Trellis));

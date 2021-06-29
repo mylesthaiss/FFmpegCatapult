@@ -28,14 +28,14 @@ namespace FFmpegCatapult.Models
         int MinBitrate { get; set; }
         int BFrames { get; set; }
         int BFStrategy { get; set; }
-        int CmpFunc { get; set; }
+        int MotionEstimateCompare { get; set; }
         int DiaSize { get; set; }
         int GOPSize { get; set; }
         int LagInFrames { get; set; }
-        int MBCmp { get; set; }
-        int PreCmp { get; set; }
+        int MacroBlockingCompare { get; set; }
+        int MotionEstimatePreCompare { get; set; }
         int Speed { get; set; }
-        int SubCmp { get; set; }
+        int MotionEstimateSubCompare { get; set; }
         int TargetSize { get; set; }
         int TileColumns { get; set; }
         int TileRows { get; set; }
@@ -44,9 +44,9 @@ namespace FFmpegCatapult.Models
         int QMax { get; set; }
         string EncoderPreset { get; set; }
         string PixelFormat { get; set; }
-        string MEMethod { get; set; }
+        string MotionEstimateMethod { get; set; }
         string[,] EncoderPresets { get; }
         string[,] PixelFormats { get; }
-        string[,] MEMethods { get; }
+        string[,] MotionEstimateMethods { get; }
     }
 }

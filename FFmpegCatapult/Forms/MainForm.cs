@@ -162,6 +162,10 @@ namespace FFmpegCatapult
             comboBoxPixelFormat = WinFormsHelper.AddMultiArrayToComboBox(comboBoxPixelFormat, video.PixelFormats, video.PixelFormat);
             comboBoxPixelFormat.SelectedIndexChanged += new EventHandler(ComboBoxPixelFormat_SelectedIndexChanged);
 
+            comboBoxMEMethod.SelectedIndexChanged -= new EventHandler(ComboBoxMEMethod_SelectedIndexChanged);
+            comboBoxMEMethod = WinFormsHelper.AddMultiArrayToComboBox(comboBoxMEMethod, video.MotionEstimateMethods, video.MotionEstimateMethod);
+            comboBoxMEMethod.SelectedIndexChanged += new EventHandler(ComboBoxMEMethod_SelectedIndexChanged);
+
             // Check boxes
             checkBoxTwoPassEncoding.CheckedChanged -= new EventHandler(CheckBoxTwoPassEncoding_CheckedChanged);
             checkBoxTwoPassEncoding.Checked = video.TwoPassEncoding;
@@ -204,6 +208,22 @@ namespace FFmpegCatapult
             numericUpDownBufferSize.ValueChanged -= new EventHandler(NumericUpDownBufferSize_ValueChanged);
             numericUpDownBufferSize.Value = video.BufferSize;
             numericUpDownBufferSize.ValueChanged += new EventHandler(NumericUpDownBufferSize_ValueChanged);
+
+            numericUpDownMECmp.ValueChanged -= new EventHandler(NumericUpDownMECmp_ValueChanged);
+            numericUpDownMECmp.Value = video.MotionEstimateCompare;
+            numericUpDownMECmp.ValueChanged += new EventHandler(NumericUpDownMECmp_ValueChanged);
+
+            numericUpDownMESubCmp.ValueChanged -= new EventHandler(NumericUpDownMESubCmp_ValueChanged);
+            numericUpDownMESubCmp.Value = video.MotionEstimateSubCompare;
+            numericUpDownMESubCmp.ValueChanged += new EventHandler(NumericUpDownMESubCmp_ValueChanged);
+
+            numericUpDownMEPreCmp.ValueChanged -= new EventHandler(NumericUpDownMEPreCmp_ValueChanged);
+            numericUpDownMEPreCmp.Value = video.MotionEstimatePreCompare;
+            numericUpDownMEPreCmp.ValueChanged += new EventHandler(NumericUpDownMEPreCmp_ValueChanged);
+
+            numericUpDownMBCmp.ValueChanged -= new EventHandler(NumericUpDownMBCmp_ValueChanged);
+            numericUpDownMBCmp.Value = video.MacroBlockingCompare;
+            numericUpDownMBCmp.ValueChanged += new EventHandler(NumericUpDownMBCmp_ValueChanged);
 
             // Other items
             InitVideoEncoderSettings();
@@ -1170,22 +1190,7 @@ namespace FFmpegCatapult
 
         private void ComboBoxMEMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            video.MEMethod = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMEMethod);
-        }
-
-        private void ComboBoxMECmp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            video.CmpFunc = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMECmp));
-        }
-
-        private void ComboBoxMESubcmp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            video.SubCmp = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMESubcmp));
-        }
-
-        private void ComboBoxBFStrat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            video.BFStrategy = Convert.ToInt16(WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxBFStrat));
+            video.MotionEstimateMethod = WinFormsHelper.GetSelectedValueFromArrayComboBox(comboBoxMEMethod);
         }
 
         private void ComboBoxPixelFormat_SelectedIndexChanged(object sender, EventArgs e)
@@ -1282,6 +1287,26 @@ namespace FFmpegCatapult
         private void NumericUpDownTrellis_ValueChanged(object sender, EventArgs e)
         {
             video.Trellis = (int)numericUpDownTrellis.Value;
+        }
+
+        private void NumericUpDownMECmp_ValueChanged(object sender, EventArgs e)
+        {
+            video.MotionEstimateCompare = (int)numericUpDownMECmp.Value;
+        }
+
+        private void NumericUpDownMEPreCmp_ValueChanged(object sender, EventArgs e)
+        {
+            video.MotionEstimatePreCompare = (int)numericUpDownMEPreCmp.Value;
+        }
+
+        private void NumericUpDownMESubCmp_ValueChanged(object sender, EventArgs e)
+        {
+            video.MacroBlockingCompare = (int)numericUpDownMBCmp.Value;
+        }
+
+        private void NumericUpDownMBCmp_ValueChanged(object sender, EventArgs e)
+        {
+            video.MacroBlockingCompare = (int)numericUpDownMBCmp.Value;
         }
 
         //

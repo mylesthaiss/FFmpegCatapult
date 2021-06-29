@@ -51,15 +51,15 @@ namespace FFmpegCatapult.Models
         public int BFrames { get; set; }
         public int BFStrategy { get; set; }
         public int BufferSize { get; set; }
-        public int PreCmp { get; set; } = 0;
-        public int MBCmp { get; set; } = 0;
+        public int MotionEstimatePreCompare { get; set; } = 0;
+        public int MacroBlockingCompare { get; set; } = 0;
         public int Quality { get; set; }
-        public int CmpFunc { get; set; } = 0;
+        public int MotionEstimateCompare { get; set; } = 0;
         public int DiaSize { get; set; }
         public int QMax { get; set; }
         public int QMin { get; set; }
         public int Speed { get; set; }
-        public int SubCmp { get; set; } = 0;
+        public int MotionEstimateSubCompare { get; set; } = 0;
         public int TargetSize { get; set; } = 0;
         public int TileColumns { get; set; }
         public int TileRows { get; set; }
@@ -69,7 +69,7 @@ namespace FFmpegCatapult.Models
         public int MaxBitrate { get; set; }
         public int MinBitrate { get; set; }
         public string EncoderPreset { get; set; }
-        public string MEMethod { get; set; }
+        public string MotionEstimateMethod { get; set; }
         public string PixelFormat { get; set; }
         public string Profile { get; set; }
         public string[,] Encoders { get; private set; }
@@ -98,7 +98,7 @@ namespace FFmpegCatapult.Models
                 DiaSize = 0;
                 GOPSize = 0;
                 MaxBitrate = 0;
-                MEMethod = "";
+                MotionEstimateMethod = "";
                 MinBitrate = 0;
                 QMax = 0;
                 QMin = 0;
@@ -277,7 +277,7 @@ namespace FFmpegCatapult.Models
             get { return cmpFuncs; }
         }
 
-        public string[,] MEMethods
+        public string[,] MotionEstimateMethods
         {
             get { return meMethods; }
         }
@@ -351,7 +351,7 @@ namespace FFmpegCatapult.Models
                         BFStrategy = int.TryParse(node["bfstrategy"].InnerText, out int bfStrat) ? bfStrat : 0;
 
                     if (node["cmp"] != null)
-                        CmpFunc = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
+                        MotionEstimateCompare = int.TryParse(node["cmp"].InnerText, out int cmp) ? cmp : 0;
 
                     if (node["quality"] != null)
                     {
@@ -369,7 +369,7 @@ namespace FFmpegCatapult.Models
                         LagInFrames = int.TryParse(node["laginframes"].InnerText, out int lagInFrames) ? lagInFrames : 0;
 
                     if (node["memethod"] != null)
-                        MEMethod = node["memethod"].InnerText;
+                        MotionEstimateMethod = node["memethod"].InnerText;
 
                     if (node["pixformat"] !=null)
                         PixelFormat = node["pixformat"].InnerText;
@@ -381,7 +381,7 @@ namespace FFmpegCatapult.Models
                         QMax = int.TryParse(node["qmax"].InnerText, out int qMax) ? qMax : 0;
 
                     if (node["subcmp"] != null)
-                        SubCmp = int.TryParse(node["subcmp"].InnerText, out int subCmp) ? subCmp : 0;
+                        MotionEstimateSubCompare = int.TryParse(node["subcmp"].InnerText, out int subCmp) ? subCmp : 0;
 
                     if (node["tilecolumns"] != null)
                         TileColumns = int.TryParse(node["tilecolumns"].InnerText, out int tileCols) ? tileCols : 0;
@@ -393,10 +393,10 @@ namespace FFmpegCatapult.Models
                         Trellis = int.TryParse(node["trellis"].InnerText, out int trellis) ? trellis : 0;
 
                     if (node["precmp"] != null)
-                        PreCmp = int.TryParse(node["precmp"].InnerText, out int preCmp) ? preCmp : 0;
+                        MotionEstimatePreCompare = int.TryParse(node["precmp"].InnerText, out int preCmp) ? preCmp : 0;
 
                     if (node["mbcmp"] != null)
-                        MBCmp = int.TryParse(node["mbcmp"].InnerText, out int mbCmp) ? mbCmp : 0;
+                        MacroBlockingCompare = int.TryParse(node["mbcmp"].InnerText, out int mbCmp) ? mbCmp : 0;
                 }
             }
         }

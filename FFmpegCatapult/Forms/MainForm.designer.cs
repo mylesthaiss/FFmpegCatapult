@@ -148,19 +148,23 @@ namespace FFmpegCatapult
             this.labelTargetSize = new System.Windows.Forms.Label();
             this.labelBuffer = new System.Windows.Forms.Label();
             this.groupBoxVideoEncoding = new System.Windows.Forms.GroupBox();
+            this.labelMBCmp = new System.Windows.Forms.Label();
+            this.numericUpDownMBCmp = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMEPreCmp = new System.Windows.Forms.NumericUpDown();
+            this.labelMEPreCmp = new System.Windows.Forms.Label();
+            this.numericUpDownMECmp = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownMESubCmp = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownBFStrat = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownTileRows = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownTileColumns = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownBFrames = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownDiaSize = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownTrellis = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownGOPSize = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxMESubcmp = new System.Windows.Forms.ComboBox();
             this.labelMESubCmp = new System.Windows.Forms.Label();
-            this.comboBoxMECmp = new System.Windows.Forms.ComboBox();
             this.labelMECmp = new System.Windows.Forms.Label();
             this.comboBoxMEMethod = new System.Windows.Forms.ComboBox();
             this.labelMEMethod = new System.Windows.Forms.Label();
-            this.comboBoxBFStrat = new System.Windows.Forms.ComboBox();
             this.labelBFStrat = new System.Windows.Forms.Label();
             this.labelTileCols = new System.Windows.Forms.Label();
             this.labelTileRows = new System.Windows.Forms.Label();
@@ -168,8 +172,6 @@ namespace FFmpegCatapult
             this.labelDiaSize = new System.Windows.Forms.Label();
             this.labelGopSize = new System.Windows.Forms.Label();
             this.labelBFrames = new System.Windows.Forms.Label();
-            this.labelPixelFormat = new System.Windows.Forms.Label();
-            this.comboBoxPixelFormat = new System.Windows.Forms.ComboBox();
             this.groupBoxVideoBitrate = new System.Windows.Forms.GroupBox();
             this.numericUpDownQMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownQMin = new System.Windows.Forms.NumericUpDown();
@@ -196,6 +198,8 @@ namespace FFmpegCatapult
             this.comboBoxVideoCodecs = new System.Windows.Forms.ComboBox();
             this.labelVideoCodec = new System.Windows.Forms.Label();
             this.labelVCodecLevel = new System.Windows.Forms.Label();
+            this.labelPixelFormat = new System.Windows.Forms.Label();
+            this.comboBoxPixelFormat = new System.Windows.Forms.ComboBox();
             this.tabPicture = new System.Windows.Forms.TabPage();
             this.groupBoxPictureFiltering = new System.Windows.Forms.GroupBox();
             this.checkBoxDeinterlace = new System.Windows.Forms.CheckBox();
@@ -231,6 +235,7 @@ namespace FFmpegCatapult
             this.radioButtonKeepRes = new System.Windows.Forms.RadioButton();
             this.tabMain = new System.Windows.Forms.TabPage();
             this.groupBoxFileOutput = new System.Windows.Forms.GroupBox();
+            this.checkBoxFastStartTagging = new System.Windows.Forms.CheckBox();
             this.textBoxOutputFilename = new System.Windows.Forms.TextBox();
             this.labelOutputFilename = new System.Windows.Forms.Label();
             this.checkBoxOverwrite = new System.Windows.Forms.CheckBox();
@@ -257,7 +262,6 @@ namespace FFmpegCatapult
             this.textBoxInFile = new System.Windows.Forms.TextBox();
             this.labelSourceInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.checkBoxFastStartTagging = new System.Windows.Forms.CheckBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxDefaultPaths.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
@@ -279,6 +283,11 @@ namespace FFmpegCatapult
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBufferSize)).BeginInit();
             this.groupBoxVideoEncoding.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMBCmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMEPreCmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMECmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMESubCmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBFStrat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTileRows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTileColumns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBFrames)).BeginInit();
@@ -1387,19 +1396,23 @@ namespace FFmpegCatapult
             // 
             // groupBoxVideoEncoding
             // 
+            this.groupBoxVideoEncoding.Controls.Add(this.labelMBCmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownMBCmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownMEPreCmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.labelMEPreCmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownMECmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownMESubCmp);
+            this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownBFStrat);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownTileRows);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownTileColumns);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownBFrames);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownDiaSize);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownTrellis);
             this.groupBoxVideoEncoding.Controls.Add(this.numericUpDownGOPSize);
-            this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMESubcmp);
             this.groupBoxVideoEncoding.Controls.Add(this.labelMESubCmp);
-            this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMECmp);
             this.groupBoxVideoEncoding.Controls.Add(this.labelMECmp);
             this.groupBoxVideoEncoding.Controls.Add(this.comboBoxMEMethod);
             this.groupBoxVideoEncoding.Controls.Add(this.labelMEMethod);
-            this.groupBoxVideoEncoding.Controls.Add(this.comboBoxBFStrat);
             this.groupBoxVideoEncoding.Controls.Add(this.labelBFStrat);
             this.groupBoxVideoEncoding.Controls.Add(this.labelTileCols);
             this.groupBoxVideoEncoding.Controls.Add(this.labelTileRows);
@@ -1407,8 +1420,6 @@ namespace FFmpegCatapult
             this.groupBoxVideoEncoding.Controls.Add(this.labelDiaSize);
             this.groupBoxVideoEncoding.Controls.Add(this.labelGopSize);
             this.groupBoxVideoEncoding.Controls.Add(this.labelBFrames);
-            this.groupBoxVideoEncoding.Controls.Add(this.labelPixelFormat);
-            this.groupBoxVideoEncoding.Controls.Add(this.comboBoxPixelFormat);
             this.groupBoxVideoEncoding.Location = new System.Drawing.Point(263, 92);
             this.groupBoxVideoEncoding.Name = "groupBoxVideoEncoding";
             this.groupBoxVideoEncoding.Size = new System.Drawing.Size(298, 193);
@@ -1416,9 +1427,91 @@ namespace FFmpegCatapult
             this.groupBoxVideoEncoding.TabStop = false;
             this.groupBoxVideoEncoding.Text = "Encoding";
             // 
+            // labelMBCmp
+            // 
+            this.labelMBCmp.AutoSize = true;
+            this.labelMBCmp.Location = new System.Drawing.Point(197, 131);
+            this.labelMBCmp.Name = "labelMBCmp";
+            this.labelMBCmp.Size = new System.Drawing.Size(49, 13);
+            this.labelMBCmp.TabIndex = 43;
+            this.labelMBCmp.Text = "MB cmp:";
+            // 
+            // numericUpDownMBCmp
+            // 
+            this.numericUpDownMBCmp.Location = new System.Drawing.Point(252, 129);
+            this.numericUpDownMBCmp.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numericUpDownMBCmp.Name = "numericUpDownMBCmp";
+            this.numericUpDownMBCmp.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDownMBCmp.TabIndex = 42;
+            this.numericUpDownMBCmp.ValueChanged += new System.EventHandler(this.NumericUpDownMBCmp_ValueChanged);
+            // 
+            // numericUpDownMEPreCmp
+            // 
+            this.numericUpDownMEPreCmp.Location = new System.Drawing.Point(77, 129);
+            this.numericUpDownMEPreCmp.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numericUpDownMEPreCmp.Name = "numericUpDownMEPreCmp";
+            this.numericUpDownMEPreCmp.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDownMEPreCmp.TabIndex = 41;
+            this.numericUpDownMEPreCmp.ValueChanged += new System.EventHandler(this.NumericUpDownMEPreCmp_ValueChanged);
+            // 
+            // labelMEPreCmp
+            // 
+            this.labelMEPreCmp.AutoSize = true;
+            this.labelMEPreCmp.Location = new System.Drawing.Point(7, 131);
+            this.labelMEPreCmp.Name = "labelMEPreCmp";
+            this.labelMEPreCmp.Size = new System.Drawing.Size(67, 13);
+            this.labelMEPreCmp.TabIndex = 40;
+            this.labelMEPreCmp.Text = "ME pre-cmp:";
+            // 
+            // numericUpDownMECmp
+            // 
+            this.numericUpDownMECmp.Location = new System.Drawing.Point(77, 102);
+            this.numericUpDownMECmp.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numericUpDownMECmp.Name = "numericUpDownMECmp";
+            this.numericUpDownMECmp.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDownMECmp.TabIndex = 39;
+            this.numericUpDownMECmp.ValueChanged += new System.EventHandler(this.NumericUpDownMECmp_ValueChanged);
+            // 
+            // numericUpDownMESubCmp
+            // 
+            this.numericUpDownMESubCmp.Location = new System.Drawing.Point(252, 101);
+            this.numericUpDownMESubCmp.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.numericUpDownMESubCmp.Name = "numericUpDownMESubCmp";
+            this.numericUpDownMESubCmp.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDownMESubCmp.TabIndex = 38;
+            this.numericUpDownMESubCmp.ValueChanged += new System.EventHandler(this.NumericUpDownMESubCmp_ValueChanged);
+            // 
+            // numericUpDownBFStrat
+            // 
+            this.numericUpDownBFStrat.Location = new System.Drawing.Point(259, 45);
+            this.numericUpDownBFStrat.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDownBFStrat.Name = "numericUpDownBFStrat";
+            this.numericUpDownBFStrat.Size = new System.Drawing.Size(32, 20);
+            this.numericUpDownBFStrat.TabIndex = 37;
+            // 
             // numericUpDownTileRows
             // 
-            this.numericUpDownTileRows.Location = new System.Drawing.Point(77, 127);
+            this.numericUpDownTileRows.Location = new System.Drawing.Point(77, 158);
             this.numericUpDownTileRows.Name = "numericUpDownTileRows";
             this.numericUpDownTileRows.Size = new System.Drawing.Size(32, 20);
             this.numericUpDownTileRows.TabIndex = 36;
@@ -1426,7 +1519,7 @@ namespace FFmpegCatapult
             // 
             // numericUpDownTileColumns
             // 
-            this.numericUpDownTileColumns.Location = new System.Drawing.Point(259, 126);
+            this.numericUpDownTileColumns.Location = new System.Drawing.Point(259, 158);
             this.numericUpDownTileColumns.Name = "numericUpDownTileColumns";
             this.numericUpDownTileColumns.Size = new System.Drawing.Size(32, 20);
             this.numericUpDownTileColumns.TabIndex = 35;
@@ -1434,7 +1527,7 @@ namespace FFmpegCatapult
             // 
             // numericUpDownBFrames
             // 
-            this.numericUpDownBFrames.Location = new System.Drawing.Point(77, 101);
+            this.numericUpDownBFrames.Location = new System.Drawing.Point(77, 45);
             this.numericUpDownBFrames.Name = "numericUpDownBFrames";
             this.numericUpDownBFrames.Size = new System.Drawing.Size(48, 20);
             this.numericUpDownBFrames.TabIndex = 34;
@@ -1442,17 +1535,22 @@ namespace FFmpegCatapult
             // 
             // numericUpDownDiaSize
             // 
-            this.numericUpDownDiaSize.Location = new System.Drawing.Point(77, 43);
+            this.numericUpDownDiaSize.Location = new System.Drawing.Point(77, 73);
+            this.numericUpDownDiaSize.Maximum = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
             this.numericUpDownDiaSize.Name = "numericUpDownDiaSize";
-            this.numericUpDownDiaSize.Size = new System.Drawing.Size(48, 20);
+            this.numericUpDownDiaSize.Size = new System.Drawing.Size(40, 20);
             this.numericUpDownDiaSize.TabIndex = 33;
             this.numericUpDownDiaSize.ValueChanged += new System.EventHandler(this.NumericUpDownDiaSize_ValueChanged);
             // 
             // numericUpDownTrellis
             // 
-            this.numericUpDownTrellis.Location = new System.Drawing.Point(244, 17);
+            this.numericUpDownTrellis.Location = new System.Drawing.Point(259, 17);
             this.numericUpDownTrellis.Name = "numericUpDownTrellis";
-            this.numericUpDownTrellis.Size = new System.Drawing.Size(48, 20);
+            this.numericUpDownTrellis.Size = new System.Drawing.Size(33, 20);
             this.numericUpDownTrellis.TabIndex = 32;
             this.numericUpDownTrellis.ValueChanged += new System.EventHandler(this.NumericUpDownTrellis_ValueChanged);
             // 
@@ -1464,39 +1562,19 @@ namespace FFmpegCatapult
             this.numericUpDownGOPSize.TabIndex = 31;
             this.numericUpDownGOPSize.ValueChanged += new System.EventHandler(this.NumericUpDownGOPSize_ValueChanged);
             // 
-            // comboBoxMESubcmp
-            // 
-            this.comboBoxMESubcmp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMESubcmp.FormattingEnabled = true;
-            this.comboBoxMESubcmp.Location = new System.Drawing.Point(225, 70);
-            this.comboBoxMESubcmp.Name = "comboBoxMESubcmp";
-            this.comboBoxMESubcmp.Size = new System.Drawing.Size(66, 21);
-            this.comboBoxMESubcmp.TabIndex = 25;
-            this.comboBoxMESubcmp.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMESubcmp_SelectedIndexChanged);
-            // 
             // labelMESubCmp
             // 
             this.labelMESubCmp.AutoSize = true;
-            this.labelMESubCmp.Location = new System.Drawing.Point(153, 74);
+            this.labelMESubCmp.Location = new System.Drawing.Point(180, 104);
             this.labelMESubCmp.Name = "labelMESubCmp";
             this.labelMESubCmp.Size = new System.Drawing.Size(66, 13);
             this.labelMESubCmp.TabIndex = 24;
             this.labelMESubCmp.Text = "ME subcmp:";
             // 
-            // comboBoxMECmp
-            // 
-            this.comboBoxMECmp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxMECmp.FormattingEnabled = true;
-            this.comboBoxMECmp.Location = new System.Drawing.Point(77, 69);
-            this.comboBoxMECmp.Name = "comboBoxMECmp";
-            this.comboBoxMECmp.Size = new System.Drawing.Size(64, 21);
-            this.comboBoxMECmp.TabIndex = 23;
-            this.comboBoxMECmp.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMECmp_SelectedIndexChanged);
-            // 
             // labelMECmp
             // 
             this.labelMECmp.AutoSize = true;
-            this.labelMECmp.Location = new System.Drawing.Point(22, 73);
+            this.labelMECmp.Location = new System.Drawing.Point(22, 104);
             this.labelMECmp.Name = "labelMECmp";
             this.labelMECmp.Size = new System.Drawing.Size(49, 13);
             this.labelMECmp.TabIndex = 22;
@@ -1506,7 +1584,7 @@ namespace FFmpegCatapult
             // 
             this.comboBoxMEMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMEMethod.FormattingEnabled = true;
-            this.comboBoxMEMethod.Location = new System.Drawing.Point(225, 42);
+            this.comboBoxMEMethod.Location = new System.Drawing.Point(226, 72);
             this.comboBoxMEMethod.Name = "comboBoxMEMethod";
             this.comboBoxMEMethod.Size = new System.Drawing.Size(66, 21);
             this.comboBoxMEMethod.TabIndex = 21;
@@ -1515,25 +1593,16 @@ namespace FFmpegCatapult
             // labelMEMethod
             // 
             this.labelMEMethod.AutoSize = true;
-            this.labelMEMethod.Location = new System.Drawing.Point(155, 48);
+            this.labelMEMethod.Location = new System.Drawing.Point(155, 75);
             this.labelMEMethod.Name = "labelMEMethod";
             this.labelMEMethod.Size = new System.Drawing.Size(64, 13);
             this.labelMEMethod.TabIndex = 20;
             this.labelMEMethod.Text = "ME method:";
             // 
-            // comboBoxBFStrat
-            // 
-            this.comboBoxBFStrat.FormattingEnabled = true;
-            this.comboBoxBFStrat.Location = new System.Drawing.Point(259, 99);
-            this.comboBoxBFStrat.Name = "comboBoxBFStrat";
-            this.comboBoxBFStrat.Size = new System.Drawing.Size(32, 21);
-            this.comboBoxBFStrat.TabIndex = 17;
-            this.comboBoxBFStrat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBFStrat_SelectedIndexChanged);
-            // 
             // labelBFStrat
             // 
             this.labelBFStrat.AutoSize = true;
-            this.labelBFStrat.Location = new System.Drawing.Point(190, 104);
+            this.labelBFStrat.Location = new System.Drawing.Point(190, 48);
             this.labelBFStrat.Name = "labelBFStrat";
             this.labelBFStrat.Size = new System.Drawing.Size(63, 13);
             this.labelBFStrat.TabIndex = 13;
@@ -1542,7 +1611,7 @@ namespace FFmpegCatapult
             // labelTileCols
             // 
             this.labelTileCols.AutoSize = true;
-            this.labelTileCols.Location = new System.Drawing.Point(183, 128);
+            this.labelTileCols.Location = new System.Drawing.Point(183, 161);
             this.labelTileCols.Name = "labelTileCols";
             this.labelTileCols.Size = new System.Drawing.Size(70, 13);
             this.labelTileCols.TabIndex = 11;
@@ -1551,7 +1620,7 @@ namespace FFmpegCatapult
             // labelTileRows
             // 
             this.labelTileRows.AutoSize = true;
-            this.labelTileRows.Location = new System.Drawing.Point(14, 129);
+            this.labelTileRows.Location = new System.Drawing.Point(14, 161);
             this.labelTileRows.Name = "labelTileRows";
             this.labelTileRows.Size = new System.Drawing.Size(57, 13);
             this.labelTileRows.TabIndex = 10;
@@ -1560,7 +1629,7 @@ namespace FFmpegCatapult
             // labelTrellis
             // 
             this.labelTrellis.AutoSize = true;
-            this.labelTrellis.Location = new System.Drawing.Point(201, 19);
+            this.labelTrellis.Location = new System.Drawing.Point(216, 21);
             this.labelTrellis.Name = "labelTrellis";
             this.labelTrellis.Size = new System.Drawing.Size(37, 13);
             this.labelTrellis.TabIndex = 9;
@@ -1569,7 +1638,7 @@ namespace FFmpegCatapult
             // labelDiaSize
             // 
             this.labelDiaSize.AutoSize = true;
-            this.labelDiaSize.Location = new System.Drawing.Point(24, 45);
+            this.labelDiaSize.Location = new System.Drawing.Point(24, 75);
             this.labelDiaSize.Name = "labelDiaSize";
             this.labelDiaSize.Size = new System.Drawing.Size(47, 13);
             this.labelDiaSize.TabIndex = 8;
@@ -1578,7 +1647,7 @@ namespace FFmpegCatapult
             // labelGopSize
             // 
             this.labelGopSize.AutoSize = true;
-            this.labelGopSize.Location = new System.Drawing.Point(15, 19);
+            this.labelGopSize.Location = new System.Drawing.Point(17, 21);
             this.labelGopSize.Name = "labelGopSize";
             this.labelGopSize.Size = new System.Drawing.Size(56, 13);
             this.labelGopSize.TabIndex = 7;
@@ -1587,30 +1656,11 @@ namespace FFmpegCatapult
             // labelBFrames
             // 
             this.labelBFrames.AutoSize = true;
-            this.labelBFrames.Location = new System.Drawing.Point(17, 103);
+            this.labelBFrames.Location = new System.Drawing.Point(17, 48);
             this.labelBFrames.Name = "labelBFrames";
             this.labelBFrames.Size = new System.Drawing.Size(54, 13);
             this.labelBFrames.TabIndex = 6;
             this.labelBFrames.Text = "B-Frames:";
-            // 
-            // labelPixelFormat
-            // 
-            this.labelPixelFormat.AutoSize = true;
-            this.labelPixelFormat.Location = new System.Drawing.Point(7, 161);
-            this.labelPixelFormat.Name = "labelPixelFormat";
-            this.labelPixelFormat.Size = new System.Drawing.Size(64, 13);
-            this.labelPixelFormat.TabIndex = 5;
-            this.labelPixelFormat.Text = "Pixel format:";
-            // 
-            // comboBoxPixelFormat
-            // 
-            this.comboBoxPixelFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPixelFormat.FormattingEnabled = true;
-            this.comboBoxPixelFormat.Location = new System.Drawing.Point(77, 158);
-            this.comboBoxPixelFormat.Name = "comboBoxPixelFormat";
-            this.comboBoxPixelFormat.Size = new System.Drawing.Size(126, 21);
-            this.comboBoxPixelFormat.TabIndex = 3;
-            this.comboBoxPixelFormat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPixelFormat_SelectedIndexChanged);
             // 
             // groupBoxVideoBitrate
             // 
@@ -1903,6 +1953,25 @@ namespace FFmpegCatapult
             this.labelVCodecLevel.TabIndex = 4;
             this.labelVCodecLevel.Text = "Level:";
             // 
+            // labelPixelFormat
+            // 
+            this.labelPixelFormat.AutoSize = true;
+            this.labelPixelFormat.Location = new System.Drawing.Point(6, 27);
+            this.labelPixelFormat.Name = "labelPixelFormat";
+            this.labelPixelFormat.Size = new System.Drawing.Size(64, 13);
+            this.labelPixelFormat.TabIndex = 5;
+            this.labelPixelFormat.Text = "Pixel format:";
+            // 
+            // comboBoxPixelFormat
+            // 
+            this.comboBoxPixelFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPixelFormat.FormattingEnabled = true;
+            this.comboBoxPixelFormat.Location = new System.Drawing.Point(76, 24);
+            this.comboBoxPixelFormat.Name = "comboBoxPixelFormat";
+            this.comboBoxPixelFormat.Size = new System.Drawing.Size(126, 21);
+            this.comboBoxPixelFormat.TabIndex = 3;
+            this.comboBoxPixelFormat.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPixelFormat_SelectedIndexChanged);
+            // 
             // tabPicture
             // 
             this.tabPicture.Controls.Add(this.groupBoxPictureFiltering);
@@ -1922,6 +1991,8 @@ namespace FFmpegCatapult
             this.groupBoxPictureFiltering.Controls.Add(this.checkBoxDeinterlace);
             this.groupBoxPictureFiltering.Controls.Add(this.labelLayoutColour);
             this.groupBoxPictureFiltering.Controls.Add(this.textBoxLayoutColour);
+            this.groupBoxPictureFiltering.Controls.Add(this.comboBoxPixelFormat);
+            this.groupBoxPictureFiltering.Controls.Add(this.labelPixelFormat);
             this.groupBoxPictureFiltering.Location = new System.Drawing.Point(6, 210);
             this.groupBoxPictureFiltering.Name = "groupBoxPictureFiltering";
             this.groupBoxPictureFiltering.Size = new System.Drawing.Size(555, 80);
@@ -1932,7 +2003,7 @@ namespace FFmpegCatapult
             // checkBoxDeinterlace
             // 
             this.checkBoxDeinterlace.AutoSize = true;
-            this.checkBoxDeinterlace.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxDeinterlace.Location = new System.Drawing.Point(6, 57);
             this.checkBoxDeinterlace.Name = "checkBoxDeinterlace";
             this.checkBoxDeinterlace.Size = new System.Drawing.Size(80, 17);
             this.checkBoxDeinterlace.TabIndex = 1;
@@ -1944,16 +2015,16 @@ namespace FFmpegCatapult
             // 
             this.labelLayoutColour.AutoSize = true;
             this.labelLayoutColour.Enabled = false;
-            this.labelLayoutColour.Location = new System.Drawing.Point(403, 23);
+            this.labelLayoutColour.Location = new System.Drawing.Point(362, 27);
             this.labelLayoutColour.Name = "labelLayoutColour";
-            this.labelLayoutColour.Size = new System.Drawing.Size(40, 13);
+            this.labelLayoutColour.Size = new System.Drawing.Size(81, 13);
             this.labelLayoutColour.TabIndex = 10;
-            this.labelLayoutColour.Text = "Colour:";
+            this.labelLayoutColour.Text = "Padding colour:";
             // 
             // textBoxLayoutColour
             // 
             this.textBoxLayoutColour.Enabled = false;
-            this.textBoxLayoutColour.Location = new System.Drawing.Point(449, 19);
+            this.textBoxLayoutColour.Location = new System.Drawing.Point(449, 24);
             this.textBoxLayoutColour.Name = "textBoxLayoutColour";
             this.textBoxLayoutColour.Size = new System.Drawing.Size(100, 20);
             this.textBoxLayoutColour.TabIndex = 11;
@@ -2279,6 +2350,17 @@ namespace FFmpegCatapult
             this.groupBoxFileOutput.TabStop = false;
             this.groupBoxFileOutput.Text = "Output";
             // 
+            // checkBoxFastStartTagging
+            // 
+            this.checkBoxFastStartTagging.AutoSize = true;
+            this.checkBoxFastStartTagging.Location = new System.Drawing.Point(377, 89);
+            this.checkBoxFastStartTagging.Name = "checkBoxFastStartTagging";
+            this.checkBoxFastStartTagging.Size = new System.Drawing.Size(178, 17);
+            this.checkBoxFastStartTagging.TabIndex = 9;
+            this.checkBoxFastStartTagging.Text = "Move tag data at begining of file";
+            this.checkBoxFastStartTagging.UseVisualStyleBackColor = true;
+            this.checkBoxFastStartTagging.CheckedChanged += new System.EventHandler(this.CheckBoxFastStartTagging_CheckedChanged);
+            // 
             // textBoxOutputFilename
             // 
             this.textBoxOutputFilename.Enabled = false;
@@ -2559,17 +2641,6 @@ namespace FFmpegCatapult
             this.tabControl.Size = new System.Drawing.Size(575, 322);
             this.tabControl.TabIndex = 2;
             // 
-            // checkBoxFastStartTagging
-            // 
-            this.checkBoxFastStartTagging.AutoSize = true;
-            this.checkBoxFastStartTagging.Location = new System.Drawing.Point(377, 89);
-            this.checkBoxFastStartTagging.Name = "checkBoxFastStartTagging";
-            this.checkBoxFastStartTagging.Size = new System.Drawing.Size(178, 17);
-            this.checkBoxFastStartTagging.TabIndex = 9;
-            this.checkBoxFastStartTagging.Text = "Move tag data at begining of file";
-            this.checkBoxFastStartTagging.UseVisualStyleBackColor = true;
-            this.checkBoxFastStartTagging.CheckedChanged += new System.EventHandler(this.CheckBoxFastStartTagging_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2616,6 +2687,11 @@ namespace FFmpegCatapult
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBufferSize)).EndInit();
             this.groupBoxVideoEncoding.ResumeLayout(false);
             this.groupBoxVideoEncoding.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMBCmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMEPreCmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMECmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMESubCmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBFStrat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTileRows)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTileColumns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBFrames)).EndInit();
@@ -2802,12 +2878,9 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelTileCols;
         private System.Windows.Forms.Label labelTileRows;
         private System.Windows.Forms.Label labelBFStrat;
-        private System.Windows.Forms.ComboBox comboBoxBFStrat;
         private System.Windows.Forms.ComboBox comboBoxMEMethod;
         private System.Windows.Forms.Label labelMEMethod;
-        private System.Windows.Forms.ComboBox comboBoxMESubcmp;
         private System.Windows.Forms.Label labelMESubCmp;
-        private System.Windows.Forms.ComboBox comboBoxMECmp;
         private System.Windows.Forms.Label labelMECmp;
         private System.Windows.Forms.ComboBox comboBoxAudioCodecProfile;
         private System.Windows.Forms.Label labelAudioCodecProfile;
@@ -2882,6 +2955,13 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelDefaultInputPath;
         private System.Windows.Forms.CheckBox checkBoxUrlFilenames;
         private System.Windows.Forms.CheckBox checkBoxFastStartTagging;
+        private System.Windows.Forms.NumericUpDown numericUpDownMESubCmp;
+        private System.Windows.Forms.NumericUpDown numericUpDownBFStrat;
+        private System.Windows.Forms.Label labelMBCmp;
+        private System.Windows.Forms.NumericUpDown numericUpDownMBCmp;
+        private System.Windows.Forms.NumericUpDown numericUpDownMEPreCmp;
+        private System.Windows.Forms.Label labelMEPreCmp;
+        private System.Windows.Forms.NumericUpDown numericUpDownMECmp;
     }
 }
 
