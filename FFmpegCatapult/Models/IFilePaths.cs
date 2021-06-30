@@ -1,4 +1,4 @@
-﻿// IOutput is part of FFmpeg Catapult.
+﻿// IFilePaths is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,11 +16,11 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IOutput
+    interface IFilePaths
     {
-        int Bitrate { get; set; }
-        int Quality { get; set; }
-        string Codec { get; set; }
-        string Profile { get; set; }
+        bool Overwrite { get; set; }
+        string Source { get; set; }
+        string Output { get; set; }
+        string Audio { get; set; }
     }
 }

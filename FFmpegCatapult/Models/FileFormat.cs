@@ -18,13 +18,6 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
-    interface IFileFormat
-    {
-        bool FastStartTagging { get; set; }
-        bool Tagging { get; }
-        string Format { get; set; }
-    }
-
     class FileFormat : IFileFormat
     {
         private bool fastStart = false;

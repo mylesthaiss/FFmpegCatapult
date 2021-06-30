@@ -1,4 +1,4 @@
-﻿// IOutput is part of FFmpeg Catapult.
+﻿// ITags is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,11 +16,26 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IOutput
+    interface ITags
     {
-        int Bitrate { get; set; }
-        int Quality { get; set; }
-        string Codec { get; set; }
-        string Profile { get; set; }
+        bool Compilation { get; set; }
+        int Disc { get; set; }
+        int Track { get; set; }
+        int TotalDiscs { get; set; }
+        int TotalTracks { get; set; }
+        int Year { get; set; }
+        string Album { get; set; }
+        string AlbumArtist { get; set; }
+        string Artist { get; set; }
+        string Comment { get; set; }
+        string Copyright { get; set; }
+        string Description { get; set; }
+        string EpisodeId { get; set; }
+        string Genre { get; set; }
+        string Network { get; set; }
+        string Publisher { get; set; }
+        string Show { get; set; }
+        string Synopsis { get; set; }
+        string Title { get; set; }
     }
 }

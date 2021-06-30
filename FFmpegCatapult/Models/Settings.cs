@@ -18,23 +18,6 @@ using System;
 
 namespace FFmpegCatapult.Models
 {
-    interface ISettings
-    {
-        bool UrlFileNames { get; set; }
-        bool WriteLog { get; set; }
-        int Threads { get; set; }
-        int Processors { get; set; }
-        string DefaultFileName { get; set; }
-        string DefaultOutputFolder { get; set; }
-        string DefaultSourceFolder { get; set; }
-        string FFmpegPath { get; set; }
-        string FFmpegArguments { get; set; }
-        string LogFilename { get; set; }
-        string NullFilePath { get; }
-        string TerminalArguments { get; set; }
-        string TerminalPath { get; set; }
-    }
-
     class Settings : ISettings
     {
         public bool UrlFileNames { get; set; } = false;

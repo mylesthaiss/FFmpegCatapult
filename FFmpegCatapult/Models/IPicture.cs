@@ -1,4 +1,4 @@
-﻿// IOutput is part of FFmpeg Catapult.
+﻿// IPicture is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,11 +16,22 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IOutput
+    interface IPicture
     {
-        int Bitrate { get; set; }
-        int Quality { get; set; }
-        string Codec { get; set; }
-        string Profile { get; set; }
+        bool AspectRatio { get; set; }
+        bool Crop { get; set; }
+        bool Pad { get; set; }
+        bool Deinterlace { get; set; }
+        int FPS { get; set; }
+        int Width { get; set; }
+        int Height { get; set; }
+        int WinWidth { get; set; }
+        int WinHeight { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
+        int ScaleOption { get; set; }
+        string Ratio { get; set; }
+        string ScalingMethod { get; set; }
+        string VideoFilterColour { get; set; }
     }
 }

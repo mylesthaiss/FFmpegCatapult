@@ -18,25 +18,6 @@ using System.Xml;
 
 namespace FFmpegCatapult.Models
 {
-    interface IPicture
-    {
-        bool AspectRatio { get; set; }
-        bool Crop { get; set; }
-        bool Pad { get; set; }
-        bool Deinterlace { get; set; }
-        int FPS { get; set; }
-        int Width { get; set; }
-        int Height { get; set; }
-        int WinWidth { get; set; }
-        int WinHeight { get; set; }
-        int X { get; set; }
-        int Y { get; set; }
-        int ScaleOption { get; set; }
-        string Ratio { get; set; }
-        string ScalingMethod { get; set; }
-        string VideoFilterColour { get; set; }
-    }
-
     class Picture : IPicture
     {
         private string[,] scalingMethods = new string[,] {

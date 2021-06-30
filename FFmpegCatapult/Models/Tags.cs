@@ -16,29 +16,6 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface ITags
-    {
-        bool Compilation { get; set; }
-        int Disc { get; set; }
-        int Track { get; set; }
-        int TotalDiscs { get; set; }
-        int TotalTracks { get; set; }
-        int Year { get; set; }
-        string Album { get; set; }
-        string AlbumArtist { get; set; }
-        string Artist { get; set; }
-        string Comment { get; set; }
-        string Copyright { get; set; }
-        string Description { get; set; }
-        string EpisodeId { get; set; }
-        string Genre { get; set; }
-        string Network { get; set; }
-        string Publisher { get; set; }
-        string Show { get; set; }
-        string Synopsis { get; set; }
-        string Title { get; set; }
-    }
-
     class Tags : ITags
     {
         public bool Compilation { get; set; } = false;

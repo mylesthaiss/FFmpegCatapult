@@ -1,4 +1,4 @@
-﻿// IOutput is part of FFmpeg Catapult.
+﻿// ISettings is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,11 +16,20 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IOutput
+    interface ISettings
     {
-        int Bitrate { get; set; }
-        int Quality { get; set; }
-        string Codec { get; set; }
-        string Profile { get; set; }
+        bool UrlFileNames { get; set; }
+        bool WriteLog { get; set; }
+        int Threads { get; set; }
+        int Processors { get; set; }
+        string DefaultFileName { get; set; }
+        string DefaultOutputFolder { get; set; }
+        string DefaultSourceFolder { get; set; }
+        string FFmpegPath { get; set; }
+        string FFmpegArguments { get; set; }
+        string LogFilename { get; set; }
+        string NullFilePath { get; }
+        string TerminalArguments { get; set; }
+        string TerminalPath { get; set; }
     }
 }

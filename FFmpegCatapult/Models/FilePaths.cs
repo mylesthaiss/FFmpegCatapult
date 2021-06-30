@@ -18,14 +18,6 @@ using System.IO;
 
 namespace FFmpegCatapult.Models
 {
-    interface IFilePaths
-    {
-        bool Overwrite { get; set; }
-        string Source { get; set; }
-        string Output { get; set; }
-        string Audio { get; set; }
-    }
-
     class FilePaths : IFilePaths
     {
         private bool overwrite;
