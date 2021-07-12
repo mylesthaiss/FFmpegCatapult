@@ -34,7 +34,7 @@ namespace FFmpegCatapult.Core
                     if (!string.IsNullOrEmpty(video.Profile))
                         videoArgs.Add(string.Format("-profile:v {0}", video.Profile));
 
-                    if (video.CodecLevel > 0 && video.Encoder == "libx264")
+                    if (video.CodecLevel > 0 && video.Codec == "h264")
                         videoArgs.Add(string.Format("-level {0:0.0}", video.CodecLevel));
 
                     if (!string.IsNullOrEmpty(video.EncoderPreset))

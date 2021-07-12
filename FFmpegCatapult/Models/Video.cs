@@ -89,7 +89,6 @@ namespace FFmpegCatapult.Models
                 codec = value;
 
                 // Reset to default values
-                Profile = "";
                 Quality = 0;
                 UseCRF = false;
                 BFrames = 0;
@@ -110,8 +109,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 768;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Quality = 30;
                         Encoder = "libaom-av1";
                         Encoders = new string[,] {
@@ -121,38 +118,31 @@ namespace FFmpegCatapult.Models
                     case "h264":
                         Bitrate = 1000;
                         CodecLevel = 3.1;
-                        Profile = "main";
                         Encoder = "libx264";
                         Encoders = new string[,] {
-                            {"x264", "libx264"}, {"Nvidia NVENC", "nvenc_h264"}
+                            {"AMD AMF", "h264_amf"}, {"Nvidia NVENC", "nvenc_h264"}, {"x264", "libx264"}
                         };
-                        Profiles = new string[,] {
-                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
-                        };
+                        
                         CodecLevels = new double[] {
                             1.0, 1.1, 1.2, 1.3, 2.0, 2.1, 2.2, 3.0, 3.1, 3.2, 4.0,
-                            4.2, 5.0, 5.1, 5.2
+                            4.2, 5.0, 5.1, 5.2, 6.0, 6.1, 6.2
                         };
                         break;
                     case "h265":
                         Bitrate = 768;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Quality = 28;
                         UseCRF = true;
                         Encoder = "libx265";
                         Encoders = new string[,] {
-                            {"x265", "libx265"}, {"Nvidia NVENC", "nvenc_hevc"}
+                            {"AMD AMF", "hevc_amf"}, {"Nvidia NVENC", "nvenc_hevc"}, {"x265", "libx265"}
                         };
                         break;
                     case "mpeg2":
                         Bitrate = 4000;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = "mpeg2video";
                         Encoders = new string[,] {
                             {"MPEG-2 Video", "mpeg2video"}
@@ -162,8 +152,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1500;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = "libxvid";
                         Encoders = new string[,] {
                             {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
@@ -173,8 +161,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1800;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = "libtheora";
                         Encoders = new string[,] {
                             {"Theora", "libtheora"}
@@ -184,8 +170,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1500;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = "libvpx";
                         Encoders = new string[,] {
                             {"VPX", "libvpx"}
@@ -195,8 +179,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1000;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Speed = 1;
                         TileColumns = 6;
                         LagInFrames = 25;
@@ -211,8 +193,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1500;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = "wmv2";
                         Encoders = new string[,] {
                             {"WMV 7 (wmv1)", "wmv1"}, {"WMV 8 (wmv2)", "wmv2"}
@@ -222,8 +202,6 @@ namespace FFmpegCatapult.Models
                         Bitrate = 1500;
                         CodecLevel = 0;
                         CodecLevels = null;
-                        Profile = null;
-                        Profiles = null;
                         Encoder = codec;
                         Encoders = new string[,] {
                             {codec, codec}
@@ -246,7 +224,22 @@ namespace FFmpegCatapult.Models
                 switch (encoder)
                 {
                     case "libx264":
-                    case "libx265":                       
+                    case "libx265":
+                        if (encoder == "libx264")
+                        {
+                            Profile = "main";
+                            Profiles = new string[,] {
+                                {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                            };
+                            EncoderPreset = "slow";
+                        }
+                        else
+                        {
+                            Profile = null;
+                            Profiles = null;
+                            EncoderPreset = "medium";
+                        }
+
                         EncoderPreset = "medium";
                         EncoderPresets = new string[,] {
                             {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
@@ -255,8 +248,43 @@ namespace FFmpegCatapult.Models
                             {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
                         };
                         break;
+                    case "h264_amf":
+                    case "hevc_amf":
+                        if (encoder == "h264_amf")
+                        {
+                            Profile = "main";
+                            Profiles = new string[,] {
+                                {"Baseline (Constrained)", "constrained_baseline"}, {"Main", "main"},
+                                {"High", "high"}, {"High (Constrained)", ""}
+                            };
+                        }
+                        else
+                        {
+                            Profile = null;
+                            Profiles = null;
+                        }
+
+                        EncoderPreset = "transcoding";
+                        EncoderPresets = new string[,] {
+                            {"Transcoding", "transcoding"}, {"Ultra Low Latency", "ultralowlatency"},
+                            {"Low Latency", "lowlatency"}, {"Webcam", "webcam"}
+                        };
+                        break;
                     case "nvenc_h264":
                     case "nvenc_hevc":
+                        if (encoder == "nvenc_h264")
+                        {
+                            Profile = "main";
+                            Profiles = new string[,] {
+                                {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                            };
+                        }
+                        else
+                        {
+                            Profile = null;
+                            Profiles = null;
+                        }
+
                         EncoderPreset = "slow";
                         EncoderPresets = new string[,] {
                             {"Slow", "slow"}, {"Medium", "medium"}, {"Fast", "fast"},
@@ -265,6 +293,8 @@ namespace FFmpegCatapult.Models
                         };
                         break;
                     default:
+                        Profile = null;
+                        Profiles = null;
                         EncoderPreset = null;
                         EncoderPresets = null;
                         break;
