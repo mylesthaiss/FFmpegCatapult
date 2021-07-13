@@ -143,6 +143,15 @@ namespace FFmpegCatapult.Models
                             {"WMV", "wmv"}, {"Copy", "copy"}
                         };
                         break;
+                    case "mp3":
+                        Tagging = true;
+                        SupportedAudioCodecs = new string[,] {
+                            {"MP3", "mp3" }, {"Copy", "copy"}
+                        };
+                        SupportedVideoCodecs = new string[,] {
+                            {"None", "none"}
+                        };
+                        break;
                 }
             }
         }

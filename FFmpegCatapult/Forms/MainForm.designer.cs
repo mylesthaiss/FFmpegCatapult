@@ -379,7 +379,7 @@ namespace FFmpegCatapult
             // checkBoxUrlFilenames
             // 
             this.checkBoxUrlFilenames.AutoSize = true;
-            this.checkBoxUrlFilenames.Location = new System.Drawing.Point(9, 71);
+            this.checkBoxUrlFilenames.Location = new System.Drawing.Point(9, 76);
             this.checkBoxUrlFilenames.Name = "checkBoxUrlFilenames";
             this.checkBoxUrlFilenames.Size = new System.Drawing.Size(165, 17);
             this.checkBoxUrlFilenames.TabIndex = 13;
@@ -389,7 +389,7 @@ namespace FFmpegCatapult
             // 
             // buttonBrowseDefaultOutputPath
             // 
-            this.buttonBrowseDefaultOutputPath.Location = new System.Drawing.Point(474, 42);
+            this.buttonBrowseDefaultOutputPath.Location = new System.Drawing.Point(474, 44);
             this.buttonBrowseDefaultOutputPath.Name = "buttonBrowseDefaultOutputPath";
             this.buttonBrowseDefaultOutputPath.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseDefaultOutputPath.TabIndex = 12;
@@ -407,7 +407,7 @@ namespace FFmpegCatapult
             // 
             // buttonBrowseDefaultInputPath
             // 
-            this.buttonBrowseDefaultInputPath.Location = new System.Drawing.Point(474, 17);
+            this.buttonBrowseDefaultInputPath.Location = new System.Drawing.Point(474, 18);
             this.buttonBrowseDefaultInputPath.Name = "buttonBrowseDefaultInputPath";
             this.buttonBrowseDefaultInputPath.Size = new System.Drawing.Size(75, 23);
             this.buttonBrowseDefaultInputPath.TabIndex = 10;
@@ -1308,7 +1308,7 @@ namespace FFmpegCatapult
             // labelAudioEncoder
             // 
             this.labelAudioEncoder.AutoSize = true;
-            this.labelAudioEncoder.Location = new System.Drawing.Point(6, 49);
+            this.labelAudioEncoder.Location = new System.Drawing.Point(6, 50);
             this.labelAudioEncoder.Name = "labelAudioEncoder";
             this.labelAudioEncoder.Size = new System.Drawing.Size(50, 13);
             this.labelAudioEncoder.TabIndex = 0;
@@ -1861,7 +1861,7 @@ namespace FFmpegCatapult
             // labelVideoEncoderPreset
             // 
             this.labelVideoEncoderPreset.AutoSize = true;
-            this.labelVideoEncoderPreset.Location = new System.Drawing.Point(387, 49);
+            this.labelVideoEncoderPreset.Location = new System.Drawing.Point(391, 50);
             this.labelVideoEncoderPreset.Name = "labelVideoEncoderPreset";
             this.labelVideoEncoderPreset.Size = new System.Drawing.Size(40, 13);
             this.labelVideoEncoderPreset.TabIndex = 4;
@@ -1900,7 +1900,7 @@ namespace FFmpegCatapult
             // labelVideoEncoder
             // 
             this.labelVideoEncoder.AutoSize = true;
-            this.labelVideoEncoder.Location = new System.Drawing.Point(6, 49);
+            this.labelVideoEncoder.Location = new System.Drawing.Point(6, 50);
             this.labelVideoEncoder.Name = "labelVideoEncoder";
             this.labelVideoEncoder.Size = new System.Drawing.Size(50, 13);
             this.labelVideoEncoder.TabIndex = 0;
@@ -1910,16 +1910,16 @@ namespace FFmpegCatapult
             // 
             this.comboBoxVCodecProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVCodecProfile.FormattingEnabled = true;
-            this.comboBoxVCodecProfile.Location = new System.Drawing.Point(267, 20);
+            this.comboBoxVCodecProfile.Location = new System.Drawing.Point(257, 19);
             this.comboBoxVCodecProfile.Name = "comboBoxVCodecProfile";
-            this.comboBoxVCodecProfile.Size = new System.Drawing.Size(112, 21);
+            this.comboBoxVCodecProfile.Size = new System.Drawing.Size(133, 21);
             this.comboBoxVCodecProfile.TabIndex = 3;
             this.comboBoxVCodecProfile.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVCodecProfile_SelectedIndexChanged);
             // 
             // labelVCodecProfile
             // 
             this.labelVCodecProfile.AutoSize = true;
-            this.labelVCodecProfile.Location = new System.Drawing.Point(222, 23);
+            this.labelVCodecProfile.Location = new System.Drawing.Point(212, 23);
             this.labelVCodecProfile.Name = "labelVCodecProfile";
             this.labelVCodecProfile.Size = new System.Drawing.Size(39, 13);
             this.labelVCodecProfile.TabIndex = 3;
