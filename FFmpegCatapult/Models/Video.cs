@@ -89,10 +89,11 @@ namespace FFmpegCatapult.Models
                 codec = value;
 
                 // Reset to default values
+                CodecLevel = 0;
                 Quality = 0;
                 UseCRF = false;
                 BFrames = 0;
-                BFStrategy = 3;
+                BFStrategy = 0;
                 BufferSize = 0;
                 DiaSize = 0;
                 GOPSize = 0;
@@ -101,13 +102,12 @@ namespace FFmpegCatapult.Models
                 MinBitrate = 0;
                 QMax = 0;
                 QMin = 0;
-                Trellis = 3;
+                Trellis = 0;
 
                 switch (codec)
                 {
                     case "av1":
                         Bitrate = 768;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Quality = 30;
                         Encoder = "libaom-av1";
@@ -117,20 +117,18 @@ namespace FFmpegCatapult.Models
                         break;
                     case "h264":
                         Bitrate = 1000;
-                        CodecLevel = 3.1;
                         Encoder = "libx264";
                         Encoders = new string[,] {
                             {"AMD AMF", "h264_amf"}, {"Nvidia NVENC", "nvenc_h264"}, {"x264", "libx264"}
                         };
                         
                         CodecLevels = new double[] {
-                            1.0, 1.1, 1.2, 1.3, 2.0, 2.1, 2.2, 3.0, 3.1, 3.2, 4.0,
+                            1.0, 1.1, 1.2, 1.3, 2.0, 2.1, 2.2, 3.0, 3.1, 3.2, 4.0, 4.1,
                             4.2, 5.0, 5.1, 5.2, 6.0, 6.1, 6.2
                         };
                         break;
                     case "h265":
                         Bitrate = 768;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Quality = 28;
                         UseCRF = true;
@@ -141,7 +139,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "mpeg2":
                         Bitrate = 4000;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = "mpeg2video";
                         Encoders = new string[,] {
@@ -150,7 +147,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "mpeg4":
                         Bitrate = 1500;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = "libxvid";
                         Encoders = new string[,] {
@@ -159,7 +155,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "theora":
                         Bitrate = 1800;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = "libtheora";
                         Encoders = new string[,] {
@@ -168,7 +163,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "vp8":
                         Bitrate = 1500;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = "libvpx";
                         Encoders = new string[,] {
@@ -177,7 +171,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "vp9":
                         Bitrate = 1000;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Speed = 1;
                         TileColumns = 6;
@@ -191,7 +184,6 @@ namespace FFmpegCatapult.Models
                         break;
                     case "wmv":
                         Bitrate = 1500;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = "wmv2";
                         Encoders = new string[,] {
@@ -200,7 +192,6 @@ namespace FFmpegCatapult.Models
                         break;
                     default:
                         Bitrate = 1500;
-                        CodecLevel = 0;
                         CodecLevels = null;
                         Encoder = codec;
                         Encoders = new string[,] {
@@ -232,6 +223,7 @@ namespace FFmpegCatapult.Models
                                 {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
                             };
                             EncoderPreset = "slow";
+                            BFStrategy = 1;
                         }
                         else
                         {

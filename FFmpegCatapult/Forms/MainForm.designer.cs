@@ -1213,6 +1213,11 @@ namespace FFmpegCatapult
             // numericUpDownVolumeBoost
             // 
             this.numericUpDownVolumeBoost.Location = new System.Drawing.Point(86, 63);
+            this.numericUpDownVolumeBoost.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.numericUpDownVolumeBoost.Minimum = new decimal(new int[] {
             100,
             0,
@@ -1501,13 +1506,14 @@ namespace FFmpegCatapult
             // 
             this.numericUpDownBFStrat.Location = new System.Drawing.Point(259, 45);
             this.numericUpDownBFStrat.Maximum = new decimal(new int[] {
-            3,
+            2,
             0,
             0,
             0});
             this.numericUpDownBFStrat.Name = "numericUpDownBFStrat";
             this.numericUpDownBFStrat.Size = new System.Drawing.Size(32, 20);
             this.numericUpDownBFStrat.TabIndex = 37;
+            this.numericUpDownBFStrat.ValueChanged += new System.EventHandler(this.NumericUpDownBFStrat_ValueChanged);
             // 
             // numericUpDownTileRows
             // 
@@ -2052,6 +2058,11 @@ namespace FFmpegCatapult
             // numericUpDownLayoutHoriz
             // 
             this.numericUpDownLayoutHoriz.Location = new System.Drawing.Point(129, 127);
+            this.numericUpDownLayoutHoriz.Maximum = new decimal(new int[] {
+            15360,
+            0,
+            0,
+            0});
             this.numericUpDownLayoutHoriz.Name = "numericUpDownLayoutHoriz";
             this.numericUpDownLayoutHoriz.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutHoriz.TabIndex = 21;
@@ -2060,6 +2071,11 @@ namespace FFmpegCatapult
             // numericUpDownLayoutVert
             // 
             this.numericUpDownLayoutVert.Location = new System.Drawing.Point(229, 92);
+            this.numericUpDownLayoutVert.Maximum = new decimal(new int[] {
+            8640,
+            0,
+            0,
+            0});
             this.numericUpDownLayoutVert.Name = "numericUpDownLayoutVert";
             this.numericUpDownLayoutVert.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutVert.TabIndex = 20;
@@ -2076,6 +2092,11 @@ namespace FFmpegCatapult
             // numericUpDownLayoutWidth
             // 
             this.numericUpDownLayoutWidth.Location = new System.Drawing.Point(129, 61);
+            this.numericUpDownLayoutWidth.Maximum = new decimal(new int[] {
+            15360,
+            0,
+            0,
+            0});
             this.numericUpDownLayoutWidth.Name = "numericUpDownLayoutWidth";
             this.numericUpDownLayoutWidth.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownLayoutWidth.TabIndex = 18;
@@ -2162,6 +2183,11 @@ namespace FFmpegCatapult
             // numericUpDownFPS
             // 
             this.numericUpDownFPS.Location = new System.Drawing.Point(210, 41);
+            this.numericUpDownFPS.Maximum = new decimal(new int[] {
+            240,
+            0,
+            0,
+            0});
             this.numericUpDownFPS.Name = "numericUpDownFPS";
             this.numericUpDownFPS.Size = new System.Drawing.Size(40, 20);
             this.numericUpDownFPS.TabIndex = 12;
@@ -2243,6 +2269,11 @@ namespace FFmpegCatapult
             // numericUpDownHeight
             // 
             this.numericUpDownHeight.Location = new System.Drawing.Point(192, 63);
+            this.numericUpDownHeight.Maximum = new decimal(new int[] {
+            8640,
+            0,
+            0,
+            0});
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownHeight.TabIndex = 17;
@@ -2251,6 +2282,11 @@ namespace FFmpegCatapult
             // numericUpDownWidth
             // 
             this.numericUpDownWidth.Location = new System.Drawing.Point(68, 63);
+            this.numericUpDownWidth.Maximum = new decimal(new int[] {
+            15360,
+            0,
+            0,
+            0});
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(58, 20);
             this.numericUpDownWidth.TabIndex = 16;

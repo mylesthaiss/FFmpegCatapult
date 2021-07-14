@@ -133,6 +133,34 @@ namespace FFmpegCatapult
             checkBoxPad.CheckedChanged += new EventHandler(CheckBoxPad_CheckedChanged);
 
             // Numeric dropdowns
+            numericUpDownFPS.ValueChanged -= new EventHandler(NumericUpDownFPS_ValueChanged);
+            numericUpDownFPS.Value = picture.FPS;
+            numericUpDownFPS.ValueChanged += new EventHandler(NumericUpDownFPS_ValueChanged);
+
+            numericUpDownHeight.ValueChanged -= new EventHandler(NumericUpDownHeight_ValueChanged);
+            numericUpDownHeight.Value = picture.Height;
+            numericUpDownHeight.ValueChanged += new EventHandler(NumericUpDownHeight_ValueChanged);
+
+            numericUpDownWidth.ValueChanged -= new EventHandler(NumericUpDownWidth_ValueChanged);
+            numericUpDownWidth.Value = picture.Width;
+            numericUpDownHeight.ValueChanged += new EventHandler(NumericUpDownWidth_ValueChanged);
+
+            numericUpDownLayoutHeight.ValueChanged -= new EventHandler(NumericUpDownLayoutHeight_ValueChanged);
+            numericUpDownLayoutHeight.Value = picture.WinHeight;
+            numericUpDownLayoutHeight.ValueChanged += new EventHandler(NumericUpDownLayoutHeight_ValueChanged);
+
+            numericUpDownLayoutWidth.ValueChanged -= new EventHandler(NumericUpDownLayoutWidth_ValueChanged);
+            numericUpDownLayoutWidth.Value = picture.WinWidth;
+            numericUpDownLayoutWidth.ValueChanged += new EventHandler(NumericUpDownLayoutWidth_ValueChanged);
+
+            numericUpDownLayoutHoriz.ValueChanged -= new EventHandler(NumericUpDownLayoutHoriz_ValueChanged);
+            numericUpDownLayoutHoriz.Value = picture.X;
+            numericUpDownLayoutHoriz.ValueChanged += new EventHandler(NumericUpDownLayoutHoriz_ValueChanged);
+
+            numericUpDownLayoutVert.ValueChanged -= new EventHandler(NumericUpDownLayoutVert_ValueChanged);
+            numericUpDownLayoutVert.Value = picture.Y;
+            numericUpDownLayoutVert.ValueChanged += new EventHandler(NumericUpDownLayoutVert_ValueChanged);
+
             numericUpDownRatioA.ValueChanged -= new EventHandler(NumericUpDownRatio_ValueChanged);
             numericUpDownRatioB.ValueChanged -= new EventHandler(NumericUpDownRatio_ValueChanged);
             string[] ratioValues = picture.Ratio.Split(':');
@@ -140,6 +168,11 @@ namespace FFmpegCatapult
             numericUpDownRatioB.Value = Convert.ToInt32(ratioValues[1]);
             numericUpDownRatioA.ValueChanged += new EventHandler(NumericUpDownRatio_ValueChanged);
             numericUpDownRatioB.ValueChanged += new EventHandler(NumericUpDownRatio_ValueChanged);
+
+            // Text boxes
+            textBoxLayoutColour.TextChanged -= new EventHandler(TextBoxLayoutColour_TextChanged);
+            textBoxLayoutColour.Text = picture.VideoFilterColour;
+            textBoxLayoutColour.TextChanged += new EventHandler(TextBoxLayoutColour_TextChanged);
         }
 
         private void InitVideo()
@@ -209,6 +242,26 @@ namespace FFmpegCatapult
             numericUpDownBufferSize.Value = video.BufferSize;
             numericUpDownBufferSize.ValueChanged += new EventHandler(NumericUpDownBufferSize_ValueChanged);
 
+            numericUpDownGOPSize.ValueChanged -= new EventHandler(NumericUpDownGOPSize_ValueChanged);
+            numericUpDownGOPSize.Value = video.GOPSize;
+            numericUpDownGOPSize.ValueChanged += new EventHandler(NumericUpDownGOPSize_ValueChanged);
+
+            numericUpDownBFrames.ValueChanged -= new EventHandler(NumericUpDownBFrames_ValueChanged);
+            numericUpDownBFrames.Value = video.BFrames;
+            numericUpDownBFrames.ValueChanged += new EventHandler(NumericUpDownBFrames_ValueChanged);
+
+            numericUpDownBFStrat.ValueChanged -= new EventHandler(NumericUpDownBFStrat_ValueChanged);
+            numericUpDownBFStrat.Value = video.BFStrategy;
+            numericUpDownBFStrat.ValueChanged += new EventHandler(NumericUpDownBFStrat_ValueChanged);
+
+            numericUpDownTileColumns.ValueChanged -= new EventHandler(NumericUpDownTileColumns_ValueChanged);
+            numericUpDownTileColumns.Value = video.TileColumns;
+            numericUpDownTileColumns.ValueChanged += new EventHandler(NumericUpDownTileColumns_ValueChanged);
+
+            numericUpDownTileRows.ValueChanged -= new EventHandler(NumericUpDownTileRows_ValueChanged);
+            numericUpDownTileRows.Value = video.TileRows;
+            numericUpDownTileRows.ValueChanged += new EventHandler(NumericUpDownTileRows_ValueChanged);
+
             numericUpDownMECmp.ValueChanged -= new EventHandler(NumericUpDownMECmp_ValueChanged);
             numericUpDownMECmp.Value = video.MotionEstimateCompare;
             numericUpDownMECmp.ValueChanged += new EventHandler(NumericUpDownMECmp_ValueChanged);
@@ -224,6 +277,14 @@ namespace FFmpegCatapult
             numericUpDownMBCmp.ValueChanged -= new EventHandler(NumericUpDownMBCmp_ValueChanged);
             numericUpDownMBCmp.Value = video.MacroBlockingCompare;
             numericUpDownMBCmp.ValueChanged += new EventHandler(NumericUpDownMBCmp_ValueChanged);
+
+            numericUpDownDiaSize.ValueChanged -= new EventHandler(NumericUpDownDiaSize_ValueChanged);
+            numericUpDownDiaSize.Value = video.DiaSize;
+            numericUpDownDiaSize.ValueChanged += new EventHandler(NumericUpDownDiaSize_ValueChanged);
+
+            numericUpDownTrellis.ValueChanged -= new EventHandler(NumericUpDownTrellis_ValueChanged);
+            numericUpDownTrellis.Value = video.Trellis;
+            numericUpDownTrellis.ValueChanged += new EventHandler(NumericUpDownTrellis_ValueChanged);
 
             // Other items
             InitVideoEncoderSettings();
@@ -263,9 +324,9 @@ namespace FFmpegCatapult
 
             if (video.EncoderPresets != null)
             {                
-                comboBoxVideoEncoderPresets.SelectedIndexChanged -= new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
+                comboBoxVideoEncoderPresets.SelectedIndexChanged -= new EventHandler(ComboBoxVideoEncoderPresets_SelectedIndexChanged);
                 comboBoxVideoEncoderPresets = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVideoEncoderPresets, video.EncoderPresets, video.EncoderPreset);
-                comboBoxVideoEncoderPresets.SelectedIndexChanged += new EventHandler(ComboBoxVideoEncoders_SelectedIndexChanged);
+                comboBoxVideoEncoderPresets.SelectedIndexChanged += new EventHandler(ComboBoxVideoEncoderPresets_SelectedIndexChanged);
                 labelVideoEncoderPreset.Enabled = true;
                 comboBoxVideoEncoderPresets.Enabled = true;
             }
@@ -1272,6 +1333,11 @@ namespace FFmpegCatapult
         private void NumericUpDownBFrames_ValueChanged(object sender, EventArgs e)
         {
             video.BFrames = (int)numericUpDownBFrames.Value;
+        }
+
+        private void NumericUpDownBFStrat_ValueChanged(object sender, EventArgs e)
+        {
+            video.BFStrategy = (int)numericUpDownBFStrat.Value;
         }
 
         private void NumericUpDownTileRows_ValueChanged(object sender, EventArgs e)

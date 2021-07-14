@@ -63,7 +63,7 @@ namespace FFmpegCatapult.Tests
             video.EncoderPreset = "medium";
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-c:v libx264 -profile:v main -level 3.0 -preset medium -b:v 1000k", arguments);
+            Assert.AreEqual("-c:v libx264 -profile:v main -level 3.0 -preset medium -b:v 1000k -b_strategy 1", arguments);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace FFmpegCatapult.Tests
             video.UseCRF = true;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-c:v libx264 -profile:v high -level 4.0 -preset medium -crf 22", arguments);
+            Assert.AreEqual("-c:v libx264 -profile:v high -level 4.0 -preset medium -crf 22 -b_strategy 1", arguments);
         }
 
         [TestMethod]

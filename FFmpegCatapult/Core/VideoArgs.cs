@@ -71,7 +71,7 @@ namespace FFmpegCatapult.Core
                     if (video.BFrames != 0)
                         videoArgs.Add(string.Format("-bf {0}", video.BFrames));
 
-                    if (video.BFStrategy < 3)
+                    if (video.BFStrategy > 0)
                         videoArgs.Add(string.Format("-b_strategy {0}", video.BFStrategy));
 
                     if (video.MotionEstimateMethod != "")
@@ -92,7 +92,7 @@ namespace FFmpegCatapult.Core
                     if (video.MacroBlockingCompare != 0)
                         videoArgs.Add(string.Format("-mbcmp {0}", video.MacroBlockingCompare));
 
-                    if (video.Trellis != 3)
+                    if (video.Trellis > 0)
                         videoArgs.Add(string.Format("-trellis {0}", video.Trellis));
 
                     // VP8, VP9 and AV1 settings

@@ -189,8 +189,11 @@
 		<vcodec>mpeg2</vcodec>
 		<vb>4500</vb>
 		<bframes>2</bframes>
-		<gopsize>16</gopsize>
+		<gopsize>45</gopsize>
 		<memethod>epzs</memethod>
+		<cmp>2</cmp>
+		<subcmp>2</subcmp>
+		<trellis>2</trellis>
 		<ab>192</ab>
 		<scale>1</scale>
 		<width>0</width>
@@ -200,10 +203,11 @@
 	<preset name="MPEG-2, High Definition">
 		<format>ts</format>
 		<vcodec>mpeg2</vcodec>
-		<vb>10000</vb>
-		<bframes>2</bframes>
-		<gopsize>15</gopsize>
+		<vb>12000</vb>
 		<memethod>epzs</memethod>
+		<cmp>2</cmp>
+		<subcmp>2</subcmp>
+		<trellis>2</trellis>
 		<ab>256</ab>
 		<scale>1</scale>
 		<width>0</width>
