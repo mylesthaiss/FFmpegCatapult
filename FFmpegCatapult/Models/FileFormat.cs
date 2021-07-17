@@ -23,15 +23,33 @@ namespace FFmpegCatapult.Models
         private bool fastStart = false;
         private string format;
         private string[,] formats = new string[,] {
-            {"3GP", "3gp"}, {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "mkv"}, {"MP3", "mp3"},
-            {"MP4", "mp4"}, {"MPEG Program Stream", "mpg"}, {"MPEG Transport Stream", "ts"},
+            {"3GP", "3gp"}, {"AVI", "avi"}, {"M4A", "m4a"}, {"Matroska", "matroska"}, {"MP3", "mp3"},
+            {"MP4", "mp4"}, {"MPEG Program Stream", "mpeg"}, {"MPEG Transport Stream", "mpegts"},
             {"Ogg", "ogg"}, {"WebM", "webm"}, {"Windows Media Audio", "wma"},
-            {"Windows Media Video", "wmv"}, {"Custom", "custom"}
+            {"Windows Media Video", "wmv"}
         };
 
         public bool Tagging { get; private set; }
         public string[,] SupportedAudioCodecs { get; private set; }
         public string[,] SupportedVideoCodecs { get; private set; }
+
+        public string DefaultFileExtension
+        {
+            get
+            {
+                switch (format)
+                {
+                    case "matroska":
+                        return "mkv";
+                    case "mpeg":
+                        return "mpg";
+                    case "mpegts":
+                        return "ts";
+                    default:
+                        return format.ToLower();
+                }
+            }
+        }
 
         public string Format
         {
@@ -53,7 +71,7 @@ namespace FFmpegCatapult.Models
                         };
                         break;
                     case "avi":
-                    case "mkv":
+                    case "matroska":
                         Tagging = true;
                         SupportedAudioCodecs = new string[,] {
                             {"AC3", "ac3"}, {"AAC", "aac"}, {"FLAC", "flac"}, {"HE-AAC", "heaac"},
@@ -87,7 +105,7 @@ namespace FFmpegCatapult.Models
                             {"MPEG-4", "mpeg4"}, {"Copy", "copy"}, {"None", "none"}
                         };
                         break;
-                    case "mpg":
+                    case "mpeg":
                         Tagging = false;
                         SupportedAudioCodecs = new string[,] {
                             {"MP2", "mp2"}, {"MP3", "mp3"}, {"Copy", "copy"}, {"None", "none"}
@@ -96,7 +114,7 @@ namespace FFmpegCatapult.Models
                             {"MPEG-2", "mpeg2"}, {"Copy", "copy"}
                         };
                         break;
-                    case "ts":
+                    case "mpegts":
                         Tagging = false;
                         SupportedAudioCodecs = new string[,] {
                             {"AC-3", "ac3"}, {"AAC", "aac"}, {"MP2", "mp2"},

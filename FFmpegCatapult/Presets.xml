@@ -185,15 +185,17 @@
 		<ratio>16:9</ratio>
 	</preset>
 	<preset name="MPEG-2, Standard Definition">
-		<format>mpg</format>
+		<format>mpeg</format>
 		<vcodec>mpeg2</vcodec>
 		<vb>4500</vb>
 		<bframes>2</bframes>
+		<bfstrategy>1</bfstrategy>
 		<gopsize>45</gopsize>
 		<memethod>epzs</memethod>
 		<cmp>2</cmp>
 		<subcmp>2</subcmp>
 		<trellis>2</trellis>
+		<acodec>MP2</acodec>
 		<ab>192</ab>
 		<scale>1</scale>
 		<width>0</width>
@@ -201,13 +203,14 @@
 		<ratio>4:3</ratio>
 	</preset>
 	<preset name="MPEG-2, High Definition">
-		<format>ts</format>
+		<format>mpeg</format>
 		<vcodec>mpeg2</vcodec>
 		<vb>12000</vb>
 		<memethod>epzs</memethod>
 		<cmp>2</cmp>
 		<subcmp>2</subcmp>
 		<trellis>2</trellis>
+		<acodec>MP2</acodec>
 		<ab>256</ab>
 		<scale>1</scale>
 		<width>0</width>

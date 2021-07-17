@@ -469,7 +469,7 @@ namespace FFmpegCatapult
 
         private void InitMetadata()
         {
-            if (file.Format == "raw" | file.Format == "mpg")
+            if (file.Format == "raw" | file.Format == "mpeg")
             {
                 EnableTaggingControls(false);
             }
@@ -889,7 +889,7 @@ namespace FFmpegCatapult
                 if (settings.UrlFileNames)
                     inFile = inFile.ToLower().Replace(" ", "_");
 
-                textBoxOutputFilename.Text = Path.ChangeExtension(inFile, file.Format);
+                textBoxOutputFilename.Text = Path.ChangeExtension(inFile, file.DefaultFileExtension);
             }
         }
 
@@ -897,7 +897,7 @@ namespace FFmpegCatapult
         {
             if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
             {
-                textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
+                textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.DefaultFileExtension);
             }
         }
 
@@ -1163,7 +1163,7 @@ namespace FFmpegCatapult
                     video.Codec = file.SupportedVideoCodecs[0, 1];
 
                 if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
-                    textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.Format);
+                    textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.DefaultFileExtension);
 
                 InitTabs();
                 InitOutput();
