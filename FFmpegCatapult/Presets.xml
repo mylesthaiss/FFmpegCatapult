@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <presets>
 	<preset name="AV1, Standard Definition">
-		<format>mkv</format>
+		<format>matroska</format>
 		<vcodec>av1</vcodec>
 		<quality>40</quality>
 		<tilecolumns>1</tilecolumns>
@@ -12,7 +12,7 @@
 		<height>480</height>
 	</preset>
 	<preset name="AV1, High Definition">
-		<format>mkv</format>
+		<format>matroska</format>
 		<vcodec>av1</vcodec>
 		<quality>30</quality>
 		<tilecolumns>1</tilecolumns>
@@ -279,8 +279,8 @@
 		<vcodec>copy</vcodec>
 		<acodec>copy</acodec>
 	</preset>
-	<preset name="Copy audio and video to MKV">
-		<format>mkv</format>
+	<preset name="Copy audio and video to matroska">
+		<format>matroska</format>
 		<vcodec>copy</vcodec>
 		<acodec>copy</acodec>
 	</preset>

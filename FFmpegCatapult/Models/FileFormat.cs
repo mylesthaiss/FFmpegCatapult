@@ -170,6 +170,15 @@ namespace FFmpegCatapult.Models
                             {"None", "none"}
                         };
                         break;
+                    default:
+                        Tagging = false;
+                        SupportedAudioCodecs = new string[,] {
+                            {"None", "none"}
+                        };
+                        SupportedVideoCodecs = new string[,] {
+                            {"None", "none"}
+                        };
+                        break;
                 }
             }
         }

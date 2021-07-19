@@ -1017,7 +1017,8 @@ namespace FFmpegCatapult
                 if (!settings.KeepValues)
                 {
                     textBoxInFile.Text = "";
-                    textBoxTargetFolder.Text = "";
+                    textBoxAudioStream.Text = "";
+                    textBoxOutputFilename.Text = "";
                     ClearMetadataFields();
                 }
             }
