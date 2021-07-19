@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("e08bc67a-f0b3-4ed8-a7e5-cca98361bcf8")]
 
-[assembly: AssemblyVersion("0.4.0.0")]
-[assembly: AssemblyFileVersion("0.4.0.0")]
+[assembly: AssemblyVersion("0.5.0.0")]
+[assembly: AssemblyFileVersion("0.5.0.0")]
 
 [assembly: InternalsVisibleTo("FFmpegCatapult.Tests")]

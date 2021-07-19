@@ -1,3 +1,16 @@
+--- 0.5
+- NEW Offical logo and icon.
+- NEW UI layout for video and audio properties.
+- Added support for AV1.
+- Added support for H.265.
+- Added support for Nvidia NVENC encoder for H.264 and H.265.
+- Added support for AMD AMF encoder (untested) for H.264 and H.265.
+- Added option to move tag data at begaining of file for MP4 and MOV formats.
+- Tweaked MPEG2 presets.
+- Removed FAAC option for AAC codec.
+- Removed ability of having the config saved when closing app due to scope creep.
+- Refactored models.
+
 --- 0.4 (Beta)
 - NEW XML formatted preset support.
 - Added option to add additional command switches onto FFmpeg.

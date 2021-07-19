@@ -1746,6 +1746,9 @@ namespace FFmpegCatapult
         {
             settings.DefaultOutputFolder = textBoxDefaultOutputFolder.Text;
             settings.SaveSettings = true;
+
+            if (string.IsNullOrEmpty(textBoxTargetFolder.Text) & !string.IsNullOrEmpty(settings.DefaultOutputFolder))
+                textBoxTargetFolder.Text = settings.DefaultOutputFolder;
         }
 
         private void CheckBoxUrlFilenames_CheckedChanged(object sender, EventArgs e)
