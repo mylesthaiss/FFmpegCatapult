@@ -25,7 +25,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>0.5.0</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -42,8 +42,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -150,13 +150,17 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y $(SolutionDir)FFmpegCatapult\Presets.xml $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>copy /Y $(ProjectDir)*.xml $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="ZipReleasePackage" Condition=" '$(Configuration)' == 'Release' " AfterTargets="Build">
+    <PropertyGroup>
+      <ZipPackageName>$(AssemblyName)_$(ApplicationVersion)</ZipPackageName>
+    </PropertyGroup>
+    <ItemGroup>
+      <DocumentFiles Include="$(SolutionDir)Readme.txt;$(SolutionDir)Changelog.txt;$(SolutionDir)LICENSE" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DocumentFiles)" DestinationFolder="$(TargetDir)" />
+    <MakeDir Directories="$(PublishUrl)" />
+    <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PublishUrl)$(ZipPackageName).zip" Overwrite="true" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
