@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	FFmpeg Catapult presets for MPEG-2 codec
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<presets>
+	<preset name="MPEG-2, Standard Definition">
+		<format>mpeg</format>
+		<vcodec>mpeg2</vcodec>
+		<vb>4500</vb>
+		<bframes>2</bframes>
+		<bfstrategy>1</bfstrategy>
+		<gopsize>45</gopsize>
+		<memethod>epzs</memethod>
+		<cmp>2</cmp>
+		<subcmp>2</subcmp>
+		<trellis>2</trellis>
+		<acodec>MP2</acodec>
+		<ab>192</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+		<ratio>4:3</ratio>
+	</preset>
+	<preset name="MPEG-2, High Definition">
+		<format>mpeg</format>
+		<vcodec>mpeg2</vcodec>
+		<vb>12000</vb>
+		<memethod>epzs</memethod>
+		<cmp>2</cmp>
+		<subcmp>2</subcmp>
+		<trellis>2</trellis>
+		<acodec>MP2</acodec>
+		<ab>256</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>1080</height>
+	</preset>    
+</presets>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	FFmpeg Catapult presets for Sony devices
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<presets>
+	<preset name="Sony PSP">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h264</vcodec>
+		<vencoder>libx264</vencoder>
+		<vpreset>medium</vpreset>
+		<vprofile>baseline</vprofile>
+		<level>2.1</level>
+		<vb>500</vb>
+		<maxvb>768</maxvb>
+		<buffersize>2048</buffersize>
+		<acodec>aac</acodec>
+		<ab>96</ab>
+		<samplerate>44100</samplerate>
+		<channels>2</channels>
+		<scale>1</scale>
+		<width>480</width>
+		<height>0</height>
+		<aspect>false</aspect>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="Sony PSP, 480p">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h264</vcodec>
+		<vencoder>libx264</vencoder>
+		<vpreset>medium</vpreset>
+		<vprofile>baseline</vprofile>
+		<level>3.0</level>
+		<vb>1500</vb>
+		<maxvb>2000</maxvb>
+		<buffersize>2048</buffersize>
+		<acodec>aac</acodec>
+		<ab>128</ab>
+		<samplerate>44100</samplerate>
+		<channels>2</channels>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+		<aspect>false</aspect>
+		<ratio>16:9</ratio>
+	</preset>    
+</presets>

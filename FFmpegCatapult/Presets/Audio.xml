@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	FFmpeg Catapult presets for audio only conversions
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<presets>
+	<preset name="Extract audio stream to MP3">
+		<format>mp3</format>
+		<vcodec>none</vcodec>
+		<acodec>mp3</acodec>
+		<ab>192</ab>
+		<samplerate>44100</samplerate>
+		<channels>2</channels>
+	</preset>    
+</presets>

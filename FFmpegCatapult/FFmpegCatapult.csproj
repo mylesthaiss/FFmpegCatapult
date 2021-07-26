@@ -145,12 +145,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Presets\Apple.xml" />
+    <Content Include="Presets\Audio.xml" />
+    <Content Include="Presets\AV1.xml" />
+    <Content Include="Presets\Copy.xml" />
+    <Content Include="Presets\H264.xml" />
+    <Content Include="Presets\H265.xml" />
+    <Content Include="Presets\MPEG2.xml" />
+    <Content Include="Presets\MPEG4.xml" />
+    <Content Include="Presets\Sony.xml" />
+    <Content Include="Presets\VP8.xml" />
     <Content Include="Resources\FFmpegCatapult.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y $(ProjectDir)*.xml $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>copy /Y $(ProjectDir)Presets\*.xml $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
   <Target Name="ZipReleasePackage" Condition=" '$(Configuration)' == 'Release' " AfterTargets="Build">
     <PropertyGroup>

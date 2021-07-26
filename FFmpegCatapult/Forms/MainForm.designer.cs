@@ -2578,6 +2578,7 @@ namespace FFmpegCatapult
             this.comboBoxPresets.Location = new System.Drawing.Point(54, 18);
             this.comboBoxPresets.Name = "comboBoxPresets";
             this.comboBoxPresets.Size = new System.Drawing.Size(408, 21);
+            this.comboBoxPresets.Sorted = true;
             this.comboBoxPresets.TabIndex = 1;
             this.comboBoxPresets.SelectedIndexChanged += new System.EventHandler(this.ComboBoxPresets_SelectedIndexChanged);
             // 
