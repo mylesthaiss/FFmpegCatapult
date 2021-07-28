@@ -1563,6 +1563,11 @@ namespace FFmpegCatapult
             // numericUpDownGOPSize
             // 
             this.numericUpDownGOPSize.Location = new System.Drawing.Point(77, 17);
+            this.numericUpDownGOPSize.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.numericUpDownGOPSize.Name = "numericUpDownGOPSize";
             this.numericUpDownGOPSize.Size = new System.Drawing.Size(48, 20);
             this.numericUpDownGOPSize.TabIndex = 31;

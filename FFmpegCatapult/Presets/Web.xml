@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	FFmpeg Catapult presets for HTML 5 video and streaming platforms
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<presets>
+	<preset name="H.264, 480p Web 2Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h264</vcodec>
+		<vencoder>libx264</vencoder>
+		<vpreset>slow</vpreset>
+		<vprofile>main</vprofile>
+		<twopass>true</twopass>
+		<vb>1800</vb>
+		<maxvb>1800</maxvb>
+		<buffersize>1800</buffersize>
+		<gopsize>60</gopsize>
+		<acodec>aac</acodec>
+		<ab>128</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="H.264, 720p Web 4Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h264</vcodec>
+		<vencoder>libx264</vencoder>
+		<vpreset>slow</vpreset>
+		<vprofile>high</vprofile>
+		<twopass>true</twopass>
+		<vb>3800</vb>
+		<maxvb>3800</maxvb>
+		<buffersize>3800</buffersize>
+		<gopsize>60</gopsize>
+		<acodec>aac</acodec>
+		<ab>128</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>720</height>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="H.264, 1080p Web 8Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h264</vcodec>
+		<vencoder>libx264</vencoder>
+		<vpreset>slow</vpreset>
+		<vprofile>high</vprofile>
+		<twopass>true</twopass>
+		<vb>7800</vb>
+		<maxvb>7800</maxvb>
+		<buffersize>7800</buffersize>
+		<gopsize>60</gopsize>
+		<acodec>aac</acodec>
+		<ab>192</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>1080</height>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="H.265, 480p Web 1Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h265</vcodec>
+		<vencoder>libx265</vencoder>
+		<vpreset>slow</vpreset>
+		<twopass>true</twopass>
+		<vb>900</vb>
+		<maxvb>900</maxvb>
+		<acodec>aac</acodec>
+		<aencoder>libfdk_aac</aencoder>
+		<ab>96</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="H.265, 720p Web 3Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h265</vcodec>
+		<vencoder>libx265</vencoder>
+		<vpreset>slow</vpreset>
+		<twopass>true</twopass>
+		<vb>2872</vb>
+		<maxvb>2872</maxvb>
+		<acodec>aac</acodec>
+		<aencoder>libfdk_aac</aencoder>
+		<ab>128</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>720</height>
+		<ratio>16:9</ratio>
+	</preset>
+	<preset name="H.265, 1080p Web 5Mb/s">
+		<format>mp4</format>
+		<faststart>true</faststart>
+		<vcodec>h265</vcodec>
+		<vencoder>libx265</vencoder>
+		<vpreset>slow</vpreset>
+		<twopass>true</twopass>
+		<vb>4872</vb>
+		<maxvb>4872</maxvb>
+		<acodec>aac</acodec>
+		<aencoder>libfdk_aac</aencoder>
+		<ab>128</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>1080</height>
+		<ratio>16:9</ratio>
+	</preset>
+</presets>

@@ -28,7 +28,7 @@
 		<cmp>2</cmp>
 		<subcmp>2</subcmp>
 		<trellis>2</trellis>
-		<acodec>MP2</acodec>
+		<acodec>mp2</acodec>
 		<ab>192</ab>
 		<scale>1</scale>
 		<width>0</width>
@@ -43,7 +43,7 @@
 		<cmp>2</cmp>
 		<subcmp>2</subcmp>
 		<trellis>2</trellis>
-		<acodec>MP2</acodec>
+		<acodec>mp2</acodec>
 		<ab>256</ab>
 		<scale>1</scale>
 		<width>0</width>

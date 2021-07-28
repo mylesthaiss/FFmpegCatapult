@@ -928,10 +928,11 @@ namespace FFmpegCatapult
             comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, file.Formats, file.Format);
 
             // Populate combobox with parsed XML files and preset names
-            string path = Directory.GetCurrentDirectory();
-            string[] files = Directory.GetFiles(path, "*.xml");
+            string presetFolder = Path.Combine(Directory.GetCurrentDirectory(), "Presets");
+            string xmlPath = Directory.Exists(presetFolder) ? presetFolder : Directory.GetCurrentDirectory();
+            string[] presetFiles = Directory.GetFiles(xmlPath, "*.xml");
 
-            foreach (string file in files)
+            foreach (string file in presetFiles)
             {
                 try
                 {

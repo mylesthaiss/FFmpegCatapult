@@ -155,13 +155,21 @@
     <Content Include="Presets\MPEG4.xml" />
     <Content Include="Presets\Sony.xml" />
     <Content Include="Presets\VP8.xml" />
+    <Content Include="Presets\Web.xml" />
     <Content Include="Resources\FFmpegCatapult.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y $(ProjectDir)Presets\*.xml $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
+  <Target Name="CopyPresetFiles" BeforeTargets="Build">
+    <ItemGroup>
+      <PresetFiles Include="$(ProjectDir)Presets\*.xml" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PresetFiles)" DestinationFolder="$(TargetDir)Presets" SkipUnchangedFiles="true" />
+  </Target>
   <Target Name="ZipReleasePackage" Condition=" '$(Configuration)' == 'Release' " AfterTargets="Build">
     <PropertyGroup>
       <ZipPackageName>$(AssemblyName)_$(ApplicationVersion)</ZipPackageName>
@@ -169,7 +177,7 @@
     <ItemGroup>
       <DocumentFiles Include="$(SolutionDir)Readme.txt;$(SolutionDir)Changelog.txt;$(SolutionDir)LICENSE" />
     </ItemGroup>
-    <Copy SourceFiles="@(DocumentFiles)" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="@(DocumentFiles)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
     <MakeDir Directories="$(PublishUrl)" />
     <ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(PublishUrl)$(ZipPackageName).zip" Overwrite="true" />
   </Target>
