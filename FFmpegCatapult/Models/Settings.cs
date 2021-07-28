@@ -61,7 +61,7 @@ namespace FFmpegCatapult.Models
                     FFmpegPath = "ffmpeg.exe";
                     TerminalPath = "cmd.exe";
                     TerminalArguments = "/c start \"\"";
-                    NullFilePath = "NULL";
+                    NullFilePath = "NUL";
                     LogFilename = "FFmpegCatapult.txt";
                     break;
             }
