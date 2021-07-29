@@ -30,7 +30,7 @@ namespace FFmpegCatapult.Core
             string audioArgs = GetAudioArgs(audio);
             string pictureArgs = GetPictureArgs(picture, video);
             string videoArgs = !string.IsNullOrEmpty(pictureArgs) ? string.Format("{0} {1}", GetVideoArgs(video, settings), pictureArgs) : GetVideoArgs(video, settings);
-            string taggingArgs = GetTaggingArgs(tagging, file);
+            string taggingArgs = GetTaggingArgs(tagging, file, video);
             string formatArgs = !string.IsNullOrEmpty(taggingArgs) ? string.Format("-f {0} {1}", file.Format, taggingArgs) : string.Format("-f {0}", file.Format);
             string inArgs = string.IsNullOrEmpty(paths.Audio) ? string.Format("-i \"{0}\"", paths.Source) : string.Format("-i \"{0}\" -i \"{1}\"", paths.Source, paths.Audio);
             string outArgs = paths.Overwrite ? string.Format("-y \"{0}\"", paths.Output) : string.Format("\"{0}\"", paths.Output);

@@ -21,7 +21,7 @@ namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
-        public string GetTaggingArgs(ITags tags, IFileFormat format)
+        public string GetTaggingArgs(ITags tags, IFileFormat format, IVideo video)
         {
             List<string> taggingArgs = new List<string>();
 
@@ -93,6 +93,9 @@ namespace FFmpegCatapult.Core
 
                 if (format.FastStartTagging)
                     taggingArgs.Add("-movflags faststart");
+
+                if (format.Format == "mp4" & video.Codec == "h265")
+                    taggingArgs.Add("-tag:v hvc1");
             }
 
             return string.Join(" ", taggingArgs);
