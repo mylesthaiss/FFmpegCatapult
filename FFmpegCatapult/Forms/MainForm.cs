@@ -997,6 +997,15 @@ namespace FFmpegCatapult
 
             // Metadata tab
             InitMetadata();
+
+            // Ensure that path for ffmpeg is set correctly
+            if (!File.Exists(settings.FFmpegPath))
+            {
+                MessageBox.Show("Please set path of where you have ffmpeg installed.", "FFmpeg Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                BrowseFFmpegBin();
+                BringToFront();
+                TopMost = true;
+            }
         }
 
         private void MainForm_Closing(object sender, FormClosingEventArgs e)
