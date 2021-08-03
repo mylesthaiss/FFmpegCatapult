@@ -115,14 +115,59 @@
 		<vencoder>libx265</vencoder>
 		<vpreset>slow</vpreset>
 		<twopass>true</twopass>
-		<vb>4872</vb>
+		<vb>4800</vb>
 		<maxvb>4872</maxvb>
 		<acodec>aac</acodec>
 		<aencoder>libfdk_aac</aencoder>
-		<ab>128</ab>
+		<ab>192</ab>
 		<scale>1</scale>
 		<width>0</width>
 		<height>1080</height>
 		<ratio>16:9</ratio>
+	</preset>
+	<preset name="VP9, 480p Web 1Mb/s">
+		<format>webm</format>
+		<vcodec>vp9</vcodec>
+		<twopass>true</twopass>
+		<vb>936</vb>
+		<tilecolumns>6</tilecolumns>
+		<laginframes>25</laginframes>
+		<autoaltref>true</autoaltref>
+		<frameparallel>true</frameparallel>
+		<acodec>opus</acodec>
+		<ab>64</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>480</height>
+	</preset>
+	<preset name="VP9, 720p Web 3Mb/s">
+		<format>webm</format>
+		<vcodec>vp9</vcodec>
+		<twopass>true</twopass>
+		<vb>2900</vb>
+		<tilecolumns>6</tilecolumns>
+		<laginframes>25</laginframes>
+		<autoaltref>true</autoaltref>
+		<frameparallel>true</frameparallel>
+		<acodec>opus</acodec>
+		<ab>96</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>720</height>
+	</preset>
+	<preset name="VP9, 1080p Web 5Mb/s">
+		<format>webm</format>
+		<vcodec>vp9</vcodec>
+		<twopass>true</twopass>
+		<vb>4840</vb>
+		<tilecolumns>6</tilecolumns>
+		<laginframes>25</laginframes>
+		<autoaltref>true</autoaltref>
+		<frameparallel>true</frameparallel>
+		<acodec>opus</acodec>
+		<ab>160</ab>
+		<scale>1</scale>
+		<width>0</width>
+		<height>1080</height>
 	</preset>
 </presets>
