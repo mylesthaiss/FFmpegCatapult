@@ -1,13 +1,15 @@
 FFmpeg Catapult
 ===============
-
 A clean and simple graphical launcher for FFmpeg.
+
 
 Requirements
 ============
-- Microsoft .NET Framework 4 runtime or Mono with WinForms support.
-- A FFmpeg binary with libx264, libxvid, libmp3lame and libvoaacenc support.
+- Microsoft .NET Framework 4.72 runtime or Mono with WinForms support.
+- A FFmpeg binary with libx264, libxvid, and libmp3lame and support.
+- A FFmpeg binary with libfdk_aac encoder is highly recommended but not required.
 - Terminal emulator such as Command Prompt (Windows) or Xterm (Unix).
+
 
 Features
 ========
@@ -17,8 +19,9 @@ Features
 - Lightweight.
 - Two-pass encoding.
 
+
 Install
 =======
-After extracting the FFCatapult_xx.zip file, copy the ffcatapult.exe and presets.xml 
-files onto your FFmpeg binary folder or place the FFmpeg binary onto the folder where 
+After extracting the FFCatapult_xx.zip file, copy the FFmpegCatapult.exe file and Presets
+folder onto your FFmpeg binary folder or place the FFmpeg binary onto the folder where 
 the FFmpeg Catapult executable is.

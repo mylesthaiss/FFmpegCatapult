@@ -1,0 +1,66 @@
+Presets
+=======
+Place XML formatted preset files onto this folder.
+
+
+Example
+=======
+A simple XML formatted preset to encode MP4 video files:
+
+<presets>
+    <preset name="MPEG4 - H.264, Standard Definition">
+        <format>mp4</format>
+        <faststart>true</faststart>
+        <vcodec>h264</vcodec>
+        <vencoder>libx264</vencoder>
+        <vpreset>medium</vpreset>
+        <vprofile>main</vprofile>
+        <level>3.1</level>
+        <vb>3000</vb>
+        <quality>18</quality>
+        <acodec>aac</acodec>
+        <ab>128</ab>
+        <scale>1</scale>
+        <width>0</width>
+        <height>480</height>
+        <ratio>16:9</ratio>
+    </preset>
+<presets>
+
+
+Attributes
+==========
+The following attributes can applied with any particular custom preset:
+
+        +---------------------+-------------------+----------------------+
+        |        VIDEO        |       AUDIO       |        PICTURE       |
+        +---------------------+-------------------+----------------------+
+        | autoaltref          | ab                | aspect               |
+        | bframes             | acodec            | crop                 |
+        | bfstrategy          | aencoder          | deinterlace          |
+        | buffersize          | channels          | fps                  |
+        | cmp                 | samplerate        | height               |
+        | diasize             | vbr               | pad                  |
+        | frameparallel       | volume            | ratio                |
+        | gopsize             | scale             |                      |
+        | laginframes         | scalemethod       |                      |
+        | level               | vfcolour          |                      |
+        | maxvb               | width             |                      |
+        | mbcmp               | winheight         |                      |
+        | memethod            | winwidth          |                      |
+        | pixformat           | x                 |                      |
+        | precmp              | y                 |                      |
+        | qmax                |                   |                      |
+        | qmin                |                   |                      |
+        | quality             |                   |                      |
+        | subcmp              |                   |                      |
+        | tilecolumns         |                   |                      |
+        | tilerows            |                   |                      |
+        | trellis             |                   |                      |
+        | twopass             |                   |                      |
+        | vb                  |                   |                      |
+        | vcodec              |                   |                      |
+        | vencoder            |                   |                      |
+        | vpreset             |                   |                      |
+        | vprofile            |                   |                      |
+        +---------------------+-------------------+----------------------+
