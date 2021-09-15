@@ -21,6 +21,7 @@ using System.Xml;
 using FFmpegCatapult.Models;
 using FFmpegCatapult.Core;
 using FFmpegCatapult.Helpers;
+using FFmpegCatapult.Factories;
 
 namespace FFmpegCatapult
 {
@@ -31,9 +32,9 @@ namespace FFmpegCatapult
         private FilePaths paths = new FilePaths();
         private FileFormat file = new FileFormat();
         private Audio audio = new Audio();
-        private Video video = new Video();
+        private Video video = VideoFactory.Create("h264");
         private Picture picture = new Picture();
-        private Tags tags = new Tags();
+        private Tags tags = new Tags();            
 
         public MainForm()
         {
@@ -45,7 +46,7 @@ namespace FFmpegCatapult
         private void InitPreset(string presetName, string xmlFile)
         {
             file = new FileFormat(xmlFile, presetName);
-            video = new Video(xmlFile, presetName);
+            video = VideoFactory.Create(xmlFile, presetName);
             audio = new Audio(xmlFile, presetName);
             picture = new Picture(xmlFile, presetName);
         }
@@ -1167,11 +1168,11 @@ namespace FFmpegCatapult
             {
                 file.Format = format.Value;
 
-                if (!file.IsCodecSupported(audio))
-                    audio.Codec = file.SupportedAudioCodecs[0, 1];
+                //if (!file.IsCodecSupported(audio))
+                //    audio.Codec = file.SupportedAudioCodecs[0, 1];
 
-                if (!file.IsCodecSupported(video))
-                    video.Codec = file.SupportedVideoCodecs[0, 1];
+                //if (!file.IsCodecSupported(video))
+                //    video.Codec = file.SupportedVideoCodecs[0, 1];
 
                 if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
                     textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.DefaultFileExtension);
@@ -1232,7 +1233,8 @@ namespace FFmpegCatapult
             WinFormsHelper.ListComboContent codec = (WinFormsHelper.ListComboContent)comboBoxVideoCodecs.SelectedItem;
             if (codec.Value != video.Codec)
             {
-                video.Codec = codec.Value;
+                //video.Codec = codec.Value;
+                video = VideoFactory.Create(codec.Value);
                 InitTabs();
                 InitVideo();
             }

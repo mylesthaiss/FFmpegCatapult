@@ -74,7 +74,7 @@ namespace FFmpegCatapult.Core
                     if (video.BFStrategy > 0)
                         videoArgs.Add(string.Format("-b_strategy {0}", video.BFStrategy));
 
-                    if (video.MotionEstimateMethod != "")
+                    if (!string.IsNullOrEmpty(video.MotionEstimateMethod))
                         videoArgs.Add(string.Format("-me_method {0}", video.MotionEstimateMethod));
 
                     if (video.DiaSize != 0)

@@ -20,15 +20,15 @@ namespace FFmpegCatapult.Models
     {
         bool IsVBRSupported { get; }
         bool UseVBR { get; set; }
-        int[] Bitrates { get; }
-        int SampleRate { get; set; }
-        int[] SampleRates { get; }
         int Channels { get; set; }
-        int LowPass { get; set; }
         int HighPass { get; set; }
+        int LowPass { get; set; }
         int MaxChannels { get; }
         int ResamplerPrecision { get; set; }
+        int SampleRate { get; set; }
         int VolumeBoost { get; set; }
+        int[] Bitrates { get; }
+        int[] SampleRates { get; }
         string DitherMethod { get; set; }
         string Resampler { get; set; }
     }

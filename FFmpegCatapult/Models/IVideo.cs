@@ -16,37 +16,38 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IVideo : IOutput, IEncoder
+    public interface IVideo : IOutput, IEncoder
     {
         bool AutoAltRef { get; set; }
         bool FrameParallel { get; set; }
         bool TwoPassEncoding { get; set; }
         bool UseCRF { get; set; }
         double CodecLevel { get; set; }
-        int BufferSize { get; set; }
-        int MaxBitrate { get; set; }
-        int MinBitrate { get; set; }
         int BFrames { get; set; }
         int BFStrategy { get; set; }
-        int MotionEstimateCompare { get; set; }
+        int BufferSize { get; set; }
         int DiaSize { get; set; }
         int GOPSize { get; set; }
         int LagInFrames { get; set; }
         int MacroBlockingCompare { get; set; }
+        int MaxBitrate { get; set; }
+        int MinBitrate { get; set; }
+        int MotionEstimateCompare { get; set; }
         int MotionEstimatePreCompare { get; set; }
-        int Speed { get; set; }
         int MotionEstimateSubCompare { get; set; }
+        int QMax { get; set; }
+        int QMin { get; set; }
+        int Speed { get; set; }
         int TargetSize { get; set; }
         int TileColumns { get; set; }
         int TileRows { get; set; }
         int Trellis { get; set; }
-        int QMin { get; set; }
-        int QMax { get; set; }
-        string EncoderPreset { get; set; }
-        string PixelFormat { get; set; }
         string MotionEstimateMethod { get; set; }
-        string[,] EncoderPresets { get; }
-        string[,] PixelFormats { get; }
+        string PixelFormat { get; set; }        
         string[,] MotionEstimateMethods { get; }
+        string[,] PixelFormats { get; }
+        double[] CodecLevels { get; }
+        string[] CompareFunctions { get; }
+        string[,] Profiles { get; }
     }
 }

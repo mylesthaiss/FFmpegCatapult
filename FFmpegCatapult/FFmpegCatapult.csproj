@@ -72,7 +72,10 @@
     <Compile Include="Core\PictureArgs.cs" />
     <Compile Include="Core\TaggingArgs.cs" />
     <Compile Include="Core\VideoArgs.cs" />
+    <Compile Include="Factories\IVideoFactory.cs" />
     <Compile Include="Models\Audio.cs" />
+    <Compile Include="Models\AVI1.cs" />
+    <Compile Include="Models\CopyVideo.cs" />
     <Compile Include="Models\FileFormat.cs" />
     <Compile Include="Models\FilePaths.cs" />
     <Compile Include="Models\IAudio.cs" />
@@ -84,9 +87,14 @@
     <Compile Include="Models\ISettings.cs" />
     <Compile Include="Models\ITags.cs" />
     <Compile Include="Models\IVideo.cs" />
+    <Compile Include="Models\NoVideo.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Tags.cs" />
+    <Compile Include="Models\Theora.cs" />
+    <Compile Include="Models\VP8.cs" />
+    <Compile Include="Models\VP9.cs" />
+    <Compile Include="Models\WMV.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +105,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\WinFormsHelper.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\H264.cs" />
+    <Compile Include="Models\H265.cs" />
+    <Compile Include="Models\MPEG2.cs" />
+    <Compile Include="Models\MPEG4.cs" />
+    <Compile Include="Factories\VideoFactory.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>

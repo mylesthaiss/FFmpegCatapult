@@ -16,9 +16,12 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IEncoder
+    public interface IEncoder
     {
         bool PreferNonfreeEncoder { get; set; }
         string Encoder { get; set; }
+        string EncoderPreset { get; set; }
+        string[,] Encoders { get; }
+        string[,] EncoderPresets { get; }
     }
 }

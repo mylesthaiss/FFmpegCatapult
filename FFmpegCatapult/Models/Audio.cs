@@ -52,6 +52,7 @@ namespace FFmpegCatapult.Models
         public string Resampler { get; set; } = "soxr";
         public string[,] Encoders { get; private set; }
         public string[,] Profiles { get; private set; }
+        public string[,] EncoderPresets { get; private set; }
 
         /// <summary>
         /// Determines and returns supported bitrates that is based on 
@@ -414,6 +415,8 @@ namespace FFmpegCatapult.Models
         {
             get { return resamplers; }
         }
+
+        public string EncoderPreset { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public Audio()
         {

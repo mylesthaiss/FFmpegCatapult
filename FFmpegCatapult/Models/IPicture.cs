@@ -16,7 +16,7 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IPicture
+    public interface IPicture
     {
         bool AspectRatio { get; set; }
         bool Crop { get; set; }

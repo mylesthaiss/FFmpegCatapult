@@ -16,11 +16,11 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IOutput
+    public interface IOutput
     {
         int Bitrate { get; set; }
         int Quality { get; set; }
-        string Codec { get; set; }
+        string Codec { get; }
         string Profile { get; set; }
     }
 }

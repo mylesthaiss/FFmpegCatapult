@@ -17,6 +17,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FFmpegCatapult.Core;
 using FFmpegCatapult.Models;
+using FFmpegCatapult.Factories;
 
 namespace FFmpegCatapult.Tests
 {
@@ -32,7 +33,7 @@ namespace FFmpegCatapult.Tests
         {
             ffmpegBin = new FFmpegBin();
             picture = new Picture();
-            video = new Video();
+            video = VideoFactory.Create("mpeg2");
         }
 
         [TestMethod]

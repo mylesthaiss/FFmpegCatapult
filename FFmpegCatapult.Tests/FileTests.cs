@@ -17,13 +17,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FFmpegCatapult.Core;
 using FFmpegCatapult.Models;
+using FFmpegCatapult.Factories;
 
 namespace FFmpegCatapult.Tests
 {
     [TestClass]
     public class FileTests
     {
-        private FFmpegBin ffmpegBin;
         private FileFormat file;
         private FilePaths paths;
         private Audio audio;
@@ -32,11 +32,9 @@ namespace FFmpegCatapult.Tests
         [TestInitialize]
         public void Setup()
         {
-            ffmpegBin = new FFmpegBin();
             file = new FileFormat();
             paths = new FilePaths();
             audio = new Audio();
-            video = new Video();
         }
 
         [TestMethod]
@@ -52,7 +50,7 @@ namespace FFmpegCatapult.Tests
         public void Video_Codec_Is_Valid()
         {            
             file.Format = "mp4";
-            video.Codec = "h264";
+            video = VideoFactory.Create("h264");
 
             Assert.IsTrue(file.IsCodecSupported(video));
         }
