@@ -1,4 +1,4 @@
-﻿// ITags is part of FFmpeg Catapult.
+﻿// ISettings is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,26 +16,20 @@
 
 namespace FFmpegCatapult.Models
 {
-    public interface ITags
+    interface ISettings
     {
-        bool Compilation { get; set; }
-        int Disc { get; set; }
-        int Track { get; set; }
-        int TotalDiscs { get; set; }
-        int TotalTracks { get; set; }
-        int Year { get; set; }
-        string Album { get; set; }
-        string AlbumArtist { get; set; }
-        string Artist { get; set; }
-        string Comment { get; set; }
-        string Copyright { get; set; }
-        string Description { get; set; }
-        string EpisodeId { get; set; }
-        string Genre { get; set; }
-        string Network { get; set; }
-        string Publisher { get; set; }
-        string Show { get; set; }
-        string Synopsis { get; set; }
-        string Title { get; set; }
+        bool UrlFileNames { get; set; }
+        bool WriteLog { get; set; }
+        int Processors { get; set; }
+        int Threads { get; set; }
+        string DefaultFileName { get; set; }
+        string DefaultOutputFolder { get; set; }
+        string DefaultSourceFolder { get; set; }
+        string FFmpegArguments { get; set; }
+        string FFmpegPath { get; set; }
+        string LogFilename { get; set; }
+        string NullFilePath { get; }
+        string TerminalArguments { get; set; }
+        string TerminalPath { get; set; }
     }
 }

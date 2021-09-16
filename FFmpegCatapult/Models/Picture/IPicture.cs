@@ -1,4 +1,4 @@
-﻿// IEncoder is part of FFmpeg Catapult.
+﻿// IPicture is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,12 +16,22 @@
 
 namespace FFmpegCatapult.Models
 {
-    public interface IEncoder
+    public interface IPicture
     {
-        bool PreferNonfreeEncoder { get; set; }
-        string Encoder { get; set; }
-        string EncoderPreset { get; set; }
-        string[,] Encoders { get; }
-        string[,] EncoderPresets { get; }
+        bool AspectRatio { get; set; }
+        bool Crop { get; set; }
+        bool Deinterlace { get; set; }
+        bool Pad { get; set; }
+        int FPS { get; set; }
+        int Height { get; set; }
+        int ScaleOption { get; set; }
+        int Width { get; set; }
+        int WinHeight { get; set; }
+        int WinWidth { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
+        string Ratio { get; set; }
+        string ScalingMethod { get; set; }
+        string VideoFilterColour { get; set; }
     }
 }

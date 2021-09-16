@@ -1,4 +1,4 @@
-﻿// IFilePaths is part of FFmpeg Catapult.
+﻿// IEncoder is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,11 +16,10 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IFilePaths
+    public interface IEncoder
     {
-        bool Overwrite { get; set; }
-        string Source { get; set; }
-        string Output { get; set; }
-        string Audio { get; set; }
+        bool PreferNonfreeEncoder { get; set; }
+        string Encoder { get; set; }
+        string EncoderPreset { get; set; }
     }
 }

@@ -43,11 +43,6 @@ namespace FFmpegCatapult.Models
         int TileRows { get; set; }
         int Trellis { get; set; }
         string MotionEstimateMethod { get; set; }
-        string PixelFormat { get; set; }        
-        string[,] MotionEstimateMethods { get; }
-        string[,] PixelFormats { get; }
-        double[] CodecLevels { get; }
-        string[] CompareFunctions { get; }
-        string[,] Profiles { get; }
+        string PixelFormat { get; set; }
     }
 }

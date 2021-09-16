@@ -1,4 +1,4 @@
-﻿// IVideoFactory is part of FFmpeg Catapult.
+﻿// IFilePaths is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -14,13 +14,13 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using FFmpegCatapult.Models;
-
-namespace FFmpegCatapult.Factories
+namespace FFmpegCatapult.Models
 {
-    public interface IVideoFactory
+    interface IFilePaths
     {
-        Video Create(string video);
-        Video Create(string presetFile, string presetName);
+        bool Overwrite { get; set; }
+        string Audio { get; set; }
+        string Output { get; set; }
+        string Source { get; set; }
     }
 }
