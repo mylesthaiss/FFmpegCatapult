@@ -30,7 +30,7 @@ namespace FFmpegCatapult
         private FFmpegBin ffmpegBin = new FFmpegBin();
         private Settings settings = new Settings();
         private FilePaths paths = new FilePaths();
-        private FileFormat file = new FileFormat();
+        private Container file = ContainerFactory.Create("avi");
         private Audio audio = new Audio();
         private Video video = VideoFactory.Create("h264");
         private Picture picture = new Picture();
@@ -45,7 +45,7 @@ namespace FFmpegCatapult
         // Methods
         private void InitPreset(string presetName, string xmlFile)
         {
-            file = new FileFormat(xmlFile, presetName);
+            file = ContainerFactory.Create(xmlFile, presetName);
             video = VideoFactory.Create(xmlFile, presetName);
             audio = new Audio(xmlFile, presetName);
             picture = new Picture(xmlFile, presetName);
@@ -67,7 +67,7 @@ namespace FFmpegCatapult
 
             // Combo boxes
             comboBoxContainers.SelectedIndexChanged -= new EventHandler(ComboBoxContainers_SelectedIndexChanged);
-            comboBoxContainers.SelectedIndex = GetSelectionIndex(file.Format, file.Formats);
+            comboBoxContainers.SelectedIndex = GetSelectionIndex(file.Format, ContainerFactory.Containers);
             comboBoxContainers.SelectedIndexChanged += new EventHandler(ComboBoxContainers_SelectedIndexChanged);
 
             // Text boxes
@@ -81,7 +81,7 @@ namespace FFmpegCatapult
 
         private void InitOutput()
         {
-            checkBoxFastStartTagging.Enabled = file.IsFastStartSupported();
+            checkBoxFastStartTagging.Enabled = file.FastStartSupported;
 
             checkBoxFastStartTagging.EnabledChanged -= new EventHandler(CheckBoxFastStartTagging_CheckedChanged);
             checkBoxFastStartTagging.Checked = file.FastStartTagging;
@@ -926,7 +926,7 @@ namespace FFmpegCatapult
 
             // Main tab
             textBoxTargetFolder.Text = settings.DefaultOutputFolder;
-            comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, file.Formats, file.Format);
+            comboBoxContainers = WinFormsHelper.AddMultiArrayToComboBox(comboBoxContainers, ContainerFactory.Containers, file.Format);
 
             // Populate combobox with parsed XML files and preset names
             string presetFolder = Path.Combine(Directory.GetCurrentDirectory(), "Presets");
@@ -1166,13 +1166,13 @@ namespace FFmpegCatapult
 
             if (format.Value != file.Format)
             {
-                file.Format = format.Value;
+                file = ContainerFactory.Create(format.Value);
 
-                //if (!file.IsCodecSupported(audio))
-                //    audio.Codec = file.SupportedAudioCodecs[0, 1];
+                if (!file.IsCodecSupported(audio))
+                    audio.Codec = file.SupportedAudioCodecs[0, 1];
 
-                //if (!file.IsCodecSupported(video))
-                //    video.Codec = file.SupportedVideoCodecs[0, 1];
+                if (!file.IsCodecSupported(video))
+                    video = VideoFactory.Create(file.SupportedVideoCodecs[0, 1]);
 
                 if (!string.IsNullOrEmpty(textBoxOutputFilename.Text))
                     textBoxOutputFilename.Text = Path.ChangeExtension(textBoxOutputFilename.Text, file.DefaultFileExtension);

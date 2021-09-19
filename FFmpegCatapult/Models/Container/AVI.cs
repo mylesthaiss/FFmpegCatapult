@@ -1,4 +1,4 @@
-﻿// IFileFormat is part of FFmpeg Catapult.
+﻿// AVI is part of FFmpeg Catapult.
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License
@@ -16,10 +16,14 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface IFileFormat
+    class AVI : Container
     {
-        bool FastStartTagging { get; set; }
-        bool Tagging { get; }
-        string Format { get; set; }
+        public override string Format
+        {
+            get 
+            { 
+                return "avi"; 
+            }
+        }
     }
 }

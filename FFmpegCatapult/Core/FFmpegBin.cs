@@ -24,7 +24,7 @@ namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
-        public void Run(IFileFormat file, IAudio audio, IVideo video, IPicture picture,
+        public void Run(IContainer file, IAudio audio, IVideo video, IPicture picture,
                         ITags tagging, IFilePaths paths, ISettings settings)
         {
             string audioArgs = GetAudioArgs(audio);

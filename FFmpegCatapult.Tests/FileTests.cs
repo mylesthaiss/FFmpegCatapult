@@ -24,7 +24,7 @@ namespace FFmpegCatapult.Tests
     [TestClass]
     public class FileTests
     {
-        private FileFormat file;
+        private Container file;
         private FilePaths paths;
         private Audio audio;
         private Video video;
@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Tests
         [TestInitialize]
         public void Setup()
         {
-            file = new FileFormat();
+            file = new Container();
             paths = new FilePaths();
             audio = new Audio();
         }

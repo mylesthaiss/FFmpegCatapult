@@ -21,7 +21,7 @@ namespace FFmpegCatapult.Core
 {
     partial class FFmpegBin
     {
-        public string GetTaggingArgs(ITags tags, IFileFormat format, IVideo video)
+        public string GetTaggingArgs(ITags tags, IContainer format, IVideo video)
         {
             List<string> taggingArgs = new List<string>();
 
