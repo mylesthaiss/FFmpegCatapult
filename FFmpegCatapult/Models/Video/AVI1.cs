@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"libaom", "libaom-av1"}
+                    { "libaom", "libaom-av1" }
                 };
             }
         }

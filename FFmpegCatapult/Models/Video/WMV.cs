@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"WMV 7 (wmv1)", "wmv1"}, {"WMV 8 (wmv2)", "wmv2"}
+                    { "WMV 7 (wmv1)", "wmv1" }, { "WMV 8 (wmv2)", "wmv2" }
                 };
             }
         }

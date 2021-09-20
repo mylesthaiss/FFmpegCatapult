@@ -75,7 +75,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    { "AMD AMF", "h264_amf"}, { "Nvidia NVENC", "nvenc_h264"}, { "x264", "libx264"}
+                    { "AMD AMF", "h264_amf" }, { "Nvidia NVENC", "nvenc_h264" }, { "x264", "libx264" }
                 };
             }
         }
@@ -89,27 +89,27 @@ namespace FFmpegCatapult.Models
                     case "libx264":
                         return new string[,]
                         {
-                            {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
-                            {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
-                            {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
-                            {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
+                            { "Ultra Fast", "ultrafast" }, { "Super Fast", "superfast" },
+                            { "Very Fast", "veryfast" }, { "Faster", "faster" }, { "Fast", "fast" },
+                            { "Medium", "medium" }, { "Slow", "slow" }, { "Slower", "slower" },
+                            { "Very Slow", "veryslow" }, { "Placebo", "placebo" }
                         };
                     case "h264_amf":
                         return new string[,]
                         {
-                            {"Transcoding", "transcoding"}, {"Ultra Low Latency", "ultralowlatency"},
-                            {"Low Latency", "lowlatency"}, {"Webcam", "webcam"}
+                            { "Transcoding", "transcoding" }, { "Ultra Low Latency", "ultralowlatency" },
+                            { "Low Latency", "lowlatency" }, { "Webcam", "webcam" }
                         };
                     case "nvenc_h264":
                         return new string[,]
                         {
-                            {"Slow", "slow"}, {"Medium", "medium"}, {"Fast", "fast"},
-                            {"High Quality", "hq"}, {"Low Latency", "ll"}, {"Low Latency HQ", "llhq"},
-                            {"Low Latency HP", "llhp"}, {"Lossless", "lossless"}, {"Lossless HP", "losslesshp"}
+                            { "Slow", "slow" }, { "Medium", "medium" }, { "Fast", "fast" },
+                            { "High Quality", "hq" }, { "Low Latency", "ll" }, { "Low Latency HQ", "llhq" },
+                            { "Low Latency HP", "llhp" }, { "Lossless", "lossless" }, { "Lossless HP", "losslesshp" }
                         };
                     default:
                         return null;
-                }                    
+                }
             }
         }
 
@@ -122,13 +122,13 @@ namespace FFmpegCatapult.Models
                     case "h264_amf":
                         return new string[,]
                         {
-                            {"Baseline (Constrained)", "constrained_baseline"}, {"Main", "main"},
-                            {"High", "high"}, {"High (Constrained)", ""}
+                            { "Baseline (Constrained)", "constrained_baseline" }, { "Main", "main" },
+                            { "High", "high" }, { "High (Constrained)", "" }
                         };
                     default:
                         return new string[,]
                         {
-                            {"Baseline", "baseline"}, {"Main", "main"}, {"High", "high"}
+                            { "Baseline", "baseline" }, { "Main", "main" }, { "High", "high" }
                         };
                 }
             }

@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"Copy", "copy"}
+                    { "Copy", "copy" }
                 };
             }
         }

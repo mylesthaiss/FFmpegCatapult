@@ -30,12 +30,18 @@ namespace FFmpegCatapult.Models
 
         public override double[] CodecLevels
         {
-            get { return null; }
+            get
+            { 
+                return null;
+            }
         }
 
         public override string Encoder
         {
-            get { return encoder; }
+            get
+            {
+                return encoder;
+            }
             set
             {
                 encoder = value;
@@ -64,7 +70,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"AMD AMF", "hevc_amf"}, {"Nvidia NVENC", "nvenc_hevc"}, {"x265", "libx265"}
+                    { "AMD AMF", "hevc_amf" }, { "Nvidia NVENC", "nvenc_hevc" }, { "x265", "libx265" }
                 };
             }
         }
@@ -78,23 +84,23 @@ namespace FFmpegCatapult.Models
                     case "libx265":
                         return new string[,]
                         {
-                            {"Ultra Fast", "ultrafast"}, {"Super Fast", "superfast"},
-                            {"Very Fast", "veryfast"}, {"Faster", "faster"}, {"Fast", "fast"},
-                            {"Medium", "medium"}, {"Slow", "slow"}, {"Slower", "slower"},
-                            {"Very Slow", "veryslow"}, {"Placebo", "placebo"}
+                            { "Ultra Fast", "ultrafast" }, { "Super Fast", "superfast" },
+                            { "Very Fast", "veryfast" }, { "Faster", "faster" }, { "Fast", "fast" },
+                            { "Medium", "medium" }, { "Slow", "slow" }, { "Slower", "slower" },
+                            { "Very Slow", "veryslow" }, { "Placebo", "placebo" }
                         };
                     case "hevc_amf":
                         return new string[,]
                         {
-                            {"Transcoding", "transcoding"}, {"Ultra Low Latency", "ultralowlatency"},
-                            {"Low Latency", "lowlatency"}, {"Webcam", "webcam"}
+                            { "Transcoding", "transcoding" }, { "Ultra Low Latency", "ultralowlatency" },
+                            { "Low Latency", "lowlatency" }, { "Webcam", "webcam" }
                         };
                     case "nvenc_hevc":
                         return new string[,]
                         {
-                            {"Slow", "slow"}, {"Medium", "medium"}, {"Fast", "fast"},
-                            {"High Quality", "hq"}, {"Low Latency", "ll"}, {"Low Latency HQ", "llhq"},
-                            {"Low Latency HP", "llhp"}, {"Lossless", "lossless"}, {"Lossless HP", "losslesshp"}
+                            { "Slow", "slow" }, { "Medium", "medium" }, { "Fast", "fast" },
+                            { "High Quality", "hq" }, { "Low Latency", "ll" }, { "Low Latency HQ", "llhq" },
+                            { "Low Latency HP", "llhp" }, { "Lossless", "lossless" }, { "Lossless HP", "losslesshp" }
                         };
                     default:
                         return null;

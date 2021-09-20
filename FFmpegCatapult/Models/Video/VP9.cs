@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"VPX", "libvpx-vp9"}
+                    { "VPX", "libvpx-vp9" }
                 };
             }
         }

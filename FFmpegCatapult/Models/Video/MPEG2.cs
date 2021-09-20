@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"MPEG-2 Video", "mpeg2video"}
+                    { "MPEG-2 Video", "mpeg2video" }
                 };
             }
         }

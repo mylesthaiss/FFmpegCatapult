@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"MPEG-4 (FFmpeg)", "mpeg4"}, {"Xvid", "libxvid"}
+                    { "MPEG-4 (FFmpeg)", "mpeg4" }, { "Xvid", "libxvid" }
                 };
             }
         }

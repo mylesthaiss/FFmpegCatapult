@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"None", "none"}
+                    { "None", "none" }
                 };
             }
         }

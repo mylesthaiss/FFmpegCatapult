@@ -55,7 +55,10 @@ namespace FFmpegCatapult.Models
 
         public virtual double[] CodecLevels
         {
-            get { return null; }
+            get
+            { 
+                return null;
+            }
         }
 
         public string[] CompareFunctions
@@ -72,7 +75,10 @@ namespace FFmpegCatapult.Models
 
         public virtual string[,] EncoderPresets
         {
-            get { return null; }
+            get
+            { 
+                return null;
+            }
         }
 
         public string[,] MotionEstimateMethods
@@ -81,10 +87,10 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"Zero", "zero"}, {"Full", "full"}, {"EPZS", "epzs"}, {"Esa", "esa"},
-                    {"Tesa", "tesa"}, {"Dia", "dia"}, {"Log", "log"}, {"Phods", "phods"},
-                    {"X1", "x1"}, {"Hex", "hex"}, {"Umh", "umh"}, {"Iter", "iter"},
-                    {"Default", null}
+                    { "Zero", "zero" }, { "Full", "full" }, { "EPZS", "epzs" }, { "Esa", "esa" },
+                    { "Tesa", "tesa" }, { "Dia", "dia" }, { "Log", "log" }, { "Phods", "phods" },
+                    { "X1", "x1" }, { "Hex", "hex" }, { "Umh", "umh" }, { "Iter", "iter" },
+                    { "Default", null }
                 };
             }
         }
@@ -95,10 +101,10 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"YUV 4:2:0", "yuv420p"}, {"YUYV 4:2:2", "yuyv422"}, {"RGB 24", "rgb24"},
-                    {"BGR 24","bgr24"}, {"YUV 4:2:2", "yuv422p"}, {"YUV 4:4:4", "yuv44p"},
-                    {"YUV 4:1:0", "yuv410p"}, {"YUV 4:1:1", "yuv411p"}, {"Gray", "gray"},
-                    {"Default", null}
+                    { "YUV 4:2:0", "yuv420p" }, { "YUYV 4:2:2", "yuyv422" }, { "RGB 24", "rgb24" },
+                    { "BGR 24", "bgr24" }, { "YUV 4:2:2", "yuv422p" }, { "YUV 4:4:4", "yuv44p" },
+                    { "YUV 4:1:0", "yuv410p" }, { "YUV 4:1:1", "yuv411p" }, { "Gray", "gray" },
+                    { "Default", null }
                 };
             }
         }
@@ -109,7 +115,7 @@ namespace FFmpegCatapult.Models
             {
                 return new string[,]
                 {
-                    {"None", null}
+                    { "None", null }
                 };
             }
         }
