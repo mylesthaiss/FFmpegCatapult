@@ -34,7 +34,6 @@ namespace FFmpegCatapult
         private Audio audio = new Audio();
         private Video video = VideoFactory.Create("h264");
         private Picture picture = new Picture();
-        private Tags tags = new Tags();            
 
         public MainForm()
         {
@@ -684,7 +683,7 @@ namespace FFmpegCatapult
 
         private void EnableTaggingControls(bool enable)
         {
-            groupBoxGeneralTags.Enabled = enable;
+            groupBoxGeneralfile.Enabled = enable;
             groupBoxBroadcast.Enabled = enable;
 
             if (!enable)
@@ -993,7 +992,7 @@ namespace FFmpegCatapult
             // Audio tab
             InitAudio();
 
-            // Options           
+            // Options
             InitOptionsTab();
 
             // Metadata tab
@@ -1023,7 +1022,7 @@ namespace FFmpegCatapult
         {
             if (System.IO.File.Exists(settings.FFmpegPath))
             {
-                ffmpegBin.Run(file, audio, video, picture, tags, paths, settings);
+                ffmpegBin.Run(file, audio, video, picture, paths, settings);
 
                 if (!settings.KeepValues)
                 {
@@ -1596,97 +1595,97 @@ namespace FFmpegCatapult
         //
         void TextBoxAlbum_TextChanged(object sender, EventArgs e)
         {
-            tags.Album = textBoxAlbum.Text;
+            file.Album = textBoxAlbum.Text;
         }
 
         void TextBoxAlbumArtist_TextChanged(object sender, EventArgs e)
         {
-            tags.AlbumArtist = textBoxAlbumArtist.Text;
+            file.AlbumArtist = textBoxAlbumArtist.Text;
         }
 
         void TextBoxArtist_TextChanged(object sender, EventArgs e)
         {
-            tags.Artist = textBoxArtist.Text;
+            file.Artist = textBoxArtist.Text;
         }
 
         void TextBoxComment_TextChanged(object sender, EventArgs e)
         {
-            tags.Comment = textBoxComment.Text;
+            file.Comment = textBoxComment.Text;
         }
 
         void TextBoxDisc_TextChanged(object sender, EventArgs e)
         {
-            tags.Disc = int.TryParse(textBoxDisc.Text, out int disc) ? disc : 0;
+            file.Disc = int.TryParse(textBoxDisc.Text, out int disc) ? disc : 0;
         }
 
         void TextBoxGenre_TextChanged(object sender, EventArgs e)
         {
-            tags.Genre = textBoxGenre.Text;
+            file.Genre = textBoxGenre.Text;
         }
 
         void TextBoxTitle_TextChanged(object sender, EventArgs e)
         {
-            tags.Title = textBoxTitle.Text;
+            file.Title = textBoxTitle.Text;
         }
 
         void TextBoxTotalDiscs_TextChanged(object sender, EventArgs e)
         {
-            tags.Disc = int.TryParse(textBoxTotalDiscs.Text, out int totalDiscs) ? totalDiscs : 0;
+            file.Disc = int.TryParse(textBoxTotalDiscs.Text, out int totalDiscs) ? totalDiscs : 0;
         }
 
         void TextBoxTotalTracks_TextChanged(object sender, EventArgs e)
         {
-            tags.TotalTracks = int.TryParse(textBoxTotalTracks.Text, out int totalTracks) ? totalTracks : 0;
+            file.TotalTracks = int.TryParse(textBoxTotalTracks.Text, out int totalTracks) ? totalTracks : 0;
         }
 
         void TextBoxTrack_TextChanged(object sender, EventArgs e)
         {
-            tags.Track = int.TryParse(textBoxTrack.Text, out int track) ? track : 0;
+            file.Track = int.TryParse(textBoxTrack.Text, out int track) ? track : 0;
         }
 
         void TextBoxYear_TextChanged(object sender, EventArgs e)
         {
-            tags.Year = int.TryParse(textBoxYear.Text, out int year) ? year : 0;
+            file.Year = int.TryParse(textBoxYear.Text, out int year) ? year : 0;
         }
 
         private void CheckBoxCompilation_CheckedChanged(object sender, EventArgs e)
         {
-            tags.Compilation = checkBoxCompilation.Checked;
+            file.Compilation = checkBoxCompilation.Checked;
         }
 
         private void TextBoxPublisher_TextChanged(object sender, EventArgs e)
         {
-            tags.Publisher = textBoxPublisher.Text;
+            file.Publisher = textBoxPublisher.Text;
         }
 
         private void TextBoxCopyright_TextChanged(object sender, EventArgs e)
         {
-            tags.Copyright = textBoxCopyright.Text;
+            file.Copyright = textBoxCopyright.Text;
         }
 
         private void TextBoxShow_TextChanged(object sender, EventArgs e)
         {
-            tags.Show = textBoxShow.Text;
+            file.Show = textBoxShow.Text;
         }
 
         private void TextBoxEpisodeId_TextChanged(object sender, EventArgs e)
         {
-            tags.EpisodeId = textBoxEpisodeId.Text;
+            file.EpisodeId = textBoxEpisodeId.Text;
         }
 
         private void TextBoxNetwork_TextChanged(object sender, EventArgs e)
         {
-            tags.Network = textBoxNetwork.Text;
+            file.Network = textBoxNetwork.Text;
         }
 
         private void TextBoxDescription_TextChanged(object sender, EventArgs e)
         {
-            tags.Description = textBoxDescription.Text;
+            file.Description = textBoxDescription.Text;
         }
 
         private void TextBoxSynopsis_TextChanged(object sender, EventArgs e)
         {
-            tags.Synopsis = textBoxSynopsis.Text;
+            file.Synopsis = textBoxSynopsis.Text;
         }
 
         //
