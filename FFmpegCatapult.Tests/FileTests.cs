@@ -32,7 +32,7 @@ namespace FFmpegCatapult.Tests
         [TestInitialize]
         public void Setup()
         {
-            file = new Container();
+            file = ContainerFactory.Create("mp4");
             paths = new FilePaths();
             audio = new Audio();
         }
@@ -40,7 +40,6 @@ namespace FFmpegCatapult.Tests
         [TestMethod]
         public void Audio_Codec_Is_Valid()
         {
-            file.Format = "mp4";
             audio.Codec = "aac";
 
             Assert.IsTrue(file.IsCodecSupported(audio));
@@ -48,8 +47,7 @@ namespace FFmpegCatapult.Tests
 
         [TestMethod]
         public void Video_Codec_Is_Valid()
-        {            
-            file.Format = "mp4";
+        {
             video = VideoFactory.Create("h264");
 
             Assert.IsTrue(file.IsCodecSupported(video));

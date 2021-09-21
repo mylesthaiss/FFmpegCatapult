@@ -683,7 +683,7 @@ namespace FFmpegCatapult
 
         private void EnableTaggingControls(bool enable)
         {
-            groupBoxGeneralfile.Enabled = enable;
+            groupBoxGeneralTags.Enabled = enable;
             groupBoxBroadcast.Enabled = enable;
 
             if (!enable)
