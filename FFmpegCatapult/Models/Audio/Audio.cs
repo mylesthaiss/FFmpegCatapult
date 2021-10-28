@@ -14,455 +14,84 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-using System.Xml;
-
 namespace FFmpegCatapult.Models
 {
-    class Audio : IAudio
+    public abstract class Audio : IAudio
     {
-        private int[] bitrates;
-        private string codec;       
-        private string encoder;
-        private string[,] ditherMethods = new string[,] {
-            {"Rectangular", "rectangular"}, {"Triangular", "triangular"}, {"High-pass Triangular", "triangular_hp"},
-            {"Lipshitz", "lipshitz"}, {"Shibata", "shibata"}, {"Low Shibata", "low_shibta"},
-            {"High Shibata", "high_shibata"}, {"F-weighted", "f_weighted"}, {"Modified e-weighted", "modified_e_weighted"},
-            {"Improved e-weighted", "improved_e_weighted"}
-        };
-        private string[,] resamplers = new string[,] {
-            {"SW", "swr"}, {"SoX", "soxr"}
-        };
+        public abstract bool IsVBRSupported { get; }
+        public abstract int MaxChannels { get; }
+        public abstract int[] SampleRates { get; }
+        public abstract int[] VBRModes { get; }
+        public abstract string Codec { get; }
+        public abstract string[,] Encoders { get; }
+        public virtual bool PreferNonfreeEncoder { get; set; }
+        public virtual bool UseVBR { get; set; }
+        public virtual int Bitrate { get; set; }
+        public virtual int Channels { get; set; }
+        public virtual int HighPass { get; set; } = 0;
+        public virtual int LowPass { get; set; } = 0;
+        public virtual int Quality { get; set; }
+        public virtual int ResamplerPrecision { get; set; }
+        public virtual int SampleRate { get; set; }
+        public virtual int VolumeBoost { get; set; } = 0;
+        public virtual string DitherMethod { get; set; }
+        public virtual string Encoder { get; set; }
+        public virtual string EncoderPreset { get; set; } = null;        
+        public virtual string Profile { get; set; } = null;
+        public virtual string Resampler { get; set; } = "soxr";
 
-        public bool IsVBRSupported { get; private set; }
-        public bool UseVBR { get; set; }
-        public bool PreferNonfreeEncoder { get; set; }
-        public int Bitrate { get; set; }
-        public int Channels { get; set; }
-        public int LowPass { get; set; } = 0;
-        public int HighPass { get; set; } = 0;
-        public int MaxChannels { get; private set; }
-        public int Quality { get; set; }
-        public int ResamplerPrecision { get; set; }
-        public int SampleRate { get; set; }
-        public int VolumeBoost { get; set; } = 0;
-        public int[] SampleRates { get; private set; }
-        public int[] VBRModes { get; private set; }
-        public string DitherMethod { get; set; }
-        public string Profile { get; set; }
-        public string Resampler { get; set; } = "soxr";
-        public string[,] Encoders { get; private set; }
-        public string[,] Profiles { get; private set; }
-        public string[,] EncoderPresets { get; private set; }
-
-        /// <summary>
-        /// Determines and returns supported bitrates that is based on 
-        /// the audio codec and sample rates.
-        /// </summary>
-        public int[] Bitrates
+        public virtual int[] Bitrates
         {
             get
             {
-                switch (codec)
-                {
-                    case "ac3":
-                        // AC3 Bitrates
-                        bitrates = new int[] {
-                            32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192,
-                            224, 256, 320, 384, 448
-                        };
-                        break;
-                    case "aac":
-                    case "heaac":
-                        // Advance Audio Coding bitrates
-                        bitrates = new int[] {
-                            8, 16, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160,
-                            192, 224, 256, 320, 384, 448
-                        };
-                        break;
-                    case "mp2":
-                        if (SampleRate == 16000 || SampleRate == 22050 || SampleRate == 24000)
-                        {
-                            // Low-freq MP2 bitrates
-                            bitrates = new int[] {
-                                8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128,
-                                144, 160
-                            };
-                        }
-                        else
-                        {
-                            // Standard MP2 bitrates
-                            bitrates = new int[] {
-                                32, 48, 56, 64, 80, 96, 112, 128, 160, 192,
-                                224, 256, 320, 384
-                            };
-                        }
-                        break;
-                    case "mp3":
-                        if (SampleRate == 8000 || SampleRate == 11025 || SampleRate == 12000)
-                        {
-                            // MPEG-2.5 Layer III bitrates
-                            bitrates = new int[] {
-                                8, 16, 24, 32, 40, 48, 56, 64
-                            };
-                        }
-                        else if (SampleRate == 16000 || SampleRate == 22050 || SampleRate == 24000)
-                        {
-                            // MPEG-2 Layer III bitrates
-                            bitrates = new int[] {
-                                8, 16, 24, 32, 40, 48, 56, 64, 80, 96,
-                                112, 128, 144, 160
-                            };
-                        }
-                        else
-                        {
-                            // MPEG-1 Layer III bitrates
-                            bitrates = new int[] {
-                                32, 40, 48, 56, 64, 80, 96, 112, 128,
-                                144, 160, 192, 224, 256, 320
-                            };
-                        }
-                        break;
-                    case "vorbis":
-                        bitrates = new int[] {
-                            32, 64, 80, 96, 112, 128, 160, 192, 224,
-                            256, 320, 500
-                        };
-                        break;
-                    case "speex":
-                        bitrates = new int[] {
-                            2, 4, 8, 16, 24, 32, 40, 44
-                        };
-                        break;
-                    case "wma":
-                        bitrates = new int[] {
-                            32, 48, 80, 96, 128, 160, 192
-                        };
-                        break;
-                    default:
-                        bitrates = new int[] {
-                            8, 16, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160,
-                            192, 224, 256, 320
-                        };
-                        break;
-                }
-
-                return bitrates;
+                return null;
             }
         }
 
-        /// <summary>
-        /// Stores audio codec value and determines available encoders for 
-        /// FFmpeg to use. Also new settings such as bitrate and samplerate 
-        /// will be set if codec value is changed.
-        /// </summary>
-        public string Codec
+        public virtual string[,] DitherMethods
         {
-            get { return codec; }
-            set
+            get
             {
-                codec = value;
-
-                // Init codec values
-                switch (codec)
+                return new string[,]
                 {
-                    case "ac3":
-                        Bitrate = 384;
-                        Channels = 0;
-                        MaxChannels = 6;                        
-                        SampleRate = 48000;
-                        Encoder = "ac3";
-                        Encoders = new string[,] {
-                            {"AC3", "ac3"}, {"AC3 Fixed", "ac3_fixed"}
-                        };
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000
-                        };
-                        break;
-                    case "aac":
-                        Bitrate = 128;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        Encoder = PreferNonfreeEncoder ? "libfdk_aac" : "aac";
-                        SampleRate = 0;                       
-                        Encoders = new string[,] {
-                            {"AAC (FFmpeg)", "aac"}, {"Fraunhofer FDK", "libfdk_aac"}
-                        };
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                     
-                        break;
-                    case "flac":
-                        Bitrate = 0;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 44100;
-                        Encoder = "flac";                        
-                        Encoders = new string[,] {
-                            {"FLAC", "flac"}
-                        };                        
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                       
-                        break;
-                    case "heaac":
-                        Bitrate = 64;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 0;
-                        Encoder = "libfdk_aac";
-                        Encoders = new string[,] {
-                            {"AAC Plus (libaacplus)", "libaacplus"}, {"Fraunhofer FDK", "libfdk_aac"}
-                        };                        
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                        
-                        break;
-                    case "mp2":
-                        Bitrate = 192;
-                        Channels = 0;
-                        MaxChannels = 2;
-                        SampleRate = 0;
-                        Encoder = "libtwolame";
-                        Encoders = new string[,] {
-                            {"MP2 (FFmpeg)", "mp2"}, {"TwoLAME", "libtwolame"}
-                        };              
-                        SampleRates = new int[] {
-                            16000, 22050, 24000, 32000, 44100, 48000
-                        };                      
-                        break;
-                    case "mp3":
-                        Bitrate = 128;
-                        Channels = 0;
-                        MaxChannels = 2;                      
-                        SampleRate = 0;
-                        Encoder = "libmp3lame";
-                        Encoders = new string[,] {
-                            {"LAME", "libmp3lame"}
-                        };
-                        SampleRates = new int[] {
-                            8000, 11025, 12000, 16000, 22050, 24000, 
-                            32000, 44100, 48000
-                        };                        
-                        break;
-                    case "opus":
-                        Bitrate = 96;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 0;
-                        Encoder = "libopus";
-                        Encoders = new string[,] {
-                            {"Opus", "libopus"}
-                        };                        
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                       
-                        break;
-                    case "pcm":
-                        Channels = 0;
-                        MaxChannels = 8;                        
-                        SampleRate = 0;
-                        Encoder = "pcm_s16le";
-                        Encoders = new string[,] {
-                            {"8-bit (Unsigned)", "u8"}, {"16-bit (Signed)", "s16le"},
-                            {"24-bit (Signed)", "s24le"}, {"32-bit (Signed)", "s32le"},
-                            {"A-law", "alaw"}, {"mu-law", "mulaw"}
-                        };
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                        
-                        break;
-                    case "speex":
-                        Bitrate = 16;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 0;
-                        Encoder = "libspeex";
-                        Encoders = new string[,] {
-                            {"Speex", "libspeex"}
-                        };                       
-                        SampleRates = new int[] {
-                            8000, 16000, 22050, 32000, 44100, 48000
-                        };                       
-                        break;
-                    case "vorbis":
-                        Bitrate = 128;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 0;
-                        Encoder = "libvorbis";
-                        Encoders = new string[,] {
-                            {"Vorbis (FFmpeg)", "vorbis"}, {"Vorbis", "libvorbis"}
-                        };                       
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                        
-                        break;
-                    case "wma":
-                        Bitrate = 128;
-                        Channels = 0;
-                        MaxChannels = 8;
-                        SampleRate = 0;
-                        Encoder = "wmav2";
-                        Encoders = new string[,] {
-                            {"WMA Version 1", "wmav1"}, {"WMA Version 2", "wmav2"}
-                        };                       
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                      
-                        break;
-                    default:
-                        Bitrate = 128;
-                        Channels = 0;
-                        MaxChannels = 8;                       
-                        SampleRate = 0;
-                        Encoder = codec;
-                        Encoders = new string[,] {
-                            {codec, codec}
-                        };
-                        SampleRates = new int[] {
-                            8000, 11025, 16000, 22050, 32000, 44100, 
-                            48000, 96000, 192000
-                        };                      
-                        break;
-                }
-            }
-        }
-   
-        /// <summary>
-        /// Stores audio encoder value and determines encoder settings and presets.
-        /// </summary>
-        public string Encoder
-        {
-            get { return encoder; }
-            set
-            {
-                encoder = value;
-                Profile = null;
-
-                switch (encoder)
-                {
-                    case "libfaac":
-                        IsVBRSupported = true;
-                        Profiles = null;
-                        Quality = 100;
-                        VBRModes = new int[] {
-                            20, 50, 70, 90, 100, 120, 140, 160, 180, 200
-                        };
-                        break;
-                    case "libfdk_aac":
-                        IsVBRSupported = true;
-                        Quality = 3;
-                        VBRModes = new int[] {
-                            1, 2, 3, 4
-                        };
-
-                        if (codec == "heaac")
-                        {
-                            Profile = "aac_he";
-                            Profiles = new string[,] {
-                                {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"}
-                            };
-                        }
-                        else
-                        {                            
-                            Profiles = new string[,] {
-                                {"Default", "default"}, {"Low Complexity", "aac_low"},
-                                {"High Efficiency", "aac_he"}, {"High Efficiency v2", "aac_he_v2"},
-                                {"Low Delay", "aac_ld"}, {"Enhanced Low Delay", "aac_eld"}
-                            };
-                        }
-                        break;
-                    case "libmp3lame":
-                        IsVBRSupported = true;
-                        Profiles = null;
-                        Quality = 4;
-                        VBRModes = new int[] {
-                            9, 8, 7, 6, 5, 4, 3, 2, 1, 0
-                        };
-                        break;
-                    case "libvorbis":
-                        IsVBRSupported = true;
-                        Profiles = null;
-                        Quality = 2;
-                        VBRModes = new int[] {
-                            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-                        };                        
-                        break;
-                    default:
-                        IsVBRSupported = false;
-                        Profiles = null;
-                        UseVBR = false;
-                        VBRModes = null;
-                        break;
-                }
+                    { "Rectangular", "rectangular" }, { "Triangular", "triangular" }, { "High-pass Triangular", "triangular_hp" },
+                    { "Lipshitz", "lipshitz" }, { "Shibata", "shibata" }, { "Low Shibata", "low_shibta" },
+                    { "High Shibata", "high_shibata" }, { "F-weighted", "f_weighted" }, { "Modified e-weighted", "modified_e_weighted" },
+                    { "Improved e-weighted", "improved_e_weighted" }
+                };
             }
         }
 
-        public string[,] DitherMethods
+        public virtual string[,] EncoderPresets
         {
-            get { return ditherMethods; }
-        }
-
-        public string[,] Resamplers
-        {
-            get { return resamplers; }
-        }
-
-        public string EncoderPreset { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public Audio()
-        {
-            Codec = "aac";
-        }
-
-        public Audio(string xmlPath, string presetName)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(xmlPath);
-            string path = @"/presets/preset[@name='" + presetName + @"']";
-            XmlNodeList nodes = doc.SelectNodes(path);
-
-            foreach (XmlNode node in nodes)
+            get
             {
-                if (node != null)
+                return new string[,]
                 {
-                    if (node["nonfree"] != null)
-                        PreferNonfreeEncoder = bool.TryParse(node["nonfree"].InnerText, out bool nonfree) && nonfree;
+                    { "None", null }
+                };
+            }
+        }
 
-                    if (node["acodec"] != null)
-                        Codec = node["acodec"].InnerText;
-                    else
-                        Codec = "none";
+        public virtual string[,] Profiles
+        {
+            get
+            {
+                return new string[,]
+                {
+                    { "None", null }
+                };
+            }
+        }
 
-                    if (node["aencoder"] != null)
-                        Encoder = node["aencoder"].InnerText;
-
-                    if (node["ab"] != null)
-                        Bitrate = int.TryParse(node["ab"].InnerText, out int ab) ? ab : 0;
-
-                    if (node["vbr"] != null)
-                    {
-                        UseVBR = true;
-                        Quality = int.TryParse(node["vbr"].InnerText, out int vbr) ? vbr : 0;
-                    }
-
-                    if (node["channels"] != null)
-                        Channels = int.TryParse(node["channels"].InnerText, out int ch) ? ch : 0;
-
-                    if (node["samplerate"] != null)
-                        SampleRate = int.TryParse(node["samplerate"].InnerText, out int ar) ? ar : 0;
-
-                    if (node["volume"] != null)
-                        VolumeBoost = int.TryParse(node["volume"].InnerText, out int vol) ? vol : 0;
-                }
+        public virtual string[,] Resamplers
+        {
+            get
+            {
+                return new string[,]
+                {
+                    { "SW", "swr" }, { "SoX", "soxr" }
+                };
             }
         }
     }

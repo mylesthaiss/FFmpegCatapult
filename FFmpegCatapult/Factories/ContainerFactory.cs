@@ -29,7 +29,7 @@ namespace FFmpegCatapult.Factories
                 case "mpegts":
                     return new MPEGTS();
                 case "mp3":
-                    return new MP3();
+                    return new MP3Stream();
                 case "mp4":
                     return new MP4();
                 case "m4a":

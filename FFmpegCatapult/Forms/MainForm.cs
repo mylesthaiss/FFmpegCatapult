@@ -31,7 +31,7 @@ namespace FFmpegCatapult
         private Settings settings = new Settings();
         private FilePaths paths = new FilePaths();
         private Container file = ContainerFactory.Create("avi");
-        private Audio audio = new Audio();
+        private Audio audio = AudioFactory.Create("aac");
         private Video video = VideoFactory.Create("h264");
         private Picture picture = new Picture();
 
@@ -46,7 +46,7 @@ namespace FFmpegCatapult
         {
             file = ContainerFactory.Create(xmlFile, presetName);
             video = VideoFactory.Create(xmlFile, presetName);
-            audio = new Audio(xmlFile, presetName);
+            audio = AudioFactory.Create(xmlFile, presetName);
             picture = new Picture(xmlFile, presetName);
         }
 
@@ -1168,7 +1168,7 @@ namespace FFmpegCatapult
                 file = ContainerFactory.Create(format.Value);
 
                 if (!file.IsCodecSupported(audio))
-                    audio.Codec = file.SupportedAudioCodecs[0, 1];
+                    audio = AudioFactory.Create(file.SupportedAudioCodecs[0, 1]);
 
                 if (!file.IsCodecSupported(video))
                     video = VideoFactory.Create(file.SupportedVideoCodecs[0, 1]);
@@ -1395,7 +1395,7 @@ namespace FFmpegCatapult
             WinFormsHelper.ListComboContent codec = (WinFormsHelper.ListComboContent)comboBoxAudioCodecs.SelectedItem;
             if (codec.Value != audio.Codec)
             {
-                audio.Codec = codec.Value;
+                audio = AudioFactory.Create(codec.Value);
                 InitAudio();
             }
         }

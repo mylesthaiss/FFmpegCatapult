@@ -107,7 +107,7 @@ namespace FFmpegCatapult.Models
         }
     }
 
-    class MP3 : Container
+    class MP3Stream : Container
     {
         public override string Format
         {
