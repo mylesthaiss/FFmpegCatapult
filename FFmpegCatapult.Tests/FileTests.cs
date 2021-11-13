@@ -15,7 +15,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FFmpegCatapult.Core;
 using FFmpegCatapult.Models;
 using FFmpegCatapult.Factories;
 
@@ -34,13 +33,12 @@ namespace FFmpegCatapult.Tests
         {
             file = ContainerFactory.Create("mp4");
             paths = new FilePaths();
-            audio = new Audio();
         }
 
         [TestMethod]
         public void Audio_Codec_Is_Valid()
         {
-            audio.Codec = "aac";
+            audio = AudioFactory.Create("aac");
 
             Assert.IsTrue(file.IsCodecSupported(audio));
         }

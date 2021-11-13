@@ -131,10 +131,18 @@ namespace FFmpegCatapult.Models
             }
         }
 
-        public AAC()
+        public AAC(ISettings settings)
         {
-            Encoder = "aac";
-            Bitrate = 192;
+            if (settings.PreferNonFree)
+            {
+                Encoder = "libfdk_aac";
+                Bitrate = 128;
+            }
+            else
+            {
+                Encoder = "aac";
+                Bitrate = 192;
+            }            
         }
     }
 

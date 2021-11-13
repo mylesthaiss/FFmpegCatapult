@@ -22,6 +22,7 @@ namespace FFmpegCatapult.Models
     {
         public bool UrlFileNames { get; set; } = false;
         public bool KeepValues { get; set; }
+        public bool PreferNonFree { get; set; } = false;
         public bool SaveSettings { get; set; }
         public bool WriteLog { get; set; }
         public int Threads { get; set; }

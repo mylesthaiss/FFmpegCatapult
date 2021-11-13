@@ -77,9 +77,11 @@
     <Compile Include="Models\Audio\AAC.cs" />
     <Compile Include="Models\Audio\AC3.cs" />
     <Compile Include="Models\Audio\Audio.cs" />
+    <Compile Include="Models\Audio\CopyAudio.cs" />
     <Compile Include="Models\Audio\FLAC.cs" />
     <Compile Include="Models\Audio\MP2.cs" />
     <Compile Include="Models\Audio\MP3.cs" />
+    <Compile Include="Models\Audio\NoAudio.cs" />
     <Compile Include="Models\Audio\Opus.cs" />
     <Compile Include="Models\Audio\PCM.cs" />
     <Compile Include="Models\Audio\Speex.cs" />

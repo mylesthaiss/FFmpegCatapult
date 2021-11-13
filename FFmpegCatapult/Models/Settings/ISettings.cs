@@ -16,9 +16,10 @@
 
 namespace FFmpegCatapult.Models
 {
-    interface ISettings
+    public interface ISettings
     {
         bool UrlFileNames { get; set; }
+        bool PreferNonFree { get; set; }
         bool WriteLog { get; set; }
         int Processors { get; set; }
         int Threads { get; set; }

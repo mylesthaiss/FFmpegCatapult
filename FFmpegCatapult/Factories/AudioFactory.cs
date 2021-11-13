@@ -21,20 +21,24 @@ namespace FFmpegCatapult.Factories
 {
     public static class AudioFactory
     {
-        public static Audio Create(string audio)
+        public static Audio Create(string audio, ISettings settings)
         {
             switch (audio)
             {
                 case "aac":
-                    return new AAC();
+                    return new AAC(settings);
                 case "ac3":
                     return new AC3();
+                case "copy":
+                    return new CopyAudio();
                 case "flac":
                     return new FLAC();
                 case "mp2":
                     return new MP2();
                 case "mp3":
                     return new MP3();
+                case "none":
+                    return new NoAudio();
                 case "opus":
                     return new Opus();
                 case "pcm":
@@ -48,6 +52,12 @@ namespace FFmpegCatapult.Factories
                 default:
                     return new MP3();
             }
+        }
+
+        public static Audio Create(string audio)
+        {
+            Settings settings = new Settings();
+            return Create(audio, settings);
         }
 
         public static Audio Create(string presetFile, string presetName)
