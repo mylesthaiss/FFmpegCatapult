@@ -155,17 +155,15 @@ namespace FFmpegCatapult.Tests
 
         [TestMethod]
         public void Multi_Threaded_High_Definintion_AV1_Argument_String_Is_Valid()
-        {
-            video = VideoFactory.Create("av1");
+        {            
             settings.Processors = 8;
             settings.Threads = 16;
+            video = VideoFactory.Create("av1", settings);
             video.UseCRF = true;
             video.Quality = 30;
-            video.TileColumns = 1;
-            video.TileRows = 1;
             string arguments = ffmpegBin.GetVideoArgs(video, settings);
 
-            Assert.AreEqual("-c:v libaom-av1 -crf 30 -tile-columns 1 -tile-rows 1 -row-mt 1 -cpu-used 8", arguments);
+            Assert.AreEqual("-c:v libaom-av1 -crf 30 -tile-columns 1 -tile-rows 1 -row-mt 1 -cpu-used 8 -threads 16", arguments);
         }
 
         [TestMethod]

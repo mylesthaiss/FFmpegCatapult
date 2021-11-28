@@ -60,9 +60,9 @@ namespace FFmpegCatapult.Factories
             return Create(audio, settings);
         }
 
-        public static Audio Create(string presetFile, string presetName)
+        public static Audio Create(string presetFile, string presetName, ISettings settings)
         {
-            Audio audio = Create("none");
+            Audio audio = Create("none", settings);
 
             XmlDocument doc = new XmlDocument();
             doc.Load(presetFile);
@@ -76,7 +76,7 @@ namespace FFmpegCatapult.Factories
                     if (node["acodec"] != null)
                     {
                         string codec = node["vcodec"].InnerText;
-                        audio = Create(codec);
+                        audio = Create(codec, settings);
                     }
 
                     if (node["nonfree"] != null)

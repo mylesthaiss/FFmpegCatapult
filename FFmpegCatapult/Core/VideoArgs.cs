@@ -118,7 +118,11 @@ namespace FFmpegCatapult.Core
                             break;
                         default:
                             break;
-                    }                    
+                    }
+
+                    // Threads settings
+                    if (settings.Threads > 0)
+                        videoArgs.Add(string.Format("-threads {0}", settings.Threads));
                 }
             }
             else

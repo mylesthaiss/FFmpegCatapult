@@ -45,8 +45,8 @@ namespace FFmpegCatapult
         private void InitPreset(string presetName, string xmlFile)
         {
             file = ContainerFactory.Create(xmlFile, presetName);
-            video = VideoFactory.Create(xmlFile, presetName);
-            audio = AudioFactory.Create(xmlFile, presetName);
+            video = VideoFactory.Create(xmlFile, presetName, settings);
+            audio = AudioFactory.Create(xmlFile, presetName, settings);
             picture = new Picture(xmlFile, presetName);
         }
 

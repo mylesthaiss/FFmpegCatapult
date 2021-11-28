@@ -37,11 +37,17 @@ namespace FFmpegCatapult.Models
             }
         }
 
-        public AV1()
+        public AV1(ISettings settings)
         {
             Bitrate = 768;
             Encoder = "libaom-av1";
             Quality = 30;
+
+            if (settings.Threads > 0)
+            {            
+                TileColumns = 1;
+                TileRows = 1;
+            }                
         }
     }
 }

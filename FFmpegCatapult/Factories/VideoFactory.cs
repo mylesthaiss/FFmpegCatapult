@@ -22,12 +22,12 @@ namespace FFmpegCatapult.Factories
 {
     public static class VideoFactory
     {
-        public static Video Create(string video)
+        public static Video Create(string video, ISettings settings)
         {
             switch (video)
             {
                 case "av1":
-                    return new AV1(); 
+                    return new AV1(settings); 
                 case "h264":
                     return new H264();
                 case "h265":
@@ -53,9 +53,15 @@ namespace FFmpegCatapult.Factories
             }
         }
 
-        public static Video Create(string presetFile, string presetName)
+        public static Video Create(string video)
         {
-            Video video = Create("none");
+            Settings settings = new Settings();
+            return Create(video, settings);
+        }
+
+        public static Video Create(string presetFile, string presetName, ISettings settings)
+        {
+            Video video = Create("none", settings);
 
             XmlDocument doc = new XmlDocument();
             doc.Load(presetFile);
@@ -69,7 +75,7 @@ namespace FFmpegCatapult.Factories
                     if (node["vcodec"] != null)
                     {
                         string codec = node["vcodec"].InnerText;
-                        video = Create(codec);
+                        video = Create(codec, settings);
                     }
 
                     if (node["autoaltref"] != null)
