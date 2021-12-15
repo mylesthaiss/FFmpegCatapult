@@ -28,14 +28,6 @@ namespace FFmpegCatapult.Models
             }
         }
 
-        public override double[] CodecLevels
-        {
-            get
-            { 
-                return null;
-            }
-        }
-
         public override string Encoder
         {
             get
@@ -103,7 +95,7 @@ namespace FFmpegCatapult.Models
                             { "Low Latency HP", "llhp" }, { "Lossless", "lossless" }, { "Lossless HP", "losslesshp" }
                         };
                     default:
-                        return null;
+                        return new string[,] { };
                 }
             }
         }

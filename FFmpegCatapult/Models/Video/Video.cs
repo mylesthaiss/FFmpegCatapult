@@ -56,8 +56,8 @@ namespace FFmpegCatapult.Models
         public virtual double[] CodecLevels
         {
             get
-            { 
-                return null;
+            {
+                return new double[] { };
             }
         }
 
@@ -77,7 +77,7 @@ namespace FFmpegCatapult.Models
         {
             get
             { 
-                return null;
+                return new string[,] { };
             }
         }
 
@@ -113,10 +113,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return new string[,]
-                {
-                    { "None", null }
-                };
+                return new string[,] { };
             }
         }
     }

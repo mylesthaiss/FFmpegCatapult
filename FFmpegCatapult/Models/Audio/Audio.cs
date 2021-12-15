@@ -44,7 +44,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return null;
+                return new int[] { };
             }
         }
 
@@ -66,10 +66,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return new string[,]
-                {
-                    { "None", null }
-                };
+                return new string[,] { };
             }
         }
 
@@ -77,10 +74,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return new string[,]
-                {
-                    { "None", null }
-                };
+                return new string[,] { };
             }
         }
 

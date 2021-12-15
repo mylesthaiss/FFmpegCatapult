@@ -41,7 +41,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return null;
+                return new string[,] { };
             }
         }
 

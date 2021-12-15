@@ -67,25 +67,28 @@ namespace FFmpegCatapult.Helpers
         {
             comboBox.Items.Clear();
 
-            for (int i = 0; i < values.GetLength(0); i ++)
+            if (values.Length > 0)
             {
-                comboBox.Items.Add(new ListComboContent(values[i, 0], values[i, 1]));
-            }
-
-            if (selectedValue != null)
-            {
-                int x = 0;
-
                 for (int i = 0; i < values.GetLength(0); i++)
                 {
-                    if (selectedValue == values[i, 1])
-                    {
-                        x = i;
-                        break;
-                    }
+                    comboBox.Items.Add(new ListComboContent(values[i, 0], values[i, 1]));
                 }
 
-                comboBox.SelectedIndex = x;
+                if (selectedValue != null)
+                {
+                    int x = 0;
+
+                    for (int i = 0; i < values.GetLength(0); i++)
+                    {
+                        if (selectedValue == values[i, 1])
+                        {
+                            x = i;
+                            break;
+                        }
+                    }
+
+                    comboBox.SelectedIndex = x;
+                }
             }
 
             return comboBox;
@@ -95,25 +98,28 @@ namespace FFmpegCatapult.Helpers
         {
             comboBox.Items.Clear();
 
-            for (int i = 0; i < values.GetLength(0); i++)
+            if (values.Length > 0)
             {
-                comboBox.Items.Add(string.Format("{0:0.0}", values[i]));
-            }
-
-            if (selectedValue != 0)
-            {
-                int x = 0;
-
                 for (int i = 0; i < values.GetLength(0); i++)
                 {
-                    if (selectedValue == values[i])
-                    {
-                        x = i;
-                        break;
-                    }
+                    comboBox.Items.Add(string.Format("{0:0.0}", values[i]));
                 }
 
-                comboBox.SelectedIndex = x;
+                if (selectedValue != 0)
+                {
+                    int x = 0;
+
+                    for (int i = 0; i < values.GetLength(0); i++)
+                    {
+                        if (selectedValue == values[i])
+                        {
+                            x = i;
+                            break;
+                        }
+                    }
+
+                    comboBox.SelectedIndex = x;
+                }
             }
 
             return comboBox;
@@ -123,25 +129,28 @@ namespace FFmpegCatapult.Helpers
         {
             comboBox.Items.Clear();
 
-            for (int i = 0; i < values.GetLength(0); i++)
+            if (values.Length > 0)
             {
-                comboBox.Items.Add(Convert.ToString(values[i]));
-            }
-
-            if (selectedValue != 0)
-            {
-                int x = 0;
-
                 for (int i = 0; i < values.GetLength(0); i++)
                 {
-                    if (selectedValue == values[i])
-                    {
-                        x = i;
-                        break;
-                    }
+                    comboBox.Items.Add(Convert.ToString(values[i]));
                 }
 
-                comboBox.SelectedIndex = x;
+                if (selectedValue != 0)
+                {
+                    int x = 0;
+
+                    for (int i = 0; i < values.GetLength(0); i++)
+                    {
+                        if (selectedValue == values[i])
+                        {
+                            x = i;
+                            break;
+                        }
+                    }
+
+                    comboBox.SelectedIndex = x;
+                }
             }
 
             return comboBox;
@@ -151,25 +160,28 @@ namespace FFmpegCatapult.Helpers
         {
             comboBox.Items.Clear();
 
-            for (int i = 0; i < values.GetLength(0); i++)
+            if (values.Length > 0)
             {
-                comboBox.Items.Add(new ListComboContent(string.Format("{0} {1}", values[i], unit), values[i]));
-            }
-
-            if (selectedValue != 0)
-            {
-                int x = 0;
-
                 for (int i = 0; i < values.GetLength(0); i++)
                 {
-                    if (selectedValue == values[i])
-                    {
-                        x = i;
-                        break;
-                    }
+                    comboBox.Items.Add(new ListComboContent(string.Format("{0} {1}", values[i], unit), values[i]));
                 }
 
-                comboBox.SelectedIndex = x;
+                if (selectedValue != 0)
+                {
+                    int x = 0;
+
+                    for (int i = 0; i < values.GetLength(0); i++)
+                    {
+                        if (selectedValue == values[i])
+                        {
+                            x = i;
+                            break;
+                        }
+                    }
+
+                    comboBox.SelectedIndex = x;
+                }
             }
 
             return comboBox;

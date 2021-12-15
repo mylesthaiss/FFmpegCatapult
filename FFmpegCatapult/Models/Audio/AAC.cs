@@ -106,7 +106,7 @@ namespace FFmpegCatapult.Models
                     default:
                         vbrSupported = false;
                         vbrMode = 0;
-                        vbrModes = null;
+                        vbrModes = new int[] { };
                         break;
                 }
             }
@@ -236,7 +236,7 @@ namespace FFmpegCatapult.Models
                     default:
                         vbrSupported = false;
                         vbrMode = 0;
-                        vbrModes = null;
+                        vbrModes = new int[] { };
                         break;
                 }
             }

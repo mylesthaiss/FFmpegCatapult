@@ -292,7 +292,7 @@ namespace FFmpegCatapult
 
         private void InitVideoEncoderSettings()
         {
-            if (video.Profiles != null)
+            if (video.Profiles.Length > 0)
             {
                 comboBoxVCodecProfile.SelectedIndexChanged -= new EventHandler(ComboBoxVCodecProfile_SelectedIndexChanged);
                 comboBoxVCodecProfile = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVCodecProfile, video.Profiles, video.Profile);
@@ -307,7 +307,7 @@ namespace FFmpegCatapult
                 comboBoxVCodecProfile.Enabled = false;
             }
 
-            if (video.CodecLevels != null)
+            if (video.CodecLevels.Length > 0)
             {
                 comboBoxVideoCodecLevels.SelectedIndexChanged -= new EventHandler(ComboBoxVideoCodecLevels_SelectedIndexChanged);
                 comboBoxVideoCodecLevels = WinFormsHelper.AddArrayToComboBox(comboBoxVideoCodecLevels, video.CodecLevels, video.CodecLevel);
@@ -322,7 +322,7 @@ namespace FFmpegCatapult
                 comboBoxVideoCodecLevels.Enabled = false;
             }
 
-            if (video.EncoderPresets != null)
+            if (video.EncoderPresets.Length > 0)
             {                
                 comboBoxVideoEncoderPresets.SelectedIndexChanged -= new EventHandler(ComboBoxVideoEncoderPresets_SelectedIndexChanged);
                 comboBoxVideoEncoderPresets = WinFormsHelper.AddMultiArrayToComboBox(comboBoxVideoEncoderPresets, video.EncoderPresets, video.EncoderPreset);
@@ -418,6 +418,8 @@ namespace FFmpegCatapult
                 comboBoxAudioVBRModes.Enabled = false;
                 labelAudioBitrate.Enabled = true;
                 comboBoxAudioBitrates.Enabled = true;
+                comboBoxAudioBitrates.Enabled = audio.Bitrates.Length > 0;
+                labelAudioBitrate.Enabled = comboBoxAudioBitrates.Enabled;
             }
         }
 
@@ -451,7 +453,7 @@ namespace FFmpegCatapult
 
         private void InitAudioProfiles()
         {
-            if (audio.Profiles != null)
+            if (audio.Profiles.Length > 0)
             {
                 comboBoxAudioCodecProfile.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCodecProfile_SelectedIndexChanged);
                 comboBoxAudioCodecProfile = WinFormsHelper.AddMultiArrayToComboBox(comboBoxAudioCodecProfile, audio.Profiles, audio.Profile);

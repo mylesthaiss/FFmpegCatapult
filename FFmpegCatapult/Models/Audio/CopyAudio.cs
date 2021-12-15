@@ -38,10 +38,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return new int[]
-                {
-                    0
-                };
+                return new int[] { };
             }
         }
 
@@ -49,10 +46,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return new int[]
-                {
-                    0
-                };
+                return new int[] { };
             }
         }
 
@@ -60,7 +54,7 @@ namespace FFmpegCatapult.Models
         {
             get
             {
-                return null;
+                return new int[] { };
             }
         }
 
