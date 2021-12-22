@@ -21,6 +21,7 @@ namespace FFmpegCatapult.Models
         bool IsVBRSupported { get; }
         bool UseVBR { get; set; }
         int Channels { get; set; }
+        int CompressionLevel { get; set; }
         int HighPass { get; set; }
         int LowPass { get; set; }
         int MaxChannels { get; }

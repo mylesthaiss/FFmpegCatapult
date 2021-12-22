@@ -35,6 +35,9 @@ namespace FFmpegCatapult.Core
                     if (audio.Profile != null)
                         audioArgs.Add(string.Format("-profile:a {0}", audio.Profile));
 
+                    if (audio.CompressionLevel > 0)
+                        audioArgs.Add(string.Format("-compression_level {0}", audio.CompressionLevel));
+
                     if (audio.Bitrate > 0 && !audio.UseVBR)
                     {
                         audioArgs.Add(string.Format("-b:a {0}k", audio.Bitrate));

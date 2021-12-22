@@ -28,6 +28,7 @@ namespace FFmpegCatapult.Models
         public virtual bool UseVBR { get; set; }
         public virtual int Bitrate { get; set; }
         public virtual int Channels { get; set; }
+        public virtual int CompressionLevel { get; set; } = 0;
         public virtual int HighPass { get; set; } = 0;
         public virtual int LowPass { get; set; } = 0;
         public virtual int Quality { get; set; }
@@ -36,11 +37,19 @@ namespace FFmpegCatapult.Models
         public virtual int VolumeBoost { get; set; } = 0;
         public virtual string DitherMethod { get; set; }
         public virtual string Encoder { get; set; }
-        public virtual string EncoderPreset { get; set; } = null;        
+        public virtual string EncoderPreset { get; set; } = null;
         public virtual string Profile { get; set; } = null;
         public virtual string Resampler { get; set; } = "soxr";
 
         public virtual int[] Bitrates
+        {
+            get
+            {
+                return new int[] { };
+            }
+        }
+
+        public virtual int[] CompressionLevels
         {
             get
             {
