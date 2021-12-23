@@ -262,6 +262,7 @@ namespace FFmpegCatapult
             this.textBoxInFile = new System.Windows.Forms.TextBox();
             this.labelSourceInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.checkBoxPreferNonGPL = new System.Windows.Forms.CheckBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxDefaultPaths.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
@@ -443,6 +444,7 @@ namespace FFmpegCatapult
             // 
             // groupBoxSessionOptions
             // 
+            this.groupBoxSessionOptions.Controls.Add(this.checkBoxPreferNonGPL);
             this.groupBoxSessionOptions.Controls.Add(this.textBoxLog);
             this.groupBoxSessionOptions.Controls.Add(this.checkBoxWriteLog);
             this.groupBoxSessionOptions.Location = new System.Drawing.Point(6, 238);
@@ -456,7 +458,7 @@ namespace FFmpegCatapult
             // 
             this.textBoxLog.Location = new System.Drawing.Point(96, 19);
             this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.Size = new System.Drawing.Size(453, 20);
+            this.textBoxLog.Size = new System.Drawing.Size(304, 20);
             this.textBoxLog.TabIndex = 3;
             this.textBoxLog.TextChanged += new System.EventHandler(this.TextBoxLog_TextChanged);
             // 
@@ -2683,6 +2685,17 @@ namespace FFmpegCatapult
             this.tabControl.Size = new System.Drawing.Size(575, 322);
             this.tabControl.TabIndex = 2;
             // 
+            // checkBoxPreferNonGPL
+            // 
+            this.checkBoxPreferNonGPL.AutoSize = true;
+            this.checkBoxPreferNonGPL.Location = new System.Drawing.Point(406, 21);
+            this.checkBoxPreferNonGPL.Name = "checkBoxPreferNonGPL";
+            this.checkBoxPreferNonGPL.Size = new System.Drawing.Size(143, 17);
+            this.checkBoxPreferNonGPL.TabIndex = 4;
+            this.checkBoxPreferNonGPL.Text = "Prefer non-free encoders";
+            this.checkBoxPreferNonGPL.UseVisualStyleBackColor = true;
+            this.checkBoxPreferNonGPL.CheckedChanged += new System.EventHandler(this.CheckBoxPreferNonGPL_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3004,6 +3017,7 @@ namespace FFmpegCatapult
         private System.Windows.Forms.NumericUpDown numericUpDownMEPreCmp;
         private System.Windows.Forms.Label labelMEPreCmp;
         private System.Windows.Forms.NumericUpDown numericUpDownMECmp;
+        private System.Windows.Forms.CheckBox checkBoxPreferNonGPL;
     }
 }
 

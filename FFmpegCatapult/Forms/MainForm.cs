@@ -589,6 +589,10 @@ namespace FFmpegCatapult
             textBoxLog.Text = settings.LogFilename;
             textBoxLog.TextChanged += new EventHandler(TextBoxLog_TextChanged);
             EnableLogFileTextBox(settings.WriteLog);
+
+            checkBoxPreferNonGPL.CheckedChanged -= new EventHandler(CheckBoxPreferNonGPL_CheckedChanged);
+            checkBoxPreferNonGPL.Checked = settings.PreferNonFree;
+            checkBoxPreferNonGPL.CheckedChanged += new EventHandler(CheckBoxPreferNonGPL_CheckedChanged);
         }
 
         //
@@ -1786,6 +1790,12 @@ namespace FFmpegCatapult
 
             if (result == DialogResult.OK && !string.IsNullOrEmpty(outputFolderDialog.SelectedPath))
                 textBoxDefaultOutputFolder.Text = outputFolderDialog.SelectedPath;
+        }
+
+        private void CheckBoxPreferNonGPL_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.PreferNonFree = checkBoxPreferNonGPL.Checked;
+            settings.SaveSettings = true;
         }
     }
 }

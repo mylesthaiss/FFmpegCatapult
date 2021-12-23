@@ -70,6 +70,7 @@ namespace FFmpegCatapult.Models
 
         public void Load()
         {
+            PreferNonFree = Properties.Settings.Default.PreferNonFree;
             UrlFileNames = Properties.Settings.Default.UrlFilenames;
             WriteLog = Properties.Settings.Default.WriteLog;
             DefaultOutputFolder = Properties.Settings.Default.OutputFolder;
@@ -91,6 +92,7 @@ namespace FFmpegCatapult.Models
 
         public void Save()
         {
+            Properties.Settings.Default.PreferNonFree = PreferNonFree;
             Properties.Settings.Default.UrlFilenames = UrlFileNames;
             Properties.Settings.Default.WriteLog = WriteLog;
             Properties.Settings.Default.LogFilename = LogFilename;
