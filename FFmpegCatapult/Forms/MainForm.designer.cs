@@ -56,6 +56,7 @@ namespace FFmpegCatapult
             this.labelDefaultOutputPath = new System.Windows.Forms.Label();
             this.labelDefaultInputPath = new System.Windows.Forms.Label();
             this.groupBoxSessionOptions = new System.Windows.Forms.GroupBox();
+            this.checkBoxPreferNonGPL = new System.Windows.Forms.CheckBox();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.checkBoxWriteLog = new System.Windows.Forms.CheckBox();
             this.groupBoxBinaries = new System.Windows.Forms.GroupBox();
@@ -135,6 +136,8 @@ namespace FFmpegCatapult
             this.comboBoxSampleRates = new System.Windows.Forms.ComboBox();
             this.labelSampleRate = new System.Windows.Forms.Label();
             this.groupBoxAudioCodec = new System.Windows.Forms.GroupBox();
+            this.comboBoxAudioCompressionLevels = new System.Windows.Forms.ComboBox();
+            this.labelAudioCompressionLevel = new System.Windows.Forms.Label();
             this.comboBoxAudioCodecProfile = new System.Windows.Forms.ComboBox();
             this.labelAudioCodecProfile = new System.Windows.Forms.Label();
             this.comboBoxAudioEncoders = new System.Windows.Forms.ComboBox();
@@ -262,7 +265,6 @@ namespace FFmpegCatapult
             this.textBoxInFile = new System.Windows.Forms.TextBox();
             this.labelSourceInput = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.checkBoxPreferNonGPL = new System.Windows.Forms.CheckBox();
             this.tabOptions.SuspendLayout();
             this.groupBoxDefaultPaths.SuspendLayout();
             this.groupBoxSessionOptions.SuspendLayout();
@@ -453,6 +455,17 @@ namespace FFmpegCatapult
             this.groupBoxSessionOptions.TabIndex = 1;
             this.groupBoxSessionOptions.TabStop = false;
             this.groupBoxSessionOptions.Text = "Session";
+            // 
+            // checkBoxPreferNonGPL
+            // 
+            this.checkBoxPreferNonGPL.AutoSize = true;
+            this.checkBoxPreferNonGPL.Location = new System.Drawing.Point(406, 21);
+            this.checkBoxPreferNonGPL.Name = "checkBoxPreferNonGPL";
+            this.checkBoxPreferNonGPL.Size = new System.Drawing.Size(143, 17);
+            this.checkBoxPreferNonGPL.TabIndex = 4;
+            this.checkBoxPreferNonGPL.Text = "Prefer non-free encoders";
+            this.checkBoxPreferNonGPL.UseVisualStyleBackColor = true;
+            this.checkBoxPreferNonGPL.CheckedChanged += new System.EventHandler(this.CheckBoxPreferNonGPL_CheckedChanged);
             // 
             // textBoxLog
             // 
@@ -1260,6 +1273,8 @@ namespace FFmpegCatapult
             // 
             // groupBoxAudioCodec
             // 
+            this.groupBoxAudioCodec.Controls.Add(this.comboBoxAudioCompressionLevels);
+            this.groupBoxAudioCodec.Controls.Add(this.labelAudioCompressionLevel);
             this.groupBoxAudioCodec.Controls.Add(this.comboBoxAudioCodecProfile);
             this.groupBoxAudioCodec.Controls.Add(this.labelAudioCodecProfile);
             this.groupBoxAudioCodec.Controls.Add(this.comboBoxAudioEncoders);
@@ -1272,6 +1287,25 @@ namespace FFmpegCatapult
             this.groupBoxAudioCodec.TabIndex = 0;
             this.groupBoxAudioCodec.TabStop = false;
             this.groupBoxAudioCodec.Text = "Format";
+            // 
+            // comboBoxAudioCompressionLevels
+            // 
+            this.comboBoxAudioCompressionLevels.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxAudioCompressionLevels.FormattingEnabled = true;
+            this.comboBoxAudioCompressionLevels.Location = new System.Drawing.Point(503, 47);
+            this.comboBoxAudioCompressionLevels.Name = "comboBoxAudioCompressionLevels";
+            this.comboBoxAudioCompressionLevels.Size = new System.Drawing.Size(46, 21);
+            this.comboBoxAudioCompressionLevels.TabIndex = 5;
+            this.comboBoxAudioCompressionLevels.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAudioCompressionLevels_SelectedIndexChanged);
+            // 
+            // labelAudioCompressionLevel
+            // 
+            this.labelAudioCompressionLevel.AutoSize = true;
+            this.labelAudioCompressionLevel.Location = new System.Drawing.Point(402, 50);
+            this.labelAudioCompressionLevel.Name = "labelAudioCompressionLevel";
+            this.labelAudioCompressionLevel.Size = new System.Drawing.Size(95, 13);
+            this.labelAudioCompressionLevel.TabIndex = 4;
+            this.labelAudioCompressionLevel.Text = "Compression level:";
             // 
             // comboBoxAudioCodecProfile
             // 
@@ -2685,17 +2719,6 @@ namespace FFmpegCatapult
             this.tabControl.Size = new System.Drawing.Size(575, 322);
             this.tabControl.TabIndex = 2;
             // 
-            // checkBoxPreferNonGPL
-            // 
-            this.checkBoxPreferNonGPL.AutoSize = true;
-            this.checkBoxPreferNonGPL.Location = new System.Drawing.Point(406, 21);
-            this.checkBoxPreferNonGPL.Name = "checkBoxPreferNonGPL";
-            this.checkBoxPreferNonGPL.Size = new System.Drawing.Size(143, 17);
-            this.checkBoxPreferNonGPL.TabIndex = 4;
-            this.checkBoxPreferNonGPL.Text = "Prefer non-free encoders";
-            this.checkBoxPreferNonGPL.UseVisualStyleBackColor = true;
-            this.checkBoxPreferNonGPL.CheckedChanged += new System.EventHandler(this.CheckBoxPreferNonGPL_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3018,6 +3041,8 @@ namespace FFmpegCatapult
         private System.Windows.Forms.Label labelMEPreCmp;
         private System.Windows.Forms.NumericUpDown numericUpDownMECmp;
         private System.Windows.Forms.CheckBox checkBoxPreferNonGPL;
+        private System.Windows.Forms.Label labelAudioCompressionLevel;
+        private System.Windows.Forms.ComboBox comboBoxAudioCompressionLevels;
     }
 }
 

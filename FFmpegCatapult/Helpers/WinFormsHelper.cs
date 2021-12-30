@@ -125,7 +125,7 @@ namespace FFmpegCatapult.Helpers
             return comboBox;
         }
 
-        public static ComboBox AddIntArrayToComboBox(ComboBox comboBox, int[] values, int selectedValue = 0)
+        public static ComboBox AddArrayToComboBox(ComboBox comboBox, int[] values, int selectedValue = 0)
         {
             comboBox.Items.Clear();
 

@@ -377,9 +377,28 @@ namespace FFmpegCatapult
             numericUpDownVolumeBoost.ValueChanged += new EventHandler(NumericUpDownVolumeBoost_ValueChanged);
 
             // Other items
-            InitAudioProfiles();
-            InitAudioBitrates();
+            InitAudioProfiles();            
             InitAudioFilterSettings();
+
+            if (audio.CompressionLevels.Length > 0)
+            {
+                groupBoxAudioBitrate.Enabled = false;
+                labelAudioCompressionLevel.Enabled = true;
+                comboBoxAudioCompressionLevels.Enabled = true;
+
+                comboBoxAudioCompressionLevels.SelectedIndexChanged -= new EventHandler(ComboBoxAudioCompressionLevels_SelectedIndexChanged);
+                comboBoxAudioCompressionLevels = WinFormsHelper.AddArrayToComboBox(comboBoxAudioCompressionLevels, audio.CompressionLevels, audio.CompressionLevel);
+                comboBoxAudioCompressionLevels.SelectedIndexChanged += new EventHandler(ComboBoxAudioCompressionLevels_SelectedIndexChanged);
+            }
+            else
+            {
+                groupBoxAudioBitrate.Enabled = true;
+                labelAudioCompressionLevel.Enabled = false;
+                comboBoxAudioCompressionLevels.Enabled = false;
+                comboBoxAudioCompressionLevels.Items.Clear();
+
+                InitAudioBitrates();
+            }
         }
 
         private void InitAudioBitrates()
@@ -401,7 +420,7 @@ namespace FFmpegCatapult
             if (audio.IsVBRSupported)
             {
                 comboBoxAudioVBRModes.SelectedIndexChanged -= new EventHandler(ComboBoxAudioVBRModes_SelectedIndexChanged);
-                comboBoxAudioVBRModes = WinFormsHelper.AddIntArrayToComboBox(comboBoxAudioVBRModes, audio.VBRModes, audio.Quality);
+                comboBoxAudioVBRModes = WinFormsHelper.AddArrayToComboBox(comboBoxAudioVBRModes, audio.VBRModes, audio.Quality);
                 comboBoxAudioVBRModes.SelectedIndexChanged += new EventHandler(ComboBoxAudioVBRModes_SelectedIndexChanged);
             }
 
@@ -1459,6 +1478,12 @@ namespace FFmpegCatapult
             {
                 audio.Bitrate = bitrate.X;
             }
+        }
+
+        private void ComboBoxAudioCompressionLevels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string compLevel = Convert.ToString(comboBoxAudioCompressionLevels.SelectedItem);
+            audio.CompressionLevel = int.TryParse(compLevel, out int x) ? x : 0;
         }
 
         private void NumericUpDownVolumeBoost_ValueChanged(object sender, EventArgs e)
