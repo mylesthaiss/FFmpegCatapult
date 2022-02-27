@@ -192,5 +192,19 @@ namespace FFmpegCatapult.Helpers
             ListComboContent item = (ListComboContent)comboBox.SelectedItem;
             return item.Value;
         }
+
+        public static NumericUpDown UpdateNumericUpDownValues(NumericUpDown numericUpDown, int value, int maxValue)
+        {
+            numericUpDown.Value = 0;
+            numericUpDown.Maximum = maxValue;
+            numericUpDown.Value = value;
+
+            if (value == 0 && maxValue == 0)
+                numericUpDown.Enabled = false;
+            else
+                numericUpDown.Enabled = true;
+
+            return numericUpDown;
+        }
     }
 }

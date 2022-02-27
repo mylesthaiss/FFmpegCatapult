@@ -61,6 +61,38 @@ namespace FFmpegCatapult.Models
             }
         }
 
+        public virtual int MaxSupportedBitrate
+        {
+            get
+            {
+                return 80000;
+            }
+        }
+
+        public virtual int MaxSupportBufferSize
+        {
+            get 
+            { 
+                return 10; 
+            }
+        }
+
+        public virtual int MaxSupportGOPSize
+        {
+            get
+            {
+                return 120;
+            }
+        }
+
+        public virtual int MaxSupportedTargetFileSize
+        {
+            get
+            {
+                return 4096;
+            }
+        }
+
         public string[] CompareFunctions
         {
             get
@@ -76,7 +108,7 @@ namespace FFmpegCatapult.Models
         public virtual string[,] EncoderPresets
         {
             get
-            { 
+            {
                 return new string[,] { };
             }
         }

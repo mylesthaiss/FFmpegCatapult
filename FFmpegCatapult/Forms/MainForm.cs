@@ -211,15 +211,15 @@ namespace FFmpegCatapult
 
             // Numeric up downs
             numericUpDownVideoBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoBitrate_ValueChanged);
-            numericUpDownVideoBitrate.Value = video.Bitrate;
+            numericUpDownVideoBitrate = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownVideoBitrate, video.Bitrate, video.MaxSupportedBitrate);
             numericUpDownVideoBitrate.ValueChanged += new EventHandler(NumericUpDownVideoBitrate_ValueChanged);
-
+            
             numericUpDownVideoMinBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoMinBitrate_ValueChanged);
-            numericUpDownVideoMinBitrate.Value = video.MinBitrate;
+            numericUpDownVideoMinBitrate = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownVideoMinBitrate, video.MinBitrate, video.MaxSupportedBitrate);
             numericUpDownVideoMinBitrate.ValueChanged += new EventHandler(NumericUpDownVideoMinBitrate_ValueChanged);
 
             numericUpDownVideoMaxBitrate.ValueChanged -= new EventHandler(NumericUpDownVideoMaxBitrate_ValueChanged);
-            numericUpDownVideoMaxBitrate.Value = video.MaxBitrate;
+            numericUpDownVideoMaxBitrate = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownVideoMaxBitrate, video.MaxBitrate, video.MaxSupportedBitrate);
             numericUpDownVideoMaxBitrate.ValueChanged += new EventHandler(NumericUpDownVideoMaxBitrate_ValueChanged);
 
             numericUpDownCRF.ValueChanged -= new EventHandler(NumericUpDownCRF_ValueChanged);
@@ -235,15 +235,15 @@ namespace FFmpegCatapult
             numericUpDownQMax.ValueChanged += new EventHandler(NumericUpDownQMax_ValueChanged);
 
             numericUpDownTargetSize.ValueChanged -= new EventHandler(NumericUpDownTargetSize_ValueChanged);
-            numericUpDownTargetSize.Value = video.TargetSize;
+            numericUpDownTargetSize = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownTargetSize, video.TargetSize, video.MaxSupportedTargetFileSize);
             numericUpDownTargetSize.ValueChanged += new EventHandler(NumericUpDownTargetSize_ValueChanged);
 
             numericUpDownBufferSize.ValueChanged -= new EventHandler(NumericUpDownBufferSize_ValueChanged);
-            numericUpDownBufferSize.Value = video.BufferSize;
+            numericUpDownBufferSize = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownBufferSize, video.BufferSize, video.MaxSupportBufferSize);
             numericUpDownBufferSize.ValueChanged += new EventHandler(NumericUpDownBufferSize_ValueChanged);
 
             numericUpDownGOPSize.ValueChanged -= new EventHandler(NumericUpDownGOPSize_ValueChanged);
-            numericUpDownGOPSize.Value = video.GOPSize;
+            numericUpDownGOPSize = WinFormsHelper.UpdateNumericUpDownValues(numericUpDownGOPSize, video.GOPSize, video.MaxSupportGOPSize);
             numericUpDownGOPSize.ValueChanged += new EventHandler(NumericUpDownGOPSize_ValueChanged);
 
             numericUpDownBFrames.ValueChanged -= new EventHandler(NumericUpDownBFrames_ValueChanged);
